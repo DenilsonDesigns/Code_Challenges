@@ -342,3 +342,528 @@ function concatName(firstName, lastName) {
 function reverse(arr) {
   return arr.reverse();
 }
+
+// Name greeting
+
+// Create a function that takes a name and returns a greeting. Don't use a normal function but use an "arrow function".
+
+// Examples
+// helloName("Gerald") ➞ "Hello Gerald!"
+
+// helloName("Tiffany") ➞ "Hello Tiffany!"
+
+// helloName("Ed") ➞ "Hello Ed!"
+
+const helloName = name => {
+  return `Hello ${name}!`;
+};
+
+// Free Coffee Cups
+
+// Per 6 coffee cups I buy, I get a 7th cup free. In total, I get 7 cups. Create a function that takes n cups bought and return as an integer the total number of cups I would get.
+
+// Examples
+// totalCups(6) ➞ 7
+
+// totalCups(12) ➞ 14
+
+// totalCups(213) ➞ 248
+// Notes
+// Number of cups I bought + number of cups I got for free.
+// Only valid inputs will be given.
+
+function totalCups(n) {
+  return Math.floor(n + n / 6);
+}
+
+// console.log(totalCups(12));
+
+// Find the index part 2
+
+// Create a function that searches for the index of a given item in an array. If the item is present, it should return the index, otherwise, it should return -1.
+
+// Examples
+// search([1, 2, 3, 4], 3) ➞ 2
+
+// search([2, 4, 6, 8, 10], 8) ➞ 3
+
+// search([1, 3, 5, 7, 9], 11) ➞ -1
+// Notes
+// If the item is not present, return -1.
+// The given array is ordered.
+
+function search(arr, item) {
+  return arr.indexOf(item);
+}
+
+// Concatenating Two Integer Arrays
+
+// Create a function to concatenate two integer arrays.
+
+// Examples
+// concat([1, 3, 5], [2, 6, 8]) ➞ [1, 3, 5, 2, 6, 8]
+
+// concat([7, 8], [10, 9, 1, 1, 2]) ➞ [7, 8, 10, 9, 1, 1, 2]
+
+// concat([4, 5, 1], [3, 3, 3, 3, 3]) ➞ [4, 5, 1, 3, 3, 3, 3, 3]
+
+function concat(arr1, arr2) {
+  return arr1.concat(arr2);
+}
+
+// Find the Index (Part 1)
+// Create a function that finds the index of a given item.
+
+// Examples
+// search([1, 5, 3], 5) ➞ 1
+
+// search([9, 8, 3], 3) ➞ 2
+
+// search([1, 2, 3], 4) ➞ -1
+// Notes
+// If the item is not present, return -1.
+
+function search(arr, item) {
+  return arr.indexOf(item);
+}
+
+// Volume of a Box
+// Create a function that takes an object argument sizes (contains width, length, height keys) and returns the volume of the box.
+
+// Examples
+// volumeOfBox({ width: 2, length: 5, height: 1 }) ➞ 10
+
+// volumeOfBox({ width: 4, length: 2, height: 2 }) ➞ 16
+
+// volumeOfBox({ width: 2, length: 3, height: 5 }) ➞ 30
+// Notes
+// Don't forget to return the result.
+// Remember that the values are in an object.
+// Volume is length * width * height.
+
+function volumeOfBox(sizes) {
+  return sizes.width * sizes.length * sizes.height;
+}
+
+// Check if an Array Contains a Given Number
+// Write a function to check if an array contains a particular number.
+
+// Examples
+// check([1, 2, 3, 4, 5], 3) ➞ true
+
+// check([1, 1, 2, 1, 1], 3) ➞ false
+
+// check([5, 5, 5, 6], 5) ➞ true
+
+// check([], 5) ➞ false
+
+function check(arr, el) {
+  return arr.indexOf(el) !== -1;
+}
+
+// Find the Bug: Returning the Container
+// The packaging system is running wild and the candy is lying loose all over in the warehouse and bread is stuffed in a bottle. What is going on here? The candy should be in plastic and the bread should be in a bag.
+
+// The packaging machine is running the getContainer() function to retrieve the container of a product. But something is not right...
+
+// Examples
+// getContainer("Bread") ➞ "bag"
+
+// getContainer("Beer") ➞ "bottle"
+
+// getContainer("Candy") ➞ "plastic"
+
+// getContainer("Cheese") ➞ null
+
+function getContainer(product) {
+  let container;
+  switch (product) {
+    case "Bread":
+      container = "bag";
+      break;
+    case "Beer":
+      container = "bottle";
+      break;
+    case "Milk":
+      container = "bottle";
+      break;
+    case "Cerials":
+      container = "box";
+      break;
+    case "Eggs":
+      container = "carton";
+      break;
+    case "Candy":
+      container = "plastic";
+      break;
+    default:
+      container = null;
+      break;
+  }
+
+  return container;
+}
+
+// Extract City Facts
+
+// Create a function that takes an object as an argument and returns a string with facts about the city. The city facts will need to be extracted from the object's three properties:
+
+// name
+// population
+// continent
+// The string should have the following format: X has a population of Y and is situated in Z (where X is the city name, Y is the population and Z is the continent the city is situated in).
+
+// Examples
+// cityFacts({
+//   name: "Paris",
+//   population: "2,140,526",
+//   continent: "Europe"
+// }) ➞ "Paris has a population of 2,140,526 and is situated in Europe"
+
+// cityFacts({
+//   name: "Tokyo",
+//   population: "13,929,286",
+//   continent: "Asia"
+// }) ➞ "Tokyo has a population of 13,929,286 and is situated in Asia"
+
+function cityFacts(city) {
+  return `${city.name} has a population of ${city.population} and is situated in ${city.continent}`;
+}
+
+// Check String for Spaces
+
+// Create a function that returns true if a string contains any spaces.
+
+// Examples
+// hasSpaces("hello") ➞ false
+
+// hasSpaces("hello, world") ➞ true
+
+// hasSpaces(" ") ➞ true
+
+// hasSpaces("") ➞ false
+
+// hasSpaces(",./!@#") ➞ false
+// Notes
+// An empty string does not contain any spaces.
+// Try doing this without RegEx.
+// Don't forget to return the result.
+// If you get stuck on a challenge, find help in the Resources tab.
+// If you're really stuck, unlock solutions in the Solutions tab.
+
+function hasSpaces(str) {
+  return str.includes(" ");
+}
+
+// Count the Arguments
+
+// Create a function that returns the number of argument it was called with.
+
+// Examples
+// numArgs() ➞ 0
+
+// numArgs("foo") ➞ 1
+
+// numArgs("foo", "bar") ➞ 2
+
+// numArgs(true, false) ➞ 2
+
+// numArgs({}) ➞ 1
+
+function numArgs() {
+  return arguments.length;
+}
+
+// To the Power of _____
+// Create a function that takes a base number and an exponent number and returns the calculation.
+
+// Examples
+// calculateExponent(5, 5) ➞ 3125
+
+// calculateExponent(10, 10) ➞ 10000000000
+
+// calculateExponent(3, 3) ➞ 27
+
+function calculateExponent(num, exp) {
+  return Math.pow(num, exp);
+}
+
+// Return the Total Number of Parameters
+
+// Create a function that returns the total number of parameters passed in.
+
+// Examples
+// numberArgs("a", "b", "c") ➞ 3
+
+// numberArgs(10, 20, 30, 40, 50) ➞ 5
+
+// numberArgs(x, y) ➞ 2
+
+// numberArgs() ➞ 0
+
+function numberArgs(/* fill-in */) {
+  return arguments.length;
+}
+
+// Stack the boxes
+
+// Here's an image of four models. Some of the cubes are hidden behind other cubes. Model one consists of one cube. Model two consists of four cubes, and so on...
+
+// Stack the Boxes
+
+// Write a function that takes a number n and returns the number of stacked boxes in a model n levels high, visible and invisible.
+
+// Examples
+// stackBoxes(1) ➞ 1
+
+// stackBoxes(2) ➞ 4
+
+// stackBoxes(0) ➞ 0
+
+function stackBoxes(n) {
+  return n * n;
+}
+
+// Case Insensitive Comparison
+
+// Write a function that validates whether two strings are identical. Make it case insensitive.
+
+// Examples
+// match("hello", "hELLo") ➞ true
+
+// match("motive", "emotive") ➞ false
+
+// match("venom", "VENOM") ➞ true
+
+// match("mask", "mAskinG") ➞ false
+
+function match(s1, s2) {
+  return s1.toLowerCase() === s2.toLowerCase();
+}
+
+// Is the Word Singular or Plural?
+
+// Create a function that takes in a word and determines whether or not it is plural. A plural word is one that ends in "s".
+
+// Examples
+// isPlural("changes") ➞ true
+
+// isPlural("change") ➞ false
+
+// isPlural("dudes") ➞ true
+
+// isPlural("magic") ➞ false
+
+function isPlural(word) {
+  return word[word.length - 1] === "s";
+}
+
+// Slice of Pie
+
+// Create a function that determines whether or not it's possible to split a pie fairly given these three parameters:
+
+// Total number of slices.
+// Number of recipients.
+// How many slices each person gets.
+// The function will be in this form:
+
+// equalSlices(total slices, no. recipients, slices each)
+// Examples
+// equalSlices(11, 5, 2) ➞ true
+// // 5 people x 2 slices each = 10 slices < 11 slices
+
+// equalSlices(11, 5, 3) ➞ false
+// // 5 people x 3 slices each = 15 slices > 11 slices
+
+// equalSlices(8, 3, 2) ➞ true
+
+// equalSlices(8, 3, 3) ➞ false
+
+// equalSlices(24, 12, 2) ➞ true
+
+function equalSlices(total, people, each) {
+  return people * each <= total;
+}
+
+// Char-to-ASCII
+
+// Create a function that returns the ASCII value of the passed in character.
+
+// Examples
+// ctoa("A") ➞ 65
+
+// ctoa("m") ➞ 109
+
+// ctoa("[") ➞ 91
+
+// ctoa("\") ➞ 92
+
+function ctoa(c) {
+  return c.charCodeAt(0);
+}
+
+// String or Integer?
+
+// Create a function that checks if the argument is an integer or a string. Return int if it's an integer and str if it's a string.
+
+// Examples
+// intOrString(8) ➞ "int"
+
+// intOrString("Hello") ➞ "str"
+
+// intOrString(9843532) ➞ "int"
+
+function intOrString(param) {
+  return typeof param === "string" ? "str" : "int";
+}
+
+// Testing K^K == N?
+
+// Write a function that returns true if k^k == n for input (n, k).
+
+// Examples
+// kToK(4, 2) ➞ true
+
+// kToK(387420489, 9) ➞ true
+// // 9^9 == 387420489
+
+// kToK(3124, 5) ➞ false
+
+// kToK(17, 3) ➞ false
+
+function kToK(n, k) {
+  return Math.pow(k, k) === n;
+}
+
+// Add, Subtract, Multiply or Divide?
+
+// Write a function that takes two numbers and returns if they should be added, subtracted, multiplied or divided to get 24. If none of the operations can give 24, return null.
+
+// Examples
+// operation(15, 9) ➞ "added"
+
+// operation(26, 2) ➞ "subtracted"
+
+// operation(11, 11) ➞ null
+
+function operation(num1, num2) {
+  if (num1 + num2 === 24) {
+    return "added";
+  }
+  if (num1 - num2 === 24) {
+    return "subtracted";
+  }
+  if (num1 * num2 === 24) {
+    return "multiplied";
+  }
+
+  if (num1 / num2 === 24) {
+    return "divided";
+  }
+  return null;
+}
+
+// String to Integer and Vice Versa
+
+// Write two functions:
+
+// toInt() : A function to convert a string to an integer.
+// toStr() : A function to convert an integer to a string.
+// Examples
+// toInt("77") ➞ 77
+
+// toInt("532") ➞ 532
+
+// toStr(77) ➞ "77"
+
+// toStr(532) ➞ "532"
+
+function toInt(str) {
+  return parseInt(str);
+}
+
+function toStr(int) {
+  return "" + int;
+}
+
+// Volume of a Pizza
+
+// Tom is a very methodic guy that loves geometry and pizza: he loves them so much that, before eating a pizza, he calculates its radius and its height. Now, he wants to know from you the total volume of pizza that he swallowed!
+
+// You are given the two parameters that Tom measured:
+
+// radius
+// height
+// He tells you that if you multiply the height for the square of the radius and multiply the result for the mathematical constant π (Pi), you will obtain the total volume of the pizza. Implement a function that returns the volume of the pizza as a whole number, rounding it to the nearest integer (and rounding up for numbers with .5 as decimal part).
+
+// Examples
+// volPizza(1, 1) ➞ 3
+// // (radius² x height x π) = 3.14159... rounded to the nearest integer.
+
+// volPizza(7, 2) ➞ 308
+
+// volPizza(10, 2.5) ➞ 785
+
+function volPizza(radius, height) {
+  return Math.round(radius ** 2 * height * Math.PI);
+}
+
+// Coding Website Score Calculator
+
+// Imagine you run a website that presents users with different coding challenges in levels Easy, Medium, and Hard, where users get points for completing challenges. An Easy challenge is worth 5 points, a Medium challenge is worth 10 points, and a Hard challenge is worth 20 points.
+
+// Create a function that takes in the number of each challenge level a user has played and calculates the user's total number of points. Keep in mind that a user cannot complete negative challenges, so the function should return the string "invalid" if any of the passed parameters are negative.
+
+// Examples
+// scoreCalculator(1, 2, 3) ➞ 85
+
+// scoreCalculator(1, 0, 10) ➞ 205
+
+// scoreCalculator(5, 2, -6) ➞ "invalid"
+
+function scoreCalculator(easy, med, hard) {
+  for (let arg in arguments) {
+    if (arguments[arg] < 0) {
+      return "invalid";
+    }
+  }
+  return easy * 5 + med * 10 + hard * 20;
+}
+
+// Simple OOP Calculator
+
+// Create functions for the Calculator class that can do the following:
+
+// Add two numbers.
+// Subtract two numbers.
+// Multiply two numbers.
+// Divide two numbers.
+// Examples
+// var calculator = new Calculator()
+
+// calculator.add(10, 5) ➞ 15
+
+// calculator.subtract(10, 5) ➞ 5
+
+// calculator.multiply(10, 5) ➞ 50
+
+// calculator.divide(10, 5) ➞ 2
+
+class Calculator {
+  // Write functions to add(), subtract(), multiply() and divide()
+  add(num1, num2) {
+    return num1 + num2;
+  }
+
+  substract(num1, num2) {
+    return num1 - num2;
+  }
+
+  multiply(num1, num2) {
+    return num1 * num2;
+  }
+
+  divide(num1, num2) {
+    return num1 / num2;
+  }
+}
