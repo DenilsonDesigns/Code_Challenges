@@ -855,7 +855,7 @@ class Calculator {
     return num1 + num2;
   }
 
-  substract(num1, num2) {
+  subtract(num1, num2) {
     return num1 - num2;
   }
 
@@ -867,3 +867,155 @@ class Calculator {
     return num1 / num2;
   }
 }
+
+// Formatting Text on Edabit
+// The important thing when a comment is posted on Edabit is its content, but when a comment is formatted in the right way, it will be properly shown and it will be easily readable by everyone.
+
+// In this challenge, you have to format a word using four specific methods of the Markdown language, that is used by Edabit to format the text in the Comments tab and the Instructions tab (during the creation, or the translation, of a challenge). Each of these four methods (or styles), is identified by the lowercased initial letter of its name:
+
+// "b" is for bold
+// "i" is for italics
+// "c" is for inline code
+// "s" is for strikethrough
+// You are given two parameters: a string word being the word to format, and another string style being the lowercased initial of the style to apply. You have to implement a function that returns a string being the word surrounded by the special characters used to apply the given style.
+
+function mdFormat(word, style) {
+  switch (style) {
+    case "b":
+      return "**" + word + "**";
+    case "i":
+      return "_" + word + "_";
+    case "c":
+      return "`" + word + "`";
+    case "s":
+      return "~~" + word + "~~";
+  }
+}
+
+// The 3 Programmers Problem
+
+// You hired three programmers and you (hopefully) pay them. Create a function that takes three numbers (the hourly wage of each programmer) and returns the difference between the highest-paid programmer and the lowest-paid.
+
+// Examples
+// programmers(147, 33, 526) ➞ 493
+
+// programmers(33, 72, 74) ➞ 41
+
+// programmers(1, 5, 9) ➞ 8
+
+function programmers(one, two, three) {
+  return Math.max(one, two, three) - Math.min(one, two, three);
+}
+
+// Check if Number is within a Given Range
+
+// Given a number and an object with min and max properties, return true if the number lies within the given range (inclusive).
+
+// Examples
+// isInRange(4, { min: 0, max: 5 }) ➞ true
+
+// isInRange(4, { min: 4, max: 5 }) ➞ true
+
+// isInRange(4, { min: 6, max: 10 }) ➞ false
+
+// isInRange(5, { min: 5, max: 5 }) ➞ true
+
+function isInRange(num, range) {
+  return num >= range.min && num <= range.max;
+}
+
+// Find the Total Number of Digits the Given Number Has
+
+// Create a function that takes a number as an argument and returns the amount of digits it has.
+
+// Examples
+// findDigitAmount(123) ➞ 3
+
+// findDigitAmount(56) ➞ 2
+
+// findDigitAmount(7154) ➞ 4
+
+// findDigitAmount(61217311514) ➞ 11
+
+// findDigitAmount(0) ➞ 1
+
+function findDigitAmount(num) {
+  return num.toString().length;
+}
+
+// Limit a Number's Value
+
+// Create a function that takes three number arguments — one number as an input and two additional numbers representing the endpoints of a closed range — and return the number limited to this range.
+
+// If the number falls within the range, the number should be returned.
+// If the number is less than the lower limit of the range, the lower limit should be returned.
+// If the number is greater than the upper limit of the range, the upper limit should be returned.
+// Examples
+// limitNumber(5, 1, 10) ➞ 5
+
+// limitNumber(-3, 1, 10) ➞ 1
+
+// limitNumber(14, 1, 10) ➞ 10
+
+// limitNumber(4.6, 1, 10) ➞ 4.6
+
+// function limitNumber(num, rangeLow, rangeHigh) {
+//   switch (true) {
+//     case num > rangeHigh:
+//       return rangeHigh;
+//     case num < rangeLow:
+//       return rangeLow;
+//     default:
+//       return num;
+//   }
+// }
+
+function limitNumber(num, rangeLow, rangeHigh) {
+  return num > rangeHigh ? rangeHigh : num < rangeLow ? rangeLow : num;
+}
+
+// Count the Capital Letters
+
+// Given a string of letters, how many capital letters are there?
+
+// Examples
+// capitalLetters("fvLzpxmgXSDrobbgMVrc") ➞ 6
+
+// capitalLetters("JMZWCneOTFLWYwBWxyFw") ➞ 14
+
+// capitalLetters("mqeytbbjwqemcdrdsyvq") ➞ 0
+
+// function capitalLetters(txt) {
+//   let count = 0;
+
+//   for (let char of txt) {
+//     if (char === char.toUpperCase()) count++;
+//   }
+//   return count;
+// }
+
+function capitalLetters(txt) {
+  return [...txt].filter(char => char === char.toUpperCase()).length;
+}
+
+// Negate the Array of Numbers
+// Given an array of numbers, negate all elements contained within.
+
+// Negating a positive value -+n will return -n, because all +'s are removed.
+// Negating a negative value --n will return n, because the first - turns the second minus into a +.
+// Examples
+// negate([1, 2, 3, 4]) ➞ [-1, -2, -3, -4]
+
+// negate([-1, 2, -3, 4]) ➞ [1, -2, 3, -4]
+
+// negate([]) ➞ []
+
+function negate(arr) {
+  let neww = [];
+  arr.forEach(element => {
+    neww.push(-element);
+  });
+  return neww;
+}
+
+console.log(negate([-1, 2, -3, 4]));
