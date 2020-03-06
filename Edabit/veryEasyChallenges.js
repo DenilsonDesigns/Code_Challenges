@@ -1018,4 +1018,51 @@ function negate(arr) {
   return neww;
 }
 
-console.log(negate([-1, 2, -3, 4]));
+// more consise:
+function negate(arr) {
+  return arr.map(val => -val);
+}
+
+// Find the Perimeter of a Rectangle
+function findPerimeter(height, width) {
+  return height * 2 + width * 2;
+}
+
+// Are the Numbers Equal?
+function isSameNum(num1, num2) {
+  return num1 === num2;
+}
+
+// Frames Per Second
+function frames(minutes, fps) {
+  return minutes * 60 * fps;
+}
+
+// Add the Index
+// Given an array of numbers, create a function which returns the same array but with each element's index in the array added to itself. This means you add 0 to the number at index 0, add 1 to the number at index 1, etc...
+
+// Examples
+// addIndexes([0, 0, 0, 0, 0]) ➞ [0, 1, 2, 3, 4]
+
+// addIndexes([1, 2, 3, 4, 5]) ➞ [1, 3, 5, 7, 9]
+
+// addIndexes([5, 4, 3, 2, 1]) ➞ [5, 5, 5, 5, 5]
+function addIndexes(arr) {
+  return arr.map((el, index) => {
+    return el + index;
+  });
+}
+
+// The pH Scale
+function pHName(pH) {
+  if (pH > 14 || pH < 0) {
+    return "invalid";
+  }
+  if (pH > 7) {
+    return "alkaline";
+  }
+  if (pH < 7) {
+    return "acidic";
+  }
+  return "neutral";
+}
