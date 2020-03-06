@@ -1066,3 +1066,71 @@ function pHName(pH) {
   }
   return "neutral";
 }
+
+// Is the Last Character an N?
+function isLastCharacterN(word) {
+  return word[word.length - 1].toUpperCase() === "N";
+}
+
+// ES6: Destructuring Arrays IV
+// Change the string so that it will evaluate to head = 1 and tail = [2, 3, 4]
+// Use the Rest element
+const str = "[head, ...tail] = [1, 2, 3, 4]";
+
+// Multiply Every Array Item by Two
+function getMultipliedArr(arr) {
+  return arr.map(el => {
+    return el * 2;
+  });
+}
+
+// Array of Word Lengths
+function wordLengths(arr) {
+  return arr.map(word => {
+    return word.length;
+  });
+}
+
+// Add a Consecutive List of Numbers
+function addUpTo(n) {
+  let total = 0;
+  for (let i = 0; i <= n; i++) {
+    total += i;
+  }
+  return total;
+}
+
+// Shapes With N Sides
+function nSidedShape(n) {
+  const shapes = [
+    "circle",
+    "semi-circle",
+    "triangle",
+    "square",
+    "pentagon",
+    "hexagon",
+    "heptagon",
+    "octagon",
+    "nonagon",
+    "decagon"
+  ];
+  return shapes[n - 1];
+}
+
+// Count the Syllables
+function countSyllables(str) {
+  let count = 0;
+  [...str].forEach(char => {
+    if (["a", "e", "i", "o", "u"].includes(char.toLowerCase())) {
+      count++;
+    }
+  });
+  return count;
+}
+
+// Get the Sum of All Array Elements
+function getSumOfItems(arr) {
+  return arr.reduce((a, b) => {
+    return a + b;
+  }, 0);
+}
