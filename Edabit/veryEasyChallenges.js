@@ -354,7 +354,7 @@ function reverse(arr) {
 
 // helloName("Ed") ➞ "Hello Ed!"
 
-const helloName = name => {
+const helloName = (name) => {
   return `Hello ${name}!`;
 };
 
@@ -995,7 +995,7 @@ function limitNumber(num, rangeLow, rangeHigh) {
 // }
 
 function capitalLetters(txt) {
-  return [...txt].filter(char => char === char.toUpperCase()).length;
+  return [...txt].filter((char) => char === char.toUpperCase()).length;
 }
 
 // Negate the Array of Numbers
@@ -1012,7 +1012,7 @@ function capitalLetters(txt) {
 
 function negate(arr) {
   let neww = [];
-  arr.forEach(element => {
+  arr.forEach((element) => {
     neww.push(-element);
   });
   return neww;
@@ -1020,7 +1020,7 @@ function negate(arr) {
 
 // more consise:
 function negate(arr) {
-  return arr.map(val => -val);
+  return arr.map((val) => -val);
 }
 
 // Find the Perimeter of a Rectangle
@@ -1079,14 +1079,14 @@ const str = "[head, ...tail] = [1, 2, 3, 4]";
 
 // Multiply Every Array Item by Two
 function getMultipliedArr(arr) {
-  return arr.map(el => {
+  return arr.map((el) => {
     return el * 2;
   });
 }
 
 // Array of Word Lengths
 function wordLengths(arr) {
-  return arr.map(word => {
+  return arr.map((word) => {
     return word.length;
   });
 }
@@ -1112,7 +1112,7 @@ function nSidedShape(n) {
     "heptagon",
     "octagon",
     "nonagon",
-    "decagon"
+    "decagon",
   ];
   return shapes[n - 1];
 }
@@ -1120,7 +1120,7 @@ function nSidedShape(n) {
 // Count the Syllables
 function countSyllables(str) {
   let count = 0;
-  [...str].forEach(char => {
+  [...str].forEach((char) => {
     if (["a", "e", "i", "o", "u"].includes(char.toLowerCase())) {
       count++;
     }
