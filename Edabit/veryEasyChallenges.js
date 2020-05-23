@@ -1248,4 +1248,40 @@ function squaresSum(n) {
   return sum;
 }
 
-console.log(squaresSum(9));
+function cmsSelector(arr, str) {
+  return arr
+    .filter((cms) => (cms.toLowerCase().includes(str) ? cms : null))
+    .sort();
+}
+
+function wumbo(words) {
+  return words.replace(/M/g, "W");
+}
+
+function kmtomiles(kilometers) {
+  return parseFloat((kilometers * 0.62137119).toFixed(5));
+}
+
+function halfQuarterEighth(n) {
+  return [n / 2, n / 4, n / 8];
+}
+
+function getFillings(sandwich) {
+  return sandwich.slice(1, sandwich.length - 1);
+}
+
+// OR:
+// const getFillings = sandwich => sandwich.slice(1, -1);
+
+function numberSyllables(word) {
+  return word.split("-").length;
+}
+
+function missingAngle(angle1, angle2) {
+  if (180 - (angle1 + angle2) === 90) {
+    return "right";
+  }
+  return 180 - (angle1 + angle2) > 90 ? "obtuse" : "acute";
+}
+
+console.log(missingAngle(135, 11));
