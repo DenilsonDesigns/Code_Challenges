@@ -1134,3 +1134,118 @@ function getSumOfItems(arr) {
     return a + b;
   }, 0);
 }
+
+// Burrrrrp
+function longBurp(num) {
+  return `Bu${"r".repeat(num)}p`;
+}
+
+// Helloworld
+function helloWorld(num) {
+  if (num % 3 === 0 && num % 5 === 0) {
+    return "Hello World";
+  } else if (num % 5 === 0) {
+    return "World";
+  } else if (num % 3 === 0) {
+    return "Hello";
+  }
+}
+
+function spaceMeOut(str) {
+  return str.split("").join(" ");
+}
+
+function greaterThanOne(frac) {
+  return frac.split("/")[0] / frac.split("/")[1] > 1;
+}
+
+function getCase(str) {
+  return str.toLowerCase() === str
+    ? "lower"
+    : str.toUpperCase() === str
+    ? "upper"
+    : "mixed";
+}
+
+function addOddToN(n) {
+  let sum = 0;
+  for (let i = 0; i <= n; i++) {
+    if (i % 2 !== 0) sum += i;
+  }
+  return sum;
+}
+
+// function skipTooMuchSugarDrinks(drinks) {
+//   return drinks.filter((drink) => {
+//     return drink === "fanta" ? null : drink === "cola" ? null : drink;
+//   });
+// }
+
+function skipTooMuchSugarDrinks(drinks) {
+  return drinks.filter((drink) => !["cola", "fanta"].includes(drink));
+}
+
+function countClaps(str) {
+  return str.split("").filter((el) => el === "C").length;
+}
+
+function footballPoints(wins, draws, losses) {
+  return wins * 3 + draws;
+}
+
+function equation(s) {
+  return eval(s);
+}
+
+function validStrNumber(n) {
+  return !isNaN(n);
+}
+
+// const user2 = {
+//   name: "John",
+//   email: "john@example.com",
+//   city: "Phoenix",
+//   state: "AZ",
+//   country: "USA",
+// };
+// const str2 = `({ name, email, rest} = user ).toString()`;
+
+// const user2 = {
+//   name: "John",
+//   email: "john@example.com",
+//   city: "Phoenix",
+//   state: "AZ",
+//   country: "USA",
+// };
+// const str2 = `({ name, email, ...rest} = user ).toString()`;
+
+function checkSquareAndCube(arr) {
+  return Math.sqrt(arr[0]) === Math.cbrt(arr[1]);
+}
+
+const regStr = "242Edabit23 45can344 3be3 254324addictive!";
+const REGEXP = /\D+/g;
+
+const validate = (REGEXP) => {
+  if (!/\\D/.test(String(REGEXP))) return () => "required";
+  return function testReg(str) {
+    return str.match(REGEXP).join("");
+  };
+};
+const testExp = validate(REGEXP);
+
+function isTriangle(a, b, c) {
+  if (a + b <= c || a + c <= b || b + c <= a) return false;
+  else return true;
+}
+
+function squaresSum(n) {
+  let sum = 0;
+
+  for (let i = 0; i <= n; i++) {
+    sum += i ** 2;
+  }
+  return sum;
+}
+
+console.log(squaresSum(9));
