@@ -1284,4 +1284,103 @@ function missingAngle(angle1, angle2) {
   return 180 - (angle1 + angle2) > 90 ? "obtuse" : "acute";
 }
 
-console.log(missingAngle(135, 11));
+let promise = new Promise((resolve) => {
+  let animal = "cat";
+  setTimeout(() => {
+    if (animal === "dog") {
+      resolve("It's a dog!");
+    }
+    if (animal !== "dog") {
+      /* need something here, you might also need to pass
+			something else besides the resolve callback */
+    }
+  }, 1000);
+});
+
+function difference(nums) {
+  let sorted = nums.sort((a, b) => {
+    return a - b;
+  });
+  return sorted[nums.length - 1] - sorted[0];
+}
+
+// better
+// function difference(nums) {
+// 	return Math.max(...nums) - Math.min(...nums)
+// }
+
+function checkPalindrome(str) {
+  return str.split("").reverse().join("") === str;
+}
+
+function isTruthy(input) {
+  if (input) return 1;
+  else return 0;
+}
+
+function Go(num) {
+  return "-".repeat(num);
+}
+
+function additiveInverse(arr) {
+  return arr.map((num) => {
+    return num - num * 2;
+  });
+}
+
+function addEnding(arr, ending) {
+  return arr.map((word) => {
+    return word + ending;
+  });
+}
+
+function profit(info) {
+  return Math.round((info.sellPrice - info.costPrice) * info.inventory);
+}
+
+function hurdleJump(hurdles, jumpHeight) {
+  return Math.max(...hurdles) <= jumpHeight;
+}
+
+function filterStateNames(arr, type) {
+  return arr.filter((state) => {
+    return type === "abb" && state.length === 2
+      ? state
+      : null || (type === "full" && state.length > 2)
+      ? state
+      : null;
+  });
+}
+
+function removeNull(arr) {
+  return arr.filter((el) => (el ? el : null));
+}
+
+function firstAndLast(s) {
+  return [s.split("").sort().join(""), s.split("").sort().reverse().join("")];
+}
+
+function FizzBuzz(num) {
+  return num % 3 === 0 && num % 5 === 0
+    ? "FizzBuzz"
+    : num % 3 === 0
+    ? "Fizz"
+    : num % 5 === 0
+    ? "Buzz"
+    : num.toString();
+}
+
+function nthSmallest(arr, n) {
+  let sorted = arr.sort((a, b) => {
+    return a - b;
+  });
+  return sorted[n - 1] ? sorted[n - 1] : null;
+}
+
+function returnOnlyInteger(arr) {
+  return arr.filter((el) => {
+    return typeof el === "number" && Number.isInteger(el) ? el : null;
+  });
+}
+
+console.log(returnOnlyInteger(["String", true, 3.3, 1]));
