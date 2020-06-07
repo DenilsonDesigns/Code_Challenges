@@ -110,4 +110,31 @@ function reverse(str) {
     .join(" ");
 }
 
-console.log(reverse("This is a typical sentence."));
+function removeSmallest(arr) {
+  if (!arr) return [];
+  arr.splice(arr.indexOf(Math.min(...arr)), 1);
+  return arr;
+}
+
+function uniqueInOrder(sequence) {
+  let splitter = typeof sequence === "string" ? sequence.split("") : sequence;
+  return splitter.filter((el, i) => {
+    if (i === 0) {
+      return el;
+    }
+    if (i > 0) {
+      if (splitter[i - 1] !== el) {
+        return el;
+      }
+    }
+    return null;
+  });
+}
+
+// better
+// function uniqueInOrder(sequence) {
+//   return Array.from(sequence).filter((x,i,a) => x !== a[i-1]);
+// }
+
+console.log(uniqueInOrder("12333355555522211133"));
+console.log(uniqueInOrder([1, 2, 2, 3, 3]));
