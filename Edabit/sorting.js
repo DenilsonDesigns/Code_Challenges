@@ -149,7 +149,6 @@ function wordBuilder(letters, positions) {
 
 // rearranged diff
 function rearrangedDifference(num) {
-  // get max
   let max = num.toString().split("");
   max = parseInt(
     max
@@ -161,7 +160,6 @@ function rearrangedDifference(num) {
       })
       .join("")
   );
-  // get min
   let min = num.toString().split("");
   min = parseInt(
     min
@@ -174,7 +172,6 @@ function rearrangedDifference(num) {
       .join("")
   );
 
-  // return max - min
   return max - min;
 }
 
