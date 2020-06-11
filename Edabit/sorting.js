@@ -136,5 +136,47 @@ function uniqueInOrder(sequence) {
 //   return Array.from(sequence).filter((x,i,a) => x !== a[i-1]);
 // }
 
-console.log(uniqueInOrder("12333355555522211133"));
-console.log(uniqueInOrder([1, 2, 2, 3, 3]));
+// word builder
+function wordBuilder(letters, positions) {
+  let final = [];
+
+  for (let i = 0; i < letters.length; i++) {
+    final[positions[i]] = letters[i];
+  }
+
+  return final.join("");
+}
+
+// rearranged diff
+function rearrangedDifference(num) {
+  // get max
+  let max = num.toString().split("");
+  max = parseInt(
+    max
+      .sort((a, b) => {
+        return parseInt(b) - parseInt(a);
+      })
+      .map((el) => {
+        return parseInt(el);
+      })
+      .join("")
+  );
+  // get min
+  let min = num.toString().split("");
+  min = parseInt(
+    min
+      .sort((a, b) => {
+        return parseInt(a) - parseInt(b);
+      })
+      .map((el) => {
+        return parseInt(el);
+      })
+      .join("")
+  );
+
+  // return max - min
+  return max - min;
+}
+
+console.log(rearrangedDifference(7723188));
+console.log(rearrangedDifference(3320707));
