@@ -175,5 +175,39 @@ function rearrangedDifference(num) {
   return max - min;
 }
 
-console.log(rearrangedDifference(7723188));
-console.log(rearrangedDifference(3320707));
+function risiko(att, def) {
+  let finalCount = 0;
+
+  let sortedAtt = att.sort((a, b) => {
+    return b - a;
+  });
+
+  let sortedDef = def.sort((a, b) => {
+    return b - a;
+  });
+
+  sortedAtt.forEach((el, i) => {
+    if (el > sortedDef[i]) finalCount++;
+  });
+
+  return finalCount;
+}
+
+// better
+// const risiko = (att, def) => {
+// 	[att, def].forEach(roll => roll.sort().reverse());
+// 	return att.filter((value, die) => value > def[die]).length;
+// }
+
+// unfinished *************
+function sortByCharacter(arr, n) {
+  return arr.sort((a, b) => {
+    console.log(a[n - 1], b[n - 1]);
+    return a[n - 1] + b[n - 1];
+  });
+}
+// **************************
+
+console.log(sortByCharacter(["az16", "by35", "cx24"], 1));
+console.log(sortByCharacter(["az16", "by35", "cx24"], 4));
+console.log(sortByCharacter(["az16", "by35", "cx24"], 2));
