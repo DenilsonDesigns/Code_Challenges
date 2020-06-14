@@ -45,4 +45,52 @@ function commonCharacterCount(s1, s2) {
   return count;
 }
 
-console.log(commonCharacterCount("aabcc", "adcaa"));
+//  is Lucky?
+function isLucky(n) {
+  let word = n.toString();
+  let firstPart = word.slice(0, word.length / 2).split("");
+  let secondPart = word.slice(word.length / 2).split("");
+
+  function parseSum(list) {
+    return list.reduce((acc, val) => acc + parseInt(val), 0);
+  }
+
+  return parseSum(firstPart) === parseSum(secondPart);
+}
+
+function sortByHeight(a) {
+  let positionsOfNonTrees = [];
+  let sortedHeights = [];
+  let final = a;
+
+  a.forEach((el, i) => {
+    if (el !== -1) {
+      positionsOfNonTrees.push(i);
+      sortedHeights.push(el);
+    }
+  });
+
+  sortedHeights = sortedHeights.sort((a, b) => {
+    return a - b;
+  });
+
+  positionsOfNonTrees.forEach((el, i) => {
+    final[el] = sortedHeights[i];
+  });
+
+  return final;
+}
+
+// better
+// function sortByHeight(a) {
+//   var s = a.filter(h => h > 0).sort((a, b) => a - b)
+//   return a.map(p => {
+//       if (p !== -1) {
+//           return s.shift();
+//       }
+
+//       return -1;
+//   })
+// }
+
+console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]));
