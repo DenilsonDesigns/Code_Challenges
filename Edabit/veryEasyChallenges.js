@@ -1400,38 +1400,4 @@ function colorInvert(rgb) {
   return rgb.map((r) => Math.abs(255 - r));
 }
 
-function squareAreasDifference(r) {
-  let outerArea = (r * 2) ** 2;
-  let innerArea = (r * 2) ** 2 / 2;
-  return outerArea - innerArea;
-}
-
-function abcmath(a, b, c) {
-  let first = a;
-  for (let i = 1; i <= b; i++) {
-    first += first;
-  }
-  return first % c === 0;
-}
-
-function totalDistance(height, length, tower) {
-  return Number(((tower / height) * (height + length)).toFixed(1));
-}
-
-function factorial(int) {
-  if (int === 0) {
-    return 1;
-  }
-  return int * factorial(int - 1);
-}
-
-function amplify(num) {
-  let r = [];
-  for (let i = 1; i <= num; i++) {
-    let p = i % 4 === 0 ? i * 10 : i;
-    r.push(p);
-  }
-  return r;
-}
-
-console.log(amplify(25));
+// console.log(amplify(25));
