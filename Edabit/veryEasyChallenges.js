@@ -1383,4 +1383,55 @@ function returnOnlyInteger(arr) {
   });
 }
 
-console.log(returnOnlyInteger(["String", true, 3.3, 1]));
+function calcAge(age) {
+  return age * 365;
+}
+
+function posCom(num) {
+  return 2 ** num;
+}
+
+function starNumber(n) {
+  return 6 * n * (n - 1) + 1;
+}
+
+function colorInvert(rgb) {
+  // Math.abs actually redundant here
+  return rgb.map((r) => Math.abs(255 - r));
+}
+
+function squareAreasDifference(r) {
+  let outerArea = (r * 2) ** 2;
+  let innerArea = (r * 2) ** 2 / 2;
+  return outerArea - innerArea;
+}
+
+function abcmath(a, b, c) {
+  let first = a;
+  for (let i = 1; i <= b; i++) {
+    first += first;
+  }
+  return first % c === 0;
+}
+
+function totalDistance(height, length, tower) {
+  return Number(((tower / height) * (height + length)).toFixed(1));
+}
+
+function factorial(int) {
+  if (int === 0) {
+    return 1;
+  }
+  return int * factorial(int - 1);
+}
+
+function amplify(num) {
+  let r = [];
+  for (let i = 1; i <= num; i++) {
+    let p = i % 4 === 0 ? i * 10 : i;
+    r.push(p);
+  }
+  return r;
+}
+
+console.log(amplify(25));
