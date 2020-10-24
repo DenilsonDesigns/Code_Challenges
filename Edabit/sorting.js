@@ -208,6 +208,39 @@ function sortByCharacter(arr, n) {
 }
 // **************************
 
-console.log(sortByCharacter(["az16", "by35", "cx24"], 1));
-console.log(sortByCharacter(["az16", "by35", "cx24"], 4));
-console.log(sortByCharacter(["az16", "by35", "cx24"], 2));
+function sortByLength(arr) {
+  return arr.sort((a, b) => {
+    return a.length - b.length;
+  });
+}
+
+function zipIt(women, men) {
+  if (women.length !== men.length) return "sizes don't match";
+  return women.map((el, i) => [el, men[i]]);
+}
+
+function sortIt(arr) {
+  return arr.sort((a, b) => a - b);
+}
+// if int/arr checks were needed:
+// const sortIt = arr => arr.sort((a,b) => (a[0] || a) - (b[0] || b));
+
+function numberLenSort(arr) {
+  return arr.sort((a, b) => {
+    return a.toString().split("").length - b.toString().split("").length;
+  });
+}
+// dont need to split: strings have a "length" prop?
+// function number_len_sort(lst) {
+//   return lst.sort((a, b) => a.toString().length - b.toString().length);
+// }
+
+function ascDesNone(arr, str) {
+  if (str === "Asc") return arr.sort((a, b) => a - b);
+  if (str === "Des") return arr.sort((a, b) => b - a);
+  return arr;
+}
+
+console.log(ascDesNone([4, 3, 2, 1], "Asc"));
+console.log(ascDesNone([7, 8, 11, 66], "Des"));
+console.log(ascDesNone([1, 2, 3, 4], "None"));
