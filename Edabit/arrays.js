@@ -125,5 +125,48 @@ function greetPeople(names) {
   return names.map((el) => `Hello ${el}`).join(", ");
 }
 
-console.log(greetPeople(["Kyrill", "Mom", "Dad", "Zuzu"]));
-console.log(greetPeople([]));
+function lastItem(input) {
+  return input[input.length - 1];
+}
+
+function evenOddPartition(arr) {
+  let evens = arr.filter((el) => el % 2 === 0);
+  let odds = arr.filter((el) => el % 2 !== 0);
+  return [evens, odds];
+}
+
+function mean(nums) {
+  return parseFloat(
+    (nums.reduce((acc, el) => acc + el, 0) / nums.length).toFixed(1)
+  );
+}
+
+function convertCartesian(x, y) {
+  return x.map((el, i) => [el, y[i]]);
+}
+
+function getExtension(arr) {
+  return arr.map((el) => el.split(".")[el.split(".").length - 1]);
+}
+// Official Slick Daddy Club
+// function getExtension(arr) {
+// 	return arr.map(x => x.split(".").pop())
+// }
+
+function minimumRemovals(arr) {
+  return arr.reduce((acc, el) => acc + el, 0) % 2 === 0 ? 0 : 1;
+}
+// more simplified
+// const minimumRemovals = a => a.reduce((t,c) => t+c)%2
+
+function findEvenNums(num) {
+  return [...Array(num + 1).keys()].filter((el) => el % 2 === 0 && el > 0);
+}
+
+function getSequence(low, high) {
+  return Array.from({ length: high - low + 1 }, (_, i) => low + i);
+}
+
+console.log(getSequence(1, 5));
+console.log(getSequence(-10, 1));
+// console.log(findEvenNums(9));
