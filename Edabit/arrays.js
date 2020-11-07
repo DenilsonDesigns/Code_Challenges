@@ -167,6 +167,20 @@ function getSequence(low, high) {
   return Array.from({ length: high - low + 1 }, (_, i) => low + i);
 }
 
-console.log(getSequence(1, 5));
-console.log(getSequence(-10, 1));
+function last(a, n) {
+  return a.length === 0 || a.length < n ? "invalid" : n > 0 ? a.splice(-n) : [];
+}
+
+function acceptedWords(list) {
+  return list.filter((x) => /^[^C]/.test(x));
+}
+
+function countCharacters(arr) {
+  let sum = 0;
+  arr.forEach((el) => (sum += el.length));
+  return sum;
+}
+
+console.log(countCharacters(["###", "###", "###"]));
+console.log(countCharacters(["", ""]));
 // console.log(findEvenNums(9));
