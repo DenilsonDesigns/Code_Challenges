@@ -241,8 +241,25 @@ function calculateDifference(obj, limit) {
   return Object.values(obj).reduce((t, n) => t + n, 0) - limit;
 }
 
-console.log(
-  calculateDifference({ skate: 20000, painting: 30000, shoes: 1 }, 50000)
-);
-console.log(calculateDifference({ "baseball bat": 31 }, 10));
+function societyName(friends) {
+  return friends
+    .map((el) => el[0])
+    .sort()
+    .join("");
+}
+
+function formatPhoneNumber(numbers) {
+  return `(${numbers.slice(0, 3).join("")}) ${numbers
+    .slice(3, 7)
+    .join("")}-${numbers.slice(7, 11).join("")}`;
+}
+// I like this solution:
+// function formatPhoneNumber(numbers) {
+//   let masked = '(###) ###-####';
+//   numbers.forEach(v => masked = masked.replace("#", v));
+//   return masked;
+// }
+
+console.log(formatPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]));
+console.log(formatPhoneNumber([5, 1, 9, 5, 5, 5, 4, 4, 6, 8]));
 // console.log(findEvenNums(9));
