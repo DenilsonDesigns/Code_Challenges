@@ -181,6 +181,68 @@ function countCharacters(arr) {
   return sum;
 }
 
-console.log(countCharacters(["###", "###", "###"]));
-console.log(countCharacters(["", ""]));
+function divisible(arr) {
+  return arr.reduce((a, b) => a * b) % arr.reduce((a, b) => a + b) === 0;
+}
+
+function arrayLessThan100(arr) {
+  return arr.reduce((a, b) => a + b) < 100;
+}
+
+function sum(arr) {
+  return arr.length === 0 ? 0 : arr.pop() + sum(arr);
+}
+
+function same(a1, a2) {
+  return new Set(a1).size === new Set(a2).size;
+}
+
+function deNest(arr) {
+  return arr.flat(Infinity)[0];
+}
+
+function mirror(arr) {
+  return arr.concat([...arr].reverse().slice(1));
+}
+
+function rogerShots(arr) {
+  let bottles = 6;
+  let seconds = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "Bang!") {
+      bottles--;
+      seconds += 0.5;
+    } else if (arr[i] === "BangBang!") {
+      bottles -= 2;
+      seconds += 0.5;
+    }
+    if (bottles === 0) break;
+  }
+  return seconds;
+}
+
+function tuckIn(arr1, arr2) {
+  return [arr1[0], ...arr2, arr1[1]];
+}
+
+function numberSplit(n) {
+  return [Math.floor(n / 2), n - Math.floor(n / 2)];
+}
+
+function getOnlyEvens(nums) {
+  return nums.filter((el, i) => el % 2 === 0 && i % 2 === 0);
+}
+
+function isAvgWhole(arr) {
+  return Number.isInteger(arr.reduce((acc, el) => acc + el) / arr.length);
+}
+
+function calculateDifference(obj, limit) {
+  return Object.values(obj).reduce((t, n) => t + n, 0) - limit;
+}
+
+console.log(
+  calculateDifference({ skate: 20000, painting: 30000, shoes: 1 }, 50000)
+);
+console.log(calculateDifference({ "baseball bat": 31 }, 10));
 // console.log(findEvenNums(9));
