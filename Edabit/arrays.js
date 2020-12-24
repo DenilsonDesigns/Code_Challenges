@@ -167,6 +167,99 @@ function getSequence(low, high) {
   return Array.from({ length: high - low + 1 }, (_, i) => low + i);
 }
 
-console.log(getSequence(1, 5));
-console.log(getSequence(-10, 1));
+function last(a, n) {
+  return a.length === 0 || a.length < n ? "invalid" : n > 0 ? a.splice(-n) : [];
+}
+
+function acceptedWords(list) {
+  return list.filter((x) => /^[^C]/.test(x));
+}
+
+function countCharacters(arr) {
+  let sum = 0;
+  arr.forEach((el) => (sum += el.length));
+  return sum;
+}
+
+function divisible(arr) {
+  return arr.reduce((a, b) => a * b) % arr.reduce((a, b) => a + b) === 0;
+}
+
+function arrayLessThan100(arr) {
+  return arr.reduce((a, b) => a + b) < 100;
+}
+
+function sum(arr) {
+  return arr.length === 0 ? 0 : arr.pop() + sum(arr);
+}
+
+function same(a1, a2) {
+  return new Set(a1).size === new Set(a2).size;
+}
+
+function deNest(arr) {
+  return arr.flat(Infinity)[0];
+}
+
+function mirror(arr) {
+  return arr.concat([...arr].reverse().slice(1));
+}
+
+function rogerShots(arr) {
+  let bottles = 6;
+  let seconds = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "Bang!") {
+      bottles--;
+      seconds += 0.5;
+    } else if (arr[i] === "BangBang!") {
+      bottles -= 2;
+      seconds += 0.5;
+    }
+    if (bottles === 0) break;
+  }
+  return seconds;
+}
+
+function tuckIn(arr1, arr2) {
+  return [arr1[0], ...arr2, arr1[1]];
+}
+
+function numberSplit(n) {
+  return [Math.floor(n / 2), n - Math.floor(n / 2)];
+}
+
+function getOnlyEvens(nums) {
+  return nums.filter((el, i) => el % 2 === 0 && i % 2 === 0);
+}
+
+function isAvgWhole(arr) {
+  return Number.isInteger(arr.reduce((acc, el) => acc + el) / arr.length);
+}
+
+function calculateDifference(obj, limit) {
+  return Object.values(obj).reduce((t, n) => t + n, 0) - limit;
+}
+
+function societyName(friends) {
+  return friends
+    .map((el) => el[0])
+    .sort()
+    .join("");
+}
+
+function formatPhoneNumber(numbers) {
+  return `(${numbers.slice(0, 3).join("")}) ${numbers
+    .slice(3, 7)
+    .join("")}-${numbers.slice(7, 11).join("")}`;
+}
+// I like this solution:
+// function formatPhoneNumber(numbers) {
+//   let masked = '(###) ###-####';
+//   numbers.forEach(v => masked = masked.replace("#", v));
+//   return masked;
+// }
+
+console.log(formatPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]));
+console.log(formatPhoneNumber([5, 1, 9, 5, 5, 5, 4, 4, 6, 8]));
 // console.log(findEvenNums(9));
