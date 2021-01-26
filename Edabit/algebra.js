@@ -50,4 +50,50 @@ function numbersSum(arr) {
     .reduce((sum, el) => sum + el, 0);
 }
 
-console.log(numbersSum([1, 2, "13", "4", "645"]));
+function calculator(str) {
+  return eval(str);
+}
+
+function area(h, w) {
+  if (h < 1 || w < 1) return -1;
+  return h * w;
+}
+
+function divisibleByB(a, b) {
+  let ceil = Math.max(a, b);
+  while (true) {
+    ceil++;
+    if (ceil % b == 0) return ceil;
+  }
+}
+
+function numLayers(n) {
+  return 2 ** n * 0.0005 + "m";
+}
+
+function solve(eq) {
+  let parts = eq.split(" ");
+  let sign = parts[1] === "+" ? "-" : "+";
+  console.log(parts);
+  return eval(parts[parts.length - 1] + sign + " " + parts[2]);
+}
+
+function lastDig(a, b, c) {
+  const last = (dig) => {
+    let stringed = String(dig);
+    return parseInt(stringed[stringed.length - 1]);
+  };
+  return last(a * b) == last(c);
+}
+
+function linesAreParallel(l1, l2) {
+  return l1[1] / l1[0] === l2[1] / l2[0];
+}
+
+function isAutomorphic(n) {
+  return Number(String(n ** 2).slice(-String(n).length)) === n;
+}
+
+console.log(isAutomorphic(5));
+console.log(isAutomorphic(25));
+console.log(isAutomorphic(11));

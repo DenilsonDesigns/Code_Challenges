@@ -260,6 +260,56 @@ function formatPhoneNumber(numbers) {
 //   return masked;
 // }
 
-console.log(formatPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]));
-console.log(formatPhoneNumber([5, 1, 9, 5, 5, 5, 4, 4, 6, 8]));
+function valueAt(arr, i) {
+  return arr[Math.floor(i)];
+}
+
+function fiftyThirtyTwenty(ati) {
+  let r = {};
+  r["Needs"] = ati * 0.5;
+  r["Wants"] = ati * 0.3;
+  r["Savings"] = ati * 0.2;
+  return r;
+}
+
+function determineLever(arr) {
+  return arr[1] == "f"
+    ? "first class lever"
+    : arr[2] == "f"
+    ? "second class lever"
+    : "third class lever";
+}
+
+function outlierNumber(arr) {
+  let odds = [],
+    evens = [];
+  arr.forEach((el) => {
+    el % 2 == 0 ? evens.push(el) : odds.push(el);
+  });
+  return odds.length == 1 ? odds[0] : evens[0];
+}
+
+function parseArray(arr) {
+  return arr.map((el) => el + "");
+}
+
+function binaryToDecimal(arr) {
+  return parseInt(arr.map(String).join(""), 2);
+}
+
+function findFactors(num) {
+  let r = [];
+  for (let i = 0; i <= num; i++) {
+    if (num % i == 0) {
+      r.push(i);
+    }
+  }
+  return r;
+}
+// cleaner
+// [...Array(n+1).keys()].filter(a => n % a == 0);
+
+console.log(findFactors(9));
+console.log(findFactors(12));
+console.log(findFactors(0));
 // console.log(findEvenNums(9));

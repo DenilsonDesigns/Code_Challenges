@@ -4,7 +4,7 @@
   "description": "",
   "main": "sandbox.js",
   "dependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.7"
   },
   "devDependencies": {},
   "scripts": {
