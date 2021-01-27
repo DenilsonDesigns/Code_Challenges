@@ -309,7 +309,42 @@ function findFactors(num) {
 // cleaner
 // [...Array(n+1).keys()].filter(a => n % a == 0);
 
-console.log(findFactors(9));
-console.log(findFactors(12));
-console.log(findFactors(0));
+function rotateByOne(arr) {
+  return [arr[arr.length - 1]].concat(arr.slice(0, arr.length - 1));
+  // best
+  // [a.pop(), ...a]
+}
+
+function fruitSalad(arr) {
+  let chunks = [];
+  arr.forEach((el) => {
+    chunks.push(el.slice(0, el.length / 2));
+    chunks.push(el.slice(el.length / 2));
+  });
+  return chunks.sort().join("");
+}
+
+function forbiddenLetter(char, arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].includes(char)) {
+      return false;
+    }
+  }
+  return true;
+  // better
+  // ![...a.join('')].includes(c)
+}
+
+function arithmeticProgression(start, diff, n) {
+  let arr = [];
+  arr[0] = start;
+  for (let i = 1; i < n; i++) {
+    arr[i] = arr[i - 1] + diff;
+  }
+  return arr.join(", ");
+}
+
+console.log(arithmeticProgression(1, 2, 5));
+console.log(arithmeticProgression(1, 0, 5));
+console.log(arithmeticProgression(1, -3, 10));
 // console.log(findEvenNums(9));
