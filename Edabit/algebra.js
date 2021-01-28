@@ -94,6 +94,8 @@ function isAutomorphic(n) {
   return Number(String(n ** 2).slice(-String(n).length)) === n;
 }
 
-console.log(isAutomorphic(5));
-console.log(isAutomorphic(25));
-console.log(isAutomorphic(11));
+function collatz(num) {}
+
+console.log(collatz(10));
+console.log(collatz(345));
+console.log(collatz(72));
