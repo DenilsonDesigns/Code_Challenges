@@ -344,7 +344,47 @@ function arithmeticProgression(start, diff, n) {
   return arr.join(", ");
 }
 
-console.log(arithmeticProgression(1, 2, 5));
-console.log(arithmeticProgression(1, 0, 5));
-console.log(arithmeticProgression(1, -3, 10));
+function arrayValuesTypes(arr) {
+  return arr.map((el) => typeof el);
+}
+
+function invertArray(arr) {
+  return arr.map((el) => (el === 0 ? 0 : -el));
+}
+
+function birthdayCakeCandles(candles) {
+  return candles.filter((el) => el === Math.max(...candles)).length;
+}
+
+function sumMinimums(arr) {
+  return arr.map((el) => Math.min(...el)).reduce((a, b) => a + b, 0);
+}
+
+function sumFive(arr) {
+  return arr.filter((el) => el > 5).reduce((a, b) => a + b, 0);
+}
+
+function battingAvg(arr) {
+  let H = 0,
+    B = 0;
+  for (let [h, b] of arr) {
+    H += h;
+    B += b;
+  }
+  return (H / B).toFixed(3).slice(1);
+}
+
+function trimmedAverages(arr) {
+  return Math.round(
+    arr
+      .sort((a, b) => a - b)
+      .slice(1, arr.length - 1)
+      .reduce((a, b) => a + b, 0) /
+      (arr.length - 2)
+  );
+}
+
+console.log(trimmedAverages([4, 5, 7, 100]));
+console.log(trimmedAverages([10, 25, 5, 15, 20]));
+console.log(trimmedAverages([14, 8, 8]));
 // console.log(findEvenNums(9));
