@@ -26,6 +26,27 @@ function twoNumberSum(array, targetSum) {
   return [];
 }
 
-console.log(twoNumberSum([-7, -5, -3, -1, 0, 1, 3, 5, 7], -5));
-// console.log(-5 - 0);
-// console.log(twoNumberSum([1, 2, 3, 4, 5, 6, 7, 8, 9, 15], 18));
+function isValidSubsequence(array, sequence) {
+  // Write your code here.
+  //filter array based on els in sequence (set maybe?)
+  // check equality.
+  // let newArr = array.filter((el) => (sequence.includes(el) ? el : null));
+  // return newArr  sequence;
+
+  let seqInd = 0;
+  for (let i = 0; i < array.length; i++) {
+    console.log(seqInd);
+    console.log(array[i], sequence[seqInd]);
+    if (array[i] === sequence[seqInd]) {
+      seqInd++;
+    }
+    if (seqInd === sequence.length) {
+      return true;
+    }
+  }
+  return false;
+}
+
+console.log(isValidSubsequence([5, 1, 22, 25, 6, -1, 8, 10], [1, 6, -1, 10]));
+console.log(isValidSubsequence([5, 1, 22, 25, 6, -1, 8, 10], [1, 6, 10]));
+console.log(isValidSubsequence([5, 1, 22, 25, 6, -1, 8, 10], [1, 6, -1, -1]));
