@@ -14,7 +14,33 @@ function pingPong(arr, win) {
   return r;
 }
 
+function makesTen(a, b) {
+  if (a === 10 || b === 10) return true;
+  if (a + b === 10) return true;
+  return false;
+}
+
+function countDs(sentence) {
+  return sentence
+    .split("")
+    .map((el) => el.toLowerCase())
+    .filter((el) => el === "d").length;
+  // return [...sentence].filter(x=> x=='d'|| x=='D').length
+}
+
+function ageDifference(fAge, sAge) {
+  return Math.abs((fAge - sAge) * 2 - fAge);
+}
+
+function nTablesPlusOne(n) {
+  let r = [];
+  for (let i = n; r.length < 10; i++) {
+    if (i % n === 0) r.push(i + 1);
+  }
+  return r.join(",");
+}
+
 // print tests:
-console.log(pingPong(["Ping!", "Ping!", "Ping!"], true));
-console.log(pingPong(["Ping!", "Ping!"], false));
-console.log(pingPong(["Ping!"], true));
+console.log(nTablesPlusOne(7));
+console.log(ageDifference(55, 30));
+console.log(ageDifference(22, 1));
