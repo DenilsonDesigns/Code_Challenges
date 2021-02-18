@@ -47,6 +47,72 @@ function isValidSubsequence(array, sequence) {
   return false;
 }
 
-console.log(isValidSubsequence([5, 1, 22, 25, 6, -1, 8, 10], [1, 6, -1, 10]));
-console.log(isValidSubsequence([5, 1, 22, 25, 6, -1, 8, 10], [1, 6, 10]));
-console.log(isValidSubsequence([5, 1, 22, 25, 6, -1, 8, 10], [1, 6, -1, -1]));
+function tournamentWinner(competitions, results) {
+  // **O(n)^2***********************************
+  // const findHighest = (obj) => {
+  //   const values = Object.values(obj);
+  //   const max = Math.max.apply(Math, values);
+  //   for (key in obj) {
+  //     if (obj[key] === max) {
+  //       return key;
+  //     }
+  //   }
+  // };
+
+  // let winners = {};
+  // // loop through results
+  // results.forEach((result, i) => {
+  //   // console.log(result);
+  //   let ind = result === 0 ? 1 : 0;
+  //   // console.log(competitions[i][ind]);
+  //   winners[competitions[i][ind]] = (winners[competitions[i][ind]] || 0) + 1;
+  // });
+  // // console.log(winners);
+  // return findHighest(winners);
+  // *********************************************
+
+  let winners = {};
+  let bestTeam = "";
+  results.forEach((result, i) => {
+    let ind = result === 0 ? 1 : 0;
+    winners[competitions[i][ind]] = (winners[competitions[i][ind]] || 0) + 1;
+    if (winners[competitions[i][ind]] > (winners[bestTeam] || 0)) {
+      bestTeam = competitions[i][ind];
+    }
+  });
+  return bestTeam;
+}
+
+console.log(
+  tournamentWinner(
+    [
+      ["HTML", "C#"],
+      ["C#", "Python"],
+      ["Python", "HTML"],
+    ],
+    [0, 0, 1]
+  )
+);
+console.log(
+  tournamentWinner(
+    [
+      ["HTML", "Java"],
+      ["Java", "Python"],
+      ["Python", "HTML"],
+    ],
+    [0, 1, 1]
+  )
+);
+console.log(
+  tournamentWinner(
+    [
+      ["HTML", "Java"],
+      ["Java", "Python"],
+      ["Python", "HTML"],
+      ["C#", "Python"],
+      ["Java", "C#"],
+      ["C#", "HTML"],
+    ],
+    [0, 1, 1, 1, 0, 1]
+  )
+);
