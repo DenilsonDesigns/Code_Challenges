@@ -83,36 +83,12 @@ function tournamentWinner(competitions, results) {
   return bestTeam;
 }
 
-console.log(
-  tournamentWinner(
-    [
-      ["HTML", "C#"],
-      ["C#", "Python"],
-      ["Python", "HTML"],
-    ],
-    [0, 0, 1]
-  )
-);
-console.log(
-  tournamentWinner(
-    [
-      ["HTML", "Java"],
-      ["Java", "Python"],
-      ["Python", "HTML"],
-    ],
-    [0, 1, 1]
-  )
-);
-console.log(
-  tournamentWinner(
-    [
-      ["HTML", "Java"],
-      ["Java", "Python"],
-      ["Python", "HTML"],
-      ["C#", "Python"],
-      ["Java", "C#"],
-      ["C#", "HTML"],
-    ],
-    [0, 1, 1, 1, 0, 1]
-  )
-);
+function nonConstructibleChange(coins) {
+  // start by sorting the array
+  let coinArr = coins.sort((a, b) => a - b);
+  // variable to store min returnable change:
+}
+
+console.log(nonConstructibleChange([5, 7, 1, 1, 2, 3, 22]));
+console.log(nonConstructibleChange([1, 5, 1, 1, 1, 10, 15, 20, 100]));
+console.log(nonConstructibleChange([6, 4, 5, 1, 1, 8, 9]));
