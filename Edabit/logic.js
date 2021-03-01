@@ -26,6 +26,23 @@ function shouldServeDrinks(age, onBreak) {
   return age >= 18 && !onBreak ? true : false;
 }
 
-console.log(shouldServeDrinks(17, true));
-console.log(shouldServeDrinks(30, true));
-console.log(shouldServeDrinks(18, false));
+function flipBool(b) {
+  return b ? 0 : 1;
+}
+
+function twoDigitSum(n) {
+  let strArr = n.toString().split("");
+  return strArr.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+}
+
+function areTrue(a, b) {
+  return a && b ? "both" : a ? "first" : b ? "second" : "neither";
+}
+
+function longestString(str1, str2) {
+  return [...new Set((str1 + str2).split(""))].sort().join("");
+}
+
+console.log(longestString("mubashir", "edabit"));
+console.log(longestString("pakistan", "airforce"));
+console.log(longestString("noooo", "yesssss"));

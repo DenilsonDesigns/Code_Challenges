@@ -84,9 +84,25 @@ function tournamentWinner(competitions, results) {
 }
 
 function nonConstructibleChange(coins) {
-  // start by sorting the array
-  let coinArr = coins.sort((a, b) => a - b);
-  // variable to store min returnable change:
+  // coins.sort((a, b) => a - b);
+
+  // let currentChangeCreated = 0;
+  // for (const coin of coins) {
+  //   if (coin > currentChangeCreated + 1) return currentChangeCreated + 1;
+  //   currentChangeCreated += coin;
+  // }
+
+  // return currentChangeCreated + 1;
+
+  // O(n) time | O(1) space:
+  let leftIdx = 0;
+  let rightIdx = string.length - 1;
+  while (leftIdx < rightIdx) {
+    if (string[leftIdx] !== string[rightIdx]) return false;
+    leftIdx++;
+    rightIdx--;
+  }
+  return true;
 }
 
 console.log(nonConstructibleChange([5, 7, 1, 1, 2, 3, 22]));
