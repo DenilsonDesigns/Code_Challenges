@@ -43,6 +43,15 @@ function longestString(str1, str2) {
   return [...new Set((str1 + str2).split(""))].sort().join("");
 }
 
-console.log(longestString("mubashir", "edabit"));
-console.log(longestString("pakistan", "airforce"));
-console.log(longestString("noooo", "yesssss"));
+function rotateMaxNumber(num) {
+  return parseInt(
+    String(num)
+      .split("")
+      .sort((a, b) => b - a)
+      .join("")
+  );
+}
+
+console.log(rotateMaxNumber(123));
+console.log(rotateMaxNumber(1546));
+console.log(rotateMaxNumber("001"));
