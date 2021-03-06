@@ -105,6 +105,54 @@ function nonConstructibleChange(coins) {
   return true;
 }
 
-console.log(nonConstructibleChange([5, 7, 1, 1, 2, 3, 22]));
-console.log(nonConstructibleChange([1, 5, 1, 1, 1, 10, 15, 20, 100]));
-console.log(nonConstructibleChange([6, 4, 5, 1, 1, 8, 9]));
+function sortedSquaredArray(array) {
+  // **************************************************
+  // easiest answer, not sure of time complexity
+  // but I assume O(n)^2 as .map and .sort will both
+  // @edit: may be nLogn for the sort as browsers may use mergesort etc
+  // which are better than O(n)^2.
+  // loop through the array once each. So its basically a nested loop.
+  // this is considered a "brute force" approach.
+  // return array.map((el) => el * el).sort((a, b) => a - b);
+  // *******************************************************
+  // this is the "brute force" attempt by algo expert.
+  // actually noticeably faster than the above.
+  // even tho it shouldnt be from a time complexity equation
+  // point of view.
+  // const sortedSquares = new Array(array.length).fill(0);
+
+  // for (let idx = 0; idx < array.length; idx++) {
+  //   const value = array[idx];
+  //   sortedSquares[idx] = value * value;
+  // }
+
+  // sortedSquares.sort((a, b) => a - b);
+
+  // return sortedSquares;
+  // ******************************************
+  // optimal approach: bring time complexity down to O(n)
+  const sortedSquares = new Array(array.length).fill(0);
+  let smallerValueIdx = 0;
+  let largerValueIdx = array.length - 1;
+
+  for (let idx = array.length - 1; idx >= 0; idx--) {
+    const smallerValue = array[smallerValueIdx];
+    const largerValue = array[largerValueIdx];
+
+    if (Math.abs(smallerValue) > Math.abs(largerValue)) {
+      sortedSquares[idx] = smallerValue * smallerValue;
+      smallerValueIdx++;
+    } else {
+      sortedSquares[idx] = largerValue * largerValue;
+      largerValueIdx--;
+    }
+  }
+  return sortedSquares;
+}
+
+console.log(sortedSquaredArray([1, 2, 3, 5, 6, 8, 9]));
+const t0 = new Date().getTime();
+console.log(sortedSquaredArray([-50, -13, -2, -1, 0, 0, 1, 1, 2, 3, 19, 20]));
+const t1 = new Date().getTime();
+console.log("Call took " + (t1 - t0) + " milliseconds.");
+console.log(sortedSquaredArray([-2, -1]));
