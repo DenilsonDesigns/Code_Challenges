@@ -122,11 +122,107 @@ function smallestDifference(arrayOne, arrayTwo) {
   return smallestPair;
 }
 
-console.log(smallestDifference([-1, 5, 10, 20, 28, 3], [26, 134, 135, 15, 17]));
-console.log(smallestDifference([-1, 5, 10, 20, 3], [26, 134, 135, 15, 17]));
+function moveElementToEnd(array, toMove) {
+  // i think this is O(n);
+  // but solution doesnt seem optimal.
+  // let leftIdx = 0;
+  // let rightIdx = array.length - 1;
+
+  // while (leftIdx < rightIdx) {
+  //   if (array[rightIdx] === toMove) {
+  //     rightIdx--;
+  //     if (array[leftIdx] !== toMove) {
+  //       leftIdx++;
+  //       continue;
+  //     }
+  //     continue;
+  //   }
+  //   if (array[leftIdx] === toMove && array[rightIdx] !== toMove) {
+  //     let left = array[leftIdx];
+  //     array[leftIdx] = array[rightIdx];
+  //     array[rightIdx] = left;
+  //   }
+  //   leftIdx++;
+  // }
+  // return array;
+  // ******************************************
+  // Algo expert solution:
+  let i = 0;
+  let j = array.length - 1;
+  while (i < j) {
+    while (i < j && array[j] === toMove) j--;
+    if (array[i] === toMove) swap(i, j, array);
+    i++;
+  }
+  return array;
+
+  function swap(i, j, swap) {
+    const temp = array[j];
+    array[j] = array[i];
+    array[i] = temp;
+  }
+}
+
+function isMonotonic(array) {
+  // check if len <= 1, if yes return true;
+  // if (array.length <= 1) return true;
+
+  // let dir = "";
+
+  // for (let i = 0; i < array.length; i++) {
+  //   if (i > 0 && array[i] > array[i - 1]) dir = "asc";
+  //   if (i > 0 && array[i] < array[i - 1]) dir = "desc";
+
+  //   if (dir === "asc" && array[i + 1] < array[i]) return false;
+  //   if (dir === "desc" && array[i + 1] > array[i]) return false;
+  // }
+
+  // return true;
+  // ************************
+  // Algo expert solution (cleaner)
+  let isNonDec = true;
+  let isNonInc = true;
+  for (let i = 1; i < array.length; i++) {
+    if (array[i] < array[i - 1]) isNonDec = false;
+    if (array[i] > array[i - 1]) isNonInc = false;
+  }
+
+  return isNonDec || isNonInc;
+}
+
+function firstDuplicateValue(array) {
+  // my solution
+  // time: O(n) :)
+  // space: O(n) also :( -> its possible to solve in ->
+  // O(1) space.
+  // let check = {};
+
+  // for (const num of array) {
+  //   if (num in check) return num;
+  //   else check[num] = true;
+  // }
+  // return -1;
+  // *******************************
+  // same thing but nice use of sets:
+  // const seen = new Set();
+  // for(const value of array){
+  //   if(seen.has(value)) return value;
+  //   seen.add(value)
+  // }
+  // return -1;
+  // ********************************
+  // O(n) time | O(1) space
+  for (const value of array) {
+    const absValue = Math.abs(value);
+    if (array[absValue - 1] < 0) return absValue;
+    array[absValue - 1] *= -1;
+  }
+  return -1;
+}
+
+console.log(firstDuplicateValue([2, 1, 5, 2, 3, 3, 4])); // 2
+console.log(firstDuplicateValue([2, 1, 5, 3, 3, 2, 4])); // 3
 const t0 = new Date().getTime();
-console.log(
-  smallestDifference([10, 0, 20, 25], [1005, 1006, 1014, 1032, 1031])
-);
+console.log(firstDuplicateValue([3, 1, 3, 1, 1, 4, 4])); //3
 const t1 = new Date().getTime();
 console.log("Call took " + (t1 - t0) + " milliseconds.");
