@@ -220,9 +220,63 @@ function firstDuplicateValue(array) {
   return -1;
 }
 
-console.log(firstDuplicateValue([2, 1, 5, 2, 3, 3, 4])); // 2
-console.log(firstDuplicateValue([2, 1, 5, 3, 3, 2, 4])); // 3
+function spiralTraverse(array) {
+  // algo expert solution 1
+  // O(n) time | O(n) space
+  const result = [];
+  let startRow = 0;
+  let endRow = array.length - 1;
+  let startCol = 0;
+  let endCol = array[0].length - 1;
+
+  // first iter:
+  //  startRow = 0;
+  //  endRow = 3;
+  // startCol = 0;
+  // startCol = 3;
+
+  while (startRow <= endRow && startCol <= endCol) {
+    // first iteration: will traverse the first row col by col til the end
+    for (let col = startCol; col <= endCol; col++) {
+      result.push(array[startRow][col]);
+    }
+
+    // first iteration: will traverse down the last element of each row
+    for (let row = startRow + 1; row <= endRow; row++) {
+      result.push(array[row][endCol]);
+    }
+
+    // traverse back through the col
+    for (let col = endCol - 1; col >= startCol; col--) {
+      // edge case:
+      if (startRow === endRow) break;
+      // iter:
+      result.push(array[endRow][col]);
+    }
+
+    // traverse back up the rows:
+    for (let row = endRow - 1; row > startRow; row--) {
+      // edge case:
+      if (startCol === endCol) break;
+      result.push(array[row][startCol]);
+    }
+
+    // we've traversed the top row, move down:
+    startRow++;
+    // we've traversed back through the bottom row, move it up:
+    endRow--;
+    // we've traversed up the left most col, move it right:
+    startCol++;
+    // we've traversed down the right most col, move it in:
+    endCol--;
+  }
+}
+
+function longestPeak(array) {}
+
+console.log(spiralTraverse([1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3])); //6
+console.log(spiralTraverse([5, 4, 3, 2, 1, 2, 10, 12, -3, 5, 6, 7, 10])); //5
 const t0 = new Date().getTime();
-console.log(firstDuplicateValue([3, 1, 3, 1, 1, 4, 4])); //3
+console.log(spiralTraverse([1, 2, 3, 4, 5, 1])); //6
 const t1 = new Date().getTime();
 console.log("Call took " + (t1 - t0) + " milliseconds.");
