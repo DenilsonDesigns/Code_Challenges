@@ -72,9 +72,61 @@ function arrayOfProducts(array) {
   return products;
 }
 
-console.log(arrayOfProducts([5, 1, 4, 2]));
-console.log(arrayOfProducts([1, 8, 6, 2, 4]));
+function smallestDifference(arrayOne, arrayTwo) {
+  // brute force approach.
+  // definitely O(n)^2 time.
+  // how to calc. space?
+  // let smallestDiff = Infinity;
+  // let retPair = [];
+
+  // for (let i = 0; i < arrayOne.length; i++) {
+  //   for (let j = 0; j < arrayTwo.length; j++) {
+  //     let diff = Math.abs(arrayOne[i] - arrayTwo[j]);
+  //     if (diff < smallestDiff) {
+  //       smallestDiff = diff;
+  //       retPair = [arrayOne[i], arrayTwo[j]];
+  //     }
+  //   }
+  // }
+  // return retPair;
+  // *****************************
+  // Algo expert solution #1
+  // uses two pointers and compares each number.
+  // Time = O(Nlog(N) + Mlog(M))
+  // Space = O(1) (sorting arrays in place)
+  arrayOne.sort((a, b) => a - b);
+  arrayTwo.sort((a, b) => a - b);
+  let idxOne = 0;
+  let idxTwo = 0;
+  let smallest = Infinity;
+  let current = Infinity;
+  let smallestPair = [];
+  while (idxOne < arrayOne.length && idxTwo < arrayTwo.length) {
+    let firstNum = arrayOne[idxOne];
+    let secondNum = arrayTwo[idxTwo];
+    if (firstNum < secondNum) {
+      current = secondNum - firstNum;
+      idxOne++;
+    } else if (secondNum < firstNum) {
+      current = firstNum - secondNum;
+      idxTwo++;
+    } else {
+      return [firstNum, secondNum];
+    }
+    if (smallest > current) {
+      smallest = current;
+      smallestPair = [firstNum, secondNum];
+    }
+  }
+
+  return smallestPair;
+}
+
+console.log(smallestDifference([-1, 5, 10, 20, 28, 3], [26, 134, 135, 15, 17]));
+console.log(smallestDifference([-1, 5, 10, 20, 3], [26, 134, 135, 15, 17]));
 const t0 = new Date().getTime();
-console.log(arrayOfProducts([-5, 2, -4, 14, -6]));
+console.log(
+  smallestDifference([10, 0, 20, 25], [1005, 1006, 1014, 1032, 1031])
+);
 const t1 = new Date().getTime();
 console.log("Call took " + (t1 - t0) + " milliseconds.");
