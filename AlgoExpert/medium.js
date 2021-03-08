@@ -156,7 +156,7 @@ function moveElementToEnd(array, toMove) {
   }
   return array;
 
-  function swap(i, j, swap) {
+  function swap(i, j, array) {
     const temp = array[j];
     array[j] = array[i];
     array[i] = temp;

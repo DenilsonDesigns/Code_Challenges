@@ -384,7 +384,13 @@ function trimmedAverages(arr) {
   );
 }
 
-console.log(trimmedAverages([4, 5, 7, 100]));
-console.log(trimmedAverages([10, 25, 5, 15, 20]));
-console.log(trimmedAverages([14, 8, 8]));
+function moveZeros(arr) {
+  return arr.filter((val) => val !== 0).concat(arr.filter((val) => val === 0));
+}
+
+console.log(moveZeros([1, 2, 0, 1, 0, 1, 0, 3, 0, 1]));
+console.log(
+  moveZeros([9, 0.0, 0, 9, 1, 2, 0, 1, 0, 1, 0.0, 3, 0, 1, 9, 0, 0, 0, 0, 9])
+);
+console.log(moveZeros(["a", "b"]));
 // console.log(findEvenNums(9));
