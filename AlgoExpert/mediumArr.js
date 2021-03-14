@@ -272,7 +272,42 @@ function spiralTraverse(array) {
   }
 }
 
-function longestPeak(array) {}
+function longestPeak(array) {
+  // O(n) time | O(1) space
+  let longestPeakLen = 0;
+  let i = 0;
+  // only traversing to the panultimate element
+  while (i < array.length - 1) {
+    // checking that el to left and right of current is smaller
+    // if yes, then it is a peak
+    const isPeak = array[i - 1] < array[i] && array[i + 1] < array[i];
+    if (!isPeak) {
+      // if its not a peak, keep going
+      i++;
+      continue;
+    }
+    // @NOTE: we are starting at +/- 2 on each side as the above
+    // "isPeak" check if +/- 1 is lower than peak anyway.
+    // Look for end of peak on left side:
+    let leftIdx = i - 2;
+    while (leftIdx >= 0 && array[leftIdx] < array[leftIdx + 1]) {
+      leftIdx--;
+    }
+    // look for end of peak on right side:
+    let rightIdx = i + 2;
+    while (rightIdx < array.length && array[rightIdx] < array[rightIdx - 1]) {
+      rightIdx++;
+    }
+
+    // minus 1 on the end to include leftmost and rightmost els in the len
+    const currentPeakLen = rightIdx - leftIdx - 1;
+    // reset longestPeakLen
+    longestPeakLen = Math.max(longestPeakLen, currentPeakLen);
+    // set i now to rightIdx, so we dont retrace peaks we've already checked
+    i = rightIdx;
+  }
+  return longestPeakLen;
+}
 
 console.log(spiralTraverse([1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3])); //6
 console.log(spiralTraverse([5, 4, 3, 2, 1, 2, 10, 12, -3, 5, 6, 7, 10])); //5
