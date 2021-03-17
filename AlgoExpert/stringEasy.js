@@ -37,6 +37,70 @@ function runLengthEncoding(string) {
   return endcodedStringCharacters.join("");
 }
 
+function generateDocument(characters, document) {
+  // O(m * (n + m)) time | O(1) space
+  // this is worst solution:
+  // for (const character of document) {
+  //   const documentFrequency = countCharacterFrequency(character, document);
+  //   const charactersFrequency = countCharacterFrequency(character, characters);
+  //   if (documentFrequency > charactersFrequency) return false;
+  // }
+
+  // return true;
+
+  // function countCharacterFrequency(character, target) {
+  //   let frequency = 0;
+  //   for (const char of target) {
+  //     if (char === character) frequency++;
+  //   }
+
+  //   return frequency;
+  // }
+  // *****************************************
+  // O(c * (n + m)) time | O(c) space - where n is the number of characters,
+  // m is the length of the document, and c is the number of unique characters
+  // in the document.
+  // const alreadyCounted = new Set();
+
+  // for (const character of document) {
+  //   if (character in alreadyCounted) continue;
+
+  //   const documentFrequency = countCharacterFrequency(character, document);
+  //   const charactersFrequency = countCharacterFrequency(character, characters);
+  //   if (documentFrequency > charactersFrequency) return false;
+
+  //   alreadyCounted.add(character);
+  // }
+
+  // return true;
+
+  // function countCharacterFrequency(character, target) {
+  //   let frequency = 0;
+  //   for (const char of target) {
+  //     if (char === character) frequency++;
+  //   }
+
+  //   return frequency;
+  // }
+  // ************************************************
+  // O(n + m ) time | O(c) space
+  const characterCounts = {};
+
+  for (const character of characters) {
+    if (!(character in characterCounts)) characterCounts[character] = 0;
+
+    characterCounts[character]++;
+  }
+
+  for (const character of document) {
+    if (!(character in characterCounts) || characterCounts[character] === 0)
+      return false;
+
+    characterCounts[character]--;
+  }
+  return true;
+}
+
 console.log(caesarCipherEncryptor("xyz", 2)); // zab
 console.log(caesarCipherEncryptor("abc", 0)); //abc
 console.log(caesarCipherEncryptor("abc", 3)); // def
