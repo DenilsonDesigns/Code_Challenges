@@ -101,6 +101,29 @@ function generateDocument(characters, document) {
   return true;
 }
 
+function isPalindrome(string) {
+  // Atleast as bad as O(n^2)
+  // return string === string.split("").reverse().join("")
+  // *******************************************
+  // O(n) time ?? apparently, but i think .join has to loop through to
+  // form a string??? that would make it O(n^2)
+  // const reversedChars = [];
+  // for(let i=string.length -1; i>= 0; i--){
+  //   reversedChars.push(string[i]);
+  // }
+  // return string === reversedChars.join("")
+  // ***************************
+  // This solution looks more legitely to be O(n)
+  let leftIdx = 0;
+  let rightIdx = string.length - 1;
+  while (leftIdx < rightIdx) {
+    if (string[leftIdx] !== string[rightIdx]) return false;
+    leftIdx++;
+    rightIdx--;
+  }
+  return true;
+}
+
 console.log(caesarCipherEncryptor("xyz", 2)); // zab
 console.log(caesarCipherEncryptor("abc", 0)); //abc
 console.log(caesarCipherEncryptor("abc", 3)); // def
