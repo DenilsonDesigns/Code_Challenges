@@ -76,4 +76,66 @@ var smallerNumbersThanCurrent = function (nums) {
   return final;
 };
 
-console.log(smallerNumbersThanCurrent([8, 1, 2, 2, 3]));
+function twoSum(nums, target) {
+  // *** Naive solution:
+  // loop through nums.
+  // let leftIdx = 0 + 1;
+  // for (let i = 0; i < nums.length; i++) {
+  //   for (let j = leftIdx; j < nums.length; j++) {
+  //     if (nums[i] + nums[j] === target) {
+  //       return [i, j];
+  //     }
+  //   }
+  //   leftIdx++;
+  // }
+  // return [];
+  // passes, results:
+  //   Runtime: 76 ms, faster than 82.26% of JavaScript online submissions for Two Sum.
+  // Memory Usage: 38.6 MB, less than 89.40% of JavaScript online submissions for Two Sum.
+  // *****************************************************
+  // *** Trying to optimize.
+  // let numTab = {};
+  // for (const num of nums) {
+  //   if (targetSum - num in numTab) {
+  //     return [targetSum - num, num];
+  //   } else {
+  //     numTab[num] = true;
+  //   }
+  // }
+  // return [];
+
+  let numTable = {};
+  for (let i = 0; i < nums.length; i++) {
+    numTable[nums[i]] = i;
+    console.log(numTable);
+    if (target - nums[i] + "" in numTable) {
+      console.log("i", nums[i]);
+      console.log("hit", numTable[nums[i]]);
+      return [numTable[target - nums[i]], i];
+    }
+  }
+  return [];
+}
+
+function reverse(x) {
+  let neg = false;
+  (x + "")[0] === "-" ? (neg = true) : (neg = false);
+  let reversedNum;
+  neg ? (reversedNum = -reverseNum(x)) : (reversedNum = reverseNum(x));
+
+  if (Math.abs(reversedNum) > 0x7fffffff) {
+    return 0;
+  }
+  return reversedNum;
+
+  function reverseNum(num) {
+    return parseInt((num + "").split("").reverse().join(""));
+  }
+}
+
+function isPalindrome(x) {
+  return (x + "").split("").reverse().join("") === x + "";
+}
+
+console.log(isPalindrome(-121)); // [0, 1]
+console.log(isPalindrome(121)); // [1, 2]

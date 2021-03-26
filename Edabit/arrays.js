@@ -388,9 +388,13 @@ function moveZeros(arr) {
   return arr.filter((val) => val !== 0).concat(arr.filter((val) => val === 0));
 }
 
-console.log(moveZeros([1, 2, 0, 1, 0, 1, 0, 3, 0, 1]));
-console.log(
-  moveZeros([9, 0.0, 0, 9, 1, 2, 0, 1, 0, 1, 0.0, 3, 0, 1, 9, 0, 0, 0, 0, 9])
-);
-console.log(moveZeros(["a", "b"]));
+function rangeOfNum(start, end) {
+  return end - start > 0
+    ? Array.from(new Array(end - start - 1), (_, i) => i + start + 1)
+    : [];
+}
+
+console.log(rangeOfNum(2, 4));
+console.log(rangeOfNum(5, 9));
+console.log(rangeOfNum(10, 10));
 // console.log(findEvenNums(9));
