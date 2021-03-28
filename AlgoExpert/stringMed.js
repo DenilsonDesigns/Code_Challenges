@@ -138,13 +138,58 @@ function isValidPart(string) {
 }
 
 function reverseWordsInString(string) {
-  // cannot use any built-in split or reverse methods/functions.
-  // can just iterate through with regular for loop->
-  // when you find a space, push the preceeding part of the string to an array.
-  // can then manually reverse the order using loop or whatever.
-  // then build the string back with regular for loop.
+  // passed except a few edge cases ("     test")
+  // would O(2n) time | O(2n) space
+  // const wordsArr = [];
+  // let leftIdx = 0;
+  // for (let i = 0; i < string.length; i++) {
+  //   if (string[i] === " " || i === string.length - 1) {
+  //     // we've found a space
+  //     // push the previous chars from leftIdx to just before space to the wordsArr.
+  //     wordsArr.push(string.slice(leftIdx, i + 1).trim());
+  //     leftIdx = i;
+  //   }
+  // }
+  // // now need to reverse the wordsArr array.
+  // const reversedWords = [];
+  // for (let i = wordsArr.length - 1; i >= 0; i--) {
+  //   reversedWords.push(wordsArr[i]);
+  // }
+  // return reversedWords.join(" ");
+  // *****************
+  // Algo expert solution:
+  const words = [];
+  let startOfWord = 0;
+  for (let idx = 0; idx < string.length; idx++) {
+    const character = string[idx];
+
+    if (character === " ") {
+      words.push(string.slice(startOfWord, idx));
+      startOfWord = idx;
+    } else if (string[startOfWord] === " ") {
+      words.push(" ");
+      startOfWord = idx;
+    }
+  }
+
+  words.push(string.slice(startOfWord));
+
+  reverseList(words);
+  return words.join("");
+}
+
+function reverseList(list) {
+  let start = 0;
+  let end = list.length - 1;
+  while (start < end) {
+    const temp = list[start];
+    list[start] = list[end];
+    list[end] = temp;
+    start++;
+    end--;
+  }
 }
 
 console.log(reverseWordsInString("AlgoExpert is the best!"));
-console.log(reverseWordsInString("Reverse These Words"));
-console.log(reverseWordsInString("APPLE PEAR PLUM ORANGE"));
+// console.log(reverseWordsInString("Reverse These Words"));
+// console.log(reverseWordsInString("APPLE PEAR PLUM ORANGE"));
