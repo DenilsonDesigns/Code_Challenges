@@ -105,5 +105,106 @@ function maxSubArray(nums) {
   return maxGlobal;
 }
 
-console.log(maxSubArray([1])); //0
-// console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
+// 88. Merge Sorted Array
+// Given two sorted integer arrays nums1 and nums2,
+// merge nums2 into nums1 as one sorted array.
+// The number of elements initialized in nums1 and nums2 are m and n respectively.
+// You may assume that nums1 has a size equal to m + n such
+// that it has enough space to hold additional elements from nums2.
+function mergeArrs(nums1, m, nums2, _) {
+  // Time: O(n) | Space: O(1)
+  let nums2Idx = 0;
+  for (let i = m; i < nums1.length; i++) {
+    nums1[i] = nums2[nums2Idx];
+    nums2Idx++;
+  }
+  return nums1.sort((a, b) => a - b);
+}
+
+// 121. Best Time to Buy and Sell Stock
+// You are given an array prices where prices[i] is the price
+// of a given stock on the ith day.
+// You want to maximize your profit by choosing a single day to buy one stock
+// and choosing a different day in the future to sell that stock.
+// Return the maximum profit you can achieve from this transaction.
+// If you cannot achieve any profit, return 0.
+function maxProfit(prices) {
+  // Time: O(n) | Space: O(1)
+  let currentMin = prices[0];
+  let maxProf = 0;
+
+  for (let i = 1; i < prices.length; i++) {
+    let currDiff = prices[i] - currentMin;
+
+    if (currDiff > maxProf) maxProf = currDiff;
+    if (prices[i] < currentMin) currentMin = prices[i];
+  }
+  return maxProf;
+}
+
+// 122. Best Time to Buy and Sell Stock II
+// You are given an array prices where prices[i]
+// is the price of a given stock on the ith day.
+// Find the maximum profit you can achieve.
+// You may complete as many transactions as you like
+// (i.e., buy one and sell one share of the stock multiple times).
+// Note: You may not engage in multiple transactions simultaneously
+// (i.e., you must sell the stock before you buy again).
+function maxProfit2(prices) {
+  // Time: O(n) | Space: O(1)
+  let currentPrice = prices[0];
+  let totProf = 0;
+
+  for (let i = 1; i < prices.length; i++) {
+    let currDiff = prices[i] - currentPrice;
+    if (currDiff > 0) {
+      totProf += currDiff;
+    }
+    currentPrice = prices[i];
+  }
+  return totProf;
+}
+
+// 167. Two Sum II - Input array is sorted
+// Given an array of integers numbers that is already sorted
+// in ascending order, find two numbers such that they
+// add up to a specific target number.
+
+// Return the indices of the two numbers (1-indexed)
+// as an integer array answer of size 2,
+// where 1 <= answer[0] < answer[1] <= numbers.length.
+
+// You may assume that each input would have exactly one
+// solution and you may not use the same element twice.
+
+function twoSum(numbers, target) {
+  // Time: O(n) | Space: O(n)
+  let lookTab = {};
+  for (let i = 0; i < numbers.length; i++) {
+    if (target - numbers[i] in lookTab) {
+      return [lookTab[target - numbers[i]] + 1, i + 1];
+    } else {
+      lookTab[numbers[i]] = i;
+    }
+  }
+}
+
+// 169. Majority Element
+// Given an array nums of size n, return the majority element.
+// The majority element is the element that appears more than ⌊n / 2⌋ times.
+// You may assume that the majority element always exists in the array.
+function majorityElement(nums) {
+  // Time: O(2n) | Space: O(n)
+  let lookTab = {};
+  let threshold = nums.length / 2;
+
+  for (num of nums) {
+    lookTab[num] ? lookTab[num]++ : (lookTab[num] = 1);
+  }
+  for (num in lookTab) {
+    if (lookTab[num] > threshold) return parseInt(num);
+  }
+}
+
+console.log(majorityElement([3, 2, 3])); // 3
+console.log(majorityElement([2, 2, 1, 1, 1, 2, 2])); // 2
