@@ -276,5 +276,112 @@ function summaryRanges(nums) {
   return r;
 }
 
-console.log(summaryRanges([0, 1, 2, 4, 5, 7])); // ["0->2","4->5","7"]
-console.log(summaryRanges([0, 2, 3, 4, 6, 8, 9])); // false
+// 268. Missing Number
+// Given an array nums containing n distinct numbers in the range [0, n],
+// return the only number in the range that is missing from the array.
+function missingNumber(nums) {
+  // Time: O(2n) => Simplified to O(n)
+  // But still slow (better than 38.35%) only.
+  // Space: O(n)
+  // let numMap = {};
+
+  // for (let num of nums) {
+  //   numMap[num] = true;
+  // }
+
+  // for (let i = 0; i < nums.length + 1; i++) {
+  //   if (!(i in numMap)) return i;
+  // }
+  // ************************
+  // This solution avoids 2 loop situation.
+  // adapted from: https://leetcode.com/problems/missing-number/discuss/1112071/Java-simple-0(n)-0(1)-solution.-Faster-than-100-of-submissions
+
+  let n = nums.length;
+  let expectedSum = ((n + 1) * (0 + n)) / 2;
+  let actualSum = 0;
+
+  for (let num of nums) {
+    actualSum += num;
+  }
+
+  return expectedSum - actualSum;
+}
+
+// 283. Move Zeroes
+// Given an integer array nums, move all 0's to the end of it
+// while maintaining the relative order of the non-zero elements.
+// Note that you must do this in-place without making a copy of the array.
+function moveZeroes(nums) {
+  let idx = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[idx++] = nums[i];
+    }
+  }
+
+  for (let i = idx; i < nums.length; i++) {
+    nums[i] = 0;
+  }
+  return nums;
+}
+
+// 1480. Running Sum of 1d Array
+// Given an array nums. We define a running sum of an array
+// as runningSum[i] = sum(nums[0]…nums[i]).
+// Return the running sum of nums.
+function runningSum(nums) {
+  // Time: O(n)
+  // Space: O(n)
+  let runSum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    let prevRunSum = runSum;
+    runSum += nums[i];
+    nums[i] = nums[i] + prevRunSum;
+  }
+
+  return nums;
+}
+
+function maximumWealth(accounts) {
+  // Time: O(n^2)
+  // Space: O(n^2)
+  // let currMax = -Infinity;
+
+  // for (let acc of accounts) {
+  //   console.log(acc);
+  //   let currAccMax = 0;
+  //   for (let amt of acc) {
+  //     currAccMax += amt;
+  //   }
+  //   if (currAccMax > currMax) currMax = currAccMax;
+  // }
+  // return currMax;
+  // ***********************
+  // Is there a way to do it quicker?
+  // This is much faster, but why???
+  // return Math.max(...accounts.map(account => account.reduce((acc, cur) => acc += cur)))
+  // ************************
+  // Try writing my first solution but with regular for loops.
+  let currMax = 0;
+
+  for (let i = 0; i < accounts.length; i++) {
+    let currAccMax = 0;
+    for (let j = 0; j < accounts[i].length; j++) {
+      currAccMax += accounts[i][j];
+    }
+    if (currAccMax > currMax) currMax = currAccMax;
+  }
+  return currMax;
+}
+
+console.log(
+  maximumWealth([
+    [1, 5],
+    [7, 3],
+    [3, 5],
+  ])
+); // 10
+
+// console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1])); // 8
