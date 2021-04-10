@@ -125,10 +125,22 @@ function isPalindrome(string) {
 }
 
 function firstNonRepeatingCharacter(string) {
-  // Write your code here.
+  // first, make a map of chars:
+  let charMap = {};
+
+  for (let char of string) {
+    // console.log(char);
+    charMap[char] ? charMap[char]++ : (charMap[char] = 1);
+  }
+  // iterate through, if map[char]: 1, return index.
+  // for this reason, this loop should be a reg. for loop
+  for (let i = 0; i < string.length; i++) {
+    if (charMap[string[i]] === 1) return i;
+  }
+
   return -1;
 }
 
-console.log(caesarCipherEncryptor("xyz", 2)); // zab
-console.log(caesarCipherEncryptor("abc", 0)); //abc
-console.log(caesarCipherEncryptor("abc", 3)); // def
+console.log(firstNonRepeatingCharacter("abcdcaf")); // 1
+console.log(firstNonRepeatingCharacter("faadabcbbebdf")); // 6
+console.log(firstNonRepeatingCharacter("ababac")); // 5
