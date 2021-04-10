@@ -125,15 +125,15 @@ function isPalindrome(string) {
 }
 
 function firstNonRepeatingCharacter(string) {
-  // first, make a map of chars:
+  // Time: O(2n) => simplified to O(n)
+  // Space: O(n) => According to algoexpert it
+  // will actually be O(1) as there will never be more
+  // than 26 entries (all of lowercase letters in English alpha)
   let charMap = {};
 
   for (let char of string) {
-    // console.log(char);
     charMap[char] ? charMap[char]++ : (charMap[char] = 1);
   }
-  // iterate through, if map[char]: 1, return index.
-  // for this reason, this loop should be a reg. for loop
   for (let i = 0; i < string.length; i++) {
     if (charMap[string[i]] === 1) return i;
   }
