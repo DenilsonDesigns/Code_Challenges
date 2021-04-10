@@ -124,6 +124,11 @@ function isPalindrome(string) {
   return true;
 }
 
+function firstNonRepeatingCharacter(string) {
+  // Write your code here.
+  return -1;
+}
+
 console.log(caesarCipherEncryptor("xyz", 2)); // zab
 console.log(caesarCipherEncryptor("abc", 0)); //abc
 console.log(caesarCipherEncryptor("abc", 3)); // def
