@@ -374,14 +374,70 @@ function maximumWealth(accounts) {
     if (currAccMax > currMax) currMax = currAccMax;
   }
   return currMax;
+  // THis is much faster, how costly is it to run for of loops?
 }
 
-console.log(
-  maximumWealth([
-    [1, 5],
-    [7, 3],
-    [3, 5],
-  ])
-); // 10
+// 1512. Number of Good Pairs
+// Given an array of integers nums.
+// A pair (i,j) is called good if nums[i] == nums[j] and i < j.
+// Return the number of good pairs.
+function numIdenticalPairs(nums) {
+  // Time: O(n^2) (might be O(nlogn)?)
+  // Space: O(1)
+  // let numPairs = 0;
 
-// console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1])); // 8
+  // for (let i = 0; i < nums.length - 1; i++) {
+  //   for (let j = i + 1; j < nums.length; j++) {
+  //     if (nums[i] === nums[j]) numPairs++;
+  //   }
+  // }
+
+  // return numPairs;
+  // Works, but can we do it without nested loop?
+  //******************** */
+  // TIme: O(n),
+  // Space: O(n)
+  let counterObj = {};
+  let counter = 0;
+  nums.forEach((n, _) => {
+    if (counterObj[n]) {
+      counter += counterObj[n]++;
+    } else {
+      counterObj[n] = 1;
+    }
+  });
+  return counter;
+}
+
+// 1313. Decompress Run-Length Encoded List
+// We are given a list nums of integers representing a list compressed
+// with run-length encoding.
+// Consider each adjacent pair of elements [freq, val] = [nums[2*i], nums[2*i+1]]
+// (with i >= 0).  For each such pair, there are freq elements with value val
+// concatenated in a sublist. Concatenate all the sublists from left to right to
+// generate the decompressed list.
+// Return the decompressed list.
+function decompressRLElist(nums) {
+  // Time: O(n^2)
+  // Space: O(n)
+  // let r = [];
+
+  // for (let i = 0; i < nums.length; i += 2) {
+  //   for (let j = 1; j <= nums[i]; j++) r.push(nums[i + 1]);
+  // }
+  // return r;
+  // Can we do O(n)?
+  //*************** */
+  // Time: O(n)
+  // Space: O(n)
+  let result = [];
+  for (let i = 0; i < nums.length; i += 2) {
+    const frequency = nums[i];
+    const value = nums[i + 1];
+
+    result.push(...new Array(frequency).fill(value));
+  }
+  return result;
+}
+
+console.log(decompressRLElist([1, 2, 3, 4])); // [2,4,4,4]
