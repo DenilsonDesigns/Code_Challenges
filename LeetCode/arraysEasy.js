@@ -440,6 +440,17 @@ function decompressRLElist(nums) {
   return result;
 }
 
+// 1773. Count Items Matching a Rule
+// You are given an array items, where each items[i] = [typei, colori, namei]
+// describes the type, color, and name of the ith item. You are also given a rule
+// represented by two strings, ruleKey and ruleValue.
+
+// The ith item is said to match the rule if one of the following is true:
+
+// ruleKey == "type" and ruleValue == typei.
+// ruleKey == "color" and ruleValue == colori.
+// ruleKey == "name" and ruleValue == namei.
+// Return the number of items that match the given rule.
 function countMatches(items, ruleKey, ruleValue) {
   // Time O(n)
   // Space O(1)
@@ -462,14 +473,26 @@ function countMatches(items, ruleKey, ruleValue) {
   return rCount;
 }
 
-console.log(
-  countMatches(
-    [
-      ["phone", "blue", "pixel"],
-      ["computer", "silver", "lenovo"],
-      ["phone", "gold", "iphone"],
-    ],
-    "color",
-    "silver"
-  )
-); // [2,4,4,4]
+// 1389. Create Target Array in the Given Order
+// Given two arrays of integers nums and index.
+// Your task is to create target array under the following rules:
+
+// Initially target array is empty.
+// From left to right read nums[i] and index[i],
+// insert at index index[i] the value nums[i] in target array.
+// Repeat the previous step until there are no elements to read in nums and index.
+// Return the target array.
+
+// It is guaranteed that the insertion operations will be valid.
+function createTargetArray(nums, index) {
+  // Time: O(n)
+  // Space: O(n)
+  let r = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    r.splice(index[i], 0, nums[i]);
+  }
+  return r;
+}
+
+console.log(createTargetArray([0, 1, 2, 3, 4], [0, 1, 2, 2, 1])); // [0,4,1,3,2]
