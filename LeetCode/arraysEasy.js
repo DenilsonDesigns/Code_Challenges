@@ -440,4 +440,36 @@ function decompressRLElist(nums) {
   return result;
 }
 
-console.log(decompressRLElist([1, 2, 3, 4])); // [2,4,4,4]
+function countMatches(items, ruleKey, ruleValue) {
+  // Time O(n)
+  // Space O(1)
+  let rCount = 0;
+  for (let i = 0; i < items.length; i++) {
+    if (ruleKey === "type" && items[i][0] === ruleValue) {
+      rCount++;
+      continue;
+    }
+    if (ruleKey === "color" && items[i][1] === ruleValue) {
+      rCount++;
+      continue;
+    }
+    if (ruleKey === "name" && items[i][2] === ruleValue) {
+      rCount++;
+      continue;
+    }
+  }
+
+  return rCount;
+}
+
+console.log(
+  countMatches(
+    [
+      ["phone", "blue", "pixel"],
+      ["computer", "silver", "lenovo"],
+      ["phone", "gold", "iphone"],
+    ],
+    "color",
+    "silver"
+  )
+); // [2,4,4,4]
