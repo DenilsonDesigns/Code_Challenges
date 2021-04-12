@@ -495,4 +495,28 @@ function createTargetArray(nums, index) {
   return r;
 }
 
-console.log(createTargetArray([0, 1, 2, 3, 4], [0, 1, 2, 2, 1])); // [0,4,1,3,2]
+// 1732. Find the Highest Altitude
+// There is a biker going on a road trip.
+// The road trip consists of n + 1 points at different altitudes.
+// The biker starts his trip on point 0 with altitude equal 0.
+
+// You are given an integer array gain of length n
+// where gain[i] is the net gain in altitude between points
+// i​​​​​​ and i + 1 for all (0 <= i < n).
+// Return the highest altitude of a point.
+/**
+ * @param {array} gain An array of gains in altitude.
+ * @returns {number} Highest altitude achieved.
+ */
+function largestAltitude(gain) {
+  let currAlt = 0;
+  let highestAlt = 0;
+
+  for (let i = 0; i < gain.length; i++) {
+    currAlt += gain[i];
+    if (currAlt > highestAlt) highestAlt = currAlt;
+  }
+  return highestAlt;
+}
+
+console.log(largestAltitude([-5, 1, 5, 0, -7]));
