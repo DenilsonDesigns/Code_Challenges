@@ -39,3 +39,47 @@ function swap(i, j, array) {
   array[j] = array[i];
   array[i] = temp;
 }
+
+// ***Insertion Sort***
+// What is insertion sort?
+// Insertion sort looks for the elements place and moves all elements across
+// as needed.
+// Time: O(n^2) | Space: O(1)
+// Use case: num of elements is small, or its known that only a small amt
+// of elements have been misplaced.
+function insertionSort(array) {
+  for (let i = 0; i < array.length; i++) {
+    // start j at i position.
+    let j = i;
+    while (j > 0 && array[j] < array[j - 1]) {
+      swap(j, j - 1, array);
+      j -= 1;
+    }
+  }
+
+  return array;
+}
+
+// ***Selection Sort***
+// What is selection sort?
+// Iterates through [0 ... end] and finds min element, places it at beginning.
+// Then starts from [1... end] etc.
+// Time: O(n^2) | Space O(1)
+function selectionSort(array) {
+  // startIdx will start at zero and move right as we shift numbers to left.
+  let startIdx = 0;
+  // no need to check last one.
+  while (startIdx < array.length - 1) {
+    // smallestIdx will be idx of smallest num we find.
+    // start it at the beginning.
+    let smallestIdx = startIdx;
+    for (let i = startIdx + 1; i < array.length; i++) {
+      // if we find an i thats smaller than smallestIdx,
+      // that i now becomes smallestIdx;
+      if (array[smallestIdx] > array[i]) smallestIdx = i;
+    }
+    swap(startIdx, smallestIdx, array);
+    startIdx++;
+  }
+  return array;
+}
