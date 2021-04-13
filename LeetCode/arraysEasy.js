@@ -687,4 +687,77 @@ function sumDigits(n) {
   return sum;
 }
 
-console.log(countBalls(1, 10)); // 1
+// 1748. Sum of Unique Elements
+// You are given an integer array nums.
+// The unique elements of an array are the elements
+// that appear exactly once in the array.
+
+// Return the sum of all the unique elements of nums.
+/**
+ *
+ * @param {array[Int16Array]} nums Array of numbers
+ * @returns {number} Sum of unique elements in nums
+ */
+function sumOfUnique(nums) {
+  // Time: O(2n) => O(n) | Space: O(n)
+  const numMap = {};
+
+  let sumUniques = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    numMap[nums[i]] ? numMap[nums[i]]++ : (numMap[nums[i]] = 1);
+  }
+
+  for (const [key, value] of Object.entries(numMap)) {
+    if (value === 1) {
+      sumUniques += parseInt(key);
+    }
+  }
+
+  return sumUniques;
+  // *** Very clever O(n) solution.
+  // let isUnique = {};
+  // let sum = 0;
+  // for(let n of nums) {
+  //   if(isUnique[n] === undefined) { //Encountering first time, add to sum
+  //     sum += n;
+  //     isUnique[n] = true;
+  //   } else if(isUnique[n]) { //Encountering second time, subtract from sum
+  //     sum -= n;
+  //     isUnique[n] = false; //Set to false so third or more occurrences will not get added to sum
+  //   }
+  // }
+  // return sum;
+}
+
+// 1051. Height Checker
+// A school is trying to take an annual photo of all the students.
+// The students are asked to stand in a single file line in
+// non-decreasing order by height. Let this ordering be represented
+// by the integer array expected where expected[i] is the expected height
+// of the ith student in line.
+
+// You are given an integer array heights representing the current order that the
+// students are standing in. Each heights[i] is the height of the ith student
+// in line (0-indexed).
+
+// Return the number of indices where heights[i] != expected[i].
+/**
+ *
+ * @param {array[Int16Array]} heights
+ * @returns {number} number of students not in correct place.
+ */
+function heightChecker(heights) {
+  // Time: O(n) + O(nLogn) => O(n) | Space: O(n)
+  let numDiff = 0;
+  // sort the array in asc order first.
+  let sorted = [...heights].sort((a, b) => a - b);
+
+  for (let i = 0; i < heights.length; i++) {
+    if (heights[i] !== sorted[i]) numDiff++;
+  }
+
+  return numDiff;
+}
+
+console.log(heightChecker([1, 1, 4, 2, 1, 3])); // 3
