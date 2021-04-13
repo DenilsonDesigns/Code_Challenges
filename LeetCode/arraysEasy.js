@@ -613,10 +613,33 @@ function diagonalSum(mat) {
   return finalSum;
 }
 
-console.log(
-  diagonalSum([
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-  ])
-); // 25
+// 1450. Number of Students Doing Homework at a Given Time
+// Given two integer arrays startTime and endTime and given an
+// integer queryTime.
+
+// The ith student started doing their homework at the time startTime[i]
+// and finished it at time endTime[i].
+
+// Return the number of students doing their homework at time queryTime.
+// More formally, return the number of students where queryTime lays in
+// the interval [startTime[i], endTime[i]] inclusive.
+/**
+ *
+ * @param {array[number]} startTime Array of start times
+ * @param {array[number]} endTime Array of end times
+ * @param {number} queryTime Time we are querying
+ */
+function busyStudent(startTime, endTime, queryTime) {
+  // Time O(n) | Space: O(1)
+  let numStudentsStudying = 0;
+
+  for (let i = 0; i < startTime.length; i++) {
+    if (startTime[i] <= queryTime && endTime[i] >= queryTime) {
+      numStudentsStudying++;
+    }
+  }
+
+  return numStudentsStudying;
+}
+
+console.log(busyStudent([1, 2, 3], [3, 2, 7], 4)); // 1
