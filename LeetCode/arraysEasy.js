@@ -509,6 +509,7 @@ function createTargetArray(nums, index) {
  * @returns {number} Highest altitude achieved.
  */
 function largestAltitude(gain) {
+  // Time: O(n) | Space O(1)
   let currAlt = 0;
   let highestAlt = 0;
 
@@ -519,4 +520,24 @@ function largestAltitude(gain) {
   return highestAlt;
 }
 
-console.log(largestAltitude([-5, 1, 5, 0, -7]));
+// 1295. Find Numbers with Even Number of Digits
+// Given an array nums of integers,
+// return how many of them contain an even number of digits.
+/**
+ *
+ * @param {array} nums An array of numbers
+ * @returns {number} Amount of numbers in nums that have even no. of digits.
+ */
+function findNumbers(nums) {
+  // Time: O(n) | Space: O(1)
+  let count = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    let str = String(nums[i]);
+    if (str.length % 2 === 0) count++;
+  }
+
+  return count;
+}
+
+console.log(findNumbers([12, 345, 2, 6, 7896])); // 2
