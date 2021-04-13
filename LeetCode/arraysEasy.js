@@ -561,6 +561,62 @@ function maxProduct(nums) {
   }
 
   return maxProd;
+  // *** Very clever solution using only one loop:
+  // let maxOne = nums[0]
+  // let maxTwo = null
+
+  // for (let i = 1; i < nums.length; i++) {
+  //   if (maxOne < nums[i]) {
+  //     maxTwo = maxOne
+  //     maxOne = nums[i]
+  //   } else if (maxTwo < nums[i]) {
+  //     maxTwo = nums[i]
+  //   }
+  // }
+
+  // return (maxOne - 1) * (maxTwo - 1)
 }
 
-console.log(maxProduct([3, 4, 5, 2])); // 12
+// 1572. Matrix Diagonal Sum
+// Given a square matrix mat, return the sum of the matrix diagonals.
+// Only include the sum of all the elements on the primary diagonal
+// and all the elements on the secondary diagonal that are not part
+// of the primary diagonal.
+/**
+ *
+ * @param {array[number]} mat Array of arrays forming a matrix
+ * @returns {number} Sum of diagonal elements
+ */
+function diagonalSum(mat) {
+  // Time: O(n) | Space: O(1)
+  let leftIdx = 0;
+  let rightIdx = mat.length - 1;
+
+  let finalSum = 0;
+
+  for (let i = 0; i < mat.length; i++) {
+    // If left and righIdx are the same
+    // only aggregate the one number.
+    if (leftIdx === rightIdx) {
+      finalSum += mat[i][leftIdx];
+      leftIdx++;
+      rightIdx--;
+      continue;
+    }
+
+    finalSum += mat[i][leftIdx];
+    finalSum += mat[i][rightIdx];
+
+    leftIdx++;
+    rightIdx--;
+  }
+  return finalSum;
+}
+
+console.log(
+  diagonalSum([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ])
+); // 25
