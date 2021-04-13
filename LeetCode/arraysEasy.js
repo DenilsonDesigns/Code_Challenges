@@ -540,4 +540,27 @@ function findNumbers(nums) {
   return count;
 }
 
-console.log(findNumbers([12, 345, 2, 6, 7896])); // 2
+// 1464. Maximum Product of Two Elements in an Array
+// Given the array of integers nums,
+// you will choose two different indices i and j of that array.
+// Return the maximum value of (nums[i]-1)*(nums[j]-1).
+/**
+ *
+ * @param {array[nums]} nums
+ * @returns {number} Highest product of 2 nums.
+ */
+function maxProduct(nums) {
+  // Time: O(n^2) | Space: O(1)
+  let maxProd = 0;
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      let prod = (nums[i] - 1) * (nums[j] - 1);
+      if (prod > maxProd) maxProd = prod;
+    }
+  }
+
+  return maxProd;
+}
+
+console.log(maxProduct([3, 4, 5, 2])); // 12
