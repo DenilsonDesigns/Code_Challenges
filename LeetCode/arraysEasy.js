@@ -628,6 +628,7 @@ function diagonalSum(mat) {
  * @param {array[number]} startTime Array of start times
  * @param {array[number]} endTime Array of end times
  * @param {number} queryTime Time we are querying
+ * @returns {number} Number of students studying at that time
  */
 function busyStudent(startTime, endTime, queryTime) {
   // Time O(n) | Space: O(1)
@@ -642,4 +643,48 @@ function busyStudent(startTime, endTime, queryTime) {
   return numStudentsStudying;
 }
 
-console.log(busyStudent([1, 2, 3], [3, 2, 7], 4)); // 1
+// 1742. Maximum Number of Balls in a Box
+// You are working in a ball factory where you have n balls numbered
+// from lowLimit up to highLimit inclusive
+// (i.e., n == highLimit - lowLimit + 1), and an infinite
+// number of boxes numbered from 1 to infinity.
+
+// Your job at this factory is to put each ball in the box
+// with a number equal to the sum of digits of the ball's number.
+// For example, the ball number 321 will be put in the
+// box number 3 + 2 + 1 = 6 and the ball number 10 will be put
+// in the box number 1 + 0 = 1.
+
+// Given two integers lowLimit and highLimit,
+// return the number of balls in the box with the most balls.
+/**
+ *
+ * @param {*} lowLimit Start of range of balls
+ * @param {*} highLimit End of range of balls
+ * @returns {number} Number of balls in the most filled box
+ */
+function countBalls(lowLimit, highLimit) {
+  // Time: O(n) | Space: O(n)
+  let boxMap = {};
+  let currMax = 0;
+  for (let i = lowLimit; i <= highLimit; i++) {
+    boxMap[sumDigits(i)] ? boxMap[sumDigits(i)]++ : (boxMap[sumDigits(i)] = 1);
+
+    if (boxMap[sumDigits(i)] > currMax) currMax = boxMap[sumDigits(i)];
+  }
+
+  return currMax;
+}
+
+// Source: https://stackoverflow.com/questions/38334652/sum-all-the-digits-of-a-number-javascript
+function sumDigits(n) {
+  let sum = 0;
+  while (n) {
+    digit = n % 10;
+    sum += digit;
+    n = (n - digit) / 10;
+  }
+  return sum;
+}
+
+console.log(countBalls(1, 10)); // 1
