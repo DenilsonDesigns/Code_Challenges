@@ -751,6 +751,8 @@ function heightChecker(heights) {
   // Time: O(n) + O(nLogn) => O(n) | Space: O(n)
   let numDiff = 0;
   // sort the array in asc order first.
+  // the spread operator used like this creates a new array
+  // (doesnt mutate original heights array)
   let sorted = [...heights].sort((a, b) => a - b);
 
   for (let i = 0; i < heights.length; i++) {
@@ -760,4 +762,28 @@ function heightChecker(heights) {
   return numDiff;
 }
 
-console.log(heightChecker([1, 1, 4, 2, 1, 3])); // 3
+// 1002. Find Common Characters
+// Given an array A of strings made only from lowercase letters,
+// return a list of all characters that show up in all strings within the list (including duplicates).
+// For example, if a character occurs 3 times in all strings but not 4 times,
+// you need to include that character three times in the final answer.
+// You may return the answer in any order.
+/**
+ *
+ * @param {Array[strings]} words Array of strings to check
+ * @returns {Array[chars]} Array of chars in the amt that they appear
+ */
+function commonChars(words) {
+  // Build the charMaps;
+
+  // Find max length of all words in words
+  // this will be the upper limiter for the for loop
+  // @TODO: change this as don't want `words[0].length` hardcoded like that
+  let maxLength = Math.max(words[0].length, words[1].length, words[2].length);
+
+  for (let i = 0; i < maxLength - 1; i++) {}
+
+  return maxLength;
+}
+
+console.log(commonChars(["bella", "label", "roller"])); // ["e","l","l"]
