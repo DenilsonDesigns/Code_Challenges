@@ -773,17 +773,37 @@ function heightChecker(heights) {
  * @param {Array[strings]} words Array of strings to check
  * @returns {Array[chars]} Array of chars in the amt that they appear
  */
-function commonChars(words) {
-  // Build the charMaps;
+function commonChars(A) {
+  // Time: O(m * 2n) (Approx)
+  // where m is length of first word,
+  // n is length of A
+  const result = [];
+  // make array from first word.
+  const firstWordArr = [...A[0]];
 
-  // Find max length of all words in words
-  // this will be the upper limiter for the for loop
-  // @TODO: change this as don't want `words[0].length` hardcoded like that
-  let maxLength = Math.max(words[0].length, words[1].length, words[2].length);
+  // loop through every letter in firstWordArr
+  for (const letter of firstWordArr) {
+    // Check every single word includes letter.
+    if (A.every((word) => word.includes(letter))) {
+      // if yes, push to r.
+      result.push(letter);
+      // replace the letter in every word with space(ie, splice it out)
+      A = A.map((word) => word.replace(letter, ""));
+    }
+  }
 
-  for (let i = 0; i < maxLength - 1; i++) {}
-
-  return maxLength;
+  return result;
 }
 
-console.log(commonChars(["bella", "label", "roller"])); // ["e","l","l"]
+console.log(
+  commonChars([
+    "acabcddd",
+    "bcbdbcbd",
+    "baddbadb",
+    "cbdddcac",
+    "aacbcccd",
+    "ccccddda",
+    "cababaab",
+    "addcaccd",
+  ])
+); // ["e","l","l"]
