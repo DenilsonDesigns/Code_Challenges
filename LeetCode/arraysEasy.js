@@ -795,15 +795,60 @@ function commonChars(A) {
   return result;
 }
 
+// 985. Sum of Even Numbers After Queries
+// We have an array A of integers, and an array queries of queries.
+
+// For the i-th query val = queries[i][0], index = queries[i][1],
+// we add val to A[index].
+// Then, the answer to the i-th query is the sum of the even values of A.
+
+// (Here, the given index = queries[i][1] is a 0-based index,
+// and each query permanently modifies the array A.)
+
+// Return the answer to all queries.
+// Your answer array should have answer[i] as the answer to the i-th query.
+/**
+ *
+ * @param {Array[numbers]} A Array of integers
+ * @param {Array[Arrays]} queries Array of array of queries.
+ */
+function sumEvenAfterQueries(A, queries) {
+  // Time: O(n^2)
+  // Space: O(n)
+
+  // make placeholder array of length === A.lenth
+  // let r = new Array(A.length);
+  let r = [];
+
+  // loop through each query
+  for (let i = 0; i < queries.length; i++) {
+    // console.log(queries[i]);
+    A[queries[i][1]] += queries[i][0];
+    // console.log(A);
+    r.push(sumOfEvens(A));
+  }
+
+  return r;
+
+  // subfunction to give sum of even items
+  function sumOfEvens(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] % 2 === 0) sum += arr[i];
+    }
+
+    return sum;
+  }
+}
+
 console.log(
-  commonChars([
-    "acabcddd",
-    "bcbdbcbd",
-    "baddbadb",
-    "cbdddcac",
-    "aacbcccd",
-    "ccccddda",
-    "cababaab",
-    "addcaccd",
-  ])
-); // ["e","l","l"]
+  sumEvenAfterQueries(
+    [1, 2, 3, 4],
+    [
+      [1, 0],
+      [-3, 1],
+      [-4, 0],
+      [2, 3],
+    ]
+  )
+); // [8,6,2,4]
