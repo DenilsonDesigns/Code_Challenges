@@ -841,14 +841,47 @@ function sumEvenAfterQueries(A, queries) {
   }
 }
 
-console.log(
-  sumEvenAfterQueries(
-    [1, 2, 3, 4],
-    [
-      [1, 0],
-      [-3, 1],
-      [-4, 0],
-      [2, 3],
-    ]
-  )
-); // [8,6,2,4]
+// 1394. Find Lucky Integer in an Array
+// Given an array of integers arr, a lucky integer is an integer
+// which has a frequency in the array equal to its value.
+
+// Return a lucky integer in the array. If there are multiple
+// lucky integers return the largest of them.
+// If there is no lucky integer return -1.
+/**
+ *
+ * @param {number[]} arr array of numbers
+ * @returns {number} max of "lucky" numbers
+ */
+function findLucky(arr) {
+  // Time: O(2n) => O(n)
+  // Space: O(n)
+  let luckyNums = [-1];
+
+  let numMap = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    numMap[arr[i]] ? numMap[arr[i]]++ : (numMap[arr[i]] = 1);
+  }
+
+  for (const [key, value] of Object.entries(numMap)) {
+    if (parseInt(key) === value) luckyNums.push(value);
+  }
+
+  return Math.max(...luckyNums);
+}
+
+// 485. Max Consecutive Ones
+// Given a binary array nums, return the maximum
+// number of consecutive 1's in the array.
+function findMaxConsecutiveOnes(nums) {
+  // Works but very slow.
+  let ones = nums
+    .join("")
+    .split("0")
+    .sort((a, b) => a.length - b.length);
+  return ones[ones.length - 1].length;
+  // *********************************
+}
+
+console.log(findMaxConsecutiveOnes([1, 1, 0, 1, 1, 1])); // 3
