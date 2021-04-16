@@ -884,4 +884,4 @@ function findMaxConsecutiveOnes(nums) {
   // *********************************
 }
 
-console.log(findMaxConsecutiveOnes([1, 1, 0, 1, 1, 1])); // 3
+console.log(findMaxConsecutiveOnes([10, 2, 5, 3])); // 3
