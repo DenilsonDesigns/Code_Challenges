@@ -12,9 +12,14 @@
  * @returns {string[]}
  */
 function restoreString(s, indices) {
-  // strings are immutable in JS :(
-  // so will form an array of chars with the letters in the possie.
-  // then join them into string :)
+  // Time: O(n) | Space: O(n)
+  let r = new Array(s.length);
+
+  for (let i = 0; i < indices.length; i++) {
+    r[indices[i]] = s[i];
+  }
+
+  return r.join("");
 }
 
 console.log(restoreString("codeleet", [4, 5, 6, 7, 0, 2, 1, 3]));
