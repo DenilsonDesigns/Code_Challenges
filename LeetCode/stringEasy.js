@@ -127,4 +127,39 @@ function maxDepth(s) {
   return maxDepth;
 }
 
-console.log(maxDepth("(1+(2*3)+((8)/4))+1"));
+// 1684. Count the Number of Consistent Strings
+// You are given a string allowed consisting of distinct characters
+// and an array of strings words. A string is consistent
+// if all characters in the string appear in the string allowed.
+
+// Return the number of consistent strings in the array words.
+/**
+ *
+ * @param {string} allowed contains allowable letters
+ * @param {array[string]} words
+ * @returns {integer} count of allowable words
+ */
+function countConsistentStrings(allowed, words) {
+  // Works but slow.
+  // Time: O(n^2) atleast? | Space: O(1)
+  // let count = 0;
+
+  // for (let i = 0; i < words.length; i++) {
+  //   if (words[i].split("").every((char) => allowed.includes(char))) count++;
+  // }
+
+  // return count;
+  // *** Try the map style
+  let allowMap = {};
+  let count = 0;
+  for (let i = 0; i < allowed.length; i++) {
+    allowMap[allowed[i]] = true;
+  }
+
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].split("").every((char) => allowMap[char])) count++;
+  }
+  return count;
+}
+
+console.log(countConsistentStrings("ab", ["ad", "bd", "aaab", "baa", "badab"]));
