@@ -84,16 +84,47 @@ function balancedStringSplit(s) {
 // A string is represented by an array if the array elements
 // concatenated in order forms the string.
 /**
- *
  * @param {array[strings]} word1
  * @param {array[strings]} word2
  * @returns {boolean} true/false if joined stringified word1 and
  * word2 are equivalent.
  */
 function arrayStringsAreEqual(word1, word2) {
-  // let words1Str = word1.join("");
-
   return word1.join("") === word2.join("");
 }
 
-console.log(arrayStringsAreEqual(["ab", "c"], ["a", "bc"]));
+// 1614. Maximum Nesting Depth of the Parentheses
+// A string is a valid parentheses string (denoted VPS) if it meets one of the following:
+
+// It is an empty string "", or a single character not equal to "(" or ")",
+// It can be written as AB (A concatenated with B), where A and B are VPS's, or
+// It can be written as (A), where A is a VPS.
+// We can similarly define the nesting depth depth(S) of any VPS S as follows:
+
+// depth("") = 0
+// depth(C) = 0, where C is a string with a single character not equal to "(" or ")".
+// depth(A + B) = max(depth(A), depth(B)), where A and B are VPS's.
+// depth("(" + A + ")") = 1 + depth(A), where A is a VPS.
+// For example, "", "()()", and "()(()())" are VPS's (with nesting depths 0, 1, and 2), and ")(" and "(()" are not VPS's.
+
+// Given a VPS represented as string s, return the nesting depth of s.
+/**
+ *
+ * @param {string} s
+ * @returns {number} integer represention max depth of bracket nesting.
+ */
+function maxDepth(s) {
+  // Time: O(n) | Space: O(2) => O(1)
+  let maxDepth = 0;
+  let currDepth = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "(") currDepth++;
+    if (s[i] === ")") currDepth--;
+    if (currDepth > maxDepth) maxDepth = currDepth;
+  }
+
+  return maxDepth;
+}
+
+console.log(maxDepth("(1+(2*3)+((8)/4))+1"));
