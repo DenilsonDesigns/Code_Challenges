@@ -162,4 +162,76 @@ function countConsistentStrings(allowed, words) {
   return count;
 }
 
-console.log(countConsistentStrings("ab", ["ad", "bd", "aaab", "baa", "badab"]));
+// 1436. Destination City
+// You are given the array paths, where paths[i] = [cityAi, cityBi]
+// means there exists a direct path going from cityAi to cityBi.
+// Return the destination city, that is, the city without any path
+// outgoing to another city.
+
+// It is guaranteed that the graph of paths forms a line without any loop,
+// therefore, there will be exactly one destination city.
+/**
+ * @param {array[array]} paths destination pairs.
+ * @returns {string} name of destination city.
+ */
+function destCity(paths) {
+  // Time: O(2n) => O(n) | Space: O(n)
+  let startPaths = {};
+
+  for (let i = 0; i < paths.length; i++) {
+    startPaths[paths[i][0]] = true;
+  }
+
+  for (let i = 0; i < paths.length; i++) {
+    // startPaths[paths[i][0]] = true;
+    if (!startPaths[paths[i][1]]) {
+      return paths[i][1];
+    }
+  }
+}
+
+// 1816. Truncate Sentence
+// A sentence is a list of words that are separated by a single space
+// with no leading or trailing spaces. Each of the words consists of
+// only uppercase and lowercase English letters (no punctuation).
+
+// For example, "Hello World", "HELLO", and "hello world hello world" are all sentences.
+// You are given a sentence s​​​​​​ and an integer k​​​​​​. You want to truncate s​​​​​​ such that
+// it contains only the first k​​​​​​ words. Return s​​​​​​ after truncating it.
+/**
+ * @param {string} s the string to be truncated
+ * @param {number} k number of words to return
+ * @returns {string} string of s truncated to only contain k number of words
+ */
+function truncateSentence(s, k) {
+  // we need to split? that adds time.
+  // perhaps we can loop through string, and slice it after k amount of spaces?
+
+  // I thought this was pretty clever, but its slow.
+  // let spaces = 0;
+  // for (let i = 0; i < s.length; i++) {
+  //   if (s[i] === " " || i === s.length - 1) spaces++;
+  //   if (spaces === k && spaces > 0) {
+  //     return s.slice(0, i + 1).trim();
+  //   }
+  // }
+  // ***
+  // Still really slow.
+  // let words = s.split(" ");
+  // let r = "";
+
+  // for (let i = 0; i < k; i++) {
+  //   r += words[i] + " ";
+  // }
+
+  // return r.trim();
+  // *** faster one from leetcode.
+  let arr = s.split(" ");
+  let newStr = [];
+  for (let i = 0; i < k; i++) {
+    newStr.push(arr[i]);
+  }
+  return newStr.join(" ");
+}
+
+console.log(truncateSentence("chopper is not a tanuki", 5));
