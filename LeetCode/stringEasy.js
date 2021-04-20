@@ -311,5 +311,30 @@ function mergeAlternately(word1, word2) {
   return r;
 }
 
-console.log(mergeAlternately("ab", "pqrs"));
-// a p b q cd
+// 1812. Determine Color of a Chessboard Square
+// You are given coordinates, a string that represents
+// the coordinates of a square of the chessboard.
+// Below is a chessboard for your reference.
+/**
+ * @param {string} coordinates a coord on the chess board
+ * @returns {boolean} whether square is white or not
+ */
+function squareIsWhite(coordinates) {
+  const letMap = {
+    a: 1,
+    b: 2,
+    c: 3,
+    d: 4,
+    e: 5,
+    f: 6,
+    g: 7,
+    h: 8,
+  };
+
+  let sqSum = coordinates.split("");
+  sqSum[0] = letMap[sqSum[0]];
+  sqSum[1] = parseInt(sqSum[1]);
+  return (sqSum[0] + sqSum[1]) % 2 !== 0;
+}
+
+console.log(squareIsWhite("c7"));
