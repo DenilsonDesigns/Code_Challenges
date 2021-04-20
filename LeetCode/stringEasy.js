@@ -269,4 +269,22 @@ function interpret(command) {
   return retArr.join("");
 }
 
-console.log(interpret("G()()()(al)"));
+// 1832. Check if the Sentence Is Pangram
+// A pangram is a sentence where every letter of the English alphabet
+// appears at least once.
+
+// Given a string sentence containing only lowercase English letters,
+// return true if sentence is a pangram, or false otherwise.
+/**
+ * @param {string} sentence
+ * @returns {boolean}
+ */
+function checkIfPangram(sentence) {
+  // Time: O(3n?) => O(n) | Space: O(n)
+  let alpha = "abcdefghijklmnopqrstuvwxyz";
+  let compStr = [...new Set(sentence.split(""))].sort().join("");
+
+  return alpha === compStr;
+}
+
+console.log(checkIfPangram("leetcode"));
