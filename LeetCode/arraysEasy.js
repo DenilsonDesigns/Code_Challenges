@@ -918,13 +918,49 @@ function countNegatives(grid) {
  * @returns {boolean} whether or not target can be changed to make arr
  */
 function canBeEqual(target, arr) {
-  // instructions are confusing, just sort both and see if they match?
-
   return target.sort().toString() == arr.sort().toString();
-
-  // function sortArr(arr){
-  //   return arr.sort((a, b)=> a-b)
-  // }
 }
 
-console.log(canBeEqual([3, 7, 9], [3, 7, 11]));
+// 1588. Sum of All Odd Length Subarrays
+// Given an array of positive integers arr,
+// calculate the sum of all possible odd-length subarrays.
+
+// A subarray is a contiguous subsequence of the array.
+
+// Return the sum of all odd-length subarrays of arr.
+/**
+ * @param {number[]} arr
+ * @returns {number} sum of all odd-length arrays.
+ */
+function sumOddLengthSubarrays(arr) {
+  // have a leftIdx and a rightIdx
+  // increment the rightIdx by 2 to keep it gully.
+  // increment leftIdx by one each time, and reset rightIdx = leftIdx.
+  let leftIdx = 0;
+  let rightIdx = 0;
+  let sum = 0;
+
+  while (leftIdx < arr.length) {
+    sum += sumArr(arr, leftIdx, rightIdx);
+    while (rightIdx < arr.length - 2) {
+      rightIdx += 2;
+      sum += sumArr(arr, leftIdx, rightIdx);
+    }
+
+    leftIdx++;
+    rightIdx = leftIdx;
+  }
+
+  return sum;
+
+  function sumArr(arr, start, end) {
+    let sum = 0;
+
+    for (let i = start; i <= end; i++) {
+      sum += arr[i];
+    }
+    return sum;
+  }
+}
+
+console.log(sumOddLengthSubarrays([1, 4, 2, 5, 3]));
