@@ -896,7 +896,6 @@ function countNegatives(grid) {
   let r = 0;
 
   for (let gri of grid) {
-    console.log(gri);
     for (let i = gri.length; i >= 0; i--) {
       if (gri[i] < 0) r++;
       if (gri[i] >= 0) break;
@@ -906,11 +905,26 @@ function countNegatives(grid) {
   return r;
 }
 
-console.log(
-  countNegatives([
-    [4, 3, 2, -1],
-    [3, 2, 1, -1],
-    [1, 1, -1, -2],
-    [-1, -1, -2, -3],
-  ])
-);
+// 1460. Make Two Arrays Equal by Reversing Sub-arrays
+// Given two integer arrays of equal length target and arr.
+
+// In one step, you can select any non-empty sub-array
+// of arr and reverse it. You are allowed to make any number of steps.
+
+// Return True if you can make arr equal to target, or False otherwise.
+/**
+ * @param {number[]} target
+ * @param {number[]} arr
+ * @returns {boolean} whether or not target can be changed to make arr
+ */
+function canBeEqual(target, arr) {
+  // instructions are confusing, just sort both and see if they match?
+
+  return target.sort().toString() == arr.sort().toString();
+
+  // function sortArr(arr){
+  //   return arr.sort((a, b)=> a-b)
+  // }
+}
+
+console.log(canBeEqual([3, 7, 9], [3, 7, 11]));
