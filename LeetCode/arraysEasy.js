@@ -980,10 +980,9 @@ function sumOddLengthSubarrays(arr) {
  * @returns {number} steps required to make strictly increasing.
  */
 function minOperations(nums) {
+  // Time: O(n) | Space: O(1)
   let operations = 0;
-  // loop through, if nums[i] is not greater than nums[-1]
-  // changes nums[i] in place to be nums[i-1] +1 and
-  // add to operations: (nums[i-1] +1) - nums[i]
+
   for (let i = 1; i < nums.length; i++) {
     if (nums[i] <= nums[i - 1]) {
       operations += nums[i - 1] + 1 - nums[i];
