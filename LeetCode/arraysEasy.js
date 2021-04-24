@@ -993,4 +993,26 @@ function minOperations(nums) {
   return operations;
 }
 
-console.log(minOperations([1, 5, 2, 4, 1]));
+// 561. Array Partition I
+// Given an integer array nums of 2n integers,
+// group these integers into n pairs (a1, b1), (a2, b2),
+// ..., (an, bn) such that the sum of min(ai, bi) for all i is
+// maximized. Return the maximized sum.
+/**
+ * @param {number[]} nums array of nums
+ * @returns {number} max output
+ */
+function arrayPairSum(nums) {
+  // lets not overcomplicate this and just sort asc.
+  // then return sum of products of each pair.
+  nums.sort((a, b) => a - b);
+
+  let pairSum = 0;
+  for (let i = 0; i < nums.length - 1; i += 2) {
+    pairSum += Math.min(nums[i], nums[i + 1]);
+  }
+
+  return pairSum;
+}
+
+console.log(arrayPairSum([6, 2, 6, 5, 1, 2]));
