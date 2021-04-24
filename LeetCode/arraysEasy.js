@@ -1015,4 +1015,55 @@ function arrayPairSum(nums) {
   return pairSum;
 }
 
-console.log(arrayPairSum([6, 2, 6, 5, 1, 2]));
+// 1299. Replace Elements with Greatest Element on Right Side
+// Given an array arr, replace every element in that array with
+// the greatest element among the elements to its right, and replace
+// the last element with -1.
+
+// After doing so, return the array.
+/**
+ * @param {number[]} arr
+ * @returns {number[]} returns arr of nums
+ */
+function replaceElements(arr) {
+  // loop through backwards and hold an updated array of the currMax
+  arr.splice(0, 1);
+  arr.push(-1);
+  let max = -Infinity;
+  for (let i = arr.length - 1; i >= 0; --i) {
+    max = Math.max(arr[i], max);
+    arr[i] = max;
+  }
+  return arr;
+}
+
+// 136. Single Number
+// Given a non-empty array of integers nums,
+// every element appears twice except for one. Find that single one.
+
+// Follow up: Could you implement a solution with a linear runtime
+// complexity and without using extra memory?
+/**
+ * @param {number[]} nums
+ * @returns {number} number which only appears once in arr.
+ */
+function singleNumber(nums) {
+  let numMap = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    numMap[nums[i]] ? numMap[nums[i]]++ : (numMap[nums[i]] = 1);
+  }
+
+  for (const [key, value] of Object.entries(numMap)) {
+    if (value === 1) return parseInt(key);
+  }
+  // slight better:
+  // const seen = {};
+  // for (let n of nums) {
+  //   if (seen[n]) delete seen[n];
+  //   else seen[n] = true;
+  // }
+  // return Object.keys(seen)[0];
+}
+
+console.log(singleNumber([4, 1, 2, 1, 2]));
