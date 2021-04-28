@@ -1066,4 +1066,81 @@ function singleNumber(nums) {
   // return Object.keys(seen)[0];
 }
 
-console.log(singleNumber([4, 1, 2, 1, 2]));
+// 1534. Count Good Triplets
+// Given an array of integers arr, and three integers a, b and c.
+// You need to find the number of good triplets.
+
+// A triplet (arr[i], arr[j], arr[k]) is good if the following conditions are true:
+
+// 0 <= i < j < k < arr.length
+// |arr[i] - arr[j]| <= a
+// |arr[j] - arr[k]| <= b
+// |arr[i] - arr[k]| <= c
+// Where |x| denotes the absolute value of x.
+
+// Return the number of good triplets.
+/**
+ * @param {} arr
+ * @param {} a
+ * @param {} b
+ * @param {} c
+ * @returns {number} integer of the number of good pairs
+ */
+function countGoodTriplets(arr, a, b, c) {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      for (let k = j + 1; k < arr.length; k++) {
+        if (
+          Math.abs(arr[i] - arr[j]) <= a &&
+          Math.abs(arr[j] - arr[k]) <= b &&
+          Math.abs(arr[i] - arr[k]) <= c
+        ) {
+          count++;
+        }
+      }
+    }
+  }
+  return count;
+}
+
+// 1252. Cells with Odd Values in a Matrix
+// There is an m x n matrix that is initialized to all 0's.
+// There is also a 2D array indices where each indices[i] = [ri, ci]
+// represents a 0-indexed location to perform some increment
+// operations on the matrix.
+
+// For each location indices[i], do both of the following:
+
+// Increment all the cells on row ri.
+// Increment all the cells on column ci.
+// Given m, n, and indices, return the number of odd-valued
+// cells in the matrix after applying the increment to all locations in indices.
+function oddCells(m, n, indices) {
+  let r = 0;
+  let matrix = new Array(m);
+
+  for (let i = 0; i < m; i++) {
+    matrix[i] = new Array(n).fill(0);
+  }
+
+  for (let i = 0; i < indices.length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      if (j === indices[i][0]) {
+        matrix[j] = matrix[j].map((el) => (el += 1));
+      }
+      matrix[j] = matrix[j].map((el, idx) =>
+        idx === indices[i][1] ? (el += 1) : el
+      );
+    }
+  }
+
+  return matrix.flat().filter((el) => el % 2 !== 0).length;
+}
+
+console.log(
+  oddCells(2, 2, [
+    [1, 1],
+    [0, 0],
+  ])
+);
