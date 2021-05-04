@@ -1176,11 +1176,14 @@ function countGoodRectangles(rectangles) {
   return sqCount;
 }
 
-console.log(
-  countGoodRectangles([
-    [2, 3],
-    [3, 7],
-    [4, 3],
-    [3, 7],
-  ])
-);
+// 1399. Count Largest Group
+// Given an integer n. Each number from 1 to n is
+// grouped according to the sum of its digits.
+
+// Return how many groups have the largest size.
+/**
+ * @param {} n
+ */
+function countLargestGroup(n) {}
+
+console.log();

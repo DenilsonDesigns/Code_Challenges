@@ -429,4 +429,38 @@ function minDeletionSize(strs) {
   return indexes.size;
 }
 
-console.log(minDeletionSize(["cba", "daf", "ghi"]));
+// 500. Keyboard Row
+// Given an array of strings words, return the words that can
+// be typed using letters of the alphabet on only one row of
+// American keyboard like the image below.
+
+// In the American keyboard:
+
+// the first row consists of the characters "qwertyuiop",
+// the second row consists of the characters "asdfghjkl", and
+// the third row consists of the characters "zxcvbnm".
+/**
+ * @param {string[]} words array of strings to check
+ * @returns {string[]} array of words that can be typed on only one row.
+ */
+function findWords(words) {
+  let r = [];
+
+  let firstRow = "qwertyuiop";
+  let secondRow = "asdfghjkl";
+  let thirdRow = "zxcvbnm";
+
+  for (let i = 0; i < words.length; i++) {
+    let chars = words[i].split("");
+
+    [firstRow, secondRow, thirdRow].forEach((row) => {
+      if (chars.every((char) => row.includes(char.toLowerCase()))) {
+        r.push(words[i]);
+      }
+    });
+  }
+
+  return r;
+}
+
+console.log(findWords(["Hello", "Alaska", "Dad", "Peace"]));
