@@ -1176,14 +1176,40 @@ function countGoodRectangles(rectangles) {
   return sqCount;
 }
 
-// 1399. Count Largest Group
-// Given an integer n. Each number from 1 to n is
-// grouped according to the sum of its digits.
+// 922. Sort Array By Parity II
+// Given an array of integers nums, half of the integers in nums are odd,
+// and the other half are even.
 
-// Return how many groups have the largest size.
+// Sort the array so that whenever nums[i] is odd, i is odd,
+// and whenever nums[i] is even, i is even.
+
+// Return any answer array that satisfies this condition.
 /**
- * @param {} n
+ * @param {number[]} nums array of nums to be sorted
+ * @returns {number[]} array of nums in order
  */
-function countLargestGroup(n) {}
+function sortArrayByParityII(nums) {
+  //naive way is to split into 2 arrays of odds and evens.
+  // then merge them
 
-console.log();
+  // Time: O(2n) | Space O(n)
+
+  // space += 1n;
+  let evens = [];
+  let odds = [];
+
+  // time += 1n
+  nums.forEach((num) => {
+    num % 2 === 0 ? evens.push(num) : odds.push(num);
+  });
+
+  // time += 1n
+  for (let i = 0; i < nums.length; i++) {
+    i % 2 === 0 ? (nums[i] = evens.pop()) : (nums[i] = odds.pop());
+  }
+
+  // return [evens, odds];
+  return nums;
+}
+
+console.log(sortArrayByParityII([4, 2, 5, 7]));
