@@ -485,4 +485,41 @@ function removePalindromeSub(s) {
   return 2;
 }
 
-console.log(removePalindromeSub("abb"));
+// 821. Shortest Distance to a Character
+// Given a string s and a character c that occurs in s,
+// return an array of integers answer where answer.length == s.length
+// and answer[i] is the distance from index i to the closest occurrence
+// of character c in s.
+
+// The distance between two indices i and j is abs(i - j),
+// where abs is the absolute value function.
+/**
+ * @param {string} s string (haystack)
+ * @param {char} c target char (needle)
+ * @returns {number[]} array of ints representing distance to nearest needle
+ */
+function shortestToChar(s, c) {
+  let r = [];
+  let charMap = {};
+  for (let i = 0; i < s.length; i++) {
+    charMap[s[i]] ? charMap[s[i]].push(i) : (charMap[s[i]] = [i]);
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    r.push(getDistanceFromChar(i, charMap[c]));
+  }
+
+  return r;
+  // ****
+
+  function getDistanceFromChar(needle, haystack) {
+    console.log(haystack);
+    const closest = haystack.reduce((a, b) => {
+      return Math.abs(b - needle) < Math.abs(a - needle) ? b : a;
+    });
+
+    return Math.abs(needle - closest);
+  }
+}
+
+console.log(shortestToChar("loveleetcode", "e")); //  1
