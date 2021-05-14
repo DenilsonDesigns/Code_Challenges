@@ -140,7 +140,3 @@ function firstNonRepeatingCharacter(string) {
 
   return -1;
 }
-
-console.log(firstNonRepeatingCharacter("abcdcaf")); // 1
-console.log(firstNonRepeatingCharacter("faadabcbbebdf")); // 6
-console.log(firstNonRepeatingCharacter("ababac")); // 5
