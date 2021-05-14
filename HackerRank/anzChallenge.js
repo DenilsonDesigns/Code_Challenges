@@ -1,3 +1,4 @@
+// HackerRank initial challenge.
 function findNumber(arr, k) {
   return k in arr ? "YES" : "NO";
 }
