@@ -118,4 +118,43 @@ function detectWord(str) {
   //   return [...str].filter(c => c.toLowerCase()===c).join('')
 }
 
-console.log(detectWord("UcUNFYGaFYFYGtNUH"));
+// Slightly Superior
+// You will be given two extremely similar arrays,
+// but exactly one of the items in an array will be valued
+// slightly higher than its counterpart (which means that
+// evaluating the value > the other value will return true).
+/**
+ * @param {[]} arr1 array of items
+ * @param {[]} arr2 array of items
+ * @returns {boolean} true if arr1 is slightly bigger than arr2
+ */
+function isFirstSuperior(arr1, arr2) {
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] > arr2[i]) return true;
+  }
+  return false;
+}
+
+// Sum of Resistance in Series Circuits
+/**
+ * @param {Number[]} arr array of ressistance
+ * @returns {String} string representation of the ohms output
+ */
+function seriesResistance(arr) {
+  let ohmSum = arr.reduce((a, b) => a + b, 0);
+  let ohmWord;
+  ohmSum <= 1 ? (ohmWord = "ohm") : (ohmWord = "ohms");
+  return `${ohmSum} ${ohmWord}`;
+}
+
+// Find the Amount of Potatoes
+// Create a function to return the amount of potatoes there are in a string.
+/**
+ * @param {String} str
+ * @returns {Number} number of potatoes in the string
+ */
+function potatoes(str) {
+  return str.split("potato").length - 1;
+}
+
+console.log(potatoes("potatoaaa"));
