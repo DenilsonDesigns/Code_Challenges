@@ -157,4 +157,25 @@ function potatoes(str) {
   return str.split("potato").length - 1;
 }
 
-console.log(potatoes("potatoaaa"));
+// Highest Digit
+/**
+ * @param {Number} number
+ * @returns {Number} highest digit in number
+ */
+function highestDigit(number) {
+  let highest = 0;
+  let strNum = number + "";
+
+  for (let i = 0; i < strNum.length; i++) {
+    let convNum = parseInt(strNum[i]);
+    if (convNum > highest) highest = convNum;
+  }
+
+  return highest;
+}
+
+function flip(y) {
+  return Math.abs(y - 1);
+}
+
+console.log(highestDigit(7495037));
