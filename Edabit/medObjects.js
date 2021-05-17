@@ -81,10 +81,52 @@ function mostExpensiveItem(obj) {
   return nameHighest;
 }
 
+// Online Shopping
+/**
+ *
+ * @param {Object} order
+ * @returns {Boolean}
+ */
+function freeShipping(order) {
+  return Object.values(order).reduce((acc, el) => el + acc, 0) > 50;
+}
+
+// Burglary Series (01): Calculate Total Losses
+/**
+ *
+ * @param {*} obj
+ */
+function calculateLosses(obj) {
+  let items = Object.values(obj);
+  if (items.length === 0) return "Lucky you!";
+  return items.reduce((acc, el) => el + acc, 0);
+}
+
+// Ageing the Population...
+/**
+ *
+ * @param {} names
+ * @param {*} n
+ */
+function afterNYears(names, n) {
+  let absN = Math.abs(n);
+
+  for (let [k, v] of Object.entries(names)) {
+    names[k] += absN;
+  }
+
+  return names;
+}
+
 console.log(
-  mostExpensiveItem({
-    tv: 30,
-    skate: 20,
-    stereo: 50,
-  })
+  afterNYears(
+    {
+      Joel: 32,
+      Fred: 44,
+      Reginald: 65,
+      Susan: 33,
+      Julian: 13,
+    },
+    1
+  )
 );
