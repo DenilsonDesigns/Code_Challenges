@@ -118,15 +118,27 @@ function afterNYears(names, n) {
   return names;
 }
 
-console.log(
-  afterNYears(
-    {
-      Joel: 32,
-      Fred: 44,
-      Reginald: 65,
-      Susan: 33,
-      Julian: 13,
-    },
-    1
-  )
-);
+// Is it an Object?
+/**
+ *
+ * @param {Thing} value
+ * @returns {Boolean}
+ */
+function isObject(value) {
+  return value instanceof Object;
+}
+
+// Expensive Orders
+/**
+ *
+ * @param {Object} orders
+ * @param {Number} cost
+ * @returns {Object}
+ */
+function expensiveOrders(orders, cost) {
+  let asArray = Object.entries(orders);
+  let filtered = asArray.filter(([k, v]) => v > cost);
+  return Object.fromEntries(filtered);
+}
+
+console.log(expensiveOrders({ a: 3000, b: 200, c: 1050 }, 1000));

@@ -37,6 +37,67 @@ let obj3 = {
   ],
 };
 
-console.log(
-  pizzaPoints(obj3, 7, 15) // Elon Musk
-);
+// The Frugal Gentleman
+/**
+ *
+ * @param {Object[]} wines
+ * @returns {String}
+ */
+function chosenWine(wines) {
+  if (wines.length === 0) return null;
+  if (wines.length === 1) return wines[0].name;
+
+  wines.sort((a, b) => a["price"] - b["price"]);
+  return wines[1]["name"];
+}
+
+// Calculate the Total Price of Groceries
+/**
+ *
+ * @param {Object[]} groceries
+ * @returns {Number}
+ */
+function getTotalPrice(groceries) {
+  let num = groceries.reduce(
+    (acc, el) => acc + el["quantity"] * el["price"],
+    0
+  );
+  return Math.round(num * 100) / 100;
+}
+
+// Get Students with Names and Top Notes
+function getStudentsWithNamesAndTopNotes(students) {
+  return students.map((el) => ({
+    name: el.name,
+    topNote: Math.max(...el.notes, 0),
+  }));
+}
+
+// Burglary Series (12): Get Vodka Bottle
+const random = Math.random();
+const obj = {
+  absinth: 100,
+  whiskey: 100,
+  "Rammstein A": 100,
+  "Rammstein B": 50,
+  "Rammstein C": random,
+};
+function getVodkaBottle(obj, num) {
+  for (let [k, v] of Object.entries(obj)) {
+    if (v === num && k.indexOf("Ramm") >= 0) {
+      return k;
+    }
+  }
+}
+
+// Frequency Distribution
+function getFrequencies(arr) {
+  let r = {};
+  for (let i = 0; i < arr.length; i++) {
+    r[arr[i]] ? r[arr[i]]++ : (r[arr[i]] = 1);
+  }
+
+  return r;
+}
+
+console.log(getFrequencies(["A", "A"]));
