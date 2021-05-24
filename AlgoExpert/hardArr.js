@@ -71,5 +71,60 @@ function largestRange(array) {
   return bestRange;
 }
 
-console.log(fourNumberSum([7, 6, 4, -1, 1, 2], 16)); //[[7, 6, 4, -1], [7, 6, 1, 2]]
-console.log(fourNumberSum([1, 2, 3, 4, 5, 6, 7], 10)); // [[1, 2, 3, 4]]
+// Subarray sort
+function subarraySort(array) {
+  // *** My first solution. Passes a few tests. Not optimal Time/space.
+  // Also fails many tests/edge cases.
+  // let template = [...array].sort((a, b) => a - b);
+
+  // let r = [false, false];
+  // for (let i = 0; i < array.length; i++) {
+  //   if (array[i] !== template[i]) {
+  //     if (!r[0]) r[0] = i;
+  //     else {
+  //       if (i > r[1]) r[1] = i;
+  //     }
+  //   }
+  // }
+
+  // return r;
+  // *** AlgoExpert answer:
+  // Time: O(n) | Space: O(n)
+  let minOutOfOrder = Infinity;
+  let maxOutOfOrder = -Infinity;
+
+  for (let i = 0; i < array.length; i++) {
+    const num = array[i];
+    if (isOutOfOrder(i, num, array)) {
+      minOutOfOrder = Math.min(minOutOfOrder, num);
+      maxOutOfOrder = Math.max(maxOutOfOrder, num);
+    }
+  }
+
+  console.log(minOutOfOrder, maxOutOfOrder);
+
+  if (minOutOfOrder === Infinity) {
+    return [-1, -1];
+  }
+
+  let subarrayLeftIdx = 0;
+  while (minOutOfOrder >= array[subarrayLeftIdx]) {
+    subarrayLeftIdx++;
+  }
+
+  let subarrayRightIdx = array.length - 1;
+  while (maxOutOfOrder <= array[subarrayRightIdx]) {
+    subarrayRightIdx--;
+  }
+
+  return [subarrayLeftIdx, subarrayRightIdx];
+}
+
+function isOutOfOrder(i, num, array) {
+  if (i === 0) return num > array[i + 1];
+  if (i === array.length - 1) return num < array[i - 1];
+  return num > array[i + 1] || num < array[i - 1];
+}
+
+console.log(subarraySort([1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19]));
+// console.log(subarraySort([1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19]));
