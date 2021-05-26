@@ -349,10 +349,82 @@ function getTrustScore(userObj) {
   return userObj["score"] + userObj["reputation"] * 2;
 }
 
-console.log(
-  leaderboards([
-    { name: "a", score: 100, reputation: 20 },
-    { name: "b", score: 90, reputation: 40 },
-    { name: "c", score: 115, reputation: 30 },
-  ])
-);
+// Get Student Top Notes
+/**
+ *
+ * @param {Object[]} students
+ * @returns {Number[]}
+ */
+function getStudentTopNotes(students) {
+  return students.map((el) => Math.max(...el["notes"], 0));
+}
+
+// Return the Most Expensive Piece of Jewellery
+/**
+ *
+ * @param {Object} obj
+ * @returns {String}
+ */
+function mostExpensive(obj) {
+  const asArr = Object.entries(obj).sort((a, b) => b[1] - a[1]);
+  const mostExpName = asArr[0][0];
+  return `The most expensive one is the ${mostExpName}`;
+}
+
+// Shopping for Memorial Day!
+/**
+ *
+ * @param {Array[Object]} cart
+ * @returns {Number}
+ */
+
+function checkout(cart) {
+  return cart.reduce((acc, el) => {
+    return el["taxable"]
+      ? el["prc"] * el["qty"] * 1.06 + acc
+      : el["prc"] * el["qty"] + acc;
+  }, 0);
+}
+
+// Making Change
+/**
+ *
+ * @param {Number} c
+ * @returns {Object}
+ */
+function makeChange(c) {
+  const rObj = {
+    q: 0, //25 cents
+    d: 0, // 10 cents
+    n: 0, // 5 cents
+    p: 0, // 1 cent
+  };
+
+  let changeRemaining = c;
+
+  while (changeRemaining > 0) {
+    if (changeRemaining >= 25) {
+      rObj["q"]++;
+      changeRemaining -= 25;
+    } else if (changeRemaining >= 10) {
+      rObj["d"]++;
+      changeRemaining -= 10;
+    } else if (changeRemaining >= 5) {
+      rObj["n"]++;
+      changeRemaining -= 5;
+    } else {
+      rObj["p"]++;
+      changeRemaining -= 1;
+    }
+  }
+  return rObj;
+  // *** Best
+  // return {
+  //   'q': Math.floor(c / 25),
+  //   'd': Math.floor((c % 25) / 10),
+  //   'n': Math.floor(((c % 25) % 10) / 5),
+  //   'p': c % 5
+  // }
+}
+
+console.log(makeChange(47));

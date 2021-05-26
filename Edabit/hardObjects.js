@@ -100,4 +100,98 @@ function getFrequencies(arr) {
   return r;
 }
 
-console.log(getFrequencies(["A", "A"]));
+// Get Student with Best Test Avg.
+/**
+ *
+ * @param {Object} grades
+ * @returns {String}
+ */
+function getBestStudent(grades) {
+  let asArr = Object.entries(grades).map((el) => {
+    return [el[0], getAverageScore(el[1])];
+  });
+
+  return asArr.sort((a, b) => b[1] - a[1])[0][0];
+
+  // ***
+  function getAverageScore(scores) {
+    return scores.length === 0
+      ? 0
+      : scores.reduce((acc, el) => acc + el, 0) / scores.length;
+  }
+}
+
+// Pricey Products
+/**
+ *
+ * @param {Object} r
+ * @returns {Array[String]}
+ */
+function products(r) {
+  return Object.entries(r)
+    .sort((a, b) => b[1] - a[1])
+    .filter((el) => el[1] >= 500)
+    .map((el) => el[0]);
+}
+
+// Get Students with Names and Notes Average
+/**
+ *
+ * @param {Array[Object]} students
+ * @returns {Array[Object]}
+ */
+function getStudentsWithNamesAndAvgNote(students) {
+  return students.map((student) => {
+    return { name: student["name"], avgNote: getAverageNote(student["notes"]) };
+  });
+
+  // ***
+  function getAverageNote(scores) {
+    return scores.length === 0
+      ? 0
+      : scores.reduce((acc, el) => acc + el, 0) / scores.length;
+  }
+}
+
+// Map the Letters in a String
+/**
+ *
+ * @param {String} word
+ * @returns {Object}
+ */
+function mapLetters(word) {
+  let charMap = {};
+  const chars = word.split("");
+
+  for (let i = 0; i < chars.length; i++) {
+    charMap[chars[i]] ? charMap[chars[i]].push(i) : (charMap[chars[i]] = [i]);
+  }
+
+  return charMap;
+}
+
+// 25% Discount on the Most Expensive Item
+/**
+ *
+ * @param {Array[Object]} cart
+ * @returns {Number}
+ */
+function twentyFiveOnOne(cart) {
+  let sumTotal = 0;
+  let priceyBoi = 0;
+
+  cart.forEach((item) => {
+    if (item.price > priceyBoi) priceyBoi = item.price;
+    sumTotal += item.price * item.quantity;
+  });
+
+  return Number((sumTotal - priceyBoi * 0.25).toFixed(2));
+}
+
+console.log(
+  twentyFiveOnOne([
+    { name: "jogging pants", quantity: 1, price: 29.99 },
+    { name: "tennis socks", quantity: 2, price: 5.99 },
+    { name: "sweat shirt", quantity: 1, price: 59.99 },
+  ])
+);
