@@ -102,4 +102,61 @@ function allTruthy(...args) {
   return args.flat(Infinity).every((el) => el);
 }
 
-console.log(allTruthy([[true, true, false], true])); //false
+// Instant JAZZ
+/**
+ *
+ * @param {String[]} arr
+ */
+function jazzify(arr) {
+  return arr.map((el) => {
+    return el[el.length - 1] === "7" ? el : el + "7";
+  });
+}
+
+// Hitting the Jackpot
+/**
+ *
+ * @param {String[]} result
+ * @return {Boolean}
+ */
+function testJackpot(result) {
+  let asSet = new Set(result);
+  return asSet.size === 1;
+}
+
+// Trace That Matrix
+/**
+ *
+ * @param {Array[]} arr
+ * @return {Number}
+ */
+function trace(arr) {
+  // Naive solution is O(n^2)
+  // -> i.e., nested for loops and to incrementors.
+  // Below solution is O(n), we can safely do this as:
+  // -> arr.length === arr[i].length
+  // Space: O(1)
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i][i];
+  }
+
+  return sum;
+}
+
+// Total Volume of All Boxes
+/**
+ *
+ * @param {...any} boxes
+ * @return
+ */
+function totalVolume(...boxes) {
+  return boxes.reduce((boxAcc, boxEl) => {
+    return boxEl.reduce((acc, el) => (acc *= el), 1) + boxAcc;
+  }, 0);
+}
+
+console.log(
+  //
+  totalVolume([4, 2, 4], [3, 3, 3], [1, 1, 2], [2, 1, 1])
+); // 2
