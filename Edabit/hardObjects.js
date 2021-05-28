@@ -188,10 +188,62 @@ function twentyFiveOnOne(cart) {
   return Number((sumTotal - priceyBoi * 0.25).toFixed(2));
 }
 
+// Encoded String Parse
+/**
+ *
+ * @param {String} str
+ * @returns {Object}
+ */
+function parseCode(str) {
+  let words = [];
+  let currWord = "";
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "0" || i === str.length - 1) {
+      if (i === str.length - 1) {
+        currWord += str[i];
+      }
+      if (currWord.length > 0) {
+        words.push(currWord);
+      }
+      currWord = "";
+    } else {
+      currWord += str[i];
+    }
+  }
+
+  return {
+    firstName: words[0],
+    lastName: words[1],
+    id: words[2],
+  };
+
+  // *** much better
+  // let [first, last, id] = str.split(0).filter(Boolean);
+  // return {firstName: first, lastName: last, id: id};
+}
+
+// Super Strict Grading
+/**
+ *
+ * @param {Object} students
+ * @returns {String[]}
+ */
+function whoPassed(students) {
+  const r = [];
+  for (let [k, v] of Object.entries(students)) {
+    if (v.every((el) => el.split("/")[0] === el.split("/")[1])) {
+      r.push(k);
+    }
+  }
+  return r.sort();
+}
+
 console.log(
-  twentyFiveOnOne([
-    { name: "jogging pants", quantity: 1, price: 29.99 },
-    { name: "tennis socks", quantity: 2, price: 5.99 },
-    { name: "sweat shirt", quantity: 1, price: 59.99 },
-  ])
+  whoPassed({
+    John: ["5/5", "50/50", "10/10", "10/10"],
+    Sarah: ["4/8", "50/57", "7/10", "10/18"],
+    Adam: ["8/10", "22/25", "3/5", "5/5"],
+    Barry: ["3/3", "20/20"],
+  })
 );
