@@ -83,4 +83,23 @@ function changeEnough(change, amountDue) {
   return amountDue < 0.1 ? true : false;
 }
 
-console.log(changeEnough([10, 0, 0, 50], 3.85)); //false
+// Find the Second Largest Number
+/**
+ *
+ * @param {Number[]} arr
+ * @returns {Number}
+ */
+function secondLargest(arr) {
+  return arr.sort((a, b) => b - a)[1];
+}
+
+// Check if All Values Are True
+/**
+ *
+ * @param  {...any} args
+ */
+function allTruthy(...args) {
+  return args.flat(Infinity).every((el) => el);
+}
+
+console.log(allTruthy([[true, true, false], true])); //false
