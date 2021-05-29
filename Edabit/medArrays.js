@@ -156,7 +156,129 @@ function totalVolume(...boxes) {
   }, 0);
 }
 
+// Special Arrays
+/**
+ *
+ * @param {Number[]} arr
+ * @returns {Boolean}
+ */
+function isSpecialArray(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 2 !== 0 && arr[i] % 2 === 0) {
+      return false;
+    }
+    if (i % 2 === 0 && arr[i] % 2 !== 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// Remove Duplicates from an Array
+function removeDups(arr) {
+  let r = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!r.includes(arr[i])) {
+      r.push(arr[i]);
+    }
+  }
+
+  return r;
+}
+
+// Match the Last Item
+/**
+ *
+ * @param {...any} arr
+ * @returns {Boolean}
+ */
+function matchLastItem(arr) {
+  let actualLastItem = arr.pop();
+  let shouldBeLastItem = "";
+
+  for (let i = 0; i < arr.length; i++) {
+    shouldBeLastItem += arr[i] + "";
+  }
+
+  return actualLastItem === shouldBeLastItem;
+  // *** easier:
+  // return arr.pop() === arr.join('');
+}
+
+// Capitalize the Names
+/**
+ *
+ * @param {String[]} arr
+ * @returns {String[]}
+ */
+function capMe(arr) {
+  return arr.map((word) => {
+    return word
+      .split(" ")
+      .map((w) => w[0].toUpperCase() + w.substr(1).toLowerCase())
+      .join(" ");
+  });
+}
+
+// H4ck3r Sp34k
+/**
+ *
+ * @param {String} str
+ * @return {String}
+ */
+function hackerSpeak(str) {
+  const hackerMap = {
+    a: "4",
+    e: "3",
+    i: "1",
+    o: "0",
+    s: "5",
+  };
+
+  return str
+    .split("")
+    .map((char) => {
+      if (["a", "e", "i", "o", "s"].includes(char)) {
+        return hackerMap[char];
+      } else {
+        return char;
+      }
+    })
+    .join("");
+}
+
+// Find Unique Number in Array
+function findSingleNumber(numbers) {
+  if (numbers.length === 0) return null;
+
+  let freqMap = {};
+
+  for (num of numbers) {
+    freqMap[num] ? freqMap[num]++ : (freqMap[num] = 1);
+  }
+
+  for (let [k, v] of Object.entries(freqMap)) {
+    if (v === 1) return Number(k);
+  }
+}
+
+// Finding Nemo
+function findNemo(sentence) {
+  const words = sentence.split(" ");
+
+  for (let i = 0; i < words.length; i++) {
+    if (words[i] === "Nemo") {
+      return `I found Nemo at ${i + 1}!`;
+    }
+  }
+
+  return "I can't find Nemo :(";
+}
+
 console.log(
-  //
-  totalVolume([4, 2, 4], [3, 3, 3], [1, 1, 2], [2, 1, 1])
-); // 2
+  //*********************
+  findNemo("I am Ne mo Nemo !")
+  // **********************
+);
