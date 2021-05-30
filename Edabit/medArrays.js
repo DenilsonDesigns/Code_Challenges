@@ -277,8 +277,119 @@ function findNemo(sentence) {
   return "I can't find Nemo :(";
 }
 
+// Is Johnny Making Progress?
+/**
+ *
+ * @param {Number[]} runs
+ * @returns {Number}
+ */
+function progressDays(runs) {
+  let r = 0;
+
+  for (let i = 1; i < runs.length; i++) {
+    if (runs[i - 1] < runs[i]) r++;
+  }
+
+  return r;
+}
+
+// Factor Chain
+/**
+ *
+ * @param {Number[]} arr
+ * @returns {Boolean}
+ */
+function factorChain(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] % arr[i - 1] !== 0) return false;
+  }
+
+  return true;
+}
+
+// Return the Sum of the Two Smallest Numbers
+/**
+ *
+ * @param {Number[]} arr
+ * @returns {Number}
+ */
+function sumTwoSmallestNums(arr) {
+  let posNums = arr.filter((num) => num > 0);
+  posNums.sort((a, b) => a - b);
+  return posNums[0] + posNums[1];
+}
+
+// Even Index Elements in Array
+/**
+ *
+ * @param {Number[]} arr
+ * @returns {Number}
+ */
+function evenLast(arr) {
+  if (arr.length === 0) return 0;
+
+  let finalSum = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 2 === 0) finalSum += arr[i];
+  }
+
+  return finalSum * arr[arr.length - 1];
+}
+
+// Number to Reversed Array
+/**
+ *
+ * @param {Number} num
+ * @returns {Number[]}
+ */
+function reverseArr(num) {
+  return (num + "")
+    .split("")
+    .reverse()
+    .map((n) => Number(n));
+}
+
+// Negative Image
+/**
+ *
+ * @param {Number[Number[]]} image
+ * @returns {Number[Number[]]}
+ */
+function reverseImage(image) {
+  let r = [];
+
+  for (let i = 0; i < image.length; i++) {
+    let newArr = [];
+    for (let j = 0; j < image[i].length; j++) {
+      image[i][j] ? newArr.push(0) : newArr.push(1);
+    }
+    r.push(newArr);
+  }
+  return r;
+  // *** Like this solution with the double map.
+  // return image.map(v => v.map(x => +!x));
+}
+
+// Return Duplicate Numbers
+/**
+ *
+ * @param {Number[]} nums
+ * @returns {Number[]}
+ */
+function duplicateNums(nums) {
+  let numMap = {};
+  let rArr = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    numMap[nums[i]] ? rArr.push(nums[i]) : (numMap[nums[i]] = true);
+  }
+
+  return rArr.length > 0 ? rArr.sort((a, b) => a - b) : null;
+}
+
 console.log(
   //*********************
-  findNemo("I am Ne mo Nemo !")
+  duplicateNums([1, 2, 6, 2, 6, 1])
   // **********************
 );
