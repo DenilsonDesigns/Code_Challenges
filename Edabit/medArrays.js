@@ -388,8 +388,84 @@ function duplicateNums(nums) {
   return rArr.length > 0 ? rArr.sort((a, b) => a - b) : null;
 }
 
+// Find NaN in an Array
+/**
+ *
+ * @param {Number[]} numbers
+ * @returns {Number}
+ */
+function findNaN(numbers) {
+  for (let i = 0; i < numbers.length; i++) {
+    if (Number.isNaN(numbers[i])) return i;
+  }
+
+  return -1;
+}
+
+// Inclusive Array Ranges
+/**
+ *
+ * @param {Number} startNum
+ * @param {Number} endNum
+ * @returns {Number[]}
+ */
+function inclusiveArray(startNum, endNum) {
+  // This is the first time in my career I've found a use
+  // for a 'do while' loop. I'm quite pleased.
+  const r = [];
+
+  do {
+    r.push(startNum);
+    startNum++;
+  } while (startNum <= endNum);
+  return r;
+}
+
+// Number of Arrays in an Array
+/**
+ *
+ * @param {Array[]} arr
+ * @returns {Number}
+ */
+function numOfSubbarrays(arr) {
+  let r = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] instanceof Array) r++;
+  }
+  return r;
+}
+
+// Sum of the Items in an Array
+/**
+ *
+ * @param {Number[]} arr
+ * @returns {Number}
+ */
+function sumArray(arr) {
+  return arr.flat(Infinity).reduce((acc, el) => acc + el, 0);
+}
+
+// Filter Repeating Character Strings
+/**
+ *
+ * @param {String[]} arr
+ * @returns {String[]}
+ */
+function identicalFilter(arr) {
+  const rArr = [];
+
+  arr.forEach((el) => {
+    if (new Set(el.split("")).size === 1) {
+      rArr.push(el);
+    }
+  });
+
+  return rArr;
+}
+
 console.log(
   //*********************
-  duplicateNums([1, 2, 6, 2, 6, 1])
+  identicalFilter(["88", "999", "22", "545", "133"])
   // **********************
 );
