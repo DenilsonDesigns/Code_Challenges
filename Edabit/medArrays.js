@@ -464,8 +464,18 @@ function identicalFilter(arr) {
   return rArr;
 }
 
+// Index Multiplier
+/**
+ *
+ * @param {Number[]} arr
+ * @returns {Number}
+ */
+function indexMultiplier(arr) {
+  return arr.reduce((acc, el, i) => acc + el * i, 0);
+}
+
 console.log(
   //*********************
-  identicalFilter(["88", "999", "22", "545", "133"])
+  indexMultiplier([9, 3, 7, -7])
   // **********************
 );
