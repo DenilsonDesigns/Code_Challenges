@@ -49,6 +49,29 @@ function longest7SegmentWord(arr) {
   return longestWord;
 }
 
-console.log(
-  longest7SegmentWord(["knighthood", "parental", "fridge", "clingfilm"])
-);
+// Numbers in Strings
+/**
+ *
+ * @param {String[]} arr
+ * @returns {String[]}
+ */
+function numInStr(arr) {
+  const r = new Set();
+
+  for (const str of arr) {
+    for (const letter of str) {
+      if (Number(letter)) {
+        r.add(str);
+      }
+    }
+  }
+
+  return [...r];
+}
+
+console
+  .log
+  // **
+  // rightRotations("abcdef")
+  // **
+  ();
