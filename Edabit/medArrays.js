@@ -474,8 +474,96 @@ function indexMultiplier(arr) {
   return arr.reduce((acc, el, i) => acc + el * i, 0);
 }
 
+// Learn Lodash (2): Compact
+// According to the lodash documentation, _.compact creates an array with all falsey values removed.
+// The values false, null, 0, "", undefined, and NaN are falsey.
+
+// Your task is to build this helper function without using lodash.
+// You will write a function that receives an array and removes all falsey values.
+function compact(arr) {
+  return arr.filter((el) => el);
+}
+
+// Odd Up, Even Down — N Times
+// Create a function that performs an even-odd transform to an array, n times. Each even-odd transformation:
+
+//     Adds two (+2) to each odd integer.
+//     Subtracts two (-2) from each even integer.
+function evenOddTransform(arr, n) {
+  let r = arr;
+  for (let i = 0; i < n; i++) {
+    r = r.map((el) => (el % 2 === 0 ? el - 2 : el + 2));
+  }
+  return r;
+}
+
+// Find Unique Character Strings
+// Create a function that returns only strings with unique characters.
+function filterUnique(arr) {
+  const r = [];
+
+  arr.forEach((word) => {
+    if (new Set(word.split("")).size === word.length) r.push(word);
+  });
+  return r;
+}
+
+// War of Numbers
+// There's a great war between the even and odd numbers.
+// Many numbers already lost their life in this war and it's your task to end this.
+// You have to determine which group sums larger: the even, or the odd.
+// The larger group wins.
+
+// Create a function that takes an array of integers, sums the even and odd numbers separately,
+// then returns the difference between sum of even and odd numbers.
+function warOfNumbers(arr) {
+  let evens = arr.filter((x) => x % 2 === 0).reduce((acc, el) => acc + el, 0);
+  let odds = arr.filter((x) => x % 2 !== 0).reduce((acc, el) => acc + el, 0);
+  return Math.max(odds, evens) - Math.min(odds, evens);
+}
+
+// Find Unique Positive Numbers from Array
+// Write a function that takes an array and returns a
+// new array with unique positive (more than 0) numbers.
+function uniqueArr(arr) {
+  return [...new Set(arr.filter((el) => el > 0))];
+}
+
+// Likes vs. Dislikes
+// YouTube currently displays a like and a dislike button, allowing you to express your opinions about particular content. It's set up in such a way that you cannot like and dislike a video at the same time.
+
+// There are two other interesting rules to be noted about the interface:
+
+//     Pressing a button, which is already active, will undo your press.
+//     If you press the like button after pressing the dislike button, the like button overwrites the previous "dislike" state. The same is true for the other way round.
+
+// Create a function that takes an array of button inputs and returns the final state.
+function likeOrDislike(arr) {
+  let like = false;
+  let dislike = false;
+  arr.forEach((vote) => {
+    if (vote === "Like") {
+      like = !like;
+      dislike = false;
+    } else {
+      dislike = !dislike;
+      like = false;
+    }
+  });
+  return like ? "Like" : dislike ? "Dislike" : "Nothing";
+}
+// Positive Count / Negative Sum
+// Create a function that takes an array of positive and negative numbers.
+// Return an array where the first element is the count of positive numbers
+// and the second element is the sum of negative numbers.
+function countPosSumNeg(arr) {
+  let posCount = arr.filter((el) => el > 0).length;
+  let negSum = arr.filter((el) => el <= 0).reduce((acc, el) => acc + el, 0);
+  return [posCount, negSum];
+}
+
 console.log(
   //*********************
-  indexMultiplier([9, 3, 7, -7])
-  // **********************
+  countPosSumNeg([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15])
+  // ********************
 );

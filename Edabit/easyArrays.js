@@ -143,5 +143,3 @@ function mauriceWins(mSnails, sSnails) {
   if (mSnails[2] > sSnails[1]) wins++;
   return wins >= 2;
 }
-
-console.log(mauriceWins([3, 5, 10], [4, 7, 11]));
