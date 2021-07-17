@@ -1212,7 +1212,89 @@ function sortArrayByParityII(nums) {
   return nums;
 }
 
-// @TODO:
-// 1200. Minimum Absolute Difference
+// 1920. Build Array from Permutation
+// Given a zero-based permutation nums (0-indexed),
+// build an array ans of the same length where ans[i] = nums[nums[i]]
+// for each 0 <= i < nums.length and return it.
 
-console.log(sortArrayByParityII([4, 2, 5, 7]));
+// A zero-based permutation nums is an array of distinct integers from 0 to
+// nums.length - 1 (inclusive).
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+const buildArray = function (nums) {
+  let r = new Array(nums.length);
+  for (let i = 0; i < nums.length; i++) {
+    r[i] = nums[nums[i]];
+  }
+  return r;
+};
+
+// 1913. Maximum Product Difference Between Two Pairs
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+const maxProductDifference = (nums) => {
+  nums.sort((a, b) => a - b);
+  return nums[nums.length - 1] * nums[nums.length - 2] - nums[0] * nums[1];
+};
+
+// 1266. Minimum Time Visiting All Points
+/**
+ * @param {number[][]} points
+ * @return {number}
+ */
+const minTimeToVisitAllPoints = (points) => {
+  let seconds = 0;
+  for (let i = 0; i < points.length - 1; i++) {
+    let xDiff = Math.abs(points[i][0] - points[i + 1][0]);
+    let yDiff = Math.abs(points[i][1] - points[i + 1][1]);
+    seconds += Math.max(xDiff, yDiff);
+  }
+  return seconds;
+};
+
+// 1356. Sort Integers by The Number of 1 Bits
+// Given an integer array arr. You have to sort the integers
+// in the array in ascending order by the number of 1's in their
+// binary representation and in case of two or more integers have the same number
+// of 1's you have to sort them in ascending order.
+
+// Return the sorted array.
+/**
+ * @param {number[]} arr
+ * @return {number[]}
+ */
+const sortByBits = (arr) => {
+  const getBitCount = (num) => {
+    let count = 0;
+
+    for (let i = 0; i < 32; i++) {
+      if ((num >>> i) & 1) {
+        count++;
+      }
+    }
+
+    return count;
+  };
+  return arr.sort((a, b) => {
+    const bitsA = getBitCount(a);
+    const bitsB = getBitCount(b);
+
+    if (bitsA === bitsB) {
+      return a - b;
+    }
+
+    return bitsA - bitsB;
+  });
+};
+
+console.log(
+  minTimeToVisitAllPoints([
+    [1, 1],
+    [3, 4],
+    [-1, 0],
+  ])
+);

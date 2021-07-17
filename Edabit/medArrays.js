@@ -557,13 +557,48 @@ function likeOrDislike(arr) {
 // Return an array where the first element is the count of positive numbers
 // and the second element is the sum of negative numbers.
 function countPosSumNeg(arr) {
+  if (arr.length === 0) return [];
   let posCount = arr.filter((el) => el > 0).length;
   let negSum = arr.filter((el) => el <= 0).reduce((acc, el) => acc + el, 0);
   return [posCount, negSum];
 }
 
+// // Spin Around, Touch The Ground
+// Given a list of directions to spin, "left" or "right",
+// return an integer of how many full 360° rotations were made.
+// Note that each word in the array counts as a 90° rotation in that direction.
+function spinAround(r) {
+  let degrees = 0;
+  r.forEach((el) => {
+    el === "right" ? (degrees += 90) : (degrees -= 90);
+  });
+  return Math.floor(Math.abs(degrees / 360));
+}
+
+// Sum of Found Indexes
+// Create a function which takes in an array of numbers and a number to find.
+// Return the sum of every index in the array which matches the chosen number.
+function sumFoundIndexes(arr, n) {
+  return arr.reduce((acc, el, i) => (el === n ? acc + i : acc), 0);
+}
+
+// String Match by Two Letters
+// Create a function that takes two strings, a and b.
+// Return the number of times the two strings contain the same two letters at the same index.
+// The two letters must appear at consecutive indices.
+
+// For example, if a = "bboiizz" and b = "bbuiiz", your function should return 3,
+// since the "bb", "ii", and "iz" appear at the same place in both strings.
+function strMatchBy2char(a, b) {
+  let r = 0;
+  for (let i = 0; i < a.length - 1; i++) {
+    if (a[i] === b[i] && a[i + 1] === b[i + 1]) r++;
+  }
+  return r;
+}
+
 console.log(
   //*********************
-  countPosSumNeg([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15])
+  strMatchBy2char("jjcAAzz", "jjBAAz")
   // ********************
 );
