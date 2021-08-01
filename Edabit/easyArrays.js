@@ -143,3 +143,45 @@ function mauriceWins(mSnails, sSnails) {
   if (mSnails[2] > sSnails[1]) wins++;
   return wins >= 2;
 }
+
+// Record Temperatures
+// You are given two arrays that each contain data that represents the min
+// and max weather temperatures for each day of the week.
+
+// The records array contains the all-time record low/high temperatures for that day of the week.
+function recordTemps(records, currentWeek) {
+  const r = [];
+
+  for (let i = 0; i < currentWeek.length; i++) {
+    let curr = [records[i][0], records[i][1]];
+    if (currentWeek[i][0] < curr[0]) curr[0] = currentWeek[i][0];
+    if (currentWeek[i][1] > curr[1]) curr[1] = currentWeek[i][1];
+    r.push(curr);
+  }
+  return r;
+}
+
+console.log(
+  //
+  recordTemps(
+    [
+      [34, 82],
+      [24, 82],
+      [20, 89],
+      [5, 88],
+      [9, 88],
+      [26, 89],
+      [27, 83],
+    ],
+    [
+      [44, 72],
+      [19, 70],
+      [40, 69],
+      [39, 68],
+      [33, 64],
+      [36, 70],
+      [38, 69],
+    ]
+  )
+  //
+);
