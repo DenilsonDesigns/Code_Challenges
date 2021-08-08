@@ -597,8 +597,68 @@ function strMatchBy2char(a, b) {
   return r;
 }
 
+// Increment to Top
+// Create a function that returns the total number of steps it takes
+// to transform each element to the maximal element in the array.
+// Each step consists of incrementing a digit by one.
+// Time: O(n)
+// Space: O(1)
+function incrementToTop(arr) {
+  let steps = 0;
+  let roof = Math.max(...arr);
+
+  arr.forEach((el) => {
+    steps += roof - el;
+  });
+
+  return steps;
+}
+
+// Sum of all Evens in a Matrix
+// Create a function that returns the sum of all even elements in a 2D matrix.
+function sumOfEvens(arr) {
+  return arr.reduce((acc, el) => {
+    const sum = el
+      .filter((el) => el % 2 === 0)
+      .reduce((acc2, el2) => {
+        return acc2 + el2;
+      }, 0);
+    return acc + sum;
+  }, 0);
+}
+
+// No Hidden Fees
+// Given an array of prices prices and a "supposed" total t, return
+// true if there is a hidden fee added to the total
+// (i.e. the total is greater than the sum of prices), otherwise return false.
+// Time: O(n)
+function hasHiddenFee(prices, t) {
+  let sum = prices.reduce((acc, el) => Number(el.split("$")[1]) + acc, 0);
+  return Number(t.split("$")[1]) > sum;
+}
+
+// Chocolate Dilemma
+// Two sisters are eating chocolate, whose pieces are represented as subarrays of [l x w].
+// Write a function that returns true if the total area of chocolate is the same for each sister.
+function testFairness(agatha, bertha) {
+  let agSum = agatha.reduce((acc, el) => el[0] * el[1] + acc, 0);
+  let berSum = bertha.reduce((acc, el) => el[0] * el[1] + acc, 0);
+  return agSum === berSum;
+}
+
 console.log(
   //*********************
-  strMatchBy2char("jjcAAzz", "jjBAAz")
+  testFairness(
+    [
+      [1, 5], // 5
+      [6, 3], // 18
+      [1, 1], // 1
+    ],
+    [
+      [7, 1],
+      [2, 2],
+      [1, 1],
+    ]
+  )
   // ********************
 );
