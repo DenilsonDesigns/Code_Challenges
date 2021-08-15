@@ -646,19 +646,155 @@ function testFairness(agatha, bertha) {
   return agSum === berSum;
 }
 
+// Count Letters in a Word Search
+// Create a function that counts the number
+// of times a particular letter shows up in the word search.
+function letterCounter(arr, letter) {
+  // Works, but may be cleaner to use .reduce
+  // as we want to return a single number.
+  // let count = 0;
+  // arr.forEach((innerArr) => {
+  //   count += innerArr.filter((char) => char === letter).length;
+  // });
+  // return count;
+  // ***
+  return arr.reduce((acc, el) => {
+    return el.filter((char) => char === letter).length + acc;
+  }, 0);
+}
+
+// Return an Array of Subarrays
+// Write a function that takes three arguments (x, y, z) and returns an array containing
+// x subarrays (e.g. [[], [], []]), each containing y number of item z.
+
+//     x Number of subarrays contained within the main array.
+//     y Number of items contained within each subarray.
+//     z Item contained within each subarray.
+function matrix(x, y, z) {
+  return Array(x)
+    .fill(z)
+    .map(() => Array(y).fill(z));
+  // cooler:
+  // return Array(x).fill(Array(y).fill(z));
+}
+
+// Number of Two or More Consecutive Ones
+// Create a function that counts the number of blocks of two or more adjacent 1s in an array.
+function countOnes(arr) {
+  return arr
+    .join("")
+    .split("0")
+    .filter((ones) => ones.length > 1).length;
+}
+
+// Which Number Is Not like the Others?
+// Create a function that takes an array of numbers and return the number that's unique.
+function unique(arr) {
+  // Time: O(n)
+  // Space: O(n)
+  let rMap = {};
+
+  arr.forEach((num) => {
+    rMap[num] ? rMap[num]++ : (rMap[num] = 1);
+  });
+
+  for ([k, v] of Object.entries(rMap)) {
+    if (v === 1) return Number(k);
+  }
+}
+
+function nextInLine(arr, num) {
+  if (arr.length === 0 || typeof arr === "number") {
+    return "No array has been selected";
+  }
+  arr.shift();
+  arr.push(num);
+  return arr;
+  // Cleaner:
+  // arr.slice(1).concat(num)
+}
+
+// Flatten the Curve
+// Given an array of integers, replace every number with the mean of all numbers.
+function flattenCurve(arr) {
+  const mean = arr.reduce((sum, n) => sum + n, 0) / arr.length;
+  return arr.fill(Math.round(mean * 10, 1) / 10);
+}
+
+// Is There an Upward Trend?
+// Create a function that determines if there is an upward trend.
+function upwardTrend(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    if (typeof arr[i] !== "number") {
+      return "Strings not permitted!";
+    }
+    if (arr[i] <= arr[i - 1]) return false;
+  }
+  return true;
+}
+
+// Scalable Mountain?
+// Given an array of numbers, representing the height of a mountain in certain intervals,
+// return whether this mountain is scalable.
+
+// A mountain can be considered scalable if each number is within 5 units
+// of the next number in either direction.
+function isScalable(arr) {
+  for (let i = 1; i < arr.length - 1; i++) {
+    let leftDiff = Math.max(arr[i - 1], arr[i]) - Math.min(arr[i - 1], arr[i]);
+    let rightDiff = Math.max(arr[i + 1], arr[i]) - Math.min(arr[i + 1], arr[i]);
+    if (leftDiff > 5 || rightDiff > 5) return false;
+  }
+
+  return true;
+}
+
+// Tidy Title and Author Strings
+// You have an array of strings, each consisting of a book title and an author's name.
+function tidyBooks(arr) {
+  const rBooks = [];
+  arr.forEach((book) => {
+    let parts = book.split("-");
+    rBooks.push([parts[0].trim(), parts[1].trim()]);
+  });
+  return rBooks;
+}
+
+// Sum of Odd and Even Numbers
+// Write a function that takes an array of numbers and returns an array with two elements:
+
+//     The first element should be the sum of all even numbers in the array.
+//     The second element should be the sum of all odd numbers in the array.
+function sumOddAndEven(arr) {
+  let evenSum = arr
+    .filter((el) => el % 2 === 0)
+    .reduce((acc, el) => acc + el, 0);
+  let oddSum = arr
+    .filter((el) => el % 2 !== 0)
+    .reduce((acc, el) => acc + el, 0);
+  return [evenSum, oddSum];
+}
+
+// All Numbers in Array Are Prime
+// Create a function thats takes an array of integers and returns true if every number is prime.
+// Otherwise, return false.
+function allPrime(nums) {
+  const isPrime = (num) => {
+    for (let i = 2; i < num; i++) if (num % i === 0) return false;
+    return num > 1;
+  };
+
+  return nums.every((num) => isPrime(num));
+}
+
+// Removing Enemies
+// Remove enemies from the array of people, even if the enemy shows up twice.
+function removeEnemies(names, enemies) {
+  return names.filter((name) => !enemies.includes(name));
+}
+
 console.log(
   //*********************
-  testFairness(
-    [
-      [1, 5], // 5
-      [6, 3], // 18
-      [1, 1], // 1
-    ],
-    [
-      [7, 1],
-      [2, 2],
-      [1, 1],
-    ]
-  )
+  removeEnemies(["Jeff", "Charlie", "James", "Fredrick"], ["James", "Jeff"])
   // ********************
 );
