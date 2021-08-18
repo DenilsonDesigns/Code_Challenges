@@ -793,8 +793,43 @@ function removeEnemies(names, enemies) {
   return names.filter((name) => !enemies.includes(name));
 }
 
+// Integer Digits Count
+// Create a function that counts the integer's number of digits.
+function countNumLength(n) {
+  return (Math.abs(n) + "").length;
+}
+
+// Accumulating Product
+// Create a function that takes an array and returns an array of the accumulating product.
+function accumulatingProduct(arr) {
+  // Time: O(n^2)
+  const r = [];
+
+  arr.forEach((_, i) => {
+    let currArr = arr.slice(0, i + 1);
+    r.push(currArr.reduce((acc, el) => acc * el, 1));
+  });
+
+  return r;
+}
+
+// N-Sized Parts
+// Create a function that divides a string into parts of size n.
+function partition(str, n) {
+  const r = [];
+
+  let upper = str.length;
+  let curr = 0;
+
+  while (upper > curr) {
+    r.push(str.slice(curr, curr + n));
+    curr += n;
+  }
+  return r;
+}
+
 console.log(
   //*********************
-  removeEnemies(["Jeff", "Charlie", "James", "Fredrick"], ["James", "Jeff"])
+  partition("movement", 2)
   // ********************
 );
