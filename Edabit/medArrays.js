@@ -828,8 +828,93 @@ function partition(str, n) {
   return r;
 }
 
+// Mini Peaks
+// Write a function that returns all the elements in an
+// array that are strictly greater than their adjacent
+// left and right neighbors.
+function miniPeaks(arr) {
+  // Time: O(n)
+  // Space: O(n)
+  const r = [];
+
+  for (let i = 1; i < arr.length - 1; i++) {
+    if (arr[i - 1] < arr[i] && arr[i + 1] < arr[i]) r.push(arr[i]);
+  }
+
+  return r;
+}
+
+// Sum of Two Numbers in Array Equal to Given Number
+// Create a function that takes an array of numbers arr and a
+// number n. Return true if the sum of any two elements is equal
+// to the given number. Otherwise, return false.
+function checkSum(arr, n) {
+  // Time: O(n)
+  // Space: O(n)
+  let numMap = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    if (numMap[n - arr[i]]) return true;
+    numMap[arr[i]] = true;
+  }
+
+  return false;
+}
+
+// Check if One Array is a Subset of Another
+// Array A is contained inside array B if each element in A also exists in B.
+
+// The number of times a number is present doesn't matter.
+// In other words, if we transformed both arrays into sets, A would be a subset of B.
+function subset(arr1, arr2) {
+  // Time: O(n+m) => Where n = num of els in arr2 and m = num of els in arr1
+  // Space: O(n) => Where n = num of els in arr2
+  let arr2Map = {};
+  arr2.forEach((el) => {
+    arr2Map[el] = true;
+  });
+
+  return arr1.every((num) => arr2Map[num]);
+}
+
+// Simon Says
+// Create a function that takes in two arrays and
+// returns true if the second array follows the first array by one element,
+// and false otherwise. In other words,
+// determine if the second array is the first array shifted to the right by 1.
+function simonSays(arr1, arr2) {
+  // Time: O(n)
+  for (let i = 1; i < arr2.length; i++) {
+    if (arr1[i - 1] !== arr2[i]) return false;
+  }
+
+  return true;
+}
+
+// Moving to the End
+// Write a function that moves all elements of one type to the end of the array.
+function moveToEnd(arr, el) {
+  // Time: O(2n) => O(n)
+  // const newArr = [];
+  // let adders = 0;
+
+  // arr.forEach((ell) => {
+  //   if (ell === el) adders++;
+  //   else newArr.push(ell);
+  // });
+
+  // for (let i = 0; i < adders; i++) {
+  //   newArr.push(el);
+  // }
+  // return newArr;
+  // *** way cooler:
+  return arr.sort((a) => (a === el ? 1 : -1));
+}
+
 console.log(
   //*********************
-  partition("movement", 2)
+  moveToEnd([1, 3, 2, 4, 4, 1], 1),
+  moveToEnd([7, 8, 9, 1, 2, 3, 4], 9),
+  moveToEnd([7, 7, 7, 6, 6, 6, 6], 7)
   // ********************
 );
