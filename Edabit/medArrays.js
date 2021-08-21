@@ -911,10 +911,113 @@ function moveToEnd(arr, el) {
   return arr.sort((a) => (a === el ? 1 : -1));
 }
 
+// Superheroes
+// Create a function that takes an array of superheroes /
+// superheroines names and returns an array of only superheroe names ending in "man".
+// Return the names in alphabetical order.
+function superheroes(heroes) {
+  const r = [];
+
+  heroes.forEach((heroe) => {
+    if (
+      heroe.toLowerCase().indexOf("woman") < 1 &&
+      heroe.toLowerCase().indexOf("man") > -1
+    ) {
+      r.push(heroe);
+    }
+  });
+
+  return r.sort((a, b) => a.localeCompare(b));
+}
+
+// Sum of Every Nth Number
+// Given an array of numbers and a positive value for n,
+// return the sum of every nth number in the array.
+function sumEveryNth(numbers, n) {
+  let rSum = 0;
+
+  for (let i = n - 1; i < numbers.length; i += n) {
+    rSum += numbers[i];
+  }
+  return rSum;
+}
+
+// Sales by Match
+// Given an array of integers representing the color of each sock,
+// determine how many pairs of socks with matching colors there are.
+// For example, there are 7 socks with colors [1, 2, 1, 2, 1, 3, 2].
+// There is one pair of color 1 and one of color 2. There are three odd socks left,
+// one of each color. The number of pairs is 2.
+
+// Create a function that returns an integer representing the number of
+// matching pairs of socks that are available.
+function sockMerchant(arr) {
+  let sockMap = {};
+  let pairs = 0;
+
+  arr.forEach((sock) => {
+    if (sockMap[sock]) {
+      pairs++;
+      sockMap[sock] = false;
+    } else {
+      sockMap[sock] = true;
+    }
+  });
+  return pairs;
+}
+
+// Largest Gap
+// Given an array of integers, return the largest gap between elements
+// of the sorted version of that array.
+function largestGap(arr) {
+  arr.sort((a, b) => a - b);
+
+  let largest = 0;
+
+  for (let i = 1; i < arr.length; i++) {
+    let diff = arr[i] - arr[i - 1];
+    if (diff > largest) largest = diff;
+  }
+
+  return largest;
+}
+
+// Sort By Index of Character
+// Write a function that sorts an array of characters alphabetically
+// in ascending order (a-z) by the character at the n-th character.
+function sortByCharacter(arr, n) {
+  return arr.sort((a, b) => a.charCodeAt(n - 1) - b.charCodeAt(n - 1));
+}
+
+// Perfect Square Patch
+// Create a function that takes an integer and outputs an n x n square solely
+// consisting of the integer n.
+function squarePatch(n) {
+  let row = new Array(n).fill(n);
+  return new Array(n).fill(row);
+}
+
+// Letters Shared between Two Words
+// Create a function that returns the number of characters shared between two words.
+function sharedLetters(str1, str2) {
+  let str2Map = {};
+  let shared = 0;
+
+  for (let i = 0; i < str2.length; i++) {
+    str2Map[str2[i]] ? (str2Map[str2[i]] += 1) : (str2Map[str2[i]] = 1);
+  }
+
+  for (let i = 0; i < str1.length; i++) {
+    if (str2Map[str1[i]]) {
+      shared++;
+      str2Map[str1[i]]--;
+    }
+  }
+  return shared;
+}
+
 console.log(
   //*********************
-  moveToEnd([1, 3, 2, 4, 4, 1], 1),
-  moveToEnd([7, 8, 9, 1, 2, 3, 4], 9),
-  moveToEnd([7, 7, 7, 6, 6, 6, 6], 7)
+  sharedLetters("apple", "meaty")
   // ********************
 );
