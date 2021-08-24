@@ -1016,8 +1016,70 @@ function sharedLetters(str1, str2) {
   return shared;
 }
 
+// Count the Towers
+// Create a function that counts the number of towers.
+function countTowers(towers) {
+  return towers[towers.length - 1][0].split(" ").filter((el) => el === "##")
+    .length;
+}
+
+// @TODO:
+// Potential Friend?
+// Given two arrays of two people's different interests,
+// return whether both people have at least two things in common or have exact interests.
+// Return true if there's a potential friend!
+function isPotentialFriend(set1, set2) {
+  if (checkExact(set1, set2)) return true;
+
+  let sharedInts = 0;
+  set1.forEach((int) => {
+    if (set2.includes(int)) sharedInts++;
+  });
+
+  if (sharedInts > 2) return true;
+
+  return false;
+
+  function checkExact(set1, set2) {
+    return set1.sort().join("") === set2.sort().join("");
+  }
+}
+
+// Numbered Cards
+// You have a pack of 5 randomly numbered cards, which can range from 0-9.
+// You can win if you can produce a higher two-digit number from
+// your cards than your opponent. Return true if your cards win that round.
+function winRound(you, opp) {
+  let youHigh = you
+    .sort((a, b) => b - a)
+    .slice(0, 2)
+    .join("");
+  let oppHigh = opp
+    .sort((a, b) => b - a)
+    .slice(0, 2)
+    .join("");
+  return youHigh > oppHigh;
+}
+
+// Balancing Scales
+// Given an array with an odd number of elements,
+// return whether the scale will tip "left" or "right" based on the sum of the numbers.
+// The scale will tip on the direction of the largest total.
+// If both sides are equal, return "balanced".
+function scaleTip(arr) {
+  let total = 0;
+  let middle = Math.floor(arr.length / 2);
+  for (let i = 0; i < arr.length; i++) {
+    if (i === middle) continue;
+    if (i < middle) total += arr[i];
+    else total -= arr[i];
+  }
+
+  return total > 0 ? "left" : total < 0 ? "right" : "balanced";
+}
+
 console.log(
   //*********************
-  sharedLetters("apple", "meaty")
+  scaleTip([0, 0, 0, "I", 1, 1, 1])
   // ********************
 );
