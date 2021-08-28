@@ -1078,8 +1078,89 @@ function scaleTip(arr) {
   return total > 0 ? "left" : total < 0 ? "right" : "balanced";
 }
 
+// Digit Distance
+// The digit distance between two numbers is the total value
+// of the difference between each pair of digits.
+function digitDistance(num1, num2) {
+  // n1=> length of num1
+  // n2=> length of num2
+  // Time: O(4(n1)) ==> O(n) *** Its effectively quite worse than that,
+  //                            but does not exponentially increase.
+  let num1Nums = (num1 + "").split("").map((el) => Number.parseInt(el));
+  let num2Nums = (num2 + "").split("").map((el) => Number.parseInt(el));
+
+  let sum = 0;
+  for (let i = 0; i < num1Nums.length; i++) {
+    sum += num2Nums[i] - num1Nums[i];
+  }
+
+  return sum;
+}
+
+// Three Arrays!
+// Given three arrays of integers: arr1, arr2, arr3,
+// return the sum of integers which are common in all three arrays.
+function sumCommon(arr1, arr2, arr3) {
+  // Time=> always will be 3 arrays
+  // N=> length of arrays.
+  // it will increase as the length increases
+  // Time: O(n) where n=== length of array. as there will be only 3 arrays, it does not
+  // increase exponentially.
+  // Space: O(n)
+  let numMap = {};
+
+  [arr1, arr2, arr3].forEach((arr) => {
+    arr.forEach((element) => {
+      numMap[element] ? numMap[element]++ : (numMap[element] = 1);
+    });
+  });
+
+  let sum = 0;
+
+  for (let [k, v] of Object.entries(numMap)) {
+    if (v >= 3) {
+      sum += Number.parseInt(k) * Math.floor(v / 3);
+    }
+  }
+
+  return sum;
+}
+
+// Height of the Tallest Building
+// Given an array of strings (depicting a skyline of several buildings),
+// return in meters the height of the tallest building. Each line in the list represents 20m.
+function tallestBuildingHeight(arr) {
+  // Time: O(n) at worst, probably better.
+  // Space: O(1) will only ever be storing one var.
+  let highest;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].includes("#")) {
+      highest = i;
+      break;
+    }
+  }
+
+  return (arr.length - highest) * 20 + "m";
+}
+
+// Cumulative Array Sum
+// Create a function that takes an array of numbers and returns
+// an array where each number is the sum of itself + all previous numbers in the array.
+function cumulativeSum(arr) {
+  // Time: O(n)
+  // Space: O(n)
+  let runningSum = 0;
+  let r = new Array(arr.length);
+
+  for (let i = 0; i < arr.length; i++) {
+    r[i] = arr[i] + runningSum;
+    runningSum += arr[i];
+  }
+  return r;
+}
+
 console.log(
   //*********************
-  scaleTip([0, 0, 0, "I", 1, 1, 1])
+  cumulativeSum([1, 2, 3])
   // ********************
 );

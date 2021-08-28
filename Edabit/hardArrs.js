@@ -69,9 +69,42 @@ function numInStr(arr) {
   return [...r];
 }
 
-console
-  .log
+// Who Left the Array?
+// You are given two arrays. The elements in arr1 threw a party and started to mix around.
+// However, one of the elements got lost! Your task is to return the element which was lost.
+function missing(arr1, arr2) {
+  // Time: O(n)
+  // Space: O(1)
+  for (let i = 0; i < arr2.length; i++) {
+    if (arr1[i] !== arr2[i]) return arr1[i];
+  }
+
+  return arr1[arr1.length - 1];
+}
+
+// Pluralize!
+// Given a list of words in the singular form,
+// return a set of those words in the plural form if they appear more than once in the list.
+function pluralize(arr) {
+  // Time: O(2n) => O(n)
+  // Space: O(n)
+  let wordMap = {};
+
+  arr.forEach((word) => {
+    wordMap[word] ? wordMap[word]++ : (wordMap[word] = 1);
+  });
+
+  const r = [];
+
+  for (let [k, v] of Object.entries(wordMap)) {
+    v > 1 ? r.push(k + "s") : r.push(k);
+  }
+
+  return r;
+}
+
+console.log(
   // **
-  // rightRotations("abcdef")
+  pluralize(["cow", "pig", "cow", "cow"])
   // **
-  ();
+);

@@ -1291,10 +1291,90 @@ const sortByBits = (arr) => {
   });
 };
 
+// 1859. Sorting the Sentence
+// A sentence is a list of words that are separated by a single space
+// with no leading or trailing spaces. Each word consists of lowercase
+// and uppercase English letters.
+
+// A sentence can be shuffled by appending the 1-indexed word position
+// to each word then rearranging the words in the sentence.
+
+// For example, the sentence "This is a sentence" can be shuffled as
+// "sentence4 a3 is2 This1" or "is2 sentence4 This1 a3".
+
+// Given a shuffled sentence s containing no more than 9 words,
+// reconstruct and return the original sentence.
+
+function sortSentence(s) {
+  // Successfull, but slow:
+  //   Runtime: 152 ms, faster than 5.06% of
+  // JavaScript online submissions for Sorting the Sentence.
+  // Memory Usage: 38.2 MB, less than 94.24% of
+  // JavaScript online submissions for Sorting the Sentence.
+  let words = s.split(" ");
+  const r = new Array(words.length);
+
+  words.forEach((word) => {
+    r[Number.parseInt(word[word.length - 1])] = word.slice(0, word.length - 1);
+  });
+
+  return r.join(" ").trim();
+  // nice solution from answers:
+  // let arr = Array.from({ length: s.split(" ").length }, () => "");
+  // let temp = "";
+
+  // for (let i = 0; i < s.length; i++) {
+  //   // if not number add to temp string
+  //   if (isNaN(s[i])) {
+  //     temp += s[i];
+  // // if number add to array with index = last number - 1
+  //   } else if (!isNaN(s[i])) {
+  //     arr[+s[i] - 1] = temp;
+  //     temp = "";
+
+  //   // next char after number is space so jump to next letter
+  //     ++i;
+  //   }
+  // }
+  // return arr.join(' ');
+}
+
+// 1941. Check if All Characters Have Equal Number of Occurrences
+// Given a string s, return true if s is a good string, or false otherwise.
+
+// A string s is good if all the characters that appear in s have the same
+// number of occurrences (i.e., the same frequency).
+function areOccurrencesEqual(s) {
+  // Time: O(2n)-ish;
+  // Space: O(n)
+  let charMap = {};
+
+  s.split("").forEach((char) => {
+    charMap[char] ? charMap[char]++ : (charMap[char] = 1);
+  });
+
+  return new Set(Object.values(charMap)).size === 1;
+}
+
+// 1967. Number of Strings That Appear as Substrings in Word
+// Given an array of strings patterns and a string word,
+// return the number of strings in patterns that exist as a substring in word.
+
+// A substring is a contiguous sequence of characters within a string.
+function numOfStrings(patterns, word) {
+  // Time: O(n)
+  // Space: O(1)
+  let r = 0;
+
+  patterns.forEach((pattern) => {
+    if (word.includes(pattern)) r++;
+  });
+
+  return r;
+}
+
 console.log(
-  minTimeToVisitAllPoints([
-    [1, 1],
-    [3, 4],
-    [-1, 0],
-  ])
+  // ***********************
+  numOfStrings(["asdf"], "Asd")
+  // ***********************
 );
