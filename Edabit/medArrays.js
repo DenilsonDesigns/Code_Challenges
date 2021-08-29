@@ -1159,8 +1159,78 @@ function cumulativeSum(arr) {
   return r;
 }
 
+// Pyramid Arrays
+// Given a number n, return an array containing several arrays.
+// Each array increment in size, from range 1 to n inclusive,
+// contaning its length as the elements.
+function pyramidArrays(n) {
+  const r = [];
+
+  for (let i = 1; i <= n; i++) {
+    r.push(new Array(i).fill(i));
+  }
+
+  return r;
+}
+
+// Lottery Ticket
+// Given a lottery ticket (ticket), represented by an array of 2-value arrays,
+// create a function to find out if you've won the jackpot.
+
+// To do this, you must first count the "mini-win" on your ticket.
+// Each subarray has both a string and a number within it.
+// If the character code of any of the characters in the string matches the number,
+// you get a mini-win. Note you can only have one mini-win per subarray.
+
+// Once you have counted all of your mini-wins, compare that number to the
+// other input provided (win). If your number of mini-wins
+// is more than or equal to win, return Winner!. Else, return Loser!.
+function lottery(ticket, win) {
+  // Time: O(n*m) where n = length of ticket, and m represents the length
+  // of the string in ticket.
+  // Space: O(1)
+  let wins = 0;
+
+  ticket.forEach((chars) => {
+    for (let i = 0; i < chars[0].length; i++) {
+      if (chars[0].charCodeAt(i) === chars[1]) wins++;
+    }
+  });
+  return wins >= win ? "Winner!" : "Loser!";
+}
+
+// Are the Sum of Digits in the Numbers Equal?
+// Write a function that takes an array of two numbers and determines
+// if the sum of the digits in each number are equal to each other.
+function isEqual(arr) {
+  let sumNum1 = (arr[0] + "")
+    .split("")
+    .reduce((acc, el) => Number.parseInt(el) + acc, 0);
+  let sumNum2 = (arr[1] + "")
+    .split("")
+    .reduce((acc, el) => Number.parseInt(el) + acc, 0);
+  return sumNum1 === sumNum2;
+}
+
+// Flash Cards
+// Create a function that outputs the results of a flashcard.
+// A flashcard is an array of three elements: a number, an operator symbol,
+// and another number. Return the mathematical result of that expression.
+
+// There are 4 operators: + (addition), - (subtraction), x (multiplication),
+// and / (division). If the flashcard displays a number being divided by zero,
+// e.g. [3, "/", 0], then return undefined. For division,
+// round to the hundredths place. So [10, "/", 3] should return 3.33.
+function flash([num1, op, num2]) {
+  if (op == "x") return num1 * num2;
+  if (op == "+") return num1 + num2;
+  if (op == "-") return num1 - num2;
+  if (num2 == 0) return undefined;
+  return Math.round((num1 / num2) * 100) / 100;
+}
+
 console.log(
   //*********************
-  cumulativeSum([1, 2, 3])
+  flash([3, "x", 7])
   // ********************
 );
