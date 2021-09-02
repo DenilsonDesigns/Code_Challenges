@@ -1229,8 +1229,90 @@ function flash([num1, op, num2]) {
   return Math.round((num1 / num2) * 100) / 100;
 }
 
+// Merge Two Arrays
+// Create a function that takes two arrays and combines them by alternatingly taking elements from each array in turn.
+
+//     The arrays may be of different lengths, with at least one character / digit.
+//     The first array will contain string characters (lowercase, a-z).
+//     The second array will contain integers (all positive).
+function mergeArrays(a, b) {
+  // Time: O(n)
+  // Space: O(2n) => O(n)
+  const r = [];
+
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    if (a[i]) r.push(a[i]);
+    if (b[i]) r.push(b[i]);
+  }
+  return r;
+}
+
+// Flick Switch
+// Create a function that always returns true for every item in a given array.
+// However, if an element is the word "flick", switch to always returning the
+// opposite boolean value.
+function flickSwitch(arr) {
+  // Time: O(n)
+  // Space: O(n)
+  let currSwitch = true;
+  const r = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "flick") currSwitch = !currSwitch;
+    r.push(currSwitch);
+  }
+  return r;
+}
+
+// Peeling off the Outer Layers
+// Given an array of arrays, return a new array of arrays containing
+// every element, except for the outer elements.
+function peelLayerOff(arr) {
+  const r = [];
+
+  for (let i = 1; i < arr.length - 1; i++) {
+    r.push(arr[i].slice(1, arr[i].length - 1));
+  }
+
+  return r;
+}
+
+// Back and Forth
+// In a board game, a player may pick up a card with several left or right facing arrows,
+// with the number of arrows indicating the number of tiles to move.
+// The player should move either left or right, depending on the arrow's direction.
+
+// Given an array of the arrows contained on a player's cards,
+// return a singular string of arrowheads that are equivalent to all of the arrowheads.
+function calculateArrowhead(arr) {
+  let arrBal = 0;
+  let strArr = arr.join("");
+
+  for (let i = 0; i < strArr.length; i++) {
+    strArr[i] === "<" ? arrBal-- : arrBal++;
+  }
+
+  return arrBal > 0
+    ? ">".repeat(arrBal)
+    : arrBal < 0
+    ? "<".repeat(Math.abs(arrBal))
+    : "";
+}
+
+// Triple Letter Groupings
+// Given a string, return a sorted array of words formed from the
+// first three letters, then the next three letters, shifting by only one.
+function threeLetterCollection(s) {
+  const r = [];
+
+  for (let i = 0; i < s.length - 2; i++) {
+    r.push(s.slice(i, i + 3));
+  }
+  return r.sort();
+}
+
 console.log(
   //*********************
-  flash([3, "x", 7])
+  differenceTwo([1, 2, 3, 4])
   // ********************
 );
