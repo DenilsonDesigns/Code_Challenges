@@ -1311,8 +1311,101 @@ function threeLetterCollection(s) {
   return r.sort();
 }
 
+// Two is the Difference
+// Create a function that takes an array of integers and returns
+// all pairs of integers that have a difference of two.
+// The resulting array should be sorted in ascending order of values.
+function differenceTwo(n) {
+  // Time: O(n)
+  // Space: O(n)
+  const r = [];
+
+  let numMap = {};
+
+  n.forEach((num) => {
+    numMap[num] = true;
+    if (numMap[num + 2]) r.push([num, num + 2]);
+    else if (numMap[num - 2]) r.push([num - 2, num]);
+  });
+
+  return r;
+}
+
+// Find the Overlapping Range
+// For an array of ranges, find the maximum range that is contained
+// in all the ranges. If there is no such range, return "No overlapping".
+function overlapping(arr) {
+  currUpper = Infinity;
+  currLower = -Infinity;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i][0] > currUpper || arr[i][1] < currLower) {
+      return "No overlapping";
+    }
+
+    if (arr[i][0] > currLower) currLower = arr[i][0];
+    if (arr[i][1] < currUpper) currUpper = arr[i][1];
+  }
+
+  return [currLower, currUpper];
+  // *** Really clever solution:
+  // const min = Math.max(...arr.map(x => x[0]));
+  // const max = Math.min(...arr.map(x => x[1]));
+  // return min > max ? "No overlapping" : [min, max];
+}
+
+// Count the Number of Duplicate Characters
+// Create a function that returns the amount of duplicate characters in a string.
+// It will be case sensitive and spaces are included. If there are no duplicates, return 0.
+function duplicates(str) {
+  let count = 0;
+  let charMap = {};
+
+  for (let i = 0; i < str.length; i++) {
+    charMap[str[i]] ? count++ : (charMap[str[i]] = true);
+  }
+
+  return count;
+}
+
+// One, Two, Skip a Few
+// Create a function which calculates how many numbers are missing
+// from an ordered number line. This number line starts at the first
+// value of the array, and increases by 1 to the end of the number line,
+// ending at the last value of the array.
+function howManyMissing(arr) {
+  let count = 0;
+  if (arr.length <= 1) return 0;
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] - arr[i - 1] > 1) {
+      count += arr[i] - arr[i - 1] - 1;
+    }
+  }
+
+  return count;
+}
+
+// Making a Sandwich
+// Given an array of ingredients i and a string flavour f as input,
+// create a function that returns the array but with the elements bread
+// around the selected ingredient.
+function makeSandwich(ingredients, flavour) {
+  const finalSanga = [];
+
+  for (let i = 0; i < ingredients.length; i++) {
+    if (ingredients[i] === flavour) {
+      finalSanga.push("bread", ingredients[i], "bread");
+      continue;
+    }
+    finalSanga.push(ingredients[i]);
+  }
+
+  return finalSanga;
+}
+
 console.log(
   //*********************
-  differenceTwo([1, 2, 3, 4])
+  makeSandwich(["c", "l"], "c")
   // ********************
 );

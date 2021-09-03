@@ -103,8 +103,58 @@ function pluralize(arr) {
   return r;
 }
 
+// Finding Common Elements
+// Create a function that takes two "sorted" arrays of
+// numbers and returns an array of numbers which are common to both the input arrays.
+function commonElements(arr1, arr2) {
+  const commEls = [];
+
+  let numMap = {};
+
+  for (let i = 0; i < arr1.length; i++) {
+    numMap[arr1[i]] = true;
+  }
+
+  for (let i = 0; i < arr2.length; i++) {
+    if (numMap[arr2[i]]) commEls.push(arr2[i]);
+  }
+
+  return commEls;
+}
+
+// Scoring a Field Goal
+// In (American) Football, a team can score if they manage to kick
+// a ball through the goal (i.e. above the crossbar and between the uprights).
+
+// Create a function that returns true if the ball 0 goes through the goal.
+// You will be given an array of arrays.
+function isGoalScored(goal) {
+  for (let i = 0; i < goal.length; i++) {
+    let row = goal[i][0].replace(/ /g, "");
+    if (row === "#0#") return true;
+  }
+
+  return false;
+}
+
+// Larger than All Numbers to Their Right
+function largerThanRight(arr) {
+  const r = [];
+
+  let currHighest = 0;
+
+  r.push(arr[arr.length - 1]);
+
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (arr[i] > arr[i + 1] && arr[i] > currHighest) r.unshift(arr[i]);
+    if (arr[i] > currHighest) currHighest = arr[i];
+  }
+
+  return r;
+}
+
 console.log(
   // **
-  pluralize(["cow", "pig", "cow", "cow"])
+  largerThanRight([3, 13, 11, 2, 1, 9, 5])
   // **
 );
