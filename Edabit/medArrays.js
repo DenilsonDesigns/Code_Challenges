@@ -1404,8 +1404,54 @@ function makeSandwich(ingredients, flavour) {
   return finalSanga;
 }
 
+// The Bottom of the Matrix
+// The entries in the diagonal line from the top left to the bottom
+// right form the main diagonal of the matrix.
+// In this case, 1,5,9 form the main diagonal.
+
+// Write a function that returns the matrix obtained by replacing
+// the entries above the main diagonal with 0s.
+function lowerTriang(matrix) {
+  let currZeroStart = 1;
+
+  matrix.forEach((arrInMatrix, j) => {
+    arrInMatrix.forEach((_, i) => {
+      if (i >= currZeroStart) {
+        matrix[j][i] = 0;
+      }
+    });
+    currZeroStart++;
+  });
+  return matrix;
+}
+
+// Count the Points in a Circle
+// Count the amount of coordinates on a two-dimensional
+// grid that are inside a given circle. The function has four arguments:
+// the points, the circle's center x, y and the circle's radius.
+function pointsInCircle(points, centerX, centerY, radius) {
+  return points.filter((point) => {
+    return Math.hypot(point.x - centerX, point.y - centerY) < radius;
+  }).length;
+}
+
+// Longest Word
+// Write a function that finds the longest word in a sentence and returns it.
+// If two or more words are the biggest, return the word closest to the start
+// of the sentence. Characters such as apostophe, commas, periods,
+// etc count as letters (e.g. O'Connor is 8 characters long).
+function longestWord(sentence) {
+  let longest = "";
+
+  sentence.split(" ").forEach((word) => {
+    if (word.length > longest.length) longest = word;
+  });
+
+  return longest;
+}
+
 console.log(
   //*********************
-  makeSandwich(["c", "l"], "c")
+  longestWord("Hello darkness my old friend")
   // ********************
 );
