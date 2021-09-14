@@ -1450,8 +1450,19 @@ function longestWord(sentence) {
   return longest;
 }
 
+// Partially Hidden String
+// Create a function that takes a phrase and transforms each word using the following rules:
+
+//     Keep first and last character the same.
+//     Transform middle characters into a dash -.
+function partiallyHide(phrase) {
+  // split the words
+  // loop through the words.
+  // replace all letters other than first and last with "-"
+}
+
 console.log(
   //*********************
-  longestWord("Hello darkness my old friend")
+  partiallyHide("Harry went to fight the basilisk")
   // ********************
 );

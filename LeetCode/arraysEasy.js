@@ -1373,8 +1373,174 @@ function numOfStrings(patterns, word) {
   return r;
 }
 
+// Reverse Only Letters
+// Given a string s, reverse the string according to the following rules:
+
+//     All the characters that are not English letters remain in the same position.
+//     All the English letters (lowercase or uppercase) should be reversed.
+
+// Return s after reversing it.
+function reverseOnlyLetters(s) {
+  // Time: O(n)
+  // Space: O(n)
+  let arrS = s.split("");
+  let leftIdx = 0;
+  let rightIdx = s.length - 1;
+
+  while (leftIdx < rightIdx) {
+    if (!arrS[leftIdx].match(/[a-z]/i)) {
+      leftIdx++;
+    }
+
+    if (!arrS[rightIdx].match(/[a-z]/i)) {
+      rightIdx--;
+    }
+
+    if (arrS[leftIdx].match(/[a-z]/i) && arrS[rightIdx].match(/[a-z]/i)) {
+      let leftTemp = arrS[leftIdx];
+      arrS[leftIdx] = arrS[rightIdx];
+
+      arrS[rightIdx] = leftTemp;
+
+      leftIdx++;
+      rightIdx--;
+    }
+  }
+
+  return arrS.join("");
+}
+
+// 1979. Find Greatest Common Divisor of Array
+// Given an integer array nums, return the greatest common divisor of
+// the smallest number and largest number in nums.
+
+// The greatest common divisor of two numbers is the largest positive integer
+// that evenly divides both numbers.
+function findGCD(nums) {
+  nums.sort((a, b) => a - b);
+  return gcd(nums[0], nums[nums.length - 1]);
+
+  function gcd(a, b) {
+    if (!b) {
+      return a;
+    }
+
+    return gcd(b, a % b);
+  }
+}
+
+// 1337. The K Weakest Rows in a Matrix
+// You are given an m x n binary matrix mat of 1's (representing soldiers) and 0's
+// (representing civilians). The soldiers are positioned in front of the civilians.
+// That is, all the 1's will appear to the left of all the 0's in each row.
+
+// A row i is weaker than a row j if one of the following is true:
+
+//     The number of soldiers in row i is less than the number of soldiers in row j.
+//     Both rows have the same number of soldiers and i < j.
+
+// Return the indices of the k weakest rows in the matrix ordered from weakest to strongest.
+function kWeakestRows(mat, k) {
+  // Time: O(2n) => O(n)
+  // Space: O(n)
+  return mat
+    .map((el, i) => {
+      return [el.reduce((acc, el) => acc + el, 0), i];
+    })
+    .sort((a, b) => a[0] - b[0])
+    .map((el) => el[1])
+    .slice(0, k);
+}
+
+// 1475. Final Prices With a Special Discount in a Shop
+// Given the array prices where prices[i] is the price of the ith item in a shop.
+// There is a special discount for items in the shop, if you buy the ith item,
+// then you will receive a discount equivalent to prices[j] where j is the minimum index such that
+// j > i and prices[j] <= prices[i], otherwise, you will not receive any discount at all.
+
+// Return an array where the ith element is the final price you will pay for the ith item
+// of the shop considering the special discount.
+function finalPrices(prices) {
+  // Time: O(n^2) :( :(
+  // Space: O(n)
+  let r = [];
+
+  for (let i = 0; i < prices.length; i++) {
+    let discount = false;
+    if (i === prices.length - 1) {
+      r.push(prices[i]);
+      continue;
+    }
+    for (let j = i + 1; j < prices.length; j++) {
+      if (prices[j] <= prices[i]) {
+        r.push(prices[i] - prices[j]);
+        discount = true;
+        break;
+      }
+    }
+    !discount && r.push(prices[i]);
+  }
+  return r;
+}
+
+// 1710. Maximum Units on a Truck
+// You are assigned to put some amount of boxes onto one truck.
+// You are given a 2D array boxTypes, where boxTypes[i] = [numberOfBoxesi, numberOfUnitsPerBoxi]:
+
+// numberOfBoxesi is the number of boxes of type i.
+// numberOfUnitsPerBoxi is the number of units in each box of the type i.
+
+// You are also given an integer truckSize, which is the maximum number of
+// boxes that can be put on the truck. You can choose any boxes to put on the
+// truck as long as the number of boxes does not exceed truckSize.
+
+// Return the maximum total number of units that can be put on the truck.
+function maximumUnits(boxTypes, truckSize) {
+  // Time: O(n)-ish, (has a sort in there)
+  // Space: O(n)
+  let r = 0;
+  boxTypes.sort((a, b) => b[1] - a[1]);
+
+  boxTypes.forEach((box) => {
+    if (box[0] <= truckSize) {
+      r += box[0] * box[1];
+      truckSize -= box[0];
+    } else {
+      r += truckSize * box[1];
+      truckSize = 0;
+    }
+  });
+
+  return r;
+}
+
+// 852. Peak Index in a Mountain Array
+// Let's call an array arr a mountain if the following properties hold:
+
+//     arr.length >= 3
+//     There exists some i with 0 < i < arr.length - 1 such that:
+//         arr[0] < arr[1] < ... arr[i-1] < arr[i]
+//         arr[i] > arr[i+1] > ... > arr[arr.length - 1]
+
+// Given an integer array arr that is guaranteed to be a mountain,
+// return any i such that arr[0] < arr[1] < ... arr[i - 1] < arr[i] > arr[i + 1] >
+// ... > arr[arr.length - 1].
+function peakIndexInMountainArray(arr) {
+  let highestPoint = 0;
+  let peakIdx = 0;
+
+  for (let i = 1; i < arr.length - 1; i++) {
+    if (arr[i] > arr[i - 1] && arr[i] > arr[i + 1] && arr[i] > highestPoint) {
+      highestPoint = arr[i];
+      peakIdx = i;
+    }
+  }
+
+  return peakIdx;
+}
+
 console.log(
   // ***********************
-  numOfStrings(["asdf"], "Asd")
+  peakIndexInMountainArray([24, 69, 100, 99, 79, 78, 67, 36, 26, 19])
   // ***********************
 );
