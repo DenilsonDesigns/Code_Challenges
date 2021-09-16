@@ -153,8 +153,22 @@ function largerThanRight(arr) {
   return r;
 }
 
+// Positive Dominant
+// An array is positive dominant if it contains strictly more unique positive
+// values than unique negative values.
+// Write a function that returns true if an array is positive dominant.
+function isPositiveDominant(a) {
+  let posDom = 0;
+
+  let newSet = new Set(a);
+  newSet.forEach((el) => {
+    el > 0 ? posDom++ : el < 0 ? posDom-- : (posDom = posDom);
+  });
+  return posDom > 0;
+}
+
 console.log(
   // **
-  largerThanRight([3, 13, 11, 2, 1, 9, 5])
+  isPositiveDominant([1, 1, 1, 1, -3, -4])
   // **
 );

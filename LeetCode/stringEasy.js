@@ -522,4 +522,29 @@ function shortestToChar(s, c) {
   }
 }
 
-console.log(shortestToChar("loveleetcode", "e")); //  1
+// 2000. Reverse Prefix of Word
+// Given a 0-indexed string word and a character ch, reverse the segment of word that starts
+// at index 0 and ends at the index of the first occurrence of ch (inclusive).
+// If the character ch does not exist in word, do nothing.
+
+// For example, if word = "abcdefd" and ch = "d", then you should reverse
+// the segment that starts at 0 and ends at 3 (inclusive).
+// The resulting string will be "dcbaefd".
+
+// Return the resulting string.
+function reversePrefix(word, ch) {
+  let splitIdx = word.indexOf(ch);
+  let tail = word.slice(splitIdx + 1);
+  let front = word
+    .slice(0, splitIdx + 1)
+    .split("")
+    .reverse("")
+    .join("");
+  return front + tail;
+}
+
+console.log(
+  // **********************
+  reversePrefix("abcdefd", "d")
+  // **********************
+);

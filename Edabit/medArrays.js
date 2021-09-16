@@ -1450,19 +1450,50 @@ function longestWord(sentence) {
   return longest;
 }
 
-// Partially Hidden String
-// Create a function that takes a phrase and transforms each word using the following rules:
+// Determine If Two Numbers Add up to a Target Value
+// Given two unique integer arrays a and b, and an integer target value v,
+// create a function to determine whether there is a pair of numbers that add up to the target value v, where one number comes from one array a and the other comes from the second array b.
 
-//     Keep first and last character the same.
-//     Transform middle characters into a dash -.
-function partiallyHide(phrase) {
-  // split the words
-  // loop through the words.
-  // replace all letters other than first and last with "-"
+// Return true if there is a pair that adds up to the target value and false otherwise.
+function sumOfTwo(a, b, v) {
+  // make num map of a arr.
+  let aMap = {};
+  a.forEach((num) => {
+    aMap[num] = true;
+  });
+
+  for (let i = 0; i < b.length; i++) {
+    if (b[i] < v) {
+      if (aMap[v - b[i]]) return true;
+    }
+  }
+
+  return false;
+}
+
+// Sum of Array Elements Except Itself
+// An array is given. Return a new array having the sum of
+// all its elements except itself. For more clarity, check the examples below.
+function arrEleSum(args) {
+  // Time: O(2n) => O(n)
+  // Space: O(1)
+  const total = args.reduce((acc, el) => acc + el, 0);
+  return args.map((el) => total - el);
+}
+
+// Divide Array into Chunks
+// Write a function that divides an array into chunks of size n, where n is the length of each chunk.
+function chunkify(arr, size) {
+  const r = [];
+
+  while (arr.length > 0) {
+    r.push(arr.splice(0, size));
+  }
+  return r;
 }
 
 console.log(
   //*********************
-  partiallyHide("Harry went to fight the basilisk")
+  chunkify([2, 3, 4, 5], 2)
   // ********************
 );
