@@ -167,8 +167,128 @@ function isPositiveDominant(a) {
   return posDom > 0;
 }
 
+// Broken Keyboard
+// Given what is supposed to be typed and what is actually typed,
+// write a function that returns the broken key(s). The function looks like:
+function findBrokenKeys(str1, str2) {
+  const rArr = [];
+
+  for (let i = 0; i < str1.length; i++) {
+    if (str1[i] !== str2[i]) rArr.push(str1[i]);
+  }
+
+  return Array.from(new Set(rArr));
+}
+
+// Concatenate to Form Target Array
+// Create a function that returns true if smaller arrays can
+// concatenate to form the target array and false otherwise.
+function canConcatenate(arr, target) {
+  let arr1 = arr.flat().sort((a, b) => a - b);
+  let arr2 = target.sort((a, b) => a - b);
+  if (arr2.length !== arr1.length) return false;
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
+}
+
+// Rock, Paper, Scissors!
+// Abigail and Benson are playing Rock, Paper, Scissors.
+
+// Each game is represented by an array of length 2, where
+// the first element represents what Abigail played and the second
+// element represents what Benson played.
+
+// Given a sequence of games, determine who wins the most number of matches.
+// If they tie, output "Tie".
+
+//     R stands for Rock
+//     P stands for Paper
+//     S stands for Scissors
+function calculateScore(games) {
+  let aPoints = 0;
+  let bPoints = 0;
+
+  games.forEach((gayme) => {
+    if (gayme[0] === "R") {
+      if (gayme[1] === "S") aPoints++;
+      if (gayme[1] === "P") bPoints++;
+    } else if (gayme[0] === "P") {
+      if (gayme[1] === "S") bPoints++;
+      if (gayme[1] === "R") aPoints++;
+    } else {
+      // gayme0 === S
+      if (gayme[1] === "P") aPoints++;
+      if (gayme[1] === "R") bPoints++;
+    }
+  });
+
+  return aPoints > bPoints ? "Abigail" : aPoints < bPoints ? "Benson" : "Tie";
+}
+
+// Two Distinct Elements
+// In each input array, every number repeats at least once, except for two.
+// Write a function that returns the two unique numbers.
+function returnUnique(arr) {
+  // Time: O(2n) => O(n)
+  // Space: O(n)
+  let arrMap = {};
+
+  arr.forEach((num) => {
+    arrMap[num] ? arrMap[num]++ : (arrMap[num] = 1);
+  });
+
+  const r = [];
+
+  arr.forEach((num) => {
+    if (arrMap[num] === 1) r.push(num);
+  });
+
+  return r;
+}
+
+// Leader in an Array
+// Create a function that finds each number in the given array
+// that is greater than every number that comes after it.
+// Your solution should return an array of the number(s) that meet these criteria.
+function leader(arr) {
+  let r = [];
+  let currMax = -Infinity;
+
+  for (let i = arr.length; i >= 0; i--) {
+    if (arr[i] > currMax) {
+      r.unshift(arr[i]);
+      currMax = arr[i];
+    }
+  }
+  return r;
+}
+
+// Unfair Hurdles
+// Unfair hurdles are hurdles which are either too high,
+// or way too close together.
+
+// Create a function which takes in an array of strings, representing hurdles,
+// and returns whether or not they are unfair. For the purposes of this challenge, unfair hurdles are:
+
+//     At least 4 characters tall.
+//     Strictly less than 4 spaces apart.
+function isUnfairHurdle(hurdles) {
+  if (hurdles.length >= 4) return true;
+  for (let i = 0; i < hurdles.length; i++) {
+    let spaces = hurdles[i].split("#");
+
+    for (let j = 0; j < spaces.length; j++) {
+      if (spaces[j].length < 4 && spaces[j].length > 0) return true;
+    }
+  }
+
+  return false;
+}
+
 console.log(
   // **
-  isPositiveDominant([1, 1, 1, 1, -3, -4])
+  isUnfairHurdle(["#    #    #    #", "#    #    #    #", "#    #    #    #"])
   // **
 );
