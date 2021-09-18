@@ -287,8 +287,27 @@ function isUnfairHurdle(hurdles) {
   return false;
 }
 
+// Sum of Missing Numbers
+// Create a function that returns the sum of missing numbers from the given array.
+function sumMissingNumbers(arr) {
+  // Time: O(2n) => O(n)
+  // Space: O(n)
+  let numMap = {};
+  arr.forEach((num) => {
+    numMap[num] = true;
+  });
+
+  let r = 0;
+
+  for (let i = Math.min(...arr); i < Math.max(...arr); i++) {
+    if (!numMap[i]) r += i;
+  }
+
+  return r;
+}
+
 console.log(
   // **
-  isUnfairHurdle(["#    #    #    #", "#    #    #    #", "#    #    #    #"])
+  sumMissingNumbers([4, 3, 8, 1, 2])
   // **
 );
