@@ -126,5 +126,16 @@ function isOutOfOrder(i, num, array) {
   return num > array[i + 1] || num < array[i - 1];
 }
 
-console.log(subarraySort([1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19]));
-// console.log(subarraySort([1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19]));
+// ZigZag Traverse
+function zigzagTraverse(array) {}
+
+console.log(
+  // ***
+  zigzagTraverse([
+    [1, 3, 4, 10],
+    [2, 5, 9, 11],
+    [6, 8, 12, 15],
+    [7, 13, 14, 16],
+  ])
+  // ***
+);

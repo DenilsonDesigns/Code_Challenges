@@ -1492,8 +1492,39 @@ function chunkify(arr, size) {
   return r;
 }
 
+// Adding Both Ends Together
+// Given an array of numbers, of any length, create a
+// function which counts how many of those numbers pass the following criterea:
+// The first and last digits of a number must add to 10.
+function endsAddTo10(nums) {
+  let r = 0;
+
+  nums.forEach((num) => {
+    let strNum = (num + "").split("");
+    strNum = strNum.filter((el) => el != "-");
+    if (+strNum[0] + +strNum[strNum.length - 1] === 10) r++;
+  });
+
+  return r;
+}
+
+// Find the Odd Integer
+// Create a function that takes an array and finds the
+// integer which appears an odd number of times.
+function findOdd(arr) {
+  let numMap = {};
+
+  arr.forEach((num) => {
+    numMap[num] ? numMap[num]++ : (numMap[num] = 1);
+  });
+
+  for (let [k, v] of Object.entries(numMap)) {
+    if (v % 2 !== 0) return +k;
+  }
+}
+
 console.log(
   //*********************
-  chunkify([2, 3, 4, 5], 2)
+  findOdd([20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5])
   // ********************
 );
