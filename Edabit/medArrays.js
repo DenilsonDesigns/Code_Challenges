@@ -1523,8 +1523,33 @@ function findOdd(arr) {
   }
 }
 
+// All Occurrences of an Element in an Array
+// Create a function that returns the indices of all occurrences of an item in the array.
+function getIndices(arr, el) {
+  const r = [];
+  arr.forEach((element, i) => {
+    if (element === el) r.push(i);
+  });
+  return r;
+}
+
+// Ranged Reversal
+function rangedReversal(arr, start, end) {
+  const r = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i === start) {
+      r.push(arr.slice(start, end + 1).reverse());
+      i += end - start;
+      continue;
+    }
+    r.push(arr[i]);
+  }
+  return r.flat();
+}
+
 console.log(
   //*********************
-  findOdd([20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5])
+  rangedReversal([1, 2, 3, 4, 5, 6], 1, 3)
   // ********************
 );
