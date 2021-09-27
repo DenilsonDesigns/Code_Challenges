@@ -1548,8 +1548,99 @@ function rangedReversal(arr, start, end) {
   return r.flat();
 }
 
+// Spicy Food
+// The facts are:
+
+//     You've just finished dinner.
+//     You love spicy food but your friend hates it.
+
+// Given your friend's unfortunate taste preferences, you decide to split the bill
+// only for non-spicy items. You will pay in full for the spicy dishes.
+
+// Given two ordered arrays, one classifying the dishes as spicy vs. non-spicy
+// and the other listing their prices, write a function that outputs an array
+// where the first element is how much you pay and the second element
+// is how much your friend pays.
+function billSplit(spicy, cost) {
+  let r = [0, 0];
+
+  spicy.forEach((el, i) => {
+    if (el === "S") r[0] += cost[i];
+    else {
+      r[0] += cost[i] / 2;
+      r[1] += cost[i] / 2;
+    }
+  });
+
+  return r;
+}
+
+// Remix the String
+// Create a function that takes both a string and an array of numbers as arguments.
+// Rearrange the letters in the string to be in the order specified by the index numbers.
+// Return the "remixed" string.
+function remix(str, arr) {
+  let rArr = new Array(str.length);
+
+  arr.forEach((idx, i) => {
+    rArr[idx] = str[i];
+  });
+
+  return rArr.join("");
+}
+
+// Total Count of Numbers in a MultiDimensional Array
+// Create a function that takes a multidimensional array and
+// return the total count of numbers in that array.
+function countNumber(arr) {
+  return arr.flat(Infinity).filter((el) => typeof el == "number").length;
+}
+
+// Partially Hidden String
+// Create a function that takes a phrase and transforms each word using the following rules:
+
+//     Keep first and last character the same.
+//     Transform middle characters into a dash -.
+function partiallyHide(phrase) {
+  let words = phrase.split(" ");
+  return words
+    .map((word) => {
+      let wordArr = word.split("");
+      let newWord = "";
+      wordArr.forEach((letter, i) => {
+        if (i === 0 || i === wordArr.length - 1) {
+          newWord += letter;
+        } else {
+          newWord += "-";
+        }
+      });
+      return newWord;
+    })
+    .join(" ");
+}
+
+// Longest Daily Streak
+// Create a function that takes an array of booleans that represent
+// whether or not a player has logged into a game that day.
+// Output the longest streak of consecutive logged in days.
+function dailyStreak(arr) {
+  let longestStreak = 0;
+  let currStreak = 0;
+
+  arr.forEach((loggedIn) => {
+    if (loggedIn) {
+      currStreak++;
+      if (currStreak > longestStreak) longestStreak = currStreak;
+    } else {
+      currStreak = 0;
+    }
+  });
+
+  return longestStreak;
+}
+
 console.log(
   //*********************
-  rangedReversal([1, 2, 3, 4, 5, 6], 1, 3)
+  dailyStreak([true, true, false, true])
   // ********************
 );
