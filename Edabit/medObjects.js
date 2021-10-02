@@ -427,4 +427,89 @@ function makeChange(c) {
   // }
 }
 
-console.log(makeChange(47));
+// How Good is Your Name?
+// Create a function that takes a string of name and checks how much good is the
+// given name. A preloaded dictionary of alphabet scores is available in the Code tab.
+// Add up the letters of your name to get the total score.
+const scores = {
+  A: 100,
+  B: 14,
+  C: 9,
+  D: 28,
+  E: 145,
+  F: 12,
+  G: 3,
+  H: 10,
+  I: 200,
+  J: 100,
+  K: 114,
+  L: 100,
+  M: 25,
+  N: 450,
+  O: 80,
+  P: 2,
+  Q: 12,
+  R: 400,
+  S: 113,
+  T: 405,
+  U: 11,
+  V: 10,
+  W: 10,
+  X: 3,
+  Y: 210,
+  Z: 23,
+};
+
+function nameScore(name) {
+  let total = name.split("").reduce((acc, el) => {
+    return acc + (scores[el] ? scores[el] : 0);
+  }, 0);
+  let r = "";
+
+  total <= 60
+    ? (r = "NOT TOO GOOD")
+    : total >= 61 && total <= 300
+    ? (r = "PRETTY GOOD")
+    : total >= 301 && total <= 599
+    ? (r = "VERY GOOD")
+    : total >= 600
+    ? (r = "THE BEST")
+    : (r = "");
+
+  return r;
+}
+
+// Can You Spare a Square?
+// Try to imagine a world in which you might have to stay home for 14 days at any given time.
+// Do you have enough TP to make it through?
+
+// Although the number of squares per roll of TP varies significantly,
+// we'll assume each roll has 500 sheets, and the average person uses 57 sheets per day.
+
+// Create a function that will receive an object with two key/values:
+
+//     people ⁠— Number of people in the household.
+//     tp ⁠— Number of rolls.
+
+// Return a statement telling the user if they need to buy more TP!
+
+function tpChecker(home) {
+  const numSquares = home.tp * 500;
+
+  let squaresNeededPerDay = home.people * 57;
+
+  let daysLasting = Math.floor(numSquares / squaresNeededPerDay);
+
+  let r =
+    daysLasting > 14
+      ? `Your TP will last ${daysLasting} days, no need to panic!`
+      : `Your TP will only last ${daysLasting} days, buy more!`;
+
+  return r;
+}
+
+console.log(
+  // ***
+  tpChecker({ people: 4, tp: 1 })
+  // ***
+);

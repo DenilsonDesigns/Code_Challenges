@@ -239,11 +239,98 @@ function whoPassed(students) {
   return r.sort();
 }
 
+// Got Enough Money?
+// Create a function that returns any of the items you can afford in
+// the store with the money you have in your wallet.
+// Sort the list in alphabetical order.
+function itemsPurchased(store, wallet) {
+  const convertNum = (strNum) => {
+    let newNum = strNum.replace(/[$,]+/g, "");
+    return parseInt(newNum);
+  };
+
+  const r = [];
+
+  for (let [k, v] of Object.entries(store)) {
+    if (convertNum(v) <= convertNum(wallet)) r.push(k);
+  }
+
+  return r.length > 0 ? r.sort() : "Nothing";
+}
+
+// Burglary Series (17): Who is the Winner?
+// The fight between you and your spouse is over.
+// Based on your perception of how the fight went, determine who won.
+
+// Given an object with three rounds, with nested objects as your points per round,
+// determine the winner by counting who won the most rounds.
+// The winner of the round is whoever scored the most points in that round. Draws are possible, both in rounds as in the final result.
+function determineWinnerOfFight(obj) {
+  let score = 0;
+
+  for (let val of Object.values(obj)) {
+    if (val.me > val.spouse) score--;
+    if (val.me < val.spouse) score++;
+  }
+
+  return score > 0 ? "SPOUSE!" : score < 0 ? "ME!" : "NOBODY!";
+}
+
+// Get Groups with Students
+// Create a function that takes two arrays: groups and students.
+// It should return one array with groups merged with students by id.
+// Students within groups should be ordered in the same way the studentIds were ordered.
+function getGroupsWithStudents(groups, students) {
+  return groups.map((obj) => {
+    return {
+      id: obj.id,
+      name: obj.name,
+      students: getStudents(obj.studentIds, students),
+      // cleaner way:
+      // students: studentIds.map(id => students.find(student => student.id === id)),
+    };
+  });
+
+  function getStudents(ids, listOfStudents) {
+    let r = [];
+
+    ids.forEach((id) => {
+      listOfStudents.forEach((student) => {
+        if (student.id === id) r.push(student);
+      });
+    });
+
+    return r;
+  }
+}
+
+// Burglary Series (05): Third Most Expensive
+// Time to call your lover to inform what he/she lost in the burglary.
+
+// Given an object of the stolen objects, return the 3rd most expensive item on the list.
+// If that is not possible, because there are not enough items, return false.
+function thirdMostExpensive(obj) {
+  let ordered = Object.keys(obj).sort((a, b) => obj[b] - obj[a]);
+  return ordered.length < 3 ? false : ordered[2];
+}
+
+// Burglary Series (13): Sort That List
+// The insurance guy tells you he needs an updated list of the stolen goods,
+// and surely only to annoy you, he adds, "in reverse alphabetical order".
+
+// Given an object with the stolen items, return a new object with the list
+// in reverse alphabetical order.
+
+// https://edabit.com/challenge/qrb9Xaapq9b8nstLe
+function sortList(obj) {}
+
 console.log(
-  whoPassed({
-    John: ["5/5", "50/50", "10/10", "10/10"],
-    Sarah: ["4/8", "50/57", "7/10", "10/18"],
-    Adam: ["8/10", "22/25", "3/5", "5/5"],
-    Barry: ["3/3", "20/20"],
+  // ***
+  sortList({
+    c: 100,
+    a: 50,
+    b: 10,
+    d: 50,
   })
+  // ***
 );
