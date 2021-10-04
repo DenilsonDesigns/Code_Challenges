@@ -1639,8 +1639,63 @@ function dailyStreak(arr) {
   return longestStreak;
 }
 
+// Probabilities (Part 1)
+// Given an array of numbers and a value n, write a function that
+// returns the probability of choosing a number greater than or equal to n f
+// rom the array. The probability should be expressed as a percentage,
+// rounded to one decimal place.
+function probability(arr, num) {
+  let probArr = arr.filter((el) => num <= el);
+
+  return +((probArr.length / arr.length) * 100).toFixed(1);
+}
+
+// Identical Subarrays
+// Create a function that takes in a two-dimensional
+// array and returns the number of sub-arrays with only identical elements.
+function countIdentical(arr) {
+  // Time: O(n*m) where n = length of `arr` and m = length of subarrays.
+  // hard to calculate as m will vary, but this distinction is important
+  // as the time complexity here is not just simply O(n^2)
+  // Space: O(1).
+  let r = 0;
+
+  arr.forEach((subArr) => {
+    if (subArr.every((el) => el === subArr[0])) r++;
+  });
+
+  return r;
+}
+
+// New Word Builder
+// Create a function that builds a word from the scrambled letters contained
+// in the first array. Use the second array to establish each position of the
+// letters in the first array. Return a string from the unscrambled
+// letters (that made-up the word).
+function wordBuilder(letters, positions) {
+  return positions.map((v) => letters[v]).join("");
+}
+
+// Good Match?
+// In this challenge you will be given an array of numbers.
+// Your task is to "marry" each pair of adjacent numbers by adding them,
+// and return the array of "couples" (i.e. sums).
+
+// If the array has an odd length, one number is (sadly) left out,
+// so you should return "bad match".
+function isGoodMatch(arr) {
+  if (arr.length % 2 !== 0) return "bad match";
+
+  let r = [];
+  for (let i = 0; i < arr.length; i += 2) {
+    r.push(arr[i] + arr[i + 1]);
+  }
+
+  return r;
+}
+
 console.log(
   //*********************
-  dailyStreak([true, true, false, true])
+  isGoodMatch([1, 2, 4, 7])
   // ********************
 );
