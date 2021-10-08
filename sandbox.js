@@ -1037,15 +1037,15 @@ const MENU_ARR = [
   },
 ];
 
-function getPath(model, title) {
+function getPath(menuItem, location) {
   var path,
-    item = model.title;
+    item = menuItem.link;
 
-  if (!model || typeof model !== "object") return;
+  if (!menuItem || typeof menuItem !== "object") return;
 
-  if (model.title === title) return [item];
+  if (menuItem.link === location) return [item];
 
-  (model.Subitems || []).some((child) => (path = getPath(child, title)));
+  (menuItem.Subitems || []).some((child) => (path = getPath(child, location)));
   return path && [item, ...path];
 }
 
@@ -1053,10 +1053,15 @@ function sliceArrayToTarget(arr, target) {
   return arr.slice(0, arr.indexOf(target));
 }
 
+const formatTo = (pathName) => {
+  return pathName.replace(/\/*(:[\w|\D|-|_]+\?)\/*/g, "");
+};
+
 console.log(
   // ***
 
-  //   getPath(MENU_ARR[0], "Menu")
-  sliceArrayToTarget(["Admin Tools", "Staff Portal", "Menu"], "Staff Portal")
+  getPath(MENU_ARR[0], "/dev-requests")
+
+  // sliceArrayToTarget(["Admin Tools", "Staff Portal", "Menu"], "Staff Portal")
   // ***
 );
