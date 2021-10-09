@@ -1694,8 +1694,36 @@ function isGoodMatch(arr) {
   return r;
 }
 
+// Mini Sudoku
+// A Sudoku is a 9x9 grid that is completed when every 3x3 square,
+// row and column consist of the numbers 1-9.
+
+// For this task, you will be given a completed 3x3 square,
+// in the form of a two-dimensional array.
+// Create a function that checks to make sure this
+// 3x3 square contains each number from 1-9 exactly once.
+// Make sure there are no duplicates, and no numbers outside this range.
+function isMiniSudoku(square) {
+  const squareArr = square.flat();
+
+  const rMap = {};
+
+  for (let i = 0; i < squareArr.length; i++) {
+    if (squareArr[i] > 9 || squareArr[i] < 1 || rMap[squareArr[i]])
+      return false;
+
+    rMap[squareArr[i]] = 1;
+  }
+
+  return true;
+}
+
 console.log(
   //*********************
-  isGoodMatch([1, 2, 4, 7])
+  isMiniSudoku([
+    [1, 3, 2],
+    [9, 7, 8],
+    [4, 5, 6],
+  ])
   // ********************
 );

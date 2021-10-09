@@ -1539,8 +1539,34 @@ function peakIndexInMountainArray(arr) {
   return peakIdx;
 }
 
-console.log(
+// 2006. Count Number of Pairs With Absolute Difference K
+// Given an integer array nums and an integer k,
+// return the number of pairs (i, j) where i < j
+// such that |nums[i] - nums[j]| == k.
+
+// The value of |x| is defined as:
+
+//     x if x >= 0.
+//     -x if x < 0.
+function countKDifference(nums, k) {
+  // Time: O(n) ranked well, many answers were technically O(2n)
+  // Space: O(n) note: memory usage ranked poorly on LeetCode, is
+  // there a way to do it without storing a map?
+  let r = 0;
+  let numMap = {};
+
+  nums.forEach((num, i) => {
+    if (numMap[num + k]) r += numMap[num + k].length;
+    if (numMap[num - k]) r += numMap[num - k].length;
+    numMap[num] ? numMap[num].push(i) : (numMap[num] = [i]);
+  });
+
+  return r;
+}
+
+console
+  .log
   // ***********************
-  peakIndexInMountainArray([24, 69, 100, 99, 79, 78, 67, 36, 26, 19])
+  // countKDifference("azxxzy")
   // ***********************
-);
+  ();

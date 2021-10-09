@@ -568,8 +568,44 @@ function replaceDigits(s) {
   return r;
 }
 
+// 1047. Remove All Adjacent Duplicates In String
+// You are given a string s consisting of lowercase English letters.
+// A duplicate removal consists of choosing two adjacent and equal
+// letters and removing them.
+
+// We repeatedly make duplicate removals on s until we no longer can.
+
+// Return the final string after all such duplicate removals have been made.
+// It can be proven that the answer is unique.
+function removeDuplicates(s) {
+  // THis works most of the time, but is too slow on really massive strings:
+  // let foundOne = false;
+
+  // let arrToCheck = s.split("");
+
+  // for (let i = 1; i < arrToCheck.length; i++) {
+  //   if (arrToCheck[i] === arrToCheck[i - 1]) {
+  //     foundOne = true;
+  //     arrToCheck = arrToCheck.filter((_, idx) => i !== idx && idx !== i - 1);
+  //   }
+  // }
+
+  // return foundOne ? removeDuplicates(arrToCheck.join("")) : arrToCheck.join("");
+
+  // Stack method:
+  const stack = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (stack[stack.length - 1] === s[i]) stack.pop();
+    else stack.push(s[i]);
+  }
+  return stack.join("");
+}
+
 console.log(
   // **********************
-  replaceDigits("a1b2c3d4e")
+  removeDuplicates(
+    "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstttttttttttt"
+  )
   // **********************
 );
