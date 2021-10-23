@@ -1718,12 +1718,33 @@ function isMiniSudoku(square) {
   return true;
 }
 
+// Product of All Other Numbers
+// You have an array of integers, and for each index you want to
+// find the product of every integer except the integer at that index.
+
+// Create a function that takes an array of integers and returns an array of the products.
+function getProducts(arr) {
+  // Most definitely Time: O(n^2)
+  // Can we do it in O(2n) => O(n)?
+  return arr.map((_, idx) => {
+    return arr
+      .filter((_, idx2) => idx2 !== idx)
+      .reduce((acc, el) => acc * el, 1);
+  });
+}
+
+// Merge Arrays in Order
+// Given two arrays, merge them to one array and sort the new array
+// in the same order as the first array.
+function mergeSort(arr1, arr2) {
+  let asc = true;
+  if (arr1[0] > arr1[1]) asc = false;
+
+  return arr1.concat(arr2).sort((a, b) => (asc ? a - b : b - a));
+}
+
 console.log(
   //*********************
-  isMiniSudoku([
-    [1, 3, 2],
-    [9, 7, 8],
-    [4, 5, 6],
-  ])
+  mergeSort([25, 21, 17, 13], [])
   // ********************
 );
