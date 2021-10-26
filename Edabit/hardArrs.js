@@ -306,8 +306,72 @@ function sumMissingNumbers(arr) {
   return r;
 }
 
+// Pages and Chapters
+// Write a function that returns the closest chapter to the current page
+// you are at. If two chapters are similarly close, return whichever
+// has the higher page.
+function closestToPage(chapters, page) {
+  let r = "";
+  let diff = Infinity;
+
+  for (let [k, v] of Object.entries(chapters)) {
+    let currDiff = Math.abs(page - v);
+    if (currDiff <= diff) {
+      r = k;
+      diff = currDiff;
+    }
+  }
+
+  return r;
+}
+
+// East or West
+// You will be given an array of string "east" formatted differently every time.
+// Create a function that returns "west" wherever there is "east".
+// Format the string according to the input. Check the examples below to better understand the question.
+function direction(arr) {
+  const convTab = {
+    e: "w",
+    E: "W",
+    a: "e",
+    A: "E",
+  };
+
+  const r = [];
+
+  for (let word of arr) {
+    r.push(
+      word
+        .split("")
+        .map((char) => {
+          return Object.keys(convTab).includes(char) ? convTab[char] : char;
+        })
+        .join("")
+    );
+  }
+  return r;
+}
+
+// Beginning and End Pairs
+// Write a function that pairs the first number in an array with the last,
+// the second number with the second to last, etc.
+function pairs(arr) {
+  const r = [];
+
+  while (arr.length > 0) {
+    if (arr.length === 1) {
+      r.push([arr[0], arr[0]]);
+      arr.pop();
+    } else {
+      r.push([arr.shift(), arr.pop()]);
+    }
+  }
+
+  return r;
+}
+
 console.log(
-  // **
-  sumMissingNumbers([4, 3, 8, 1, 2])
-  // **
+  // ***
+  pairs([1, 2, 3, 4, 5, 6, 7])
+  // ***
 );
