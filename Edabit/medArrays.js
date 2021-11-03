@@ -1743,8 +1743,62 @@ function mergeSort(arr1, arr2) {
   return arr1.concat(arr2).sort((a, b) => (asc ? a - b : b - a));
 }
 
+// Puzzle Pieces
+// Write a function that takes two arrays and adds the first element
+// in the first array with the first element in the second array,
+// the second element in the first array with the second element in the second array,
+// etc, etc. Return true if all element combinations add up to the same number.
+// Otherwise, return false.
+function puzzlePieces(a1, a2) {
+  if (a1.length !== a2.length) return false;
+
+  const mergedArr = a1.map((_, i) => {
+    return a1[i] + a2[i];
+  });
+
+  return mergedArr.every((el) => el === mergedArr[0]);
+}
+
+// Basic Statistics: Median
+// The median of a group of numbers is the middle number when the group is sorted.
+// If the size of the group is even, the median is the average of the middle two numbers.
+// Given a sorted array of numbers, return the median
+// (rounded to one decimal place if the median isn't an integer).
+function median(nums) {
+  // if nums.length is even, return avverage of middle 2 nums.
+  if (nums.length % 2 === 0) {
+    let middlePoint = nums.length / 2;
+    return (nums[middlePoint] + nums[middlePoint - 1]) / 2;
+    // return nums.length / 2;
+  } else {
+    let middlePoint = Math.floor(nums.length / 2);
+    return nums[middlePoint];
+  }
+  // if nums.length !even, return middle number
+}
+
+// Intersecting Intervals
+// Create a function that takes in an array of intervals and returns how many
+// intervals overlap with a given point.
+
+// An interval overlaps a particular point if the point exists inside the interval,
+// or on the interval's boundary. For example the point 3 overlaps with the interval
+// [2, 4] (it is inside) and [2, 3] (it is on the boundary).
+function countOverlapping(intervals, point) {
+  return intervals.filter((int) => {
+    return point >= int[0] && point <= int[1];
+  }).length;
+}
+
 console.log(
   //*********************
-  mergeSort([25, 21, 17, 13], [])
+  countOverlapping(
+    [
+      [1, 2],
+      [5, 6],
+      [5, 7],
+    ],
+    5
+  )
   // ********************
 );
