@@ -314,23 +314,51 @@ function thirdMostExpensive(obj) {
   return ordered.length < 3 ? false : ordered[2];
 }
 
-// Burglary Series (13): Sort That List
-// The insurance guy tells you he needs an updated list of the stolen goods,
-// and surely only to annoy you, he adds, "in reverse alphabetical order".
+// Imgur URL Parser
+// Create a function that takes an imgur link (as a string)
+// and extracts the unique id and type.
+// Return an object containing the unique id,
+// and a string indicating what type of link it is.
+const imgurUrlParser = (url) => {
+  let r = {
+    id: "",
+    type: "",
+  };
 
-// Given an object with the stolen items, return a new object with the list
-// in reverse alphabetical order.
+  const parts = url.split("/");
+  const end = parts[parts.length - 1] === "zip" ? 2 : 1;
 
-// https://edabit.com/challenge/qrb9Xaapq9b8nstLe
-function sortList(obj) {}
+  r.id = parts[parts.length - end].split(".")[0].split("#")[0];
+
+  parts[parts.length - end - 1] === "a"
+    ? (r.type = "album")
+    : parts[parts.length - end - 1] === "gallery"
+    ? (r.type = "gallery")
+    : (r.type = "image");
+
+  return r;
+};
+
+// RGB to Hex Color Converter
+// Create a function that converts color in RGB format to Hex format.
+function rgbToHex(col) {
+  let colours = col.split("(")[1].split(")")[0].split(", ");
+
+  return (
+    "#" +
+    colours
+      .map((el) => {
+        let ele = +el;
+        const hex = ele.toString(16);
+
+        return hex.length === 1 ? "0" + hex : hex;
+      })
+      .join("")
+  );
+}
 
 console.log(
   // ***
-  sortList({
-    c: 100,
-    a: 50,
-    b: 10,
-    d: 50,
-  })
+  rgbToHex("rgb(0, 51, 255)")
   // ***
 );
