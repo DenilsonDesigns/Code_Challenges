@@ -370,8 +370,72 @@ function pairs(arr) {
   return r;
 }
 
+// Stock Picker
+// Create a function that takes an array of integers that represent the
+// amount in dollars that a single stock is worth,
+// and return the maximum profit that could have been made by
+// buying stock on day x and selling stock on day y where y>x.
+function stockPicker(arr) {
+  // Time: O(n)
+  let currMin = Infinity;
+  let currMaxProf = -Infinity;
+
+  arr.forEach((price) => {
+    if (price < currMin) {
+      currMin = price;
+    }
+
+    let currDiff = price - currMin;
+
+    if (currDiff > currMaxProf) {
+      currMaxProf = currDiff;
+    }
+  });
+
+  return currMaxProf > 0 ? currMaxProf : -1;
+}
+
+// Expand a Number I
+// Create a function that expands a number into a string as shown below:
+
+// 25 ➞ "20 + 5"
+// 70701 ➞ "70000 + 700 + 1"
+// 685 ➞ "600 + 80 + 5"
+function expandedForm(num) {
+  let rStr = [];
+  let currNum = num;
+
+  while (currNum) {
+    let tail = (currNum + "").slice(1);
+    rStr.push(currNum - +tail + "");
+    currNum -= currNum - +tail;
+  }
+
+  return rStr.join(" + ");
+}
+
+// Reorder Digits
+// Create a function that reorders the digits of each numerical
+// element in an array based on ascending (asc) or descending (desc) order.
+function reorderDigits(arr, direction) {
+  const sortByDir = (num, dir) => {
+    return dir === "asc"
+      ? (num + "").split("").sort((a, b) => a - b)
+      : (num + "").split("").sort((a, b) => b - a);
+  };
+
+  const r = [];
+
+  arr.forEach((num) => {
+    r.push(+sortByDir(num, direction).join(""));
+  });
+
+  return r;
+}
+
 console.log(
   // ***
-  pairs([1, 2, 3, 4, 5, 6, 7])
+  reorderDigits([515, 341, 98, 44, 211], "asc"),
+  reorderDigits([515, 341, 98, 44, 211], "desc")
   // ***
 );
