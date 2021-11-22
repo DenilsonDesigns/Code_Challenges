@@ -1564,9 +1564,57 @@ function countKDifference(nums, k) {
   return r;
 }
 
-console
-  .log
+// 2057. Smallest Index With Equal Value
+// Given a 0-indexed integer array nums, return the smallest
+// index i of nums such that i mod 10 == nums[i], or -1 if such index does not exist.
+
+// x mod y denotes the remainder when x is divided by y.
+function smallestEqual(nums) {
+  // Time: O(n)
+  // Space:
+  for (let i = 0; i < nums.length; i++) {
+    if (i % 10 === nums[i]) return i;
+  }
+
+  return -1;
+}
+
+// 2053. Kth Distinct String in an Array
+// A distinct string is a string that is present only once in an array.
+
+// Given an array of strings arr, and an integer k,
+// return the kth distinct string present in arr. If there are fewer than k distinct strings,
+// return an empty string "".
+
+// Note that the strings are considered in the order in which they appear in the array.
+function kthDistinct(arr, k) {
+  // Time: O(2n) => O(n)
+  // Space: O(n)
+  const strMap = {};
+  let currIdx = 0;
+
+  arr.forEach((str) => {
+    if (strMap[str]) {
+      strMap[str]++;
+    } else {
+      strMap[str] = 1;
+    }
+  });
+
+  arr.forEach((str) => {});
+
+  for (let i = 0; i < arr.length; i++) {
+    if (strMap[arr[i]] === 1) {
+      currIdx++;
+      if (currIdx === k) return arr[i];
+    }
+  }
+
+  return "";
+}
+
+console.log(
   // ***********************
-  // countKDifference("azxxzy")
+  kthDistinct(["d", "b", "c", "b", "c", "a"], 2)
   // ***********************
-  ();
+);

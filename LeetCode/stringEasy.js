@@ -602,10 +602,61 @@ function removeDuplicates(s) {
   return stack.join("");
 }
 
+// 2011. Final Value of Variable After Performing Operations
+// There is a programming language with only four operations and one variable X:
+
+//     ++X and X++ increments the value of the variable X by 1.
+//     --X and X-- decrements the value of the variable X by 1.
+
+// Initially, the value of X is 0.
+
+// Given an array of strings operations containing a list of operations,
+// return the final value of X after performing all the operations.
+function finalValueAfterOperations(operations) {
+  // Time: O(n)
+  let r = 0;
+
+  operations.forEach((op) => {
+    if (op.includes("+")) {
+      r++;
+    } else {
+      r--;
+    }
+  });
+
+  return r;
+}
+
+// 2037. Minimum Number of Moves to Seat Everyone
+// There are n seats and n students in a room. You are given an array seats of length n,
+// where seats[i] is the position of the ith seat.
+// You are also given the array students of length n,
+// where students[j] is the position of the jth student.
+
+// You may perform the following move any number of times:
+
+// Increase or decrease the position of the ith student by 1
+// (i.e., moving the ith student from position x to x + 1 or x - 1)
+
+// Return the minimum number of moves required to move each
+// student to a seat such that no two students are in the same seat.
+
+// Note that there may be multiple seats or students in the same position at the beginning.
+function minMovesToSeat(seats, students) {
+  const sortedSeats = seats.sort((a, b) => b - a);
+  const sortedStudents = students.sort((a, b) => b - a);
+
+  let r = 0;
+
+  sortedSeats.forEach((seat, i) => {
+    r += Math.max(sortedStudents[i], seat) - Math.min(seat, sortedStudents[i]);
+  });
+
+  return Math.abs(r);
+}
+
 console.log(
   // **********************
-  removeDuplicates(
-    "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstttttttttttt"
-  )
+  minMovesToSeat([3, 1, 5], [2, 7, 4])
   // **********************
 );
