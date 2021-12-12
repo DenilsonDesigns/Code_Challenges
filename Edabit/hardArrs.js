@@ -433,9 +433,28 @@ function reorderDigits(arr, direction) {
   return r;
 }
 
+// Multiplication Table
+// Create a function that takes an integer n and returns
+// multiplication table of 1 to n numbers up to nth multiple.
+function multTable(n) {
+  let r = [];
+
+  for (let i = 1; i <= n; i++) {
+    let pusher = [];
+    for (let j = 0; j < n; j++) {
+      pusher.length === 0
+        ? pusher.push(i)
+        : pusher.push(pusher[pusher.length - 1] + pusher[0]);
+    }
+    r.push(pusher);
+  }
+
+  return r;
+}
+
 console.log(
+  "final output: ",
   // ***
-  reorderDigits([515, 341, 98, 44, 211], "asc"),
-  reorderDigits([515, 341, 98, 44, 211], "desc")
+  multTable(3)
   // ***
 );

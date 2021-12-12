@@ -1790,15 +1790,28 @@ function countOverlapping(intervals, point) {
   }).length;
 }
 
+// Mirror Array
+// Given an integer array, transform that array into a mirror.
+function mirror(arr) {
+  const tail = [...arr].reverse().slice(1);
+  return arr.concat(tail);
+}
+
+// Transform Upvotes
+// Create a function that transforms a string of
+// upvote counts into an array of numbers. Each k represents a thousand.
+function transformUpvotes(str) {
+  return str.split(" ").map((el) => {
+    if (el[el.length - 1] === "k") {
+      return +el.slice(0, el.length - 1) * 1000;
+    }
+    return +el;
+  });
+}
+
 console.log(
+  "final output: ",
   //*********************
-  countOverlapping(
-    [
-      [1, 2],
-      [5, 6],
-      [5, 7],
-    ],
-    5
-  )
+  transformUpvotes("20.3k 3.8k 7.7k 992")
   // ********************
 );
