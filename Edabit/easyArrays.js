@@ -161,27 +161,74 @@ function recordTemps(records, currentWeek) {
   return r;
 }
 
+// Currying Functions
+// Mubashir was reading about currying functions.
+// He needs your help to multiply an array of numbers using currying functions.
+
+// Create a function which takes a array arr of integers as an argument.
+// This function must return another function,
+// which takes a single integer as an argument and returns a new array.
+
+// The returned array should consist of each of the elements
+// from the first array multiplied by the integer.
+
+function multiply(arr) {
+  return (b) => {
+    return arr.map((el) => el * b);
+  };
+}
+
+// Simple Encoder
+// Create a function that takes a string str and performs
+// simple encoding as per the following method:
+
+// Replace all single occurrence characters with [
+// Replace all characters with two or more occurrences with ]
+// Return the final string after modification.
+function simpleEncoder(str) {
+  // Time: O(2n) => O(n)
+  // Space: O(n)
+  const strMap = {};
+
+  str.split("").forEach((el) => {
+    let targ = el.toLowerCase();
+    strMap[targ] ? strMap[targ]++ : (strMap[targ] = 1);
+  });
+
+  let rString = "";
+  console.log(strMap);
+
+  str.split("").forEach((el) => {
+    console.log(el.toLowerCase());
+    let targ = el.toLowerCase();
+    if (strMap[targ] > 1) rString += "]";
+    else rString += "[";
+  });
+
+  return rString;
+}
+
+// Back to Home?
+// Mubashir has started his journey from home.
+// Given a string of directions (N=North, W=West, S=South, E=East),
+// he will walk for one minute in each direction.
+// Determine whether a set of directions will lead him back
+// to the starting position or not.
+function backToHome(directions) {
+  const coords = [0, 0];
+
+  directions.split("").forEach((dir) => {
+    if (dir === "N") coords[0]++;
+    if (dir === "S") coords[0]--;
+    if (dir === "E") coords[1]++;
+    if (dir === "W") coords[1]--;
+  });
+  return coords.every((el) => el === 0);
+}
+
 console.log(
   //
-  recordTemps(
-    [
-      [34, 82],
-      [24, 82],
-      [20, 89],
-      [5, 88],
-      [9, 88],
-      [26, 89],
-      [27, 83],
-    ],
-    [
-      [44, 72],
-      [19, 70],
-      [40, 69],
-      [39, 68],
-      [33, 64],
-      [36, 70],
-      [38, 69],
-    ]
-  )
+  backToHome("NNNN"),
+  backToHome("NENESSWW")
   //
 );
