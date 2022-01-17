@@ -1813,11 +1813,23 @@ function transformUpvotes(str) {
 // You are given an array of integers having both negative and positive values,
 // except for one integer which can be negative or positive.
 // Create a function to find out that integer.
-function lonelyInteger(arr) {}
+function lonelyInteger(arr) {
+  const numMap = {};
+
+  arr.forEach((el) => {
+    numMap[el] = true;
+  });
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!numMap[-arr[i]]) {
+      return arr[i];
+    }
+  }
+}
 
 console.log(
   "final output: ",
   //*********************
-  transformUpvotes("20.3k 3.8k 7.7k 992")
+  lonelyInteger([1, -1, 2, -2, 3])
   // ********************
 );
