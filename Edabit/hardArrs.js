@@ -452,9 +452,71 @@ function multTable(n) {
   return r;
 }
 
+// Switching Between Pencils
+// When coloring a striped pattern, you may start by coloring each
+// square sequentially, meaning you spend time needing to
+// switch coloring pencils.
+
+// Create a function where given an array of colors cols,
+// return how long it takes to color the whole pattern.
+//  Note the following times:
+
+// It takes 1 second to switch between pencils.
+// It takes 2 seconds to color a square.
+// See the example below for clarification.
+function colorPatternTimes(cols) {
+  let runTotal = 2;
+  let numChanges = 0;
+
+  for (let i = 1; i < cols.length; i++) {
+    runTotal += 2;
+    if (cols[i - 1] !== cols[i]) numChanges++;
+  }
+
+  return runTotal + numChanges;
+}
+
+// Weekly Salary
+// Write a function that takes a list of hours and returns the total weekly salary.
+
+// The input list hours is listed sequentially, ordered from Monday to Sunday.
+// A worker earns $10 an hour for the first 8 hours.
+// For every overtime hour, he earns $15.
+// On weekends, the employer pays double the usual rate,
+// regardless how many hours were worked previously that week.
+// For instance, 10 hours worked on a weekday would pay 80+30 = $110,
+// but on a weekend it would pay 160+60 = $220.
+function weeklySalary(hours) {
+  let totSal = 0;
+
+  hours.forEach((daysHours, i) => {
+    return (totSal += calcDaysPay(daysHours, [10, 15], i));
+  });
+
+  function calcDaysPay(hours, rates, dayIdx) {
+    let r = 0;
+
+    if (hours > 0) {
+      r += Math.min(hours, 8) * rates[0];
+    }
+
+    if (hours > 8) {
+      r += (hours - 8) * rates[1];
+    }
+
+    if (dayIdx > 4) {
+      r *= 2;
+    }
+
+    return r;
+  }
+
+  return totSal;
+}
+
 console.log(
   "final output: ",
   // ***
-  multTable(3)
+  weeklySalary([0, 0, 0, 0, 0, 16, 0])
   // ***
 );
