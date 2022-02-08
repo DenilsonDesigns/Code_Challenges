@@ -4,9 +4,9 @@
   "description": "",
   "main": "sandbox.js",
   "dependencies": {
+    "date-fns": "^2.28.0",
     "nodemon": "^2.0.14"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

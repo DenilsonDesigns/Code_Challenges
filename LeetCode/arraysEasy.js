@@ -1613,8 +1613,60 @@ function kthDistinct(arr, k) {
   return "";
 }
 
+function mostWordsFound(sentences) {
+  // Time: O(n);
+  // Space: O(1)
+  let max = 0;
+
+  sentences.forEach((el) => {
+    let sentenceLength = el.split(" ").length;
+    if (sentenceLength > max) max = sentenceLength;
+  });
+
+  return max;
+
+  // clever usage of reduce:
+  // return sentences.map(el =>  el.split(" ").length).reduce((max, val) => max > val ? max : val)
+}
+
+// 2160. Minimum Sum of Four Digit Number After Splitting Digits
+// You are given a positive integer num consisting of exactly four digits.
+// Split num into two new integers new1 and new2 by using the digits found in num.
+// Leading zeros are allowed in new1 and new2,
+// and all the digits found in num must be used.
+function minimumSum(num) {
+  let numStr = num + "";
+  numStr = numStr.split("").map((el) => +el);
+  numStr = numStr.sort((a, b) => a - b);
+
+  const firstNum = numStr[0] + "" + numStr[2] + "";
+  const secondNum = numStr[1] + "" + numStr[3] + "";
+
+  return +firstNum + +secondNum;
+}
+
+// 2089. Find Target Indices After Sorting Array
+// You are given a 0-indexed integer array nums and a target element target.
+
+// A target index is an index i such that nums[i] == target.
+
+// Return a list of the target indices of nums after sorting nums
+// in non-decreasing order. If there are no target indices,
+// return an empty list. The returned list must be sorted in increasing order.
+function targetIndices(nums, target) {
+  // Time: O(2n) => O(n)
+  // Space: ???
+  let sortedNums = nums.sort((a, b) => a - b);
+
+  return sortedNums
+    .map((el, i) => {
+      return el === target && i;
+    })
+    .filter((el) => el !== false);
+}
+
 console.log(
   // ***********************
-  kthDistinct(["d", "b", "c", "b", "c", "a"], 2)
+  targetIndices([1], 1)
   // ***********************
 );

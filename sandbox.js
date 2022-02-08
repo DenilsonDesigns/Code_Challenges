@@ -1,201 +1,119 @@
-const SAMPLE_ENTRIES = [
+const ACCOUNTS = [
   {
-    JournalLineId: 1,
-    AccountName: "string",
-    AccountIdentifier: "1-301C",
-    BusinessEventId: 1,
-    BusinessEventType: "CashPayment",
-    DateOccurred: "2021-12-03",
-    Credit: 0,
-    Debit: 0,
-    DisplayId: "E23434G",
-    Description: "Desc",
-    SourceJournal: "CashPayment",
+    IsVisible: true,
+    DisplayId: "1-0000",
+    IsAllowedToMoveDown: false,
+    SuggestedChildHeaderDisplayId: "1-1500",
+    IsCredit: false,
+    Uid: "6f194435-5144-4f5b-80c9-db48f8062420",
+    SuggestedChildDetailDisplayId: "1-2521",
+    AccountType: "Asset",
+    IsAllowedToMoveUp: false,
+    AccountRecordId: 30,
+    IsCurrentEarnings: false,
+    IsLinked: false,
+    IsRetainedEarnings: false,
+    CurrentBalance: -22162.16,
+    Id: 30,
+    OpeningBalance: 0,
     IsSystem: true,
+    IsHeader: true,
+    Level: 1,
+    AccountName: "Assets",
+    AccountSubType: "OtherAsset",
   },
   {
-    JournalLineId: 2,
-    AccountName: "string",
-    AccountIdentifier: "1-301C",
-    BusinessEventId: 2,
-    BusinessEventType: "CashReceipt",
-    DateOccurred: "2021-12-03",
-    Credit: 0,
-    Debit: 0,
-    DisplayId: "E23434G",
-    Description: "Desc",
-    SourceJournal: "CashReceipt",
-    IsSystem: true,
+    IsVisible: true,
+    DisplayId: "1-1000",
+    IsAllowedToMoveDown: false,
+    SuggestedChildHeaderDisplayId: "",
+    IsCredit: false,
+    Uid: "42fff476-245a-45d2-b59c-d86a66078555",
+    SuggestedChildDetailDisplayId: "1-1211",
+    AccountType: "Asset",
+    IsAllowedToMoveUp: false,
+    AccountRecordId: 31,
+    IsCurrentEarnings: false,
+    ParentAccountId: 30,
+    IsLinked: false,
+    ParentAccountRecordId: 30,
+    IsRetainedEarnings: false,
+    CurrentBalance: -22257.61,
+    Id: 31,
+    OpeningBalance: 0,
+    IsSystem: false,
+    IsHeader: true,
+    Level: 2,
+    AccountName: "Current Assets2",
+    AccountSubType: "OtherAsset",
   },
   {
-    JournalLineId: 3,
-    AccountName: "string",
-    AccountIdentifier: "1-301C",
-    BusinessEventId: 3,
-    BusinessEventType: "CashPayment",
-    DateOccurred: "2021-12-03",
-    Credit: 0,
-    Debit: 0,
-    DisplayId: "E23434G",
-    Description: "Desc",
-    SourceJournal: "CashPayment",
-    IsSystem: true,
+    IsVisible: true,
+    DisplayId: "1-1100",
+    IsAllowedToMoveDown: false,
+    SuggestedChildHeaderDisplayId: "",
+    IsCredit: false,
+    Uid: "2a971db7-11e5-484d-8b2b-10798ff9df68",
+    SuggestedChildDetailDisplayId: "1-1161",
+    AccountType: "Asset",
+    IsAllowedToMoveUp: true,
+    AccountRecordId: 32,
+    IsCurrentEarnings: false,
+    ParentAccountId: 31,
+    IsLinked: false,
+    ParentAccountRecordId: 31,
+    IsRetainedEarnings: false,
+    CurrentBalance: -22513.18,
+    Id: 32,
+    OpeningBalance: 0,
+    IsSystem: false,
+    IsHeader: true,
+    Level: 3,
+    AccountName: "Bank Accounts",
+    AccountSubType: "OtherAsset",
   },
   {
-    JournalLineId: 4,
-    AccountName: "string",
-    AccountIdentifier: "1-301C",
-    BusinessEventId: 4,
-    BusinessEventType: "CashPayment",
-    DateOccurred: "2021-11-03",
-    Credit: 0,
-    Debit: 0,
-    DisplayId: "E23434G",
-    Description: "Desc",
-    SourceJournal: "CashPayment",
-    IsSystem: true,
-  },
-  {
-    JournalLineId: 5,
-    AccountName: "string",
-    AccountIdentifier: "1-301C",
-    BusinessEventId: 5,
-    BusinessEventType: "CashReceipt",
-    DateOccurred: "2021-12-04",
-    Credit: 0,
-    Debit: 0,
-    DisplayId: "E23434G",
-    Description: "Desc",
-    SourceJournal: "CashReceipt",
-    IsSystem: true,
-  },
-  {
-    JournalLineId: 6,
-    AccountName: "string",
-    AccountIdentifier: "1-301C",
-    BusinessEventId: 6,
-    BusinessEventType: "CashPayment",
-    DateOccurred: "2021-10-13",
-    Credit: 0,
-    Debit: 600,
-    DisplayId: "E23434G",
-    Description: "Desc",
-    SourceJournal: "CashPayment",
-    IsSystem: true,
-  },
-  {
-    JournalLineId: 7,
-    AccountName: "string",
-    AccountIdentifier: "1-301C",
-    BusinessEventId: 7,
-    BusinessEventType: "CashPayment",
-    DateOccurred: "2021-09-03",
-    Credit: 500,
-    Debit: 0,
-    DisplayId: "E23434G",
-    Description: "",
-    SourceJournal: "CashPayment",
-    IsSystem: true,
+    TaxCodeId: 4,
+    IsVisible: true,
+    TaxCode: "N-T",
+    DisplayId: "1-111011",
+    IsAllowedToMoveDown: false,
+    IsCredit: false,
+    Uid: "b2a368b2-7eb1-4095-be53-8c864abf6a29",
+    AccountType: "Asset",
+    IsAllowedToMoveUp: true,
+    AccountRecordId: 33,
+    IsCurrentEarnings: true,
+    ParentAccountId: 32,
+    IsLinked: true,
+    ParentAccountRecordId: 32,
+    IsRetainedEarnings: true,
+    CurrentBalance: -20638.18,
+    Id: 33,
+    OpeningBalance: 0,
+    IsSystem: false,
+    IsHeader: false,
+    Level: 4,
+    AccountName: "Main Business Account 2",
+    AccountSubType: "Bank",
   },
 ];
 
-const FINAL_SHAPE = [
-  {
-    dateTitle: "Yesterday, 17th August",
-    transactions: [
-      {
-        id: "number",
-        description: "string",
-        type: "string",
-        total: "string",
-      },
-      {
-        id: "number",
-        description: "string",
-        type: "string",
-        total: "string",
-      },
-    ],
-  },
-  {
-    dateTitle: "Wednesday, 16th August",
-    transactions: [
-      {
-        id: "number",
-        description: "string",
-        type: "string",
-        total: "string",
-      },
-      {
-        id: "number",
-        description: "string",
-        type: "string",
-        total: "string",
-      },
-    ],
-  },
-];
+const findAccountNameById = (accountList, id) => {
+  // let foundAccountName = "";
 
-function sortTransactionsByDate(transactions) {
-  // first step, make k:v pair of trans based on date.
-  const transDateMap = {};
+  // Object.entries(accountList).forEach((el) => {
+  //   if (el[1].AccountId === id) {
+  //     foundAccountName = el[0];
+  //   }
+  // });
 
-  transactions.forEach((trans) => {
-    // console.log(trans);
-    transDateMap[trans.DateOccurred]
-      ? transDateMap[trans.DateOccurred].push(trans)
-      : (transDateMap[trans.DateOccurred] = [trans]);
+  // return foundAccountName;
+  let found = accountList.find((el) => {
+    return el.Id === id;
   });
 
-  // format into FINAL_SHAPE's shape.
-  const finalShapeArr = [];
+  return (found && found.AccountName) || "Account Not Found";
+};
 
-  for (const [k, v] of Object.entries(transDateMap)) {
-    const rObj = {};
-
-    rObj.dateTitle = k;
-    rObj.transactions = filterTransactionFields(v);
-    finalShapeArr.push(rObj);
-  }
-
-  // sort the array by date.
-
-  // convert date to string thing.
-
-  return JSON.stringify(finalShapeArr);
-}
-
-function filterTransactionFields(trans) {
-  const r = [];
-
-  trans.forEach((el) => {
-    const rEl = {};
-    rEl.id = el.BusinessEventId;
-    rEl.description = convertDescription(el.Description);
-    rEl.type = convertPaymentType(el.BusinessEventType);
-    // @TODO: is this correct?, also check for 0 values etc.
-    rEl.total = el.Debit - el.Credit;
-
-    r.push(rEl);
-  });
-
-  return r;
-}
-
-function convertDescription(desc) {
-  return desc || "Expense / Income";
-}
-
-function convertPaymentType(payType) {
-  return payType === "CashPayment"
-    ? "Expense"
-    : payType === "CashReceipt"
-    ? "Income"
-    : payType;
-}
-
-console.log(
-  ///
-  sortTransactionsByDate(SAMPLE_ENTRIES)
-  ///
-);
+console.log(findAccountNameById(ACCOUNTS, 33));
