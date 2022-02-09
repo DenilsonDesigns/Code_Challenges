@@ -1665,8 +1665,25 @@ function targetIndices(nums, target) {
     .filter((el) => el !== false);
 }
 
+// 2108. Find First Palindromic String in the Array
+// Given an array of strings words, return the first palindromic
+// string in the array. If there is no such string, return an empty string "".
+
+// A string is palindromic if it reads the same forward and backward.
+function firstPalindrome(words) {
+  // Time: O(nm) (ish)
+  // Space: ???
+
+  // works but bad time/space ranking in LC.
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].split("").reverse().join("") === words[i]) return words[i];
+  }
+
+  return "";
+}
+
 console.log(
   // ***********************
-  targetIndices([1], 1)
+  firstPalindrome(["abc", "car", "ada", "racecar", "cool"])
   // ***********************
 );
