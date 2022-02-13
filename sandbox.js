@@ -1,119 +1,96 @@
-const ACCOUNTS = [
-  {
-    IsVisible: true,
-    DisplayId: "1-0000",
-    IsAllowedToMoveDown: false,
-    SuggestedChildHeaderDisplayId: "1-1500",
-    IsCredit: false,
-    Uid: "6f194435-5144-4f5b-80c9-db48f8062420",
-    SuggestedChildDetailDisplayId: "1-2521",
-    AccountType: "Asset",
-    IsAllowedToMoveUp: false,
-    AccountRecordId: 30,
-    IsCurrentEarnings: false,
-    IsLinked: false,
-    IsRetainedEarnings: false,
-    CurrentBalance: -22162.16,
-    Id: 30,
-    OpeningBalance: 0,
-    IsSystem: true,
-    IsHeader: true,
-    Level: 1,
-    AccountName: "Assets",
-    AccountSubType: "OtherAsset",
+const LINKED_ACCOUNTS = {
+  AssetAccountSupplierDeposits: {
+    AccountId: 39,
   },
-  {
-    IsVisible: true,
-    DisplayId: "1-1000",
-    IsAllowedToMoveDown: false,
-    SuggestedChildHeaderDisplayId: "",
-    IsCredit: false,
-    Uid: "42fff476-245a-45d2-b59c-d86a66078555",
-    SuggestedChildDetailDisplayId: "1-1211",
-    AccountType: "Asset",
-    IsAllowedToMoveUp: false,
-    AccountRecordId: 31,
-    IsCurrentEarnings: false,
-    ParentAccountId: 30,
-    IsLinked: false,
-    ParentAccountRecordId: 30,
-    IsRetainedEarnings: false,
-    CurrentBalance: -22257.61,
-    Id: 31,
-    OpeningBalance: 0,
-    IsSystem: false,
-    IsHeader: true,
-    Level: 2,
-    AccountName: "Current Assets2",
-    AccountSubType: "OtherAsset",
+  AssetAccountTrackingReceivables: {
+    AccountId: 37,
   },
+  BankAccountCashPayments: {
+    AccountId: 33,
+  },
+  BankAccountChequePayments: {
+    AccountId: 33,
+  },
+  BankAccountCustomerReceipts: {
+    AccountId: 33,
+  },
+  BankAccountElectronicPayments: {
+    AccountId: 36,
+  },
+  BankAccountPayingBills: {
+    AccountId: 33,
+  },
+  BankAccountUndepositedFunds: {
+    AccountId: 35,
+  },
+  EmploymentExpenseAccount: {
+    AccountId: 98,
+  },
+  EquityAccountCurrentEarnings: {
+    AccountId: 69,
+  },
+  EquityAccountRetainedEarnings: {
+    AccountId: 68,
+  },
+  EquityHistoricalBalancing: {
+    AccountId: 70,
+  },
+  LiabilityAccountTrackingPayables: {
+    AccountId: 49,
+  },
+  WagesExpenseAccount: {
+    AccountId: 97,
+  },
+  TaxDeductionsPayableAccount: {
+    AccountId: 53,
+  },
+  DefaultSuperPayable: {
+    AccountId: 54,
+  },
+};
+
+const LINES = [
   {
-    IsVisible: true,
-    DisplayId: "1-1100",
-    IsAllowedToMoveDown: false,
-    SuggestedChildHeaderDisplayId: "",
-    IsCredit: false,
-    Uid: "2a971db7-11e5-484d-8b2b-10798ff9df68",
-    SuggestedChildDetailDisplayId: "1-1161",
-    AccountType: "Asset",
-    IsAllowedToMoveUp: true,
-    AccountRecordId: 32,
-    IsCurrentEarnings: false,
-    ParentAccountId: 31,
-    IsLinked: false,
-    ParentAccountRecordId: 31,
-    IsRetainedEarnings: false,
-    CurrentBalance: -22513.18,
-    Id: 32,
-    OpeningBalance: 0,
-    IsSystem: false,
-    IsHeader: true,
-    Level: 3,
-    AccountName: "Bank Accounts",
-    AccountSubType: "OtherAsset",
+    TaxCodeId: 4,
+    Id: 215,
+    AccountId: 179,
+    Memo: "",
+    DisplayIndex: 0,
+    Amount: 3660.5,
+    LineSubTypeId: 8,
+    TaxAmount: 0,
   },
   {
     TaxCodeId: 4,
-    IsVisible: true,
-    TaxCode: "N-T",
-    DisplayId: "1-111011",
-    IsAllowedToMoveDown: false,
-    IsCredit: false,
-    Uid: "b2a368b2-7eb1-4095-be53-8c864abf6a29",
-    AccountType: "Asset",
-    IsAllowedToMoveUp: true,
-    AccountRecordId: 33,
-    IsCurrentEarnings: true,
-    ParentAccountId: 32,
-    IsLinked: true,
-    ParentAccountRecordId: 32,
-    IsRetainedEarnings: true,
-    CurrentBalance: -20638.18,
-    Id: 33,
-    OpeningBalance: 0,
-    IsSystem: false,
-    IsHeader: false,
-    Level: 4,
-    AccountName: "Main Business Account 2",
-    AccountSubType: "Bank",
+    Id: 216,
+    AccountId: 36,
+    Memo: "",
+    DisplayIndex: 1,
+    Amount: 3660.5,
+    LineSubTypeId: 8,
+    TaxAmount: 0,
   },
 ];
 
-const findAccountNameById = (accountList, id) => {
-  // let foundAccountName = "";
+function getNotPersonalAccountId(linkedAccounts, lines) {
+  const personalExpenseAccount =
+    linkedAccounts.BankAccountElectronicPayments.AccountId;
 
-  // Object.entries(accountList).forEach((el) => {
-  //   if (el[1].AccountId === id) {
-  //     foundAccountName = el[0];
-  //   }
-  // });
+  // @TODO: what to do here
+  if (!personalExpenseAccount) return 100;
 
-  // return foundAccountName;
-  let found = accountList.find((el) => {
-    return el.Id === id;
-  });
+  const notPersonalAccountId = lines.find(
+    (line) => line.AccountId !== personalExpenseAccount
+  );
 
-  return (found && found.AccountName) || "Account Not Found";
-};
+  //@TODO: what to do here:
+  if (!notPersonalAccountId) return 120;
 
-console.log(findAccountNameById(ACCOUNTS, 33));
+  return notPersonalAccountId.AccountId;
+}
+
+console.log(
+  // ======
+  getNotPersonalAccountId(LINKED_ACCOUNTS, LINES)
+  // ======
+);

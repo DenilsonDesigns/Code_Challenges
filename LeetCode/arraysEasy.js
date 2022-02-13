@@ -1682,8 +1682,35 @@ function firstPalindrome(words) {
   return "";
 }
 
+// 1287. Element Appearing More Than 25% In Sorted Array
+// Given an integer array sorted in non-decreasing order, there
+// is exactly one integer in the array that occurs more than 25% of the time,
+// return that integer.
+function findSpecialInteger(arr) {
+  const oneQuarter = arr.length / 4;
+
+  const numMap = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    numMap[arr[i]] ? numMap[arr[i]]++ : (numMap[arr[i]] = 1);
+    if (numMap[arr[i]] > oneQuarter) return arr[i];
+  }
+}
+
+// 414. Third Maximum Number
+// Given an integer array nums, return the third
+// distinct maximum number in this array.
+// If the third maximum does not exist, return the maximum number.
+function thirdMax(nums) {
+  nums.sort((a, b) => b - a);
+
+  const uniques = [...new Set(nums)];
+
+  return uniques.length >= 3 ? uniques[2] : Math.max(...uniques);
+}
+
 console.log(
   // ***********************
-  firstPalindrome(["abc", "car", "ada", "racecar", "cool"])
+  thirdMax([2, 2, 1])
   // ***********************
 );

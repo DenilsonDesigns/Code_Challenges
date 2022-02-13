@@ -686,8 +686,130 @@ function isSumEqual(firstWord, secondWord, targetWord) {
   );
 }
 
+// 2129. Capitalize the Title
+// You are given a string title consisting of one or more words
+// separated by a single space, where each word consists of
+// English letters. Capitalize the string by changing the
+// capitalization of each word such that:
+
+// If the length of the word is 1 or 2 letters,
+// change all letters to lowercase.
+// Otherwise, change the first letter to
+// uppercase and the remaining letters to lowercase.
+// Return the capitalized title.
+function capitalizeTitle(title) {
+  const upperFy = (word) =>
+    word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+
+  return title
+    .split(" ")
+    .map((el) => {
+      if (el.length < 3) return el.toLowerCase();
+      return upperFy(el);
+    })
+    .join(" ");
+}
+
+// 2042. Check if Numbers Are Ascending in a Sentence
+// A sentence is a list of tokens separated by a single space
+// with no leading or trailing spaces. Every token is either a
+// positive number consisting of digits 0-9 with no leading zeros,
+// or a word consisting of lowercase English letters.
+
+// For example, "a puppy has 2 eyes 4 legs" is a sentence with
+// seven tokens: "2" and "4" are numbers and the other tokens
+// such as "puppy" are words.
+// Given a string s representing a sentence, you need to check
+// if all the numbers in s are strictly increasing from left to
+// right (i.e., other than the last number, each number is strictly
+// smaller than the number on its right in s).
+
+// Return true if so, or false otherwise.
+function areNumbersAscending(s) {
+  // first filter out da numbahs
+  const numbahs = s
+    .split(" ")
+    .filter((el) => +el)
+    .map((el) => +el);
+
+  for (let i = 1; i < numbahs.length; i++) {
+    if (numbahs[i - 1] >= numbahs[i]) return false;
+  }
+
+  return true;
+}
+
+// 1897. Redistribute Characters to Make All Strings Equal
+// You are given an array of strings words (0-indexed).
+
+// In one operation, pick two distinct indices i and j,
+// where words[i] is a non-empty string, and
+// move any character from words[i] to any position in words[j].
+
+// Return true if you can make every string in words equal
+// using any number of operations, and false otherwise
+function makeEqual(words) {
+  const wordsLength = words.length;
+
+  const charMap = {};
+
+  words.forEach((word) => {
+    word.split("").forEach((el) => {
+      charMap[el] ? charMap[el]++ : (charMap[el] = 1);
+    });
+  });
+
+  for (const key in charMap) {
+    if (charMap[key] % wordsLength !== 0) return false;
+  }
+
+  return true;
+}
+
+// 58. Length of Last Word
+// Given a string s consisting of some words separated
+// by some number of spaces, return the length of the last word in the string.
+
+// A word is a maximal substring consisting of non-space characters only.
+function lengthOfLastWord(s) {
+  const validWords = s.split(" ").filter((el) => el);
+
+  return validWords[validWords.length - 1].split("").length;
+}
+
+// 290. Word Pattern
+// Given a pattern and a string s,
+// find if s follows the same pattern.
+
+// Here follow means a full match, such that there is a
+// bijection between a letter in pattern and a non-empty word in s.
+function wordPattern(pattern, s) {
+  const wordMap = {};
+
+  const splitPattern = pattern.split("");
+  const formattedWords = s.split(" ");
+
+  if (splitPattern.length !== formattedWords.length) return false;
+
+  for (let i = 0; i < formattedWords.length; i++) {
+    if (
+      wordMap[splitPattern[i]] &&
+      wordMap[splitPattern[i]] !== formattedWords[i]
+    ) {
+      return false;
+    }
+    if (!wordMap[splitPattern[i]]) {
+      if (Object.values(wordMap).includes(formattedWords[i])) return false;
+      wordMap[splitPattern[i]] = formattedWords[i];
+    }
+  }
+
+  return true;
+}
+
 console.log(
   // **********************
-  isSumEqual("acb", "cba", "cdb")
+  wordPattern("abba", "dog bob bob dog"),
+  wordPattern("jquery", "jquery")
   // **********************
 );

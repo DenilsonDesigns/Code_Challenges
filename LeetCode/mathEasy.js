@@ -116,9 +116,40 @@ function isSameAfterReversals(num) {
   // return true;
 }
 
+// 412. Fizz Buzz
+// Given an integer n, return a string array answer (1-indexed) where:
+
+// answer[i] == "FizzBuzz" if i is divisible by 3 and 5.
+// answer[i] == "Fizz" if i is divisible by 3.
+// answer[i] == "Buzz" if i is divisible by 5.
+// answer[i] == i (as a string) if none of the above conditions are true.
+function fizzBuzz(n) {
+  return Array.from(new Array(n), (_, i) => i + 1).map((el) => {
+    return el % 5 === 0 && el % 3 === 0
+      ? "FizzBuzz"
+      : el % 3 === 0
+      ? "Fizz"
+      : el % 5 === 0
+      ? "Buzz"
+      : el + "";
+  });
+}
+
+// 258. Add Digits
+// Given an integer num, repeatedly add all its digits
+// until the result has only one digit, and return it.
+function addDigits(num) {
+  let currDigit = num + "";
+
+  while (currDigit.length > 1) {
+    currDigit = currDigit.split("").reduce((acc, el) => acc + +el, 0) + "";
+  }
+
+  return +currDigit;
+}
+
 console.log(
   // ***********
-  isSameAfterReversals(526),
-  isSameAfterReversals(1800)
+  addDigits(382)
   // ***********
 );
