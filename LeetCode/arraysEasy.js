@@ -1709,8 +1709,17 @@ function thirdMax(nums) {
   return uniques.length >= 3 ? uniques[2] : Math.max(...uniques);
 }
 
+// 349. Intersection of Two Arrays
+// Given two integer arrays nums1 and nums2,
+// return an array of their intersection.
+// Each element in the result must be unique and you may
+// return the result in any order.
+function intersection(nums1, nums2) {
+  return [...new Set(nums1.filter((el) => nums2.includes(el)))];
+}
+
 console.log(
   // ***********************
-  thirdMax([2, 2, 1])
+  intersection([4, 9, 5], [9, 4, 9, 8, 4])
   // ***********************
 );

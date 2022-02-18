@@ -807,9 +807,64 @@ function wordPattern(pattern, s) {
   return true;
 }
 
+// 205. Isomorphic Strings
+// Given two strings s and t, determine if they are isomorphic.
+
+// Two strings s and t are isomorphic if the characters in s
+// can be replaced to get t.
+
+// All occurrences of a character must be replaced with another character
+// while preserving the order of characters.
+// No two characters may map to the same character,
+// but a character may map to itself.
+function isIsomorphic(s, t) {
+  const charMap = {};
+
+  for (let i = 0; i < s.length; i++) {
+    if (charMap[s[i]]) {
+      if (charMap[s[i]] !== t[i]) return false;
+    } else {
+      if (Object.values(charMap).includes(t[i])) return false;
+      else charMap[s[i]] = t[i];
+    }
+  }
+
+  return true;
+}
+
+// 28. Implement strStr()
+// Implement strStr().
+
+// Return the index of the first occurrence of needle in haystack,
+// or -1 if needle is not part of haystack.
+
+// Clarification:
+
+// What should we return when needle is an empty string?
+// This is a great question to ask during an interview.
+
+// For the purpose of this problem, we will return 0
+// when needle is an empty string. This is consistent to
+// C's strstr() and Java's indexOf().
+function strStr(haystack, needle) {
+  if (!needle) return 0;
+
+  const straw = haystack.split(needle);
+  if (straw.length === 1) return -1;
+
+  return straw[0].length;
+}
+
+// 434. Number of Segments in a String
+// Given a string s, return the number of segments in the string.
+
+// A segment is defined to be a contiguous sequence of non-space characters.
+function countSegments(s) {
+  return s.split(" ").filter((el) => el !== "").length;
+}
+
 console.log(
   // **********************
-  wordPattern("abba", "dog bob bob dog"),
-  wordPattern("jquery", "jquery")
+  countSegments("hello your john")
   // **********************
 );
