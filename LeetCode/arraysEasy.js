@@ -1718,8 +1718,47 @@ function intersection(nums1, nums2) {
   return [...new Set(nums1.filter((el) => nums2.includes(el)))];
 }
 
+// 605. Can Place Flowers
+// You have a long flowerbed in which some of the plots are planted,
+// and some are not. However, flowers cannot be planted in adjacent plots.
+
+// Given an integer array flowerbed containing 0's and 1's,
+// where 0 means empty and 1 means not empty, and an integer n,
+// return if n new flowers can be planted in the flowerbed
+// without violating the no-adjacent-flowers rule.
+function canPlaceFlowers(flowerbed, n) {
+  for (let i = 0; i < flowerbed.length; i++) {
+    if (
+      flowerbed[i] === 0 &&
+      (flowerbed[i - 1] === 0 || i === 0) &&
+      (flowerbed[i + 1] === 0 || i === flowerbed.length - 1)
+    ) {
+      flowerbed[i] = 1;
+      n--;
+    }
+  }
+
+  return n <= 0;
+}
+
+// 1491. Average Salary Excluding the Minimum and Maximum Salary
+// You are given an array of unique integers salary where salary[i]
+// is the salary of the ith employee.
+
+// Return the average salary of employees excluding the minimum and maximum salary. Answers within 10-5 of the actual answer will be accepted.
+function average(salary) {
+  const max = Math.max(...salary);
+  const min = Math.min(...salary);
+
+  const sumOfNewSals = salary
+    .filter((el) => el !== max && el !== min)
+    .reduce((acc, el) => acc + el, 0);
+
+  return sumOfNewSals / (salary.length - 2) || 0;
+}
+
 console.log(
   // ***********************
-  intersection([4, 9, 5], [9, 4, 9, 8, 4])
+  average([4000, 3000, 1000, 2000])
   // ***********************
 );

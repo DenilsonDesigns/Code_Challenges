@@ -863,8 +863,40 @@ function countSegments(s) {
   return s.split(" ").filter((el) => el !== "").length;
 }
 
+// 1189. Maximum Number of Balloons
+// Given a string text, you want to use the characters of
+// text to form as many instances of the word "balloon" as possible.
+
+// You can use each character in text at most once.
+// Return the maximum number of instances that can be formed.
+function maxNumberOfBalloons(text) {
+  const wordMap = {
+    b: 0,
+    a: 0,
+    ll: 0,
+    oo: 0,
+    n: 0,
+  };
+
+  const chars = text.split("");
+  for (let i = 0; i < chars.length; i++) {
+    if (chars[i] === "l") {
+      wordMap["ll"] += 0.5;
+    }
+    if (chars[i] === "o") {
+      wordMap["oo"] += 0.5;
+    }
+
+    if (Object.keys(wordMap).includes(chars[i])) {
+      wordMap[chars[i]]++;
+    }
+  }
+
+  return Math.floor(Math.min(...Object.values(wordMap)));
+}
+
 console.log(
   // **********************
-  countSegments("hello your john")
+  maxNumberOfBalloons("balon")
   // **********************
 );
