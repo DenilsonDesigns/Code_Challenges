@@ -1757,8 +1757,65 @@ function average(salary) {
   return sumOfNewSals / (salary.length - 2) || 0;
 }
 
+// 2085. Count Common Words With One Occurrence
+// Given two string arrays words1 and words2, return the number of
+// strings that appear exactly once in each of the two arrays.
+function countWords(words1, words2) {
+  const makeWordMap = (words) => {
+    const map = {};
+
+    words.forEach((el) => {
+      map[el] ? map[el]++ : (map[el] = 1);
+    });
+
+    return map;
+  };
+
+  const wordMap1 = makeWordMap(words1);
+  const wordMap2 = makeWordMap(words2);
+
+  let r = 0;
+
+  for (let [k, v] of Object.entries(wordMap1)) {
+    if (v === 1 && wordMap2[k] === 1) r++;
+  }
+
+  return r;
+}
+
+// 2078. Two Furthest Houses With Different Colors
+// There are n houses evenly lined up on the street, and each house is
+// beautifully painted. You are given a 0-indexed integer array colors
+// of length n, where colors[i] represents the color of the ith house.
+
+// Return the maximum distance between two houses with different colors.
+
+// The distance between the ith and jth houses is abs(i - j),
+// where abs(x) is the absolute value of x.
+function maxDistance(colors) {
+  let maxDist = 0;
+
+  let leftIdx = 0;
+  let rightIdx = colors.length - 1;
+
+  while (leftIdx < rightIdx) {
+    for (let i = leftIdx; i < rightIdx; rightIdx--) {
+      if (colors[i] !== colors[rightIdx]) {
+        let difference = rightIdx - i;
+        if (difference > maxDist) {
+          maxDist = difference;
+        }
+      }
+    }
+    rightIdx = colors.length - 1;
+    leftIdx++;
+  }
+
+  return maxDist;
+}
+
 console.log(
   // ***********************
-  average([4000, 3000, 1000, 2000])
+  maxDistance([4, 4, 4, 11, 4, 4, 11, 4, 4, 4, 4, 4])
   // ***********************
 );
