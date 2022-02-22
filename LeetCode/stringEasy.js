@@ -914,8 +914,35 @@ function detectCapitalUse(word) {
   return false;
 }
 
+// 383. Ransom Note
+// Given two strings ransomNote and magazine,
+// return true if ransomNote can be constructed
+// from magazine and false otherwise.
+
+// Each letter in magazine can only be used once in ransomNote.
+function canConstruct(ransomNote, magazine) {
+  // first make map of the magazine letters;
+  const magMap = {};
+  magazine.split("").forEach((el) => {
+    magMap[el] ? magMap[el]++ : (magMap[el] = 1);
+  });
+
+  const ranChars = ransomNote.split("");
+
+  for (let i = 0; i < ranChars.length; i++) {
+    if (!magMap[ranChars[i]]) return false;
+    if (magMap[ranChars[i]] === 0) return false;
+
+    if (magMap[ranChars[i]]) {
+      magMap[ranChars[i]]--;
+    }
+  }
+
+  return true;
+}
+
 console.log(
   // **********************
-  detectCapitalUse("ABaAB")
+  canConstruct("adc", "abcd")
   // **********************
 );
