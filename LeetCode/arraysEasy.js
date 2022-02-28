@@ -1870,8 +1870,23 @@ function findRelativeRanks(score) {
   return score.map((el) => scoreMap[el]);
 }
 
+// 2148. Count Elements With Strictly Smaller and Greater Elements
+// Given an integer array nums, return the number of elements that
+// have both a strictly smaller and a strictly greater element appear in nums.
+function countElements(nums) {
+  let r = 0;
+  const min = Math.min(...nums);
+  const max = Math.max(...nums);
+
+  nums.forEach((el) => {
+    if (el > min && el < max) r++;
+  });
+
+  return r;
+}
+
 console.log(
   // ***********************
-  findRelativeRanks([10, 3, 8, 9, 4])
+  countElements([11, 7, 2, 15])
   // ***********************
 );
