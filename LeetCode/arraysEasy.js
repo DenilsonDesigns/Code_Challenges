@@ -1885,8 +1885,32 @@ function countElements(nums) {
   return r;
 }
 
+// 2032. Two Out of Three
+// Given three integer arrays nums1, nums2, and nums3,
+// return a distinct array containing all the values that are present
+// in at least two out of the three arrays. You may return the values in any order.
+function twoOutOfThree(nums1, nums2, nums3) {
+  const numMap = {};
+
+  const uniqueArrs = getUniqueVals([nums1, nums2, nums3]);
+
+  uniqueArrs.forEach((arr) => {
+    arr.forEach((num) => {
+      return numMap[num] ? numMap[num]++ : (numMap[num] = 1);
+    });
+  });
+
+  return Object.entries(numMap)
+    .filter((el) => el[1] >= 2)
+    .map((el) => +el[0]);
+
+  function getUniqueVals(arrOfArrs) {
+    return arrOfArrs.map((arr) => [...new Set(arr)]);
+  }
+}
+
 console.log(
   // ***********************
-  countElements([11, 7, 2, 15])
+  twoOutOfThree([1, 1, 3, 2], [2, 3], [3, 3])
   // ***********************
 );

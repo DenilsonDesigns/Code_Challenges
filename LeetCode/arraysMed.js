@@ -33,4 +33,22 @@ function maxIceCream(costs, coins) {
   return r;
 }
 
-console.log(maxIceCream([10, 6, 8, 7, 7, 8], 5));
+// 2150. Find All Lonely Numbers in the Array
+// You are given an integer array nums. A number x is lonely when
+// it appears only once, and no adjacent numbers (i.e. x + 1 and x - 1)
+// appear in the array.
+
+// Return all lonely numbers in nums. You may return the answer in any order.
+function findLonely(nums) {
+  const numMap = {};
+
+  nums.forEach((el) => {
+    numMap[el] ? numMap[el]++ : (numMap[el] = 1);
+  });
+
+  return nums.filter((el) => {
+    return numMap[el] === 1 && !numMap[el - 1] && !numMap[el + 1];
+  });
+}
+
+console.log(findLonely([10, 6, 5, 8]));
