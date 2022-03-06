@@ -1909,8 +1909,42 @@ function twoOutOfThree(nums1, nums2, nums3) {
   }
 }
 
+// 643. Maximum Average Subarray I
+// You are given an integer array nums consisting of n elements,
+// and an integer k.
+
+// Find a contiguous subarray whose length is equal to k that has
+// the maximum average value and return this value.
+// Any answer with a calculation error less than
+// 10-5 will be accepted.
+function findMaxAverage(nums, k) {
+  let s = 0;
+  // getting intial sum
+  for (let i = 0; i < k; i++) {
+    s += nums[i];
+  }
+  // if theres only k amount of nums, thats the answer
+  if (nums.length === k) {
+    return s / k;
+  }
+  // else we need to calc.
+  // let s = 0;
+  let i = 0;
+  let j = k;
+  let max = -Infinity;
+  max = Math.max(max, s / k);
+  while (j < nums.length) {
+    s -= nums[i];
+    s += nums[j];
+    i++;
+    j++;
+    max = Math.max(max, s / k);
+  }
+  return max;
+}
+
 console.log(
   // ***********************
-  twoOutOfThree([1, 1, 3, 2], [2, 3], [3, 3])
+  findMaxAverage([1, 12, -5, -6, 50, 3], 4)
   // ***********************
 );
