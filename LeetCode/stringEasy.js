@@ -974,8 +974,49 @@ function firstUniqChar(s) {
   return -1;
 }
 
+// 242. Valid Anagram
+// Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+// An Anagram is a word or phrase formed by rearranging the letters of a different word
+// or phrase, typically using all the original letters exactly once.
+function isAnagram(s, t) {
+  const sMap = makeCharMap(s);
+  const tMap = makeCharMap(t);
+
+  function makeCharMap(word) {
+    const rMap = {};
+
+    word.split("").forEach((el) => {
+      rMap[el] ? rMap[el]++ : (rMap[el] = 1);
+    });
+    return rMap;
+  }
+
+  function shallowEqual(object1, object2) {
+    const keys1 = Object.keys(object1);
+    const keys2 = Object.keys(object2);
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+    for (let key of keys1) {
+      if (object1[key] !== object2[key]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  return shallowEqual(sMap, tMap);
+}
+
+// @TODO:
+// https://leetcode.com/problems/backspace-string-compare/
+// https://leetcode.com/problems/most-common-word/
+// https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
+// https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/
+
 console.log(
   // **********************
-  firstUniqChar("leetcode")
+  isAnagram("leetcode", "eeltdoce")
   // **********************
 );

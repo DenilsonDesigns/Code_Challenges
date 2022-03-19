@@ -1,3 +1,5 @@
+const { el } = require("date-fns/locale");
+
 // 26. Remove Duplicates from Sorted Array
 function removeDuplicates(nums) {
   if (nums.length == 0) return 0;
@@ -1943,8 +1945,38 @@ function findMaxAverage(nums, k) {
   return max;
 }
 
+// 345. Reverse Vowels of a String
+// Given a string s, reverse only all the vowels in the string and return it.
+
+// The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both cases.
+function reverseVowels(s) {
+  const vowels = ["a", "e", "i", "o", "u"];
+  const vowelArr = [];
+  const holdingArr = [...s.split("")];
+
+  for (let i = 0; i < holdingArr.length; i++) {
+    if (vowels.includes(holdingArr[i].toLowerCase())) {
+      vowelArr.push(holdingArr[i]);
+      holdingArr[i] = "";
+    }
+  }
+
+  return holdingArr
+    .map((el) => {
+      if (el === "") {
+        return vowelArr.pop();
+      }
+      return el;
+    })
+    .join("");
+}
+
+// @TODO:
+// https://leetcode.com/problems/positions-of-large-groups/
+// https://leetcode.com/problems/last-stone-weight/
+
 console.log(
   // ***********************
-  findMaxAverage([1, 12, -5, -6, 50, 3], 4)
+  reverseVowels("atat")
   // ***********************
 );

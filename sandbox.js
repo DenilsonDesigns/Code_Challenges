@@ -1,30 +1,27 @@
-const objec = {
-  "Get business name": [
+const LINES = {
+  lines: [
     {
-      subscriptionId: "896f35a7-9be1-4c84-aead-61a17319e1ab",
+      id: "2",
+      accountId: "79",
+      amount: "100",
+      taxCodeId: "1",
+      taxAmount: "8.08",
+      lineSubTypeId: 8,
     },
-  ],
-  "trans/incomeExpenses: create expense succeeded": [
-    { subscriptionId: "4bbd0e42-dbdf-4dba-a9b7-01ea611902db" },
-    { subscriptionId: "c96d6576-a5e5-4f12-9327-76eb5c440b25" },
-    { subscriptionId: "4b8a8aaf-a4da-4642-a4ff-7e08b9e49cce" },
-    { subscriptionId: "ce01688d-f7a8-42eb-8cf0-c1a8e8c07e79" },
   ],
 };
 
-function unsubscribe(subscriptionId) {
-  Object.keys(objec).forEach((event) => {
-    console.log(event);
-    objec[event] = objec[event].filter((callbackWithId) => {
-      return callbackWithId.subscriptionId !== subscriptionId;
-    });
-  });
+const getGstIncludedInExpense = ({ lines }) => {
+  if (!lines) return false;
 
-  console.log("objec: ", objec);
-}
+  const gstAmount = lines.reduce((acc, el) => acc + Number(el.taxAmount), 0);
+
+  return gstAmount > 0 ? true : false;
+};
 
 console.log(
-  // *****************
-  unsubscribe("c96d6576-a5e5-4f12-9327-76eb5c440b25")
-  // *****************
+  // ****
+  getGstIncludedInExpense(LINES)
+
+  // ****
 );

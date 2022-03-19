@@ -148,8 +148,33 @@ function addDigits(num) {
   return +currDigit;
 }
 
+// 231. Power of Two
+// Given an integer n, return true if it is a power of two. Otherwise, return false.
+
+// An integer n is a power of two, if there exists an integer x such that n == 2x.
+function isPowerOfTwo(n) {
+  if (n < 1) return false;
+  while (n % 2 === 0) {
+    n = n / 2;
+  }
+  return n === 1;
+}
+
+// 326. Power of Three
+// Given an integer n, return true if it is a power of three. Otherwise, return false.
+
+// An integer n is a power of three, if there exists an integer x such that n == 3x.
+function isPowerOfThree(n) {
+  if (n < 1) return false;
+  while (n % 3 === 0) {
+    n = n / 3;
+  }
+  return n === 1;
+}
+
 console.log(
   // ***********
-  addDigits(382)
+  isPowerOfThree(16),
+  isPowerOfThree(27)
   // ***********
 );
