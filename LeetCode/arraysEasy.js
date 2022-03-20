@@ -1972,7 +1972,6 @@ function reverseVowels(s) {
 }
 
 // @TODO:
-// https://leetcode.com/problems/positions-of-large-groups/
 // https://leetcode.com/problems/last-stone-weight/
 
 console.log(

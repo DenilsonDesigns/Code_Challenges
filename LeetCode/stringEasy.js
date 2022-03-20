@@ -1009,14 +1009,113 @@ function isAnagram(s, t) {
   return shallowEqual(sMap, tMap);
 }
 
+// 830. Positions of Large Groups
+// In a string s of lowercase letters, these letters form consecutive
+// groups of the same character.
+
+// For example, a string like s = "abbxxxxzyy" has the groups
+// "a", "bb", "xxxx", "z", and "yy".
+
+// A group is identified by an interval [start, end],
+// where start and end denote the start and end indices
+// (inclusive) of the group. In the above example, "xxxx"
+// has the interval [3,6].
+
+// A group is considered large if it has 3 or more characters.
+
+// Return the intervals of every large group sorted in increasing order
+// by start index.
+function largeGroupPositions(s) {
+  // First attempt: accepted, but quite slow:
+  // let currIdx = 0;
+  // const r = [];
+
+  // while (currIdx < s.length) {
+  //   let start = currIdx;
+  //   let end;
+
+  //   for (let i = currIdx; i <= s.length; i++) {
+  //     if (s[i] !== s[currIdx]) {
+  //       if (end - start >= 2) {
+  //         r.push([start, end]);
+  //         currIdx = end;
+  //       }
+  //       break;
+  //     }
+
+  //     if (s[i] === s[currIdx]) {
+  //       end = i;
+  //     }
+  //   }
+
+  //   currIdx++;
+  // }
+
+  // return r;
+  const r = [];
+  let start = 0,
+    end = 0;
+  for (let i = 1; i < s.length; i++) {
+    if (s[i] !== s[i - 1]) {
+      if (end - start >= 2) {
+        r.push([start, end]);
+      }
+      start = i;
+      end = i;
+    } else {
+      end++;
+    }
+  }
+  if (end - start >= 2) {
+    r.push([start, end]);
+  }
+  return r;
+}
+
+// 819. Most Common Word
+// Given a string paragraph and a string array of the banned words banned,
+// return the most frequent word that is not banned. It is guaranteed
+// there is at least one word that is not banned, and that the answer
+// is unique.
+
+// The words in paragraph are case-insensitive and the answer should
+// be returned in lowercase.
+function mostCommonWord(paragraph, banned) {
+  const strippedWords = paragraph
+    .replace(/[^\w\s]|_/g, "")
+    .replace(/\s+/g, " ")
+    .split(" ");
+
+  const wordMap = {};
+
+  strippedWords.forEach((el) => {
+    const word = el.toLowerCase();
+    wordMap[word] ? wordMap[word]++ : (wordMap[word] = 1);
+  });
+
+  let currMax = 0;
+  let currCommonWord;
+
+  for (let [k, v] of Object.entries(wordMap)) {
+    if (k !== banned && v > currMax) {
+      currMax = v;
+      currCommonWord = k;
+    }
+  }
+
+  return currCommonWord;
+}
+
 // @TODO:
 // https://leetcode.com/problems/backspace-string-compare/
-// https://leetcode.com/problems/most-common-word/
 // https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
 // https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/
 
 console.log(
   // **********************
-  isAnagram("leetcode", "eeltdoce")
+  mostCommonWord(
+    "Bob hit a ball, the hit BALL flew far after it was hit.",
+    "hit"
+  )
   // **********************
 );
