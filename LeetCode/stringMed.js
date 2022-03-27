@@ -89,4 +89,4 @@ function minAddToMakeValid(S) {
   // return openCount + closeCount;
 }
 
-console.log(minAddToMakeValid("()))(("));
+console.log(minAddToMakeValid("()()()()(((()))))"));

@@ -1106,16 +1106,101 @@ function mostCommonWord(paragraph, banned) {
   return currCommonWord;
 }
 
+// 844. Backspace String Compare
+// Given two strings s and t, return true if they are equal when both are
+// typed into empty text editors. '#' means a backspace character.
+
+// Note that after backspacing an empty text, the text will continue empty.
+function backspaceCompare(s, t) {
+  return getBackSpacedString(s) === getBackSpacedString(t);
+
+  function getBackSpacedString(string) {
+    const currChars = [];
+
+    string.split("").forEach((char) => {
+      console.log(char);
+      if (char === "#") currChars.pop();
+      else currChars.push(char);
+    });
+
+    return currChars.join("");
+  }
+}
+
+// 1160. Find Words That Can Be Formed by Characters
+// You are given an array of strings words and a string chars.
+
+// A string is good if it can be formed by characters from
+// chars (each character can only be used once).
+
+// Return the sum of lengths of all good strings in words.
+function countCharacters(words, chars) {
+  // works but very slow:
+  const kingMap = formCharMap(chars.split(""));
+
+  let rWord = "";
+
+  words.forEach((word) => {
+    const wordMap = formCharMap(word.split(""));
+    if (canMakeWordFromChars(wordMap, kingMap)) rWord += word;
+  });
+
+  return rWord.length;
+
+  function formCharMap(string) {
+    const rMap = {};
+
+    string.forEach((char) => {
+      rMap[char] ? rMap[char]++ : (rMap[char] = 1);
+    });
+
+    return rMap;
+  }
+
+  function canMakeWordFromChars(needleMap, haystackMap) {
+    const needleChars = Object.keys(needleMap);
+
+    for (let i = 0; i < needleChars.length; i++) {
+      if (
+        needleMap[needleChars[i]] > haystackMap[needleChars[i]] ||
+        !haystackMap[needleChars[i]]
+      ) {
+        console.log("hit false");
+        return false;
+      }
+    }
+
+    return true;
+  }
+  // much faster and cleaner:
+  // let map = new Map();
+  // for (let char of chars) {
+  //     map.set(char, (map.get(char) || 0) + 1)
+  // }
+  // let res = 0;
+  // for (let word of words) {
+  //     let clonedMap = new Map(map);
+  //     let tempRes = 0;
+  //     for (let char of word) {
+  //         if (clonedMap.get(char) > 0) {
+  //             clonedMap.set(char, clonedMap.get(char) - 1);
+  //             tempRes++;
+  //         } else {
+  //             tempRes = 0;
+  //             break;
+  //         }
+  //     }
+  //     res += tempRes;
+  // }
+  // return res;
+}
+
 // @TODO:
-// https://leetcode.com/problems/backspace-string-compare/
 // https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
 // https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/
 
 console.log(
   // **********************
-  mostCommonWord(
-    "Bob hit a ball, the hit BALL flew far after it was hit.",
-    "hit"
-  )
+  countCharacters(["cat", "bt", "hat", "tree"], "atach")
   // **********************
 );

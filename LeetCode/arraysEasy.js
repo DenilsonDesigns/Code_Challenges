@@ -1971,11 +1971,22 @@ function reverseVowels(s) {
     .join("");
 }
 
-// @TODO:
-// https://leetcode.com/problems/last-stone-weight/
+// 125. Valid Palindrome
+// A phrase is a palindrome if, after converting all uppercase letters into
+// lowercase letters and removing all non-alphanumeric characters,
+// it reads the same forward and backward. Alphanumeric characters
+// include letters and numbers.
+
+// Given a string s, return true if it is a palindrome, or false otherwise.
+function isPalindrome(s) {
+  // strip non alpha-numeric chars from string.
+  const strippedWord = s.replace(/[^a-z0-9]/gi, "").toLowerCase();
+
+  return strippedWord === strippedWord.split("").reverse().join("");
+}
 
 console.log(
   // ***********************
-  reverseVowels("atat")
+  isPalindrome("babad")
   // ***********************
 );
