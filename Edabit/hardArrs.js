@@ -514,9 +514,56 @@ function weeklySalary(hours) {
   return totSal;
 }
 
+// Building a Staircase
+// Create a function that builds a staircase given the height and the type of building block.
+function buildStaircase(height, block) {
+  const r = Array(height).fill(Array(height).fill("-"));
+
+  return r.map((arr, i) => arr.map((_, j) => (j <= i ? block : "_")));
+}
+
+// Letter Occurrences Per Word
+// Create a function that takes in a sentence and a character to find.
+// Return an object of each word in the sentence, with the count of the
+// specified character as the value.
+function findOccurrences(str, char) {
+  const wordMap = {};
+
+  const getCharOccurrences = (word, char) => {
+    return word.split("").filter((el) => el === char).length;
+  };
+
+  str.split(" ").forEach((word) => {
+    const wordLower = word.toLowerCase();
+    wordMap[wordLower] = getCharOccurrences(wordLower, char.toLowerCase());
+  });
+
+  return wordMap;
+}
+
+// Spaces Apart
+// Create a function that takes an arr and returns the sum of the numbers between two "1"s.
+function spaceApart(arr) {
+  let r = 0;
+  let counting = false;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "1") {
+      counting = !counting;
+      continue;
+    }
+
+    if (counting) {
+      if (Number.isInteger(arr[i])) r += arr[i];
+    }
+  }
+
+  return r > 0 ? r : "invalid";
+}
+
 console.log(
   "final output: ",
   // ***
-  weeklySalary([0, 0, 0, 0, 0, 16, 0])
+  spaceApart([1, 0, 1, "1", 4, 3, 2, 3, 2, "1"])
   // ***
 );
