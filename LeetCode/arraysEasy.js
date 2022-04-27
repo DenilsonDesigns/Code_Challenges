@@ -1985,8 +1985,42 @@ function isPalindrome(s) {
   return strippedWord === strippedWord.split("").reverse().join("");
 }
 
+// 2248. Intersection of Multiple Arrays
+// Given a 2D integer array nums where nums[i] is a non-empty array
+// of distinct positive integers, return the list of integers that are
+// present in each array of nums sorted in ascending order.
+function intersection(nums) {
+  const numMap = {};
+
+  nums.forEach((numArr) => {
+    numArr.forEach((num) => {
+      numMap[num] ? numMap[num]++ : (numMap[num] = 1);
+    });
+  });
+
+  return Object.entries(numMap)
+    .filter((el) => el[1] === nums.length)
+    .map((el) => +el[0]);
+}
+
+// 2239. Find Closest Number to Zero
+// Given an integer array nums of size n,
+// return the number with the value closest to 0 in nums. If there are multiple
+// answers, return the number with the largest value.
+function findClosestNumber(nums) {
+  let closest = Infinity;
+
+  nums.forEach((el) => {
+    let diff = Math.abs(el) - 0;
+    if (diff < Math.abs(closest)) closest = el;
+    if (diff === Math.abs(closest)) closest = Math.max(el, closest);
+  });
+
+  return closest;
+}
+
 console.log(
   // ***********************
-  isPalindrome("babad")
+  findClosestNumber([2, -1, 1])
   // ***********************
 );
