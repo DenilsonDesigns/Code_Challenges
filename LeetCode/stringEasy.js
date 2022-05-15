@@ -1195,12 +1195,38 @@ function countCharacters(words, chars) {
   // return res;
 }
 
-// @TODO:
-// https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
-// https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/
+// 2264. Largest 3-Same-Digit Number in String
+// You are given a string num representing a large integer.
+// An integer is good if it meets the following conditions:
+
+// It is a substring of num with length 3.
+// It consists of only one unique digit.
+// Return the maximum good integer as a string or an empty string "" if no such integer exists.
+
+// Note:
+
+// A substring is a contiguous sequence of characters within a string.
+// There may be leading zeroes in num or a good integer.
+function largestGoodInteger(num) {
+  let largestGoodInt = -Infinity;
+  let stringR = "";
+
+  for (let i = 0; i < num.length - 2; i++) {
+    if (num[i] === num[i + 1] && num[i + 1] === num[i + 2]) {
+      let currStringNum = num[i] + num[i + 1] + num[i + 2];
+      let currNum = +currStringNum;
+      if (currNum > largestGoodInt) {
+        largestGoodInt = currNum;
+        stringR = currStringNum;
+      }
+    }
+  }
+
+  return stringR;
+}
 
 console.log(
   // **********************
-  countCharacters(["cat", "bt", "hat", "tree"], "atach")
+  largestGoodInteger("6777133339")
   // **********************
 );

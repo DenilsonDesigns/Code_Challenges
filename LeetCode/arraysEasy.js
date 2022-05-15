@@ -2019,8 +2019,65 @@ function findClosestNumber(nums) {
   return closest;
 }
 
+// 2273. Find Resultant Array After Removing Anagrams
+// You are given a 0-indexed string array words, where words[i] consists
+// of lowercase English letters.
+
+// In one operation, select any index i such that 0 < i < words.length and
+// words[i - 1] and words[i] are anagrams, and delete words[i] from words.
+// Keep performing this operation as long as you can select an index that
+// satisfies the conditions.
+
+// Return words after performing all operations. It can be shown that selecting
+// the indices for each operation in any arbitrary order will lead to the same result.
+
+// An Anagram is a word or phrase formed by rearranging the letters of a different
+// word or phrase using all the original letters exactly once. For example,
+// "dacb" is an anagram of "abdc".
+function removeAnagrams(words) {
+  const areAnagrams = (word1, word2) => {
+    return word1.split("").sort().join("") === word2.split("").sort().join("");
+  };
+
+  let currIdx = 1;
+  while (currIdx < words.length) {
+    if (areAnagrams(words[currIdx - 1], words[currIdx])) {
+      words.splice(currIdx, 1);
+      continue;
+    }
+
+    currIdx++;
+  }
+
+  return words;
+}
+
+// 2215. Find the Difference of Two Arrays
+// Given two 0-indexed integer arrays nums1 and nums2, return a list answer of size 2 where:
+
+// answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
+// answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
+// Note that the integers in the lists may be returned in any order.
+function findDifference(nums1, nums2) {
+  const r1 = new Set();
+  const r2 = new Set();
+
+  nums1.forEach((el) => {
+    if (!nums2.includes(el)) {
+      r1.add(el);
+    }
+  });
+  nums2.forEach((el) => {
+    if (!nums1.includes(el)) {
+      r2.add(el);
+    }
+  });
+
+  return [[...r1], [...r2]];
+}
+
 console.log(
   // ***********************
-  findClosestNumber([2, -1, 1])
+  findDifference([1, 2, 3, 3], [1, 1, 2, 2])
   // ***********************
 );
