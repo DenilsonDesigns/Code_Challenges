@@ -1225,8 +1225,17 @@ function largestGoodInteger(num) {
   return stringR;
 }
 
+// 2278. Percentage of Letter in String
+// Given a string s and a character letter, return the percentage
+// of characters in s that equal letter rounded down to the nearest whole percent.
+function percentageLetter(s, letter) {
+  return Math.floor(
+    (s.split("").filter((el) => el === letter).length / s.length) * 100
+  );
+}
+
 console.log(
   // **********************
-  largestGoodInteger("6777133339")
+  percentageLetter("foobar", "o")
   // **********************
 );
