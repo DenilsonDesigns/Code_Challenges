@@ -1234,8 +1234,69 @@ function percentageLetter(s, letter) {
   );
 }
 
+// 2287. Rearrange Characters to Make Target String
+// You are given two 0-indexed strings s and target.
+// You can take some letters from s and rearrange them to form new strings.
+
+// Return the maximum number of copies of target that can be
+// formed by taking letters from s and rearranging them.
+function rearrangeCharacters(s, target) {
+  const sMap = makeCharMap(s);
+  const tarMap = makeCharMap(target);
+
+  let numWords = [];
+
+  Object.entries(tarMap).forEach((el) => {
+    const [k, v] = el;
+
+    if (!sMap[k]) {
+      numWords.push(0);
+    } else {
+      let numChar = Math.floor(sMap[k] / v);
+      numWords.push(numChar);
+    }
+  });
+
+  return Math.min(...numWords);
+
+  function makeCharMap(str) {
+    const rMap = {};
+
+    str.split("").forEach((el) => {
+      rMap[el] ? rMap[el]++ : (rMap[el] = 1);
+    });
+
+    return rMap;
+  }
+}
+
+// 2283. Check if Number Has Equal Digit Count and Digit Value
+// You are given a 0-indexed string num of length n consisting of digits.
+
+// Return true if for every index i in the range 0 <= i < n,
+// the digit i occurs num[i] times in num, otherwise return false.
+function digitCount(num) {
+  const digiMap = {};
+
+  const numArr = num.split("");
+
+  numArr.forEach((el) => {
+    digiMap[el] ? digiMap[el]++ : (digiMap[el] = 1);
+  });
+
+  for (let i = 0; i < numArr.length; i++) {
+    console.log(i);
+    if (numArr[i] == 0 && !digiMap[i]) continue;
+    if (numArr[i] != digiMap[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 console.log(
   // **********************
-  percentageLetter("foobar", "o")
+  digitCount("030")
   // **********************
 );
