@@ -89,4 +89,51 @@ function minAddToMakeValid(S) {
   // return openCount + closeCount;
 }
 
-console.log(minAddToMakeValid("()()()()(((()))))"));
+// 2288. Apply Discount to Prices
+// A sentence is a string of single-space separated words where each word
+// can contain digits, lowercase letters, and the dollar sign '$'.
+// A word represents a price if it is a non-negative real number
+// preceded by a dollar sign.
+
+// For example, "$100", "$23", and "$6.75" represent prices while "100",
+// "$", and "2$3" do not.
+
+// You are given a string sentence representing a sentence and an integer
+// discount. For each word representing a price, apply a discount of
+// discount% on the price and update the word in the sentence.
+// All updated prices should be represented with exactly two decimal places.
+
+// Return a string representing the modified sentence.
+function discountPrices(sentence, discount) {
+  const segments = sentence.split(" ");
+
+  return segments
+    .map((segment) => {
+      if (isValidPrice(segment)) {
+        return applyDiscount(segment, discount);
+      } else {
+        return segment;
+      }
+    })
+    .join(" ");
+
+  function isValidPrice(n) {
+    const coercedN = +n.slice(1);
+    return (
+      typeof coercedN == "number" &&
+      !isNaN(coercedN - coercedN) &&
+      n[0] === "$" &&
+      coercedN > 0
+    );
+  }
+
+  function applyDiscount(n, discount) {
+    const coercedN = +n.slice(1);
+
+    const withDiscount = coercedN - (coercedN * discount) / 100;
+
+    return "$" + withDiscount.toFixed(2);
+  }
+}
+
+console.log(discountPrices("1 2 $3 4 $5 $6 7 8$ $9 $10$", 100));
