@@ -1295,8 +1295,75 @@ function digitCount(num) {
   return true;
 }
 
+// 2255. Count Prefixes of a Given String
+// You are given a string array words and a string s, where words[i]
+// and s comprise only of lowercase English letters.
+
+// Return the number of strings in words that are a prefix of s.
+
+// A prefix of a string is a substring that occurs at the beginning of
+// the string. A substring is a contiguous sequence of characters within a string.
+function countPrefixes(words, s) {
+  let r = 0;
+
+  words.forEach((word) => {
+    for (let i = 0; i < word.length; i++) {
+      if (word[i] !== s[i]) return;
+      if (i === word.length - 1) {
+        r++;
+      }
+    }
+  });
+
+  return r;
+  // very clever way:
+  // return words.filter(data=> s.indexOf(data) == 0).length;
+}
+
 console.log(
   // **********************
-  digitCount("030")
+  countPrefixes(
+    [
+      "k",
+      "z",
+      "txy",
+      "aiev",
+      "eaic",
+      "x",
+      "w",
+      "he",
+      "nn",
+      "xvx",
+      "cyam",
+      "s",
+      "wigm",
+      "xvx",
+      "gan",
+      "xvx",
+      "luty",
+      "pyi",
+      "xv",
+      "xcqx",
+      "vl",
+      "ijyb",
+      "xvx",
+      "mju",
+      "tk",
+      "szgv",
+      "azl",
+      "ugdt",
+      "yfwi",
+      "zixp",
+      "dz",
+      "xvx",
+      "hk",
+      "cxx",
+      "pb",
+      "e",
+      "x",
+      "t",
+    ],
+    "xvx"
+  )
   // **********************
 );

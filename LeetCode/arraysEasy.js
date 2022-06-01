@@ -2076,8 +2076,57 @@ function findDifference(nums1, nums2) {
   return [[...r1], [...r2]];
 }
 
+// 2176. Count Equal and Divisible Pairs in an Array
+// Given a 0-indexed integer array nums of length n and an integer k,
+// return the number of pairs (i, j) where 0 <= i < j < n,
+// such that nums[i] == nums[j] and (i * j) is divisible by k.
+function countPairs(nums, k) {
+  let r = 0;
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] === nums[j] && (i * j) % k === 0) {
+        r++;
+      }
+    }
+  }
+
+  return r;
+}
+
+// 2190. Most Frequent Number Following Key In an Array
+// You are given a 0-indexed integer array nums. You are also given an integer key,
+// which is present in nums.
+
+// For every unique integer target in nums, count the number of times
+// target immediately follows an occurrence of key in nums. In other words,
+// count the number of indices i such that:
+
+// 0 <= i <= nums.length - 2,
+// nums[i] == key and,
+// nums[i + 1] == target.
+// Return the target with the maximum count. The test cases will be
+// generated such that the target with maximum count is unique.
+function mostFrequent(nums, key) {
+  const keyMap = {};
+  let maxAmount = 0;
+  let maxTargetNum;
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    if (nums[i] === key) {
+      keyMap[nums[i + 1]] ? keyMap[nums[i + 1]]++ : (keyMap[nums[i + 1]] = 1);
+      if (keyMap[nums[i + 1]] > maxAmount) {
+        maxAmount = keyMap[nums[i + 1]];
+        maxTargetNum = +nums[i + 1];
+      }
+    }
+  }
+
+  return maxTargetNum;
+}
+
 console.log(
   // ***********************
-  findDifference([1, 2, 3, 3], [1, 1, 2, 2])
+  mostFrequent([1, 100, 200, 1, 100], 1)
   // ***********************
 );
