@@ -1320,50 +1320,66 @@ function countPrefixes(words, s) {
   // return words.filter(data=> s.indexOf(data) == 0).length;
 }
 
+// 2138. Divide a String Into Groups of Size k
+// A string s can be partitioned into groups of size k using the following procedure:
+
+// The first group consists of the first k characters of the string, the second group
+// consists of the next k characters of the string, and so on. Each character
+// can be a part of exactly one group.
+// For the last group, if the string does not have k characters remaining,
+// a character fill is used to complete the group.
+// Note that the partition is done so that after removing the fill
+// character from the last group (if it exists) and concatenating all
+// the groups in order, the resultant string should be s.
+
+// Given the string s, the size of each group k and the character fill,
+// return a string array denoting the composition of every group
+// s has been divided into, using the above procedure.
+function divideString(s, k, fill) {
+  const r = [];
+
+  let remaining = s;
+
+  while (remaining.length) {
+    let slicedWord = remaining.slice(0, k);
+    if (slicedWord.length < k) {
+      slicedWord = slicedWord.padEnd(k, fill);
+    }
+    remaining = remaining.slice(k);
+    r.push(slicedWord);
+  }
+
+  return r;
+}
+
+// 1935. Maximum Number of Words You Can Type
+// There is a malfunctioning keyboard where some letter keys do not work.
+// All other keys on the keyboard work properly.
+
+// Given a string text of words separated by a single space
+// (no leading or trailing spaces) and a string brokenLetters of all distinct
+// letter keys that are broken, return the
+// number of words in text you can fully type using this keyboard.
+function canBeTypedWords(text, brokenLetters) {
+  const brokenLettersArr = brokenLetters.split("");
+  const words = text.split(" ");
+  let r = 0;
+
+  loop1: for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    for (let j = 0; j < word.length; j++) {
+      if (brokenLettersArr.includes(word[j])) {
+        continue loop1;
+      }
+    }
+    r++;
+  }
+
+  return r;
+}
+
 console.log(
   // **********************
-  countPrefixes(
-    [
-      "k",
-      "z",
-      "txy",
-      "aiev",
-      "eaic",
-      "x",
-      "w",
-      "he",
-      "nn",
-      "xvx",
-      "cyam",
-      "s",
-      "wigm",
-      "xvx",
-      "gan",
-      "xvx",
-      "luty",
-      "pyi",
-      "xv",
-      "xcqx",
-      "vl",
-      "ijyb",
-      "xvx",
-      "mju",
-      "tk",
-      "szgv",
-      "azl",
-      "ugdt",
-      "yfwi",
-      "zixp",
-      "dz",
-      "xvx",
-      "hk",
-      "cxx",
-      "pb",
-      "e",
-      "x",
-      "t",
-    ],
-    "xvx"
-  )
+  canBeTypedWords("hello world", "ad")
   // **********************
 );
