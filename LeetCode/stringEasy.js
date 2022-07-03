@@ -1398,8 +1398,106 @@ function countGoodSubstrings(s) {
   return r;
 }
 
+// 2309. Greatest English Letter in Upper and Lower Case
+// Given a string of English letters s, return the greatest English letter which
+// occurs as both a lowercase and uppercase letter in s. The returned letter
+// should be in uppercase. If no such letter exists, return an empty string.
+
+// An English letter b is greater than another letter a if b appears after a
+// in the English alphabet.
+function greatestLetter(s) {
+  const charMap = {};
+  let highestChar = "";
+
+  s.split("").forEach((el) => {
+    charMap[el] = true;
+
+    if (
+      upperAndLowerExistInTarget(el, charMap) &&
+      charIsGreater(el, highestChar)
+    ) {
+      const char = el.toUpperCase();
+      highestChar = char;
+    }
+  });
+
+  return highestChar;
+
+  function upperAndLowerExistInTarget(el, targetMap) {
+    if (targetMap[el.toLowerCase()] && targetMap[el.toUpperCase()]) return true;
+    return false;
+  }
+
+  function charIsGreater(el, highestChar) {
+    if (el.toUpperCase() > highestChar) return true;
+    return false;
+  }
+}
+
+// 2299. Strong Password Checker II
+// A password is said to be strong if it satisfies all the following criteria:
+
+// It has at least 8 characters.
+// It contains at least one lowercase letter.
+// It contains at least one uppercase letter.
+// It contains at least one digit.
+// It contains at least one special character. The special characters are the
+// characters in the following string: "!@#$%^&*()-+".
+// It does not contain 2 of the same character in adjacent positions
+// (i.e., "aab" violates this condition, but "aba" does not).
+// Given a string password, return true if it is a strong password.
+// Otherwise, return false.
+function strongPasswordCheckerII(password) {
+  // check atleast 8 chars.
+  if (password.length < 8) {
+    return false;
+  }
+
+  const specialChars = "!@#$%^&*()-+".split("");
+
+  let hasLower = false;
+  let hasUpper = false;
+  let hasOneDigit = false;
+  let hasSpecial = false;
+
+  for (let i = 0; i < password.length; i++) {
+    const element = password[i];
+
+    if (i !== 0 && element === password[i - 1]) {
+      // run check for not consecutive chars in loop;
+      return false;
+    }
+
+    if (
+      element === element.toLowerCase() &&
+      element.toUpperCase() != element.toLowerCase()
+    )
+      hasLower = true;
+
+    if (
+      element === element.toUpperCase() &&
+      element.toUpperCase() != element.toLowerCase()
+    )
+      hasUpper = true;
+
+    if (Number.isInteger(parseInt(element))) hasOneDigit = true;
+
+    if (specialChars.includes(element)) hasSpecial = true;
+  }
+
+  console.log("haslower", hasLower);
+  console.log("hasUpper", hasUpper);
+  console.log("hasOneDigit", hasOneDigit);
+  console.log("hasSpecial", hasSpecial);
+  console.log("haszero", parseInt("0"));
+
+  return hasLower && hasUpper && hasOneDigit && hasSpecial;
+}
+
 console.log(
   // **********************
-  countGoodSubstrings("aababcabc")
+  strongPasswordCheckerII(
+    "&3@396+&532#1)5^*^*56$269)(-54(3)7&)@1^)8)(@*@23#-%3189)45+6&8%0756!6+!+6"
+  )
   // **********************
 );

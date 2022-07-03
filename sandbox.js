@@ -1,135 +1,125 @@
-// @TODO: put these in tests
-
-const ENTRY_DRAFT = {
-  Id: 378,
-  BalanceDue: 133,
-  CustomerName: "The Motor Company",
-  PurchaseOrderReference: "Order1",
-  DateOccurred: "2018-12-03",
-  DateDue: "2019-01-31",
-  DateClosed: "2018-03-27",
-  DisplayId: "00000005",
-  Status: "Open",
-  TermsPaymentType: "Prepaid",
-  Amount: 249,
-  CalloutActivityType: "email_rejected",
-  Type: "Standard",
+const InvoiceHistoryStatus = {
+  CREATED: "CREATED",
+  CREATED_FROM_QUOTE: "CREATED_FROM_QUOTE",
+  VIEWED_ONLINE: "VIEWED_ONLINE",
+  DOWNLOADED: "DOWNLOADED",
+  PRINTED: "PRINTED",
+  EXPORTED_TO_PDF: "EXPORTED_TO_PDF",
+  PAID_ONLINE: "PAID_ONLINE",
+  PAID_IN_BULK_ONLINE: "PAID_IN_BULK_ONLINE",
+  PAYMENT_DECLINED: "PAYMENT_DECLINED",
+  BULK_PAYMENT_DECLINED: "BULK_PAYMENT_DECLINED",
+  PAYMENT_RECEIVED: "PAYMENT_RECEIVED",
+  INVOICE_REVERSED: "INVOICE_REVERSED",
+  EMAILED: "EMAILED",
+  DELIVERY_FAILED: "DELIVERY_FAILED",
+  CREDIT_APPLIED: "CREDIT_APPLIED",
+  SENDING: "SENDING",
+  AB: "AB",
+  AP: "AP",
+  RE: "RE",
+  IP: "IP",
+  UQ: "UQ",
+  CA: "CA",
+  PD: "PD",
+  PD_WITH_PPD: "PD_WITH_PPD",
+  INTRNL_SENT_AS_EINVOICE: "INTRNL_SENT_AS_EINVOICE",
 };
 
-const ENTRY_PAID = {
-  Id: 378,
-  BalanceDue: 0,
-  CustomerName: "The Motor Company",
-  PurchaseOrderReference: "Order1",
-  DateOccurred: "2018-12-03",
-  DateDue: "2019-01-31",
-  DateClosed: "2018-03-27",
-  DisplayId: "00000005",
-  Status: "Open",
-  TermsPaymentType: "Prepaid",
-  Amount: 249,
-  CalloutActivityType: "email_delivered",
-  Type: "Standard",
+const DATA = {
+  invoiceHistory: [
+    {
+      status: "EXPORTED_TO_PDF",
+      description: "",
+      date: "2022-06-23T00:00:00",
+    },
+    {
+      status: "CREATED",
+      description: "",
+      date: "2022-06-23T00:00:00",
+    },
+    {
+      journalId: 222,
+      sourceJournalType: "ReceivePayment",
+      status: "PAYMENT_RECEIVED",
+      description: "Received $253.00",
+      referenceNo: "CR000017",
+      date: "2022-06-22T00:00:00",
+    },
+    {
+      journalId: 223,
+      sourceJournalType: "ReceivePayment",
+      status: "PAYMENT_RECEIVED",
+      description: "Received $253.00",
+      referenceNo: "CR000018",
+      date: "2022-06-22T00:00:00",
+    },
+    {
+      journalId: 224,
+      sourceJournalType: "CreditApplied",
+      status: "CREDIT_APPLIED",
+      description: "Received $253,099.00",
+      referenceNo: "CR000019",
+      date: "2022-06-22T17:45:00",
+    },
+    {
+      journalId: 227,
+      status: "EMAILED",
+      description:
+        "To: mohamad.maarouf@myob.com, laika.team@myob.com, ameet.kumar@myob.com",
+      additionalDescriptionLines: [],
+      date: "2022-05-13T06:28:28.602Z",
+    },
+    {
+      journalId: 225,
+      sourceJournalType: "BulkPaymentDeclined",
+      status: "BULK_PAYMENT_DECLINED",
+      description: "Received $253.00",
+      referenceNo: "CR000020",
+      date: "2022-06-22T17:45:00",
+    },
+    {
+      journalId: 226,
+      sourceJournalType: "DeliveryFailed",
+      status: "DELIVERY_FAILED",
+      description: "Received $253.00",
+      referenceNo: "CR000021",
+      date: "2022-06-22T17:45:00",
+    },
+  ],
 };
 
-const ENTRY_DUE_YESTERDAY = {
-  Id: 378,
-  BalanceDue: 110,
-  CustomerName: "The Motor Company",
-  PurchaseOrderReference: "Order1",
-  DateOccurred: "2018-12-03",
-  DateDue: "2022-05-29",
-  DateClosed: "2018-03-27",
-  DisplayId: "00000005",
-  Status: "Open",
-  TermsPaymentType: "Prepaid",
-  Amount: 249,
-  CalloutActivityType: "email_delivered",
-  Type: "Standard",
-};
+const sortExportedToPdfAfterCreate = (a, b) => {
+  console.log("a.status: ", a.status);
+  console.log("b.status: ", b.status);
+  console.log(a.status === InvoiceHistoryStatus.CREATED);
+  console.log(b.status === InvoiceHistoryStatus.EXPORTED_TO_PDF);
+  const isCreateEventFirst =
+    a.status === InvoiceHistoryStatus.CREATED ||
+    a.status === InvoiceHistoryStatus.CREATED_FROM_QUOTE;
+  const isExportedToPdfEventSecond =
+    b.status === InvoiceHistoryStatus.EXPORTED_TO_PDF;
 
-const ENTRY_DUE_PARTIALLY_PAID = {
-  Id: 378,
-  BalanceDue: 110,
-  CustomerName: "The Motor Company",
-  PurchaseOrderReference: "Order1",
-  DateOccurred: "2018-12-03",
-  DateDue: getTomorrowsDateString(),
-  DateClosed: "2018-03-27",
-  DisplayId: "00000005",
-  Status: "Open",
-  TermsPaymentType: "Prepaid",
-  Amount: 249,
-  CalloutActivityType: "email_delivered",
-  Type: "Standard",
-};
+  console.log("isCreateEventFirst", isCreateEventFirst);
+  console.log("isExportedToPdfEventSecond", isExportedToPdfEventSecond);
 
-const ENTRY_DUE_UNPAID = {
-  Id: 378,
-  BalanceDue: 249,
-  CustomerName: "The Motor Company",
-  PurchaseOrderReference: "Order1",
-  DateOccurred: "2018-12-03",
-  DateDue: getTomorrowsDateString(),
-  DateClosed: "2018-03-27",
-  DisplayId: "00000005",
-  Status: "Open",
-  TermsPaymentType: "Prepaid",
-  Amount: 249,
-  CalloutActivityType: "email_delivered",
-  Type: "Standard",
-};
-
-// @TODO: put this in common:
-function getTomorrowsDateString() {
-  const today = new Date();
-  const tomorrowsDate = new Date(today.setDate(today.getDate() + 1))
-    .toISOString()
-    .split("T")[0];
-  console.log("tomorrowsdate: ", tomorrowsDate);
-  return tomorrowsDate;
-}
-
-const notSentStatuses = ["", "email_rejected", "email_bounced"];
-
-const buildInvoiceStatus = (entry) => {
-  const todaysDate = new Date().toISOString().split("T")[0];
-  console.log("todays date: ", todaysDate);
-
-  if (notSentStatuses.includes(entry.CalloutActivityType)) {
-    return "Draft";
+  if (isCreateEventFirst && isExportedToPdfEventSecond) {
+    console.log("hit 1");
+    return -1;
   }
-  if (entry.BalanceDue === 0) {
-    return "Paid";
-  }
-  if (
-    entry.DateDue !== "Prepaid" &&
-    entry.DateDue !== "CashOnDelivery" &&
-    todaysDate > entry.DateDue &&
-    entry.BalanceDue > 0
-  ) {
-    return "Overdue";
-  }
+  // console.log("hit 0");
 
-  if (entry.Amount > entry.BalanceDue) return "Partially paid";
-
-  if (entry.Amount === entry.BalanceDue) return "Unpaid";
+  return 0;
 };
 
-const invoiceStatusToColourMap = {
-  Draft: "default",
-  Credit: "blue",
-  Paid: "green",
-  Overdue: "red",
-  "Partially paid": "purple",
-  Unpaid: "orange",
+const sortByJournalNumber = (a, b) => {
+  return b.journalId - a.journalId;
 };
 
-console.log("entry draft: ", buildInvoiceStatus(ENTRY_DRAFT));
-console.log("entry paid: ", buildInvoiceStatus(ENTRY_PAID));
-console.log("entry overdue: ", buildInvoiceStatus(ENTRY_DUE_YESTERDAY));
+const newData = DATA.invoiceHistory.sort(sortExportedToPdfAfterCreate);
+
 console.log(
-  "entry partially paid: ",
-  buildInvoiceStatus(ENTRY_DUE_PARTIALLY_PAID)
+  //
+  newData
+  //
 );
-console.log("entry unpaid: ", buildInvoiceStatus(ENTRY_DUE_UNPAID));
