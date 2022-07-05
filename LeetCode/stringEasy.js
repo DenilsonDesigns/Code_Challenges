@@ -1485,19 +1485,29 @@ function strongPasswordCheckerII(password) {
     if (specialChars.includes(element)) hasSpecial = true;
   }
 
-  console.log("haslower", hasLower);
-  console.log("hasUpper", hasUpper);
-  console.log("hasOneDigit", hasOneDigit);
-  console.log("hasSpecial", hasSpecial);
-  console.log("haszero", parseInt("0"));
-
   return hasLower && hasUpper && hasOneDigit && hasSpecial;
+}
+
+function countAsterisks(s) {
+  const chunks = s.split("|");
+
+  let count = 0;
+
+  chunks.forEach((chunk, i) => {
+    if (i % 2 === 0) {
+      count += numAsterisks(chunk);
+    }
+  });
+
+  return count;
+
+  function numAsterisks(s) {
+    return s.split("").filter((el) => el === "*").length;
+  }
 }
 
 console.log(
   // **********************
-  strongPasswordCheckerII(
-    "&3@396+&532#1)5^*^*56$269)(-54(3)7&)@1^)8)(@*@23#-%3189)45+6&8%0756!6+!+6"
-  )
+  countAsterisks("l|*e*et|c**o|*de|")
   // **********************
 );

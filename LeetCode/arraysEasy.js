@@ -2125,8 +2125,28 @@ function mostFrequent(nums, key) {
   return maxTargetNum;
 }
 
+// 2206. Divide Array Into Equal Pairs
+// You are given an integer array nums consisting of 2 * n integers.
+
+// You need to divide nums into n pairs such that:
+
+// Each element belongs to exactly one pair.
+// The elements present in a pair are equal.
+// Return true if nums can be divided into n pairs, otherwise return false.
+function divideArray(nums) {
+  const sortedNums = nums.sort();
+
+  for (let i = 0; i < sortedNums.length; i += 2) {
+    const currElement = sortedNums[i];
+    const forwardElement = sortedNums[i + 1];
+    if (currElement !== forwardElement) return false;
+  }
+
+  return true;
+}
+
 console.log(
   // ***********************
-  mostFrequent([1, 100, 200, 1, 100], 1)
+  divideArray([3, 2, 3, 2, 3, 2])
   // ***********************
 );
