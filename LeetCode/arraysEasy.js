@@ -2145,8 +2145,28 @@ function divideArray(nums) {
   return true;
 }
 
+// 1550. Three Consecutive Odds
+// Given an integer array arr, return true if there are three consecutive
+// odd numbers in the array. Otherwise, return false.
+function threeConsecutiveOdds(arr) {
+  //
+  for (let i = 0; i < arr.length - 2; i++) {
+    if (allThreeAreOdd(arr[i], arr[i + 1], arr[i + 2])) return true;
+  }
+
+  return false;
+
+  function isOdd(num) {
+    return num % 2 !== 0;
+  }
+
+  function allThreeAreOdd(num1, num2, num3) {
+    return isOdd(num1) && isOdd(num2) && isOdd(num3);
+  }
+}
+
 console.log(
   // ***********************
-  divideArray([3, 2, 3, 2, 3, 2])
+  threeConsecutiveOdds([2, 6, 4, 1, 1, 1])
   // ***********************
 );

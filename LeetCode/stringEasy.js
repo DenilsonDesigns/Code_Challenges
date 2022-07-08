@@ -1506,8 +1506,63 @@ function countAsterisks(s) {
   }
 }
 
+// 2124. Check if All A's Appears Before All B's
+// Given a string s consisting of only the characters 'a' and 'b',
+// return true if every 'a' appears before every 'b' in the string.
+// Otherwise, return false.
+function checkString(s) {
+  let maxA = -Infinity;
+  let minB = false;
+
+  for (let i = 0; i < s.length; i++) {
+    const char = s[i];
+
+    if (char === "a") maxA = i;
+    if (char === "b" && minB === false) minB = i;
+  }
+
+  return minB !== false ? minB > maxA : true;
+}
+
+// 2068. Check Whether Two Strings are Almost Equivalent
+// Two strings word1 and word2 are considered almost equivalent if
+// the differences between the frequencies of each letter from 'a'
+// to 'z' between word1 and word2 is at most 3.
+
+// Given two strings word1 and word2, each of length n, return true
+// if word1 and word2 are almost equivalent, or false otherwise.
+
+// The frequency of a letter x is the number of times it occurs in the string.
+function checkAlmostEquivalent(word1, word2) {
+  const wordMap1 = createWordMap(word1);
+  const wordMap2 = createWordMap(word2);
+  const word1Chars = word1.split("");
+  const word2Chars = word2.split("");
+
+  for (const [k, v] of Object.entries(wordMap1)) {
+    if (!word2Chars.includes(k) && v >= 4) return false;
+  }
+
+  for (const [k, v] of Object.entries(wordMap2)) {
+    if (!word1Chars.includes(k) && v >= 4) return false;
+    if (Math.max(v, wordMap1[k]) - Math.min(v, wordMap1[k]) >= 4) return false;
+  }
+
+  return true;
+
+  function createWordMap(word) {
+    const wordMap = {};
+
+    word.split("").forEach((el) => {
+      wordMap[el] ? wordMap[el]++ : (wordMap[el] = 1);
+    });
+
+    return wordMap;
+  }
+}
+
 console.log(
   // **********************
-  countAsterisks("l|*e*et|c**o|*de|")
+  checkAlmostEquivalent("aaaaaa", "abccb")
   // **********************
 );
