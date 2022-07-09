@@ -51,4 +51,84 @@ function findLonely(nums) {
   });
 }
 
-console.log(findLonely([10, 6, 5, 8]));
+// 2284. Sender With Largest Word Count
+// You have a chat log of n messages. You are given two string arrays messages and
+// senders where messages[i] is a message sent by senders[i].
+
+// A message is list of words that are separated by a single space with no leading
+// or trailing spaces. The word count of a sender is the total number of words sent
+// by the sender. Note that a sender may send more than one message.
+
+// Return the sender with the largest word count. If there is more than one sender
+// with the largest word count, return the one with the lexicographically largest name.
+function largestWordCount(messages, senders) {
+  const userWordCount = {};
+  let currWinningUser = "";
+  let currWinningCount = 0;
+
+  for (let i = 0; i < messages.length; i++) {
+    const messageWordCount = messages[i].split(" ").length;
+    const sender = senders[i];
+
+    userWordCount[sender]
+      ? (userWordCount[sender] += messageWordCount)
+      : (userWordCount[sender] = messageWordCount);
+  }
+
+  for (const [k, v] of Object.entries(userWordCount)) {
+    if (v > currWinningCount) {
+      currWinningUser = k;
+      currWinningCount = v;
+      continue;
+    }
+
+    if (v === currWinningCount && k > currWinningUser) {
+      currWinningUser = k;
+    }
+  }
+
+  return currWinningUser;
+}
+
+console.log(
+  // ***
+  largestWordCount(
+    [
+      "tP x M VC h lmD",
+      "D X XF w V",
+      "sh m Pgl",
+      "pN pa",
+      "C SL m G Pn v",
+      "K z UL B W ee",
+      "Yf yo n V U Za f np",
+      "j J sk f qr e v t",
+      "L Q cJ c J Z jp E",
+      "Be a aO",
+      "nI c Gb k Y C QS N",
+      "Yi Bts",
+      "gp No g s VR",
+      "py A S sNf",
+      "ZS H Bi De dj dsh",
+      "ep MA KI Q Ou",
+    ],
+    [
+      "OXlq",
+      "IFGaW",
+      "XQPeWJRszU",
+      "Gb",
+      "HArIr",
+      "Gb",
+      "FnZd",
+      "FnZd",
+      "HArIr",
+      "OXlq",
+      "IFGaW",
+      "XQPeWJRszU",
+      "EMoUs",
+      "Gb",
+      "EMoUs",
+      "EMoUs",
+    ]
+  )
+  // ***
+);

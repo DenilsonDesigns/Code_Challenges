@@ -172,9 +172,34 @@ function isPowerOfThree(n) {
   return n === 1;
 }
 
+// 2180. Count Integers With Even Digit Sum
+// Given a positive integer num, return the number of positive integers less
+// than or equal to num whose digit sums are even.
+
+// The digit sum of a positive integer is the sum of all its digits.
+function countEven(num) {
+  let count = 0;
+
+  for (let i = 1; i <= num; i++) {
+    if (numIsEven(calcDigitSum(i))) count++;
+  }
+
+  return count;
+
+  function calcDigitSum(num) {
+    return (num + "")
+      .split("")
+      .map((el) => +el)
+      .reduce((acc, el) => acc + el, 0);
+  }
+
+  function numIsEven(num) {
+    return num % 2 === 0;
+  }
+}
+
 console.log(
   // ***********
-  isPowerOfThree(16),
-  isPowerOfThree(27)
+  countEven(30)
   // ***********
 );
