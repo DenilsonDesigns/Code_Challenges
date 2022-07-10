@@ -136,4 +136,36 @@ function discountPrices(sentence, discount) {
   }
 }
 
-console.log(discountPrices("1 2 $3 4 $5 $6 7 8$ $9 $10$", 100));
+// 3. Longest Substring Without Repeating Characters
+// Given a string s, find the length of the longest substring without
+// repeating characters.
+function lengthOfLongestSubstring(s) {
+  let currLongest = 0;
+
+  let leftIdx = 0;
+  let rightIdx = 1;
+
+  while (rightIdx <= s.length) {
+    const currSubstring = s.substring(leftIdx, rightIdx);
+    if (allCharsUnique(currSubstring)) {
+      currLongest = currSubstring.length;
+      rightIdx++;
+      continue;
+    }
+
+    leftIdx++;
+    rightIdx = leftIdx + currLongest;
+  }
+
+  return currLongest;
+
+  function allCharsUnique(subString) {
+    return new Set(subString.split("")).size === subString.length;
+  }
+}
+
+console.log(
+  // ***
+  lengthOfLongestSubstring("a")
+  // ***
+);
