@@ -2193,8 +2193,64 @@ function sortEvenOdd(nums) {
   return r;
 }
 
+// 14. Longest Common Prefix
+// Write a function to find the longest common prefix string
+// amongst an array of strings.
+
+// If there is no common prefix, return an empty string "".
+function longestCommonPrefix(strs) {
+  if (strs.length === 1) return strs[0];
+
+  let r = "";
+
+  for (let i = 0; i < strs[0].length; i++) {
+    const checkingChar = strs[0][i];
+    const res = strs.every((el) => el[i] === checkingChar);
+    if (res) {
+      r += checkingChar;
+    } else {
+      break;
+    }
+  }
+
+  return r;
+}
+
+// 350. Intersection of Two Arrays II
+// Given two integer arrays nums1 and nums2, return an array of
+// their intersection. Each element in the result must appear as
+// many times as it shows in both arrays and you may return the
+// result in any order.
+function intersect(nums1, nums2) {
+  const numMap1 = makeNumFreqMap(nums1);
+  const numMap2 = makeNumFreqMap(nums2);
+
+  const r = [];
+
+  for (const k in numMap1) {
+    if (!numMap2[k]) continue;
+    else {
+      const val = +k;
+      const numTimes = Math.min(numMap1[k], numMap2[k]);
+      for (let i = 0; i < numTimes; i++) r.push(val);
+    }
+  }
+
+  return r;
+
+  function makeNumFreqMap(numArr) {
+    const retMap = {};
+
+    numArr.forEach((num) => {
+      retMap[num] ? retMap[num]++ : (retMap[num] = 1);
+    });
+
+    return retMap;
+  }
+}
+
 console.log(
   // ***********************
-  sortEvenOdd([8])
+  intersect([4, 9, 5], [9, 4, 9, 8, 4])
   // ***********************
 );
