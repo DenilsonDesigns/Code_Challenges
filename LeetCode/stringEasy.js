@@ -1561,8 +1561,35 @@ function checkAlmostEquivalent(word1, word2) {
   }
 }
 
+// 1408. String Matching in an Array
+// Given an array of string words. Return all strings in words which
+// is substring of another word in any order.
+
+// String words[i] is substring of words[j], if can be obtained
+// removing some characters to left and/or right side of words[j].
+function stringMatching(words) {
+  const r = [];
+
+  words.forEach((word) => {
+    if (isSubstringOf(word, words)) r.push(word);
+  });
+
+  return r;
+
+  function isSubstringOf(needle, haystacks) {
+    for (let i = 0; i < haystacks.length; i++) {
+      const stack = haystacks[i];
+
+      if (stack.indexOf(needle) !== -1 && needle.length < stack.length)
+        return true;
+    }
+
+    return false;
+  }
+}
+
 console.log(
   // **********************
-  checkAlmostEquivalent("aaaaaa", "abccb")
+  stringMatching(["leetcode", "et", "code"])
   // **********************
 );
