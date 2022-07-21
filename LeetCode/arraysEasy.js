@@ -1,5 +1,3 @@
-const { el } = require("date-fns/locale");
-
 // 26. Remove Duplicates from Sorted Array
 function removeDuplicates(nums) {
   if (nums.length == 0) return 0;
@@ -2249,8 +2247,83 @@ function intersect(nums1, nums2) {
   }
 }
 
+// 1331. Rank Transform of an Array
+// Given an array of integers arr, replace each element with its rank.
+
+// The rank represents how large the element is. The rank has the
+// following rules:
+
+// Rank is an integer starting from 1.
+// The larger the element, the larger the rank. If two elements are equal,
+// their rank must be the same.
+// Rank should be as small as possible.
+
+function arrayRankTransform(arr) {
+  // make sorted copy first;
+  const sortedArr = [...new Set(arr)].sort((a, b) => a - b);
+
+  console.log("sortedArr: ", sortedArr);
+  console.log("originalArr: ", arr);
+  // make rank map.
+
+  const rankMap = {};
+
+  sortedArr.forEach((el, i) => {
+    !rankMap[el] ? (rankMap[el] = i) : null;
+  });
+
+  return arr.map((el) => rankMap[el] + 1);
+
+  // return rankMap;
+}
+
+// 1399. Count Largest Group
+// You are given an integer n.
+
+// Each number from 1 to n is grouped according to the sum of its digits.
+
+// Return the number of groups that have the largest size.
+function countLargestGroup(n) {
+  const numMap = makeNumMap(n);
+  console.log("nummap", numMap);
+
+  let currLongestLength = 0;
+  let currLongestCount = 0;
+
+  for (const k in numMap) {
+    if (numMap[k].length > currLongestLength) {
+      currLongestCount = 0;
+      currLongestLength = numMap[k].length;
+    }
+
+    if (numMap[k].length === currLongestLength) {
+      currLongestCount++;
+    }
+  }
+
+  return currLongestCount;
+
+  function makeNumMap(n) {
+    const numMap = {};
+
+    for (let i = 1; i <= n; i++) {
+      const sumOfDigits = getSumOfDigits(i);
+
+      numMap[sumOfDigits]
+        ? numMap[sumOfDigits].push(i)
+        : (numMap[sumOfDigits] = [i]);
+    }
+
+    return numMap;
+  }
+
+  function getSumOfDigits(num) {
+    return (num + "").split("").reduce((acc, el) => acc + +el, 0);
+  }
+}
+
 console.log(
   // ***********************
-  intersect([4, 9, 5], [9, 4, 9, 8, 4])
+  countLargestGroup(24)
   // ***********************
 );

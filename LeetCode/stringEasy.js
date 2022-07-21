@@ -1588,8 +1588,66 @@ function stringMatching(words) {
   }
 }
 
+// 1417. Reformat The String
+// You are given an alphanumeric string s. (Alphanumeric string
+// is a string consisting of lowercase English letters and digits).
+
+// You have to find a permutation of the string where no letter is followed
+// by another letter and no digit is followed by another digit. That is,
+// no two adjacent characters have the same type.
+
+// Return the reformatted string or return an empty string if it is
+// impossible to reformat the string.
+function reformat(s) {
+  // split `s` into two arrays, one for letters, one for nums.
+  const nums = [];
+  const letters = [];
+
+  s.split("").forEach((el) => {
+    if (isCharDigit(el)) {
+      nums.push(el);
+    } else {
+      letters.push(el);
+    }
+  });
+
+  // check if one is more than 2 digits longer than other.
+  // if yes, return "";
+  const diffInLength =
+    Math.max(nums.length, letters.length) -
+    Math.min(nums.length, letters.length);
+
+  if (diffInLength > 1) {
+    return "";
+  }
+
+  // check which is longer, and pass it in first
+  if (nums.length > letters.length) {
+    return mergeTwoArraysPreservingOrder(nums, letters);
+  } else {
+    return mergeTwoArraysPreservingOrder(letters, nums);
+  }
+
+  function isCharDigit(n) {
+    return !!n.trim() && n > -1;
+  }
+
+  function mergeTwoArraysPreservingOrder(arr1, arr2) {
+    const r = [];
+    for (let i = 0; i < arr1.length; i++) {
+      const element1 = arr1[i];
+      const element2 = arr2[i];
+
+      if (element1) r.push(element1);
+      if (element2) r.push(element2);
+    }
+
+    return r;
+  }
+}
+
 console.log(
   // **********************
-  stringMatching(["leetcode", "et", "code"])
+  reformat("a0b1c22")
   // **********************
 );
