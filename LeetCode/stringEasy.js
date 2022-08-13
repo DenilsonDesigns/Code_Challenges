@@ -1599,7 +1599,6 @@ function stringMatching(words) {
 // Return the reformatted string or return an empty string if it is
 // impossible to reformat the string.
 function reformat(s) {
-  // split `s` into two arrays, one for letters, one for nums.
   const nums = [];
   const letters = [];
 
@@ -1611,8 +1610,6 @@ function reformat(s) {
     }
   });
 
-  // check if one is more than 2 digits longer than other.
-  // if yes, return "";
   const diffInLength =
     Math.max(nums.length, letters.length) -
     Math.min(nums.length, letters.length);
@@ -1621,7 +1618,6 @@ function reformat(s) {
     return "";
   }
 
-  // check which is longer, and pass it in first
   if (nums.length > letters.length) {
     return mergeTwoArraysPreservingOrder(nums, letters);
   } else {

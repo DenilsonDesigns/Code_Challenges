@@ -2322,8 +2322,45 @@ function countLargestGroup(n) {
   }
 }
 
+// 2341. Maximum Number of Pairs in Array
+// You are given a 0-indexed integer array nums. In one operation,
+// you may do the following:
+
+// Choose two integers in nums that are equal.
+// Remove both integers from nums, forming a pair.
+// The operation is done on nums as many times as possible.
+
+// Return a 0-indexed integer array answer of size 2 where answer[0]
+// is the number of pairs that are formed and answer[1] is the number
+// of leftover integers in nums after doing the operation as many times
+// as possible.
+function numberOfPairs(nums) {
+  const numMap = {};
+
+  nums.forEach((num) => {
+    numMap[num] ? numMap[num]++ : (numMap[num] = 1);
+  });
+
+  const r = [0, 0];
+
+  for (const [k, v] of Object.entries(numMap)) {
+    if (v % 2 !== 0) r[1]++;
+    if (v >= 2) {
+      r[0] += Math.floor(v / 2);
+    }
+  }
+
+  return r;
+}
+
 console.log(
   // ***********************
-  countLargestGroup(24)
+  numberOfPairs([
+    5, 12, 53, 22, 7, 59, 41, 54, 71, 24, 91, 74, 62, 47, 20, 14, 73, 11, 82, 2,
+    15, 38, 38, 20, 57, 70, 86, 93, 38, 75, 94, 19, 36, 40, 28, 6, 35, 86, 38,
+    94, 4, 90, 18, 87, 24, 22,
+  ]),
+  numberOfPairs([1, 3, 2, 1, 3, 2, 2])
+
   // ***********************
 );
