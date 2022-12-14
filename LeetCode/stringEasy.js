@@ -1642,8 +1642,29 @@ function reformat(s) {
   }
 }
 
+function equalFrequency(word) {
+  // check word.set === word.length
+  if (new Set(word.split("")).size === word.length) return true;
+
+  // make a map.
+  const wordMap = {};
+
+  word.split("").forEach((element) => {
+    wordMap[element] ? wordMap[element]++ : (wordMap[element] = 1);
+  });
+
+  const values = Object.values(wordMap);
+
+  // check that all except 1 item equal the same.
+  const samerVal = Math.max(...values) - 1;
+
+  return values.filter((el) => el === samerVal).length === word.length - 2;
+}
+
 console.log(
   // **********************
-  reformat("a0b1c22")
+  equalFrequency("cccaa"), // true,
+  equalFrequency("abc") // true,
+
   // **********************
 );
