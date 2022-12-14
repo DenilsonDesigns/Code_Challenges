@@ -1665,6 +1665,5 @@ console.log(
   // **********************
   equalFrequency("cccaa"), // true,
   equalFrequency("abc") // true,
-
   // **********************
 );

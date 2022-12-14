@@ -198,8 +198,18 @@ function countEven(num) {
   }
 }
 
+// 2413. Smallest Even Multiple
+// Given a positive integer n, return the smallest positive integer that is a multiple of both 2 and n.
+function smallestEvenMultiple(n) {
+  while (true) {
+    if (n % 2 == 0) return n;
+
+    n *= 2;
+  }
+}
+
 console.log(
   // ***********
-  countEven(30)
+  smallestEvenMultiple(31)
   // ***********
 );

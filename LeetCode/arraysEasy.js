@@ -2353,14 +2353,39 @@ function numberOfPairs(nums) {
   return r;
 }
 
+// 2500. Delete Greatest Value in Each Row
+// You are given an m x n matrix grid consisting of positive integers.
+
+// Perform the following operation until grid becomes empty:
+
+// Delete the element with the greatest value from each row. If multiple such elements exist, delete any of them.
+// Add the maximum of deleted elements to the answer.
+// Note that the number of columns decreases by one after each operation.
+
+// Return the answer after performing the operations described above.
+function deleteGreatestValue(grid) {
+  let r = 0;
+
+  while (grid[0].length > 0) {
+    let maxArr = [];
+
+    grid.forEach((row) => {
+      maxArr.push(row.sort((a, b) => a - b).pop());
+    });
+
+    r += Math.max(...maxArr);
+
+    maxArr = [];
+  }
+  return r;
+}
+
 console.log(
   // ***********************
-  numberOfPairs([
-    5, 12, 53, 22, 7, 59, 41, 54, 71, 24, 91, 74, 62, 47, 20, 14, 73, 11, 82, 2,
-    15, 38, 38, 20, 57, 70, 86, 93, 38, 75, 94, 19, 36, 40, 28, 6, 35, 86, 38,
-    94, 4, 90, 18, 87, 24, 22,
-  ]),
-  numberOfPairs([1, 3, 2, 1, 3, 2, 2])
+  deleteGreatestValue([
+    [1, 4, 2],
+    [3, 3, 1],
+  ])
 
   // ***********************
 );
