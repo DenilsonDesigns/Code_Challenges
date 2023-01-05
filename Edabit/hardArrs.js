@@ -561,9 +561,51 @@ function spaceApart(arr) {
   return r > 0 ? r : "invalid";
 }
 
+function textToNumberBinary(str) {
+  let r = "";
+
+  const words = str.split(" ");
+
+  const convertedNums = getBinaryConversionOfChunk(words);
+
+  const chunks = getChunkBySize(convertedNums, 8);
+
+  chunks.forEach((chunk) => {
+    if (chunk.length !== 8) return;
+    r += chunk;
+  });
+
+  return r;
+
+  function getChunkBySize(arr, chunkSize) {
+    const rChunks = [];
+
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      const chunk = arr.slice(i, i + chunkSize);
+      rChunks.push(chunk);
+    }
+
+    return rChunks;
+  }
+
+  function getBinaryConversionOfChunk(chunk) {
+    let rBin = "";
+
+    chunk.forEach((number) => {
+      number.toLowerCase() === "zero"
+        ? (rBin += "0")
+        : number.toLowerCase() === "one"
+        ? (rBin += "1")
+        : null;
+    });
+
+    return rBin;
+  }
+}
+
 console.log(
-  "final output: ",
   // ***
-  spaceApart([1, 0, 1, "1", 4, 3, 2, 3, 2, "1"])
+  // textToNumberBinary("zero one zero one zero one zero one"), // "01010101"
+  textToNumberBinary("zero one zero one zero two zero one one two") // "01010101"
   // ***
 );
