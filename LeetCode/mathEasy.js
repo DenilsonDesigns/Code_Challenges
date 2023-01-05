@@ -208,8 +208,25 @@ function smallestEvenMultiple(n) {
   }
 }
 
+// 2520. Count the Digits That Divide a Number
+// Given an integer num, return the number of digits in num that divide num.
+
+// An integer val divides nums if nums % val == 0.
+function countDigits(num) {
+  let r = 0;
+  const numArr = (num + "").split("").map((el) => +el);
+
+  numArr.forEach((numEl) => {
+    if (num % numEl === 0) r++;
+  });
+
+  return r;
+}
+
 console.log(
   // ***********
-  smallestEvenMultiple(31)
+  countDigits(7), // 1
+  countDigits(121), // 2
+  countDigits(1248) // 4
   // ***********
 );

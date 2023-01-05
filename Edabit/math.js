@@ -18,9 +18,19 @@ function oddishOrEvenish(num) {
     : "Oddish";
 }
 
+function doesBrickFit(a, b, c, w, h) {
+  const sortedBrickDimensions = [a, b, c].sort();
+  const sortedHoleDimensions = [w, h].sort();
+
+  return (
+    sortedBrickDimensions[0] <= sortedHoleDimensions[0] &&
+    sortedBrickDimensions[1] <= sortedHoleDimensions[1]
+  );
+}
+
 console.log(
   // ***
-  oddishOrEvenish(250), // oddish,
-  oddishOrEvenish(251) // evenish
+  doesBrickFit(1, 3, 1, 1, 1), // true,
+  doesBrickFit(1, 2, 2, 1, 1) // false
   // ***
 );
