@@ -238,10 +238,29 @@ function convertTemperature(celsius) {
   return [convertToKelvin(celsius), convertToFahrenheit(celsius)];
 }
 
+// 2529. Maximum Count of Positive Integer and Negative Integer
+// Given an array nums sorted in non-decreasing order, return the maximum
+// between the number of positive integers and the number of negative integers.
+
+// In other words, if the number of positive integers in nums is pos and the
+// number of negative integers is neg, then return the maximum of pos and neg.
+// Note that 0 is neither positive nor negative.
+function maximumCount(nums) {
+  let numPos = 0;
+  let numNeg = 0;
+
+  nums.forEach((num) => {
+    if (num > 0) numPos++;
+    if (num < 0) numNeg++;
+  });
+
+  return Math.max(numPos, numNeg);
+}
+
 console.log(
   // ***********
-  convertTemperature(36.5), // [309.65000,97.70000]
-  convertTemperature(122.11), // [395.26000,251.79800]
-  convertTemperature(97) // 4
+  maximumCount([-2, -1, -1, 1, 2, 3]), // 3
+  maximumCount([-3, -2, -1, 0, 0, 1, 2]), // 3
+  maximumCount([5, 20, 66, 1314]) // 4
   // ***********
 );

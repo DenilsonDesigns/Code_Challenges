@@ -2396,9 +2396,29 @@ function sortPeople(names, heights) {
   return sortedHeightsIdx.map((idx) => names[idx]);
 }
 
+// 2367. Number of Arithmetic Triplets
+// You are given a 0-indexed, strictly increasing integer array nums
+// and a positive integer diff. A triplet (i, j, k) is an arithmetic
+// triplet if the following conditions are met:
+function arithmeticTriplets(nums, diff) {
+  let r = 0;
+  const numMap = {};
+
+  nums.forEach((num) => {
+    numMap[num] = true;
+  });
+
+  nums.forEach((num) => {
+    if (numMap[num + diff] && numMap[num + diff * 2]) r++;
+  });
+
+  return r;
+  // return numMap;
+}
+
 console.log(
   // ***********************
-  sortPeople(["Mary", "John", "Emma"], [180, 165, 170])
+  arithmeticTriplets([0, 1, 4, 6, 7, 10], 3) // 2
 
   // ***********************
 );
