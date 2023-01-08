@@ -1661,9 +1661,73 @@ function equalFrequency(word) {
   return values.filter((el) => el === samerVal).length === word.length - 2;
 }
 
+// 2103. Rings and Rods
+// There are n rings and each ring is either red, green, or blue.
+// The rings are distributed across ten rods labeled from 0 to 9.
+
+// You are given a string rings of length 2n that describes the n
+// rings that are placed onto the rods. Every two characters
+// in rings forms a color-position pair that is used to describe
+// each ring where:
+
+// The first character of the ith pair denotes the ith ring's
+// color ('R', 'G', 'B'). The second character of the ith pair
+// denotes the rod that the ith ring is placed on ('0' to '9').
+// For example, "R3G2B1" describes n == 3 rings: a red ring placed onto
+// the rod labeled 3, a green ring placed onto the rod labeled 2,
+// and a blue ring placed onto the rod labeled 1.
+
+// Return the number of rods that have all three colors of rings on them.
+function countPoints(rings) {
+  let r = 0;
+  const ringMap = {};
+
+  for (let i = 0; i < rings.length; i += 2) {
+    const element = [rings[i], rings[i + 1]];
+    ringMap[element[1]]
+      ? ringMap[element[1]].push(element[0])
+      : (ringMap[element[1]] = [element[0]]);
+  }
+
+  Object.values(ringMap).forEach((element) => {
+    console.log(element);
+
+    if (new Set(element).size === 3) r++;
+  });
+
+  return r;
+}
+
+// 2325. Decode the Message
+// You are given the strings key and message, which represent a cipher key and
+// a secret message, respectively. The steps to decode message are as follows:
+
+// Use the first appearance of all 26 lowercase English letters in key as the order of the substitution table.
+// Align the substitution table with the regular English alphabet.
+// Each letter in message is then substituted using the table.
+// Spaces ' ' are transformed to themselves.
+function decodeMessage(key, message) {
+  const wordSet = [...new Set(key)].filter((char) => char !== " ");
+
+  const codeMap = {};
+  "abcdefghijklmnopqrstuvwxyz"
+    .split("")
+    .forEach((char, i) => (codeMap[wordSet[i]] = char));
+
+  return message
+    .split("")
+    .map((char) => {
+      return char !== " " ? codeMap[char] : " ";
+    })
+    .join("");
+}
+
 console.log(
   // **********************
-  equalFrequency("cccaa"), // true,
-  equalFrequency("abc") // true,
+  decodeMessage(
+    "the quick brown fox jumps over the lazy dog",
+    "vkbs bs t suepuv"
+  ) // 1,
+  // countPoints("B0R0G0R9R0B0G0") // 1,
   // **********************
 );

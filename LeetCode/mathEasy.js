@@ -223,10 +223,25 @@ function countDigits(num) {
   return r;
 }
 
+// 2469. Convert the Temperature
+// You are given a non-negative floating point number rounded to two
+// decimal places celsius, that denotes the temperature in Celsius.
+
+// You should convert Celsius into Kelvin and Fahrenheit and
+// return it as an array ans = [kelvin, fahrenheit].
+
+// Return the array ans. Answers within 10-5 of the actual answer will be accepted.
+function convertTemperature(celsius) {
+  const convertToKelvin = (temp) => temp + 273.15;
+  const convertToFahrenheit = (temp) => temp * 1.8 + 32.0;
+
+  return [convertToKelvin(celsius), convertToFahrenheit(celsius)];
+}
+
 console.log(
   // ***********
-  countDigits(7), // 1
-  countDigits(121), // 2
-  countDigits(1248) // 4
+  convertTemperature(36.5), // [309.65000,97.70000]
+  convertTemperature(122.11), // [395.26000,251.79800]
+  convertTemperature(97) // 4
   // ***********
 );

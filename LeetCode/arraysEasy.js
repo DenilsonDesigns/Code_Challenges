@@ -2380,12 +2380,25 @@ function deleteGreatestValue(grid) {
   return r;
 }
 
+// 2418. Sort the People
+// You are given an array of strings names, and an array heights
+// that consists of distinct positive integers. Both arrays are of length n.
+
+// For each index i, names[i] and heights[i] denote the name and height
+// of the ith person.
+
+// Return names sorted in descending order by the people's heights.
+function sortPeople(names, heights) {
+  const sortedHeightsIdx = Array.from(Array(heights.length).keys()).sort(
+    (a, b) => (heights[b] < heights[a] ? -1 : (heights[a] < heights[b]) | 0)
+  );
+
+  return sortedHeightsIdx.map((idx) => names[idx]);
+}
+
 console.log(
   // ***********************
-  deleteGreatestValue([
-    [1, 4, 2],
-    [3, 3, 1],
-  ])
+  sortPeople(["Mary", "John", "Emma"], [180, 165, 170])
 
   // ***********************
 );
