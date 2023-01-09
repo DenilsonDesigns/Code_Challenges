@@ -90,9 +90,34 @@ function largestWordCount(messages, senders) {
   return currWinningUser;
 }
 
+// 442. Find All Duplicates in an Array
+
+// Given an integer array nums of length n where all the integers of nums are in the range [1, n]
+// and each integer appears once or twice, return an array of all the integers that appears twice.
+
+// You must write an algorithm that runs in O(n) time and uses only constant extra space.
+function findDuplicates(nums) {
+  const r = [];
+
+  const numMap = {};
+
+  nums.forEach((num) => {
+    if (numMap[num] === 1) {
+      r.push(num);
+      numMap[num] = 2;
+    }
+
+    if (!numMap[num]) {
+      numMap[num] = 1;
+    }
+  });
+
+  return r;
+}
+
 console.log(
   // ***
-  largestWordCount([1, 13, 10, 12, 31]),
-  largestWordCount([2, 2, 2])
+  findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]), // [2, 3]
+  findDuplicates([1, 1, 2]) // [1]
   // ***
 );

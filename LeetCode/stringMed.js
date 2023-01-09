@@ -164,8 +164,27 @@ function lengthOfLongestSubstring(s) {
   }
 }
 
+// 2023. Number of Pairs of Strings With Concatenation Equal to Target
+// Given an array of digit strings nums and a digit string target,
+// return the number of pairs of indices (i, j) (where i != j) such that the concatenation
+// of nums[i] + nums[j] equals target.
+function numOfPairs(nums, target) {
+  let r = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    const element = nums[i];
+    for (let j = 0; j < nums.length; j++) {
+      const elementInside = nums[j];
+      if (j !== i && element + elementInside === target) r++;
+    }
+  }
+
+  return r;
+}
+
 console.log(
   // ***
-  lengthOfLongestSubstring("a")
+  numOfPairs(["777", "7", "77", "77"], "7777"), // 4
+  numOfPairs(["123", "4", "12", "34"], "1234") // 2
   // ***
 );

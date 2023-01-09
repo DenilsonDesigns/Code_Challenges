@@ -2416,9 +2416,38 @@ function arithmeticTriplets(nums, diff) {
   // return numMap;
 }
 
+// 2506. Count Pairs Of Similar Strings
+// You are given a 0-indexed string array words.
+
+// Two strings are similar if they consist of the same characters.
+
+// For example, "abca" and "cba" are similar since both consist of characters 'a', 'b', and 'c'.
+// However, "abacba" and "bcfd" are not similar since they do not consist of the same characters.
+// Return the number of pairs (i, j) such that 0 <= i < j <= word.length - 1 and the two strings
+// words[i] and words[j] are similar.
+function similarPairs(words) {
+  let r = 0;
+  for (let i = 0; i < words.length; i++) {
+    const element = sortSet(words[i]);
+    for (let j = i + 1; j < words.length; j++) {
+      const elementInside = sortSet(words[j]);
+      if (j !== i) {
+        if (element === elementInside) r++;
+      }
+    }
+  }
+
+  return r;
+
+  function sortSet(word) {
+    return [...new Set(word.split("").sort())].join("");
+  }
+}
+
 console.log(
   // ***********************
-  arithmeticTriplets([0, 1, 4, 6, 7, 10], 3) // 2
+  similarPairs(["aba", "aabb", "abcd", "bac", "aabc"]),
+  similarPairs(["aabb", "ab", "ba"])
 
   // ***********************
 );
