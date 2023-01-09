@@ -1722,12 +1722,60 @@ function decodeMessage(key, message) {
     .join("");
 }
 
+// 1694. Reformat Phone Number
+// You are given a phone number as a string number. number consists of digits, spaces ' ', and/or dashes '-'.
+
+// You would like to reformat the phone number in a certain manner. Firstly, remove all spaces and dashes.
+// Then, group the digits from left to right into blocks of length 3 until there are 4 or fewer digits.
+// The final digits are then grouped as follows:
+
+// 2 digits: A single block of length 2.
+// 3 digits: A single block of length 3.
+// 4 digits: Two blocks of length 2 each.
+// The blocks are then joined by dashes. Notice that the reformatting process should never
+// produce any blocks of length 1 and produce at most two blocks of length 2.
+
+// Return the phone number after formatting.
+function reformatNumber(number) {
+  const cleanedNumber = cleanNumber(number);
+
+  let rString = "";
+
+  let idx = 0;
+  while (cleanedNumber.length - idx > 4) {
+    rString += cleanedNumber.substring(idx, idx + 3) + "-";
+
+    idx = idx + 3;
+  }
+
+  rString += formatFourOrLess(cleanedNumber.substring(idx));
+
+  return rString;
+
+  function formatFourOrLess(digits) {
+    if (digits.length === 2) {
+      return digits;
+    }
+    if (digits.length === 3) {
+      return digits;
+    }
+    if (digits.length === 4) {
+      return `${digits[0]}${digits[1]}-${digits[2]}${digits[3]}`;
+    }
+  }
+
+  function cleanNumber(num) {
+    return num
+      .split("")
+      .filter((char) => !" -".includes(char))
+      .join("");
+  }
+}
+
 console.log(
   // **********************
-  decodeMessage(
-    "the quick brown fox jumps over the lazy dog",
-    "vkbs bs t suepuv"
-  ) // 1,
-  // countPoints("B0R0G0R9R0B0G0") // 1,
+  reformatNumber("1-23-45 6"), // "123-456"
+  reformatNumber("123 4-567"), // "123-45-67"
+  reformatNumber("123 4-5678") // "123-456-78"
   // **********************
 );
