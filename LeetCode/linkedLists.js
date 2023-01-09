@@ -59,7 +59,26 @@ function middleNode(head) {
   return p1;
 }
 
+// 206. Reverse Linked List
+// Given the head of a singly linked list, reverse the list, and return the reversed list.
+function reverseList(head) {
+  printLinkedList(head);
+
+  let previous = null;
+  let current = head;
+  let next;
+
+  while (current !== null) {
+    next = current.next;
+    current.next = previous;
+    previous = current;
+    current = next;
+  }
+
+  return previous;
+}
+
 // setup:
 const head = initializeLinkListFromArray([1, 2, 3, 4, 5]);
 // to print:
-printLinkedList(middleNode(head));
+printLinkedList(reverseList(head));
