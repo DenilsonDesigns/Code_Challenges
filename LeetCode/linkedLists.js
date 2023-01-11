@@ -6,7 +6,7 @@ class ListNode {
   }
 }
 
-const initializeLinkListFromArray = (array) => {
+const initializeLinkedListFromArray = (array) => {
   if (array.length === 0) {
     return [];
   }
@@ -105,8 +105,48 @@ function mergeTwoLists(list1, list2) {
   return head.next;
 }
 
+// 234. Palindrome Linked List
+function isPalindrome(head) {
+  // find the middle of the linked list:
+  let slow = head;
+  let fast = head;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  // Reverse the second half of the linked list:
+  let prev = null;
+  let curr = slow;
+  while (curr) {
+    let next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+  }
+
+  // Compare the first half of the linked list to the reversed second half:
+  let p1 = head;
+  let p2 = prev;
+  while (p2) {
+    if (p1.val !== p2.val) return false;
+    p1 = p1.next;
+    p2 = p2.next;
+  }
+
+  return true;
+
+  console.log("prev:");
+  printLinkedList(prev);
+  console.log("curr:");
+  printLinkedList(curr);
+}
+
 // setup:
-const head1 = initializeLinkListFromArray([1, 5, 6]);
-const head2 = initializeLinkListFromArray([2, 3, 4, 7]);
+const head = initializeLinkedListFromArray([1, 5, 5, 1]);
 // to print:
-printLinkedList(mergeTwoLists(head1, head2));
+console.log(
+  //*** */
+  isPalindrome(head)
+  //*** */
+);
