@@ -263,7 +263,6 @@ function maximumCount(nums) {
 
 // Return the positive integer k. If there is no such integer, return -1.
 function findMaxK(nums) {
-  // make hashMap
   const numMap = {};
 
   nums.forEach((num) => {
