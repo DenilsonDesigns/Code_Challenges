@@ -257,10 +257,32 @@ function maximumCount(nums) {
   return Math.max(numPos, numNeg);
 }
 
+// 2441. Largest Positive Integer That Exists With Its Negative
+// Given an integer array nums that does not contain any zeros, find the largest positive
+// integer k such that -k also exists in the array.
+
+// Return the positive integer k. If there is no such integer, return -1.
+function findMaxK(nums) {
+  // make hashMap
+  const numMap = {};
+
+  nums.forEach((num) => {
+    numMap[num] = true;
+  });
+
+  let r = -1;
+
+  nums.forEach((num) => {
+    if (numMap[`-${num}`] && num > r) r = num;
+  });
+
+  return r;
+}
+
 console.log(
   // ***********
-  maximumCount([-2, -1, -1, 1, 2, 3]), // 3
-  maximumCount([-3, -2, -1, 0, 0, 1, 2]), // 3
-  maximumCount([5, 20, 66, 1314]) // 4
+  findMaxK([-1, 2, -3, 3]), // 3
+  findMaxK([-1, 10, 6, 7, -7, 1]), // 7
+  findMaxK([-10, 8, 6, 7, -2, -3]) // -1
   // ***********
 );
