@@ -278,10 +278,27 @@ function findMaxK(nums) {
   return r;
 }
 
+// 2544. Alternating Digit Sum
+// You are given a positive integer n. Each digit of n has a sign according to the following rules:
+
+// The most significant digit is assigned a positive sign.
+// Each other digit has an opposite sign to its adjacent digits.
+// Return the sum of all digits with their corresponding sign.
+function alternateDigitSum(n) {
+  const splitNum = (n + "").split("");
+
+  const r = splitNum.reduce(
+    (acc, el, i) => (i % 2 === 0 ? acc + +el : acc + -el),
+    0
+  );
+
+  return r;
+}
+
 console.log(
   // ***********
-  findMaxK([-1, 2, -3, 3]), // 3
-  findMaxK([-1, 10, 6, 7, -7, 1]), // 7
-  findMaxK([-10, 8, 6, 7, -2, -3]) // -1
+  alternateDigitSum(521), // 4
+  alternateDigitSum(111), // 1
+  alternateDigitSum(886996) // 0
   // ***********
 );
