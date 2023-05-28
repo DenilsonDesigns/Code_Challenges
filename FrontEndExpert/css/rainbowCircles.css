@@ -1,0 +1,30 @@
+#outer {
+  width: 250px;
+  height: 250px;
+  background-color: #ffa500;
+  border-radius: 50%;
+  position: relative;
+  border: solid 25px #ff0000;
+}
+
+#middle {
+  width: 150px;
+  height: 150px;
+  background-color: #008000;
+  border-radius: 50%;
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  border: solid 25px #ffff00;
+}
+
+#inner {
+  width: 50px;
+  height: 50px;
+  background-color: #800080;
+  border-radius: 50%;
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  border: solid 25px #0000ff;
+}
