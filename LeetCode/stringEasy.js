@@ -1772,10 +1772,40 @@ function reformatNumber(number) {
   }
 }
 
+// 2696. Minimum String Length After Removing Substrings
+// https://leetcode.com/problems/minimum-string-length-after-removing-substrings/
+function minLength(s) {
+  // return s.split("CD");
+
+  let currWord = s;
+
+  while (true) {
+    const newWord = currWord.split("AB").join("").split("CD").join("");
+    if (newWord.length === currWord.length) return currWord.length;
+    else currWord = newWord;
+  }
+}
+
+// 2710. Remove Trailing Zeros From a String
+// https://leetcode.com/problems/remove-trailing-zeros-from-a-string/
+function removeTrailingZeros(num) {
+  let i = num.length - 1;
+
+  while (num[i] === "0" && i > 0) {
+    i--;
+  }
+
+  return num.slice(0, i + 1);
+}
+
+// 2678. Number of Senior Citizens
+// https://leetcode.com/problems/number-of-senior-citizens/
+function countSeniors(details) {
+  return details.filter((detail) => +(detail[11] + detail[12]) > 60).length;
+}
+
 console.log(
   // **********************
-  reformatNumber("1-23-45 6"), // "123-456"
-  reformatNumber("123 4-567"), // "123-45-67"
-  reformatNumber("123 4-5678") // "123-456-78"
+  countSeniors(["7868190130M7522", "5303914400F9211", "9273338290F4010"]) // 2
   // **********************
 );

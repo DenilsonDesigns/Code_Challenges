@@ -2481,9 +2481,42 @@ function separateDigits(nums) {
     .flat();
 }
 
+// 2706. Buy Two Chocolates
+// https://leetcode.com/problems/buy-two-chocolates/
+function buyChoco(prices, money) {
+  // sort asc
+  prices.sort((a, b) => a - b);
+
+  console.log(prices);
+
+  const priceOfFirst2 = prices[0] + prices[1];
+
+  if (priceOfFirst2 > money) return money;
+
+  return money - priceOfFirst2;
+}
+
+// 2652. Sum Multiples
+// https://leetcode.com/problems/sum-multiples/
+function sumOfMultiples(n) {
+  function isMod(number) {
+    if (number % 3 === 0) return true;
+    if (number % 5 === 0) return true;
+    if (number % 7 === 0) return true;
+    return false;
+  }
+
+  let r = 0;
+
+  for (let i = 1; i <= n; i++) {
+    if (isMod(i)) r += i;
+  }
+
+  return r;
+}
+
 console.log(
   // ***********************
-  separateDigits([13, 25, 83, 77]), // [1,3,2,5,8,3,7,7]
-  separateDigits([25, 13, 77, 88]) // [2, 5, 1, 3, 7, 7, 8, 8]
+  sumOfMultiples(7) // 21
   // ***********************
 );
