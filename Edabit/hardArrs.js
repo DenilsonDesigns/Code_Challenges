@@ -603,9 +603,60 @@ function textToNumberBinary(str) {
   }
 }
 
+// Gold Distribution
+// https://edabit.com/challenge/XayqZJQQ5oJJGZSqc
+function goldDistribution(gold) {
+  let mubashirsPile = 0;
+  let mattsPile = 0;
+
+  let leftIdx = 0;
+  let rightIdx = gold.length - 1;
+
+  let mubashirsTurn = true;
+  while (leftIdx <= rightIdx) {
+    if (gold[leftIdx] >= gold[rightIdx]) {
+      if (mubashirsTurn) {
+        mubashirsPile += gold[leftIdx];
+      } else {
+        mattsPile += gold[leftIdx];
+      }
+      mubashirsTurn = !mubashirsTurn;
+      leftIdx++;
+      continue;
+    } else {
+      if (mubashirsTurn) {
+        mubashirsPile += gold[rightIdx];
+      } else {
+        mattsPile += gold[rightIdx];
+      }
+      mubashirsTurn = !mubashirsTurn;
+      rightIdx--;
+      continue;
+    }
+  }
+
+  return [mubashirsPile, mattsPile];
+}
+
+// Positives and Negatives
+// https://edabit.com/challenge/SZnDZpQeBwhGXMBPW
+function alternatePosNeg(arr) {
+  function areSameSign(num1, num2) {
+    return (num1 >= 0 && num2 >= 0) || (num1 < 0 && num2 < 0);
+  }
+
+  for (let i = 1; i < arr.length; i++) {
+    const currElement = arr[i];
+    const prevElement = arr[i - 1];
+    if (currElement === 0) return false;
+    if (areSameSign(currElement, prevElement)) return false;
+  }
+
+  return true;
+}
+
 console.log(
   // ***
-  // textToNumberBinary("zero one zero one zero one zero one"), // "01010101"
-  textToNumberBinary("zero one zero one zero two zero one one two") // "01010101"
+  alternatePosNeg([0]) // false
   // ***
 );
