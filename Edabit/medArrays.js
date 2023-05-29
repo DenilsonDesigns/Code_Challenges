@@ -1827,9 +1827,106 @@ function lonelyInteger(arr) {
   }
 }
 
+// Blackjack
+// https://edabit.com/challenge/QGHWExeW6neueusKP
+function overTwentyOne(cards) {
+  const faceCards = new Map();
+  faceCards.set("A", 11);
+  faceCards.set("K", 10);
+  faceCards.set("Q", 10);
+  faceCards.set("J", 10);
+
+  let val = 0;
+  let numAces = 0;
+
+  cards.forEach((card) => {
+    if (typeof card === "number") val += card;
+    if (card === "A") numAces++;
+    if (typeof card !== "number") val += faceCards.get(card);
+  });
+
+  if (val < 21) return false;
+  val -= numAces * 10;
+
+  return val > 21;
+
+  // way better:
+  // return cards.reduce((total, card) => {
+  //   if (['J', 'Q', 'K'].includes(card)) card = 10;
+  //   if (card === 'A') card = 1;
+  //   return total + card;
+  // }, 0) > 21;
+}
+
+// Combined Consecutive Sequence
+// https://edabit.com/challenge/HqWmsX885jpZqMkdL
+function consecutiveCombo(a1, a2) {
+  const combined = a1.concat(a2).sort((a, b) => a - b);
+
+  for (let i = 1; i < combined.length; i++) {
+    const element = combined[i];
+
+    if (element - 1 !== combined[i - 1]) return false;
+  }
+
+  return true;
+}
+
+function uniqueStyles(albums) {
+  const uniques = new Set();
+
+  albums.forEach((album) => {
+    album.split(",").forEach((splitAlbum) => uniques.add(splitAlbum));
+  });
+
+  return uniques.size;
+}
+
+function rotateString(str, position) {
+  const rotatedPart = str.slice(0, position);
+  const remainingPart = str.slice(position);
+  const rotatedString = remainingPart + rotatedPart;
+
+  return rotatedString;
+}
+
+function leftRotations(str) {
+  const rotations = [];
+
+  for (let i = 0; i < str.length; i++) {
+    rotations.push(rotateString(str, i));
+  }
+
+  return rotations;
+}
+
+function rightRotations(str) {
+  const rotations = [];
+
+  for (let i = str.length; i > 0; i--) {
+    rotations.push(rotateString(str, i));
+  }
+
+  return rotations;
+}
+
+function invert(s) {
+  function reverseCase(char) {
+    if (char === char.toUpperCase()) {
+      return char.toLowerCase();
+    } else {
+      return char.toUpperCase();
+    }
+  }
+  return s
+    .split("")
+    .map((el) => reverseCase(el))
+    .reverse()
+    .join("");
+}
+
 console.log(
-  "final output: ",
   //*********************
-  lonelyInteger([1, -1, 2, -2, 3])
+  invert("dLROW YM sI HsEt")
   // ********************
 );
