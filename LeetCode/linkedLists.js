@@ -142,11 +142,84 @@ function isPalindrome(head) {
   printLinkedList(curr);
 }
 
+// 2. Add Two Numbers
+// https://leetcode.com/problems/add-two-numbers/
+function addTwoNumbers(l1, l2) {
+  function reverseList(head) {
+    let previous = null;
+    let current = head;
+    let next;
+
+    while (current !== null) {
+      next = current.next;
+      current.next = previous;
+      previous = current;
+      current = next;
+    }
+
+    return previous;
+  }
+
+  function getIntegerFromLinkedList(originalList) {
+    let r = "";
+
+    let previous = null;
+    let current = originalList;
+    let next;
+
+    while (current !== null) {
+      next = current.next;
+      current.next = previous;
+      previous = current;
+      r += current.val + "";
+      current = next;
+    }
+    return +r;
+  }
+
+  const initializeLinkedListFromArray = (array) => {
+    if (array.length === 0) {
+      return [];
+    }
+
+    let head = new ListNode(array[0]);
+
+    let current = head;
+
+    for (let i = 1; i < array.length; i++) {
+      let newNode = new ListNode(array[i]);
+      current.next = newNode;
+      current = current.next;
+    }
+    return head;
+  };
+
+  const reversed1 = reverseList(l1);
+  const reversed2 = reverseList(l2);
+
+  const sumReversed1 = getIntegerFromLinkedList(reversed1);
+  const sumReversed2 = getIntegerFromLinkedList(reversed2);
+
+  const sumOf2Lists = sumReversed1 + sumReversed2;
+
+  const arrayToBeMadeIntoLL = (sumOf2Lists + "")
+    .split("")
+    .reverse()
+    .map((el) => +el);
+
+  return initializeLinkedListFromArray(arrayToBeMadeIntoLL);
+}
+
 // setup:
-const head = initializeLinkedListFromArray([1, 5, 5, 1]);
+const head1 = initializeLinkedListFromArray([
+  1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+]);
+const head2 = initializeLinkedListFromArray([5, 6, 4]);
+
 // to print:
 console.log(
   //*** */
-  isPalindrome(head)
+  printLinkedList(addTwoNumbers(head1, head2))
+  // addTwoNumbers(head1, head2)
   //*** */
 );
