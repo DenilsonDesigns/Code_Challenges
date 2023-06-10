@@ -2515,8 +2515,29 @@ function sumOfMultiples(n) {
   return r;
 }
 
+function islandPerimeter(grid) {
+  let r = 0;
+
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      const element = grid[i][j];
+      if (element) {
+        r += 4;
+        if (i > 0 && grid[i - 1][j]) {
+          r -= 2;
+        }
+        if (j > 0 && grid[i][j - 1]) {
+          r -= 2;
+        }
+      }
+    }
+  }
+
+  return r;
+}
+
 console.log(
   // ***********************
-  sumOfMultiples(7) // 21
+  islandPerimeter([[1]])
   // ***********************
 );
