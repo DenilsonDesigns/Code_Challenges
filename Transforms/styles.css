@@ -1,11 +1,40 @@
 .transform-box {
   width: 200px;
   height: 200px;
-  background-color: #ff0000;
-  margin: 50px;
-  transition: transform 0.3s ease;
+  background-color: red;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: move;
 }
 
-/* .transform-box:hover {
-  transform: translateX(150px) rotate(45deg) scale(1.5);
-} */
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: nwse-resize;
+}
+
+.top-left {
+  left: -5px;
+  top: -5px;
+}
+
+.top-right {
+  right: -5px;
+  top: -5px;
+}
+
+.bottom-left {
+  left: -5px;
+  bottom: -5px;
+}
+
+.bottom-right {
+  right: -5px;
+  bottom: -5px;
+}
