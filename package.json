@@ -5,11 +5,13 @@
   "main": "sandbox.js",
   "dependencies": {
     "http-server": "^14.1.1",
+    "jest": "^29.5.0",
     "nodemon": "^2.0.20"
   },
   "scripts": {
     "dev": "nodemon",
-    "http": "http-server"
+    "http": "http-server",
+    "test": "jest --watchAll --noStackTrace"
   },
   "repository": {
     "type": "git",
