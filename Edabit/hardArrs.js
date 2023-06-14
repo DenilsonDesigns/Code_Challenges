@@ -655,8 +655,58 @@ function alternatePosNeg(arr) {
   return true;
 }
 
+// Layers in a Rug
+// https://edabit.com/challenge/8khL2WEhZ6M9onHL4
+function countLayers(rug) {
+  const middleIndex = Math.floor(rug.length / 2);
+  const middleLayer = rug[middleIndex];
+
+  let r = 1;
+
+  for (let i = 1; i < middleLayer.length; i++) {
+    if (middleLayer[i] !== middleLayer[i - 1]) r++;
+  }
+
+  return Math.ceil(r / 2);
+}
+
 console.log(
   // ***
-  alternatePosNeg([0]) // false
+  countLayers(["AAAA", "ABBA", "AAAA"]), // 2
+  countLayers([
+    "AAAAAAAAA",
+    "ABBBBBBBA",
+    "ABBAAABBA",
+    "ABBBBBBBA",
+    "AAAAAAAAA",
+  ]), // 3
+  countLayers([
+    "AAAAAAAAAAA",
+    "AABBBBBBBAA",
+    "AABCCCCCBAA",
+    "AABCAAACBAA",
+    "AABCADACBAA",
+    "AABCAAACBAA",
+    "AABCCCCCBAA",
+    "AABBBBBBBAA",
+    "AAAAAAAAAAA",
+  ]), // 5
+  countLayers([
+    "FFFFFFFFFFFFFFFFFFFFFFFFF",
+    "FFFFFFFFFFFFFFFFFFFFFFFFF",
+    "FFFFGGGGGGGGGGGGGGGGGFFFF",
+    "FFFFGGGAAAAAAAAAAAGGGFFFF",
+    "FFFFGGGAABBBBBBBAAGGGFFFF",
+    "FFFFGGGAABCCCCCBAAGGGFFFF",
+    "FFFFGGGAABCDDDCBAAGGGFFFF",
+    "FFFFGGGAABCDDDCBAAGGGFFFF",
+    "FFFFGGGAABCDDDCBAAGGGFFFF",
+    "FFFFGGGAABCCCCCBAAGGGFFFF",
+    "FFFFGGGAABBBBBBBAAGGGFFFF",
+    "FFFFGGGAAAAAAAAAAAGGGFFFF",
+    "FFFFGGGGGGGGGGGGGGGGGFFFF",
+    "FFFFFFFFFFFFFFFFFFFFFFFFF",
+    "FFFFFFFFFFFFFFFFFFFFFFFFF",
+  ]) // 6
   // ***
 );
