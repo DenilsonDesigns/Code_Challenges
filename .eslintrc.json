@@ -16,5 +16,8 @@
                 "Queue/*"
             ]
         }
+    ],
+    "ignorePatterns": [
+        "LeetCode/*"
     ]
 }

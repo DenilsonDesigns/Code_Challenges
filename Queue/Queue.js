@@ -1,7 +1,7 @@
-export class Queue {
-  constructor() {
+class Queue {
+  constructor(items) {
     // initialize elements using javascript array.
-    this.items = [];
+    this.items = items || [];
   }
 
   enQueue(element) {
@@ -34,7 +34,17 @@ export class Queue {
     return this.items.length;
   }
 
+  hasElementWithCoords(x, y) {
+    return this.items.some((item) => item.x === x && item.y === y);
+  }
+
+  getHead() {
+    return this.items[0];
+  }
+
   print() {
     console.log(this.items);
   }
 }
+
+export default Queue;
