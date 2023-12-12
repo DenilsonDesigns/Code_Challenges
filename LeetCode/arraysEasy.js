@@ -2549,8 +2549,13 @@ var findWordsContaining = function (words, x) {
   return r;
 };
 
+// 2798. Number of Employees Who Met the Target
+var numberOfEmployeesWhoMetTarget = function (hours, target) {
+  return hours.reduce((acc, el) => (el >= target ? acc + 1 : acc), 0);
+};
+
 console.log(
   // ***********************
-  findWordsContaining(["abc", "bcd", "aaaa", "cbc"], "a") // [0,2]
+  numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2) // [0,2]
   // ***********************
 );
