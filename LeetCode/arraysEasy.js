@@ -2536,8 +2536,21 @@ function islandPerimeter(grid) {
   return r;
 }
 
+// 2942. Find Words Containing Character
+var findWordsContaining = function (words, x) {
+  // Time: O(n * m), n: number of words, m: average length of words.
+  // Space: O(n), n: number of words, as all words could contain x,
+  // so potentially, O(n) is as large as words.
+  const r = [];
+  words.forEach((word, i) => {
+    if (word.includes(x)) r.push(i);
+  });
+
+  return r;
+};
+
 console.log(
   // ***********************
-  islandPerimeter([[1]])
+  findWordsContaining(["abc", "bcd", "aaaa", "cbc"], "a") // [0,2]
   // ***********************
 );
