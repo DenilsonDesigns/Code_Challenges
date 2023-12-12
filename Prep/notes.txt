@@ -1,0 +1,27 @@
+--- NOTES:
+    1hr technical interview over zoom. 
+    language agnostic, but use your fav lang, and have IDE setup to run (vscode/nodejs).
+    might even have a (html/js/css) project setup.
+    interview will show an example of something, or give you some kind of setup, then hand over to you.
+    interview has infinite scaling possibility.
+    can use docs, but describe what youre searching, try to know APIs already. 
+
+--- TODO:
+        SETUP:
+            1 generic node.js project/file
+            1 generic html/js/css project with liveserver
+            Make sure can debug both with debugger/breakpoints
+        STUDY:
+            Basic LeetCode revision (arrays, maps, etc)
+            Linked Lists
+            Graphs
+            Queues
+            Algos:
+                Sorting
+                Searching
+                Recursion
+                Graphs?
+            Recursion
+            Dynamic programming.
+            Big O notation, time/space complexity
+            
