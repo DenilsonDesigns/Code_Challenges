@@ -2554,8 +2554,40 @@ var numberOfEmployeesWhoMetTarget = function (hours, target) {
   return hours.reduce((acc, el) => (el >= target ? acc + 1 : acc), 0);
 };
 
+// 2574. Left and Right Sum Differences
+var leftRightDifference = function (nums) {
+  const leftSum = getLeftTotalArr(nums);
+  const rightSum = getRightTotalArr(nums);
+
+  return leftSum.map((el, idx) => {
+    return Math.abs(el - rightSum[idx]);
+  });
+
+  function getLeftTotalArr(arr) {
+    const leftTotal = [];
+    let currLeftTotal = 0;
+    for (let i = 0; i < arr.length; i++) {
+      const element = arr[i];
+      leftTotal.push(currLeftTotal);
+      currLeftTotal += element;
+    }
+    return leftTotal;
+  }
+
+  function getRightTotalArr(arr) {
+    const rightTotal = [];
+    let currRightTotal = 0;
+    for (let i = arr.length - 1; i >= 0; i--) {
+      const element = arr[i];
+      rightTotal.unshift(currRightTotal);
+      currRightTotal += element;
+    }
+    return rightTotal;
+  }
+};
+
 console.log(
   // ***********************
-  numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2) // [0,2]
+  leftRightDifference([10, 4, 8, 3]) // [15,1,11,22]
   // ***********************
 );

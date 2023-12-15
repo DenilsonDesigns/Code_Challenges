@@ -11,6 +11,7 @@
             1 generic node.js project/file
             1 generic html/js/css project with liveserver
             Make sure can debug both with debugger/breakpoints
+            Get some kind of basic linting going that will show undefined vars etc.
         STUDY:
             Basic LeetCode revision (arrays, maps, etc)
             Linked Lists
