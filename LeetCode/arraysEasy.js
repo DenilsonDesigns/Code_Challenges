@@ -2599,8 +2599,20 @@ var differenceOfSums = function (n, m) {
   return notDivisibleSum - divisbleSum;
 };
 
+// 2545. Sort the Students by Their Kth Score
+var sortTheStudents = function (score, k) {
+  return score.sort((a, b) => b[k] - a[k]);
+};
+
 console.log(
   // ***********************
-  differenceOfSums(10, 3) // 19
+  sortTheStudents(
+    [
+      [10, 6, 9, 1],
+      [7, 5, 11, 2],
+      [4, 8, 3, 15],
+    ],
+    2
+  ) // [[7,5,11,2],[10,6,9,1],[4,8,3,15]]
   // ***********************
 );
