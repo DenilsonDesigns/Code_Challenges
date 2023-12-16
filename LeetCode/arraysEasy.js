@@ -2626,6 +2626,9 @@ var findMatrix = function (nums) {
   return r;
 };
 
+// 2373. Largest Local Values in a Matrix
+var largestLocal = function (grid) {};
+
 console.log(
   // ***********************
   findMatrix([1, 3, 4, 1, 2, 3, 1])

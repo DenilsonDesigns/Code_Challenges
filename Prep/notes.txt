@@ -8,22 +8,21 @@
 
 --- TODO:
         SETUP:
-            1 generic node.js project/file
-            1 generic html/js/css project with liveserver
-            Make sure can debug both with debugger/breakpoints
-            Get some kind of basic linting going that will show undefined vars etc.
+            [] 1 generic node.js project/file
+            [] 1 generic html/js/css project with liveserver
+            [x] Make sure can debug both with debugger/breakpoints
+            [] Get some kind of basic linting going that will show undefined vars etc.
         STUDY:
-            Basic LeetCode revision (arrays, maps, etc)
-            Linked Lists
-            Graphs
-            Queues
+            [] Basic LeetCode revision (arrays, maps, etc)
+            [] Linked Lists
+            [] Queues
             Algos:
-                Sorting
-                Searching
-                Recursion
-                Graphs?
-            Recursion
-            Dynamic programming.
-            Big O notation, time/space complexity
-            Javascript promises.
+                [] Sorting
+                [] Searching
+                [] Recursion
+                [] Graphs? (last thing)
+            [] Recursion
+            [] Dynamic programming.
+            [] Big O notation, time/space complexity
+            [] Javascript promises.
             

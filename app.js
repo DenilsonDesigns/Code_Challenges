@@ -1,1 +1,1 @@
-require("./LeetCode/arraysEasy.js");
+require("./LeetCode/subArrays.js");

@@ -182,9 +182,26 @@ function numOfPairs(nums, target) {
   return r;
 }
 
+// 1910. Remove All Occurrences of a Substring
+var removeOccurrences = function (s, part) {
+  let prevWord = s;
+  let newWord = removePartsFromWord(prevWord, part);
+
+  while (prevWord.length > newWord.length) {
+    prevWord = newWord;
+
+    newWord = removePartsFromWord(prevWord, part);
+  }
+
+  return newWord;
+
+  function removePartsFromWord(word, part) {
+    return word.replace(part, "");
+  }
+};
+
 console.log(
   // ***
-  numOfPairs(["777", "7", "77", "77"], "7777"), // 4
-  numOfPairs(["123", "4", "12", "34"], "1234") // 2
+  removeOccurrences("aabababa", "aba") // 4
   // ***
 );
