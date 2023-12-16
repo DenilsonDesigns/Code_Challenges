@@ -25,4 +25,5 @@
             Recursion
             Dynamic programming.
             Big O notation, time/space complexity
+            Javascript promises.
             

@@ -2586,8 +2586,21 @@ var leftRightDifference = function (nums) {
   }
 };
 
+// 2894. Divisible and Non-divisible Sums Difference
+var differenceOfSums = function (n, m) {
+  let notDivisibleSum = 0;
+  let divisbleSum = 0;
+
+  for (let i = 1; i <= n; i++) {
+    if (i % m === 0) divisbleSum += i;
+    else notDivisibleSum += i;
+  }
+
+  return notDivisibleSum - divisbleSum;
+};
+
 console.log(
   // ***********************
-  leftRightDifference([10, 4, 8, 3]) // [15,1,11,22]
+  differenceOfSums(10, 3) // 19
   // ***********************
 );
