@@ -1,0 +1,1 @@
+require("./LeetCode/arraysEasy.js");

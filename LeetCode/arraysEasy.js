@@ -2604,15 +2604,30 @@ var sortTheStudents = function (score, k) {
   return score.sort((a, b) => b[k] - a[k]);
 };
 
+// 2610. Convert an Array Into a 2D Array With Conditions
+// Time and space may be as bad as O(n^2)
+var findMatrix = function (nums) {
+  const r = [[]];
+
+  for (let j = 0; j < nums.length; j++) {
+    let element = nums[j];
+    let found = false;
+
+    for (let i = 0; i < r.length; i++) {
+      if (!r[i].includes(element)) {
+        r[i].push(element);
+        found = true;
+        break;
+      }
+    }
+    if (!found) r.push([element]);
+  }
+
+  return r;
+};
+
 console.log(
   // ***********************
-  sortTheStudents(
-    [
-      [10, 6, 9, 1],
-      [7, 5, 11, 2],
-      [4, 8, 3, 15],
-    ],
-    2
-  ) // [[7,5,11,2],[10,6,9,1],[4,8,3,15]]
+  findMatrix([1, 3, 4, 1, 2, 3, 1])
   // ***********************
 );
