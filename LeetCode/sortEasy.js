@@ -39,8 +39,33 @@ var frequencySort = function (nums) {
   });
 };
 
+// 40. Single Element in a Sorted Array
+var singleNonDuplicate = function (nums) {
+  let low = 0;
+  let high = nums.length - 1;
+
+  while (low <= high) {
+    const mid = low + Math.floor((high - low) / 2);
+    const evenMid = mid - (mid % 2);
+    const needle = nums[evenMid];
+    const leftOfNeedle = nums[evenMid - 1];
+    const rightOfNeedle = nums[evenMid + 1];
+
+    if (needle === rightOfNeedle) {
+      low = mid + 1;
+      continue;
+    }
+    if (needle === leftOfNeedle) {
+      high = mid - 1;
+      continue;
+    }
+
+    return needle;
+  }
+};
+
 console.log(
   // ***
-  frequencySort([2, 3, 1, 3, 2])
+  singleNonDuplicate([3, 3, 7, 7, 10, 11, 11])
   // ***
 );
