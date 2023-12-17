@@ -15,8 +15,32 @@ var sortBy = function (arr, fn) {
   return arr.sort((a, b) => fn(a) - fn(b));
 };
 
+// 1636. Sort Array by Increasing Frequency
+var frequencySort = function (nums) {
+  const freqMap = new Map();
+
+  nums.forEach((element) => {
+    if (freqMap.has(element)) {
+      freqMap.set(element, freqMap.get(element) + 1);
+    } else {
+      freqMap.set(element, 1);
+    }
+  });
+
+  return nums.sort((a, b) => {
+    const freqA = freqMap.get(a);
+    const freqB = freqMap.get(b);
+
+    if (freqA === freqB) {
+      return b - a;
+    }
+
+    return freqA - freqB;
+  });
+};
+
 console.log(
   // ***
-  sortBy([5, 4, 1, 2, 3], (x) => x)
+  frequencySort([2, 3, 1, 3, 2])
   // ***
 );
