@@ -2626,11 +2626,23 @@ var findMatrix = function (nums) {
   return r;
 };
 
-// 2373. Largest Local Values in a Matrix
-var largestLocal = function (grid) {};
+// 2824. Count Pairs Whose Sum is Less than Target
+var countPairs = function (nums, target) {
+  const n = nums.length;
+
+  let r = 0;
+
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      if (nums[i] + nums[j] < target) r++;
+    }
+  }
+
+  return r;
+};
 
 console.log(
   // ***********************
-  findMatrix([1, 3, 4, 1, 2, 3, 1])
+  countPairs([-1, 1, 2, 3, 1], 2)
   // ***********************
 );
