@@ -17,7 +17,7 @@
             [] Linked Lists
             [] Queues
             Algos:
-                [] Sorting
+                [x] Sorting
                 [] Searching
                 [] Recursion
                 [] Graphs? (last thing)

@@ -64,8 +64,40 @@ var singleNonDuplicate = function (nums) {
   }
 };
 
+// 1122. Relative Sort Array
+var relativeSortArray = function (arr1, arr2) {
+  const orderMap = new Map();
+
+  arr2.forEach((element, index) => {
+    orderMap.set(element, index);
+  });
+
+  return arr1.sort((a, b) => {
+    const orderA = orderMap.get(a);
+    const orderB = orderMap.get(b);
+
+    // If both elements are in arr2, sort them based on their relative order
+    if (orderA !== undefined && orderB !== undefined) {
+      return orderA - orderB;
+    }
+
+    // If one element is in arr2 and the other is not, place the one in arr2 first
+    if (orderA !== undefined) {
+      return -1;
+    }
+
+    // If one element is in arr1 and not in arr2, place it last.
+    if (orderB !== undefined) {
+      return 1;
+    }
+
+    // If both elements are not in arr2, sort them in ascending order
+    return a - b;
+  });
+};
+
 console.log(
   // ***
-  singleNonDuplicate([3, 3, 7, 7, 10, 11, 11])
+  relativeSortArray([26, 21, 11, 20, 50, 34, 1, 18], [21, 11, 26, 20])
   // ***
 );
