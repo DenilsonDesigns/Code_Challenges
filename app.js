@@ -1,1 +1,2 @@
-require("./LeetCode/subArrays.js");
+// require("./Canva/canva.js");
+require("./LeetCode/arraysEasy.js");

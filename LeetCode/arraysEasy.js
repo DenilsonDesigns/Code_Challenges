@@ -2641,8 +2641,72 @@ var countPairs = function (nums, target) {
   return r;
 };
 
+// 704. Binary Search
+// var search = function (nums, target) {
+//   if (nums[0] === target) return 0;
+//   let left = 0;
+//   let right = nums.length - 1;
+
+//   while (left <= right) {
+//     const middleIdx = left + Math.floor((right - left) / 2);
+
+//     const currentElement = nums[middleIdx];
+
+//     if (currentElement === target) {
+//       return middleIdx;
+//     }
+//     if (currentElement < target) {
+//       left = middleIdx + 1;
+//       continue;
+//     }
+
+//     if (currentElement > target) {
+//       right = middleIdx - 1;
+//       continue;
+//     }
+//   }
+
+//   return -1;
+// };
+
+// 704. Binary Search
+var search = function (nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+
+  // left 5
+  // right 10
+
+  // 5/2 == 2;
+  // 7
+
+  while (left <= right) {
+    let middle = left + Math.floor((right - left) / 2);
+    let currentElement = nums[middle];
+
+    if (currentElement === target) {
+      return middle;
+    }
+
+    // currentElement smaller than target
+    // move left edge left to search left side.
+    if (currentElement < target) {
+      left = middle + 1;
+      continue;
+    }
+
+    // currentElement larget than target
+    // move right edge right to search right side.
+    if (currentElement > target) {
+      right = middle - 1;
+      continue;
+    }
+  }
+  return -1;
+};
+
 console.log(
   // ***********************
-  countPairs([-1, 1, 2, 3, 1], 2)
+  search([2, 5], 5) // 4 (index)
   // ***********************
 );

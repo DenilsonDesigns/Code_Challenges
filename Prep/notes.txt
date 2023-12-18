@@ -19,6 +19,7 @@
             Algos:
                 [x] Sorting
                 [] Searching
+                    [] Binary Search
                 [] Recursion
                 [] Graphs? (last thing)
             [] Recursion
