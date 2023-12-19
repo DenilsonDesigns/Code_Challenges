@@ -8,22 +8,27 @@
 
 --- TODO:
         SETUP:
-            [] 1 generic node.js project/file
-            [] 1 generic html/js/css project with liveserver
+            [x] 1 generic node.js project/file
+            [x] 1 generic html/js/css project with liveserver
             [x] Make sure can debug both with debugger/breakpoints
             [] Get some kind of basic linting going that will show undefined vars etc.
         STUDY:
             [] Basic LeetCode revision (arrays, maps, etc)
             [] Linked Lists
-            [] Queues
             Algos:
                 [x] Sorting
                 [] Searching
-                    [] Binary Search
+                    [x] Binary Search
                 [] Recursion
                 [] Graphs? (last thing)
             [] Recursion
+            [] Thread safety
             [] Dynamic programming.
-            [] Big O notation, time/space complexity
             [] Javascript promises.
+        FRONT END:
+            [] Clock kata
+            [] Stopwatch kata
+            [] Snake game kata
+                [] Queues
+            [] Drag n dropper
             
