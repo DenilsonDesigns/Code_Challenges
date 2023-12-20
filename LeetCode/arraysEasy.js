@@ -2705,8 +2705,27 @@ var search = function (nums, target) {
   return -1;
 };
 
+// 2810. Faulty Keyboard
+var finalString = function (s) {
+  // push char by char to an `r` string.
+  // if char comes up as 'i', reverse the existing r;
+  let r = [];
+
+  for (let idx = 0; idx < s.length; idx++) {
+    const element = s[idx];
+    if (element === "i") {
+      r = r.reverse();
+    } else {
+      r.push(element);
+    }
+  }
+
+  return r.join("");
+};
+
 console.log(
   // ***********************
-  search([2, 5], 5) // 4 (index)
+  finalString("string"), // "rtsng"
+  finalString("poiinter") // "ponter"
   // ***********************
 );
