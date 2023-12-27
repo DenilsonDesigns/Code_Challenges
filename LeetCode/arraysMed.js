@@ -115,9 +115,18 @@ function findDuplicates(nums) {
   return r;
 }
 
+// 2149. Rearrange Array Elements by Sign
+// https://leetcode.com/problems/rearrange-array-elements-by-sign/
+var rearrangeArray = function (nums) {
+  // two-pointer
+  // switch elements in place.
+  // first element must be positive.
+  // what do i to make sure first is positive?
+  // and do i need to start again at the start of the array once ive made the first one positive.
+};
+
 console.log(
   // ***
-  findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]), // [2, 3]
-  findDuplicates([1, 1, 2]) // [1]
+  rearrangeArray([3, 1, -2, -5, 2, -4]) // [3,-2,1,-5,2,-4]
   // ***
 );

@@ -2642,34 +2642,6 @@ var countPairs = function (nums, target) {
 };
 
 // 704. Binary Search
-// var search = function (nums, target) {
-//   if (nums[0] === target) return 0;
-//   let left = 0;
-//   let right = nums.length - 1;
-
-//   while (left <= right) {
-//     const middleIdx = left + Math.floor((right - left) / 2);
-
-//     const currentElement = nums[middleIdx];
-
-//     if (currentElement === target) {
-//       return middleIdx;
-//     }
-//     if (currentElement < target) {
-//       left = middleIdx + 1;
-//       continue;
-//     }
-
-//     if (currentElement > target) {
-//       right = middleIdx - 1;
-//       continue;
-//     }
-//   }
-
-//   return -1;
-// };
-
-// 704. Binary Search
 var search = function (nums, target) {
   let left = 0;
   let right = nums.length - 1;
@@ -2723,9 +2695,36 @@ var finalString = function (s) {
   return r.join("");
 };
 
+// 2231. Largest Number After Digit Swaps by Parity
+var largestInteger = function (num) {
+  const digits = Array.from(String(num), Number);
+
+  const evenDigits = digits.filter((digit) => digit % 2 === 0);
+  const oddDigits = digits.filter((digit) => digit % 2 !== 0);
+
+  evenDigits.sort((a, b) => b - a);
+  oddDigits.sort((a, b) => b - a);
+
+  const result = [];
+  let evenIndex = 0,
+    oddIndex = 0;
+
+  for (const digit of digits) {
+    if (digit % 2 === 0) {
+      result.push(evenDigits[evenIndex]);
+      evenIndex++;
+    } else {
+      result.push(oddDigits[oddIndex]);
+      oddIndex++;
+    }
+  }
+
+  const resultNum = parseInt(result.join(""), 10);
+  return resultNum;
+};
+
 console.log(
   // ***********************
-  finalString("string"), // "rtsng"
-  finalString("poiinter") // "ponter"
+  largestInteger(1234) // 3412
   // ***********************
 );
