@@ -200,8 +200,28 @@ var removeOccurrences = function (s, part) {
   }
 };
 
+// 2785. Sort Vowels in a String
+var sortVowels = function (s) {
+  let vowels = [];
+  for (const c of s) {
+    if (isVowel(c)) vowels.push(c);
+  }
+  vowels.sort();
+
+  let t = "",
+    i = 0;
+  for (const c of s) {
+    t += isVowel(c) ? vowels[i++] : c;
+  }
+  return t;
+
+  function isVowel(char) {
+    return "aeiouAEIOU".indexOf(char) !== -1;
+  }
+};
+
 console.log(
   // ***
-  removeOccurrences("aabababa", "aba") // 4
+  sortVowels("lEetcOde") // "lEOtcede"
   // ***
 );
