@@ -5,14 +5,14 @@
             [] 1 generic html/js/css project with liveserver
             [] Make sure can debug both with debugger/breakpoints
             [] Get some kind of basic linting going that will show undefined vars etc.
-        STUDY:
 
-        FRONT END:
-            [] Clock kata
-            [] Stopwatch kata
-            [] Snake game kata
-                [] Queues
-            [] Drag n dropper
-            
-        SYSTEM DESIGN:
-            [] More system design diagram challenges
+        STUDY:
+            FRONT END:
+                [] Clock kata
+                [] Stopwatch kata
+                [] Snake game kata
+                    [] Queues
+                [] Drag n dropper
+                
+            SYSTEM DESIGN:
+                [] More system design diagram challenges
