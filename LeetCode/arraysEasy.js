@@ -2723,8 +2723,23 @@ var largestInteger = function (num) {
   return resultNum;
 };
 
+// 2656. Maximum Sum With Exactly K Elements
+var maximizeSum = function (nums, k) {
+  let r = 0;
+  const element = Math.max(...nums);
+  for (let i = 0; i < k; i++) {
+    r += element + i;
+  }
+
+  return r;
+};
+
+// [5,5,5], k = 2 // 11
+// [5,5,5], k = 3 // 5 + 6 + 7 = 18
+// [5,5,5], k = 4 // 5 + 6 + 7 + 8 = 26
+
 console.log(
   // ***********************
-  largestInteger(1234) // 3412
+  maximizeSum([5, 5, 5], 3) // 3412
   // ***********************
 );
