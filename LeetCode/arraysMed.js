@@ -136,8 +136,32 @@ var rearrangeArray = function (nums) {
   return res;
 };
 
+// [9,8,7,6,5,1,2,3,4]
+// [9,8,7,6,5,4,3,2,1]  sorted:
+
+// 9,8,1 r= 8;
+// [7,6,5,4,3,2]
+
+// 7,6,2 r = 14;
+// [5,4,3]
+
+// 1561. Maximum Number of Coins You Can Get
+var maxCoins = function (piles) {
+  // sort desc:
+  piles.sort((a, b) => b - a);
+
+  let r = 0;
+
+  for (let i = 1; i < piles.length - piles.length / 3; i += 2) {
+    const element = piles[i];
+    r += element;
+  }
+
+  return r;
+};
+
 console.log(
   // ***
-  rearrangeArray([3, 1, -2, -5, 2, -4]) // [3,-2,1,-5,2,-4]
+  maxCoins([2, 4, 1, 2, 7, 8]) // 18
   // ***
 );
