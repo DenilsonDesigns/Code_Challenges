@@ -1804,8 +1804,14 @@ function countSeniors(details) {
   return details.filter((detail) => +(detail[11] + detail[12]) > 60).length;
 }
 
+// 2828. Check if a String Is an Acronym of Words
+var isAcronym = function (words, s) {
+  const acronym = words.map((x) => x[0]);
+  return acronym.join("") === s;
+};
+
 console.log(
   // **********************
-  countSeniors(["7868190130M7522", "5303914400F9211", "9273338290F4010"]) // 2
+  isAcronym(["alice", "bob", "charlie"], "abc") // 2
   // **********************
 );
