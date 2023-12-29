@@ -11,7 +11,7 @@ const hourHand = document.getElementsByClassName("hour-hand")[0];
 
 const clockBody = document.getElementsByClassName("clock-body")[0];
 
-generateFaceNumbers(clockBody, 4);
+generateFaceNumbers(clockBody, 12);
 
 setInterval(updateClock, 1);
 
