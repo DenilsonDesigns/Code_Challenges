@@ -1,5 +1,5 @@
-* {
-  color: red;
+.title {
+  margin-left: 62px;
 }
 
 .clock-body {
@@ -8,6 +8,25 @@
   border: 2px solid black;
   width: 300px;
   height: 300px;
+}
+
+.clock-body p {
+  width: 0px;
+  height: 19px;
+  color: #141f25;
+  position: absolute;
+  transform: rotate(calc(var(--n) * 30deg));
+  transform-origin: 0 148px;
+  margin-left: 150px;
+  margin-top: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.clock-body p span {
+  transform: rotate(calc(var(--n) * -30deg));
 }
 
 .second-hand {
