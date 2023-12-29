@@ -2734,12 +2734,23 @@ var maximizeSum = function (nums, k) {
   return r;
 };
 
-// [5,5,5], k = 2 // 11
-// [5,5,5], k = 3 // 5 + 6 + 7 = 18
-// [5,5,5], k = 4 // 5 + 6 + 7 + 8 = 26
+// 2974. Minimum Number Game
+var numberGame = function (nums) {
+  nums.sort((a, b) => a - b);
+
+  const arr = [];
+
+  while (nums.length) {
+    arr.push(nums[1], nums[0]);
+    nums.shift();
+    nums.shift();
+  }
+
+  return arr;
+};
 
 console.log(
   // ***********************
-  maximizeSum([5, 5, 5], 3) // 3412
+  numberGame([5, 4, 2, 3]) // [3,2,5,4]
   // ***********************
 );
