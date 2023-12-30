@@ -1,0 +1,21 @@
+.title {
+  margin-left: 10%;
+}
+
+.number-body {
+  display: flex;
+  margin-left: 10%;
+  border: 1px solid black;
+  width: fit-content;
+  padding: 6px;
+  border-radius: 3px;
+  margin-bottom: 2%;
+}
+
+.button-body {
+  margin-left: 10%;
+}
+
+#stop-start-button {
+  width: 60px;
+}
