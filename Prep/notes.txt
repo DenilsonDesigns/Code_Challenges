@@ -8,7 +8,7 @@ TODO:
     STUDY:
         FRONT END:
             [x] Clock kata
-            [] Stopwatch kata
+            [x] Stopwatch kata
             [] Snake game kata
                 [] Queues
             [] Drag n dropper
