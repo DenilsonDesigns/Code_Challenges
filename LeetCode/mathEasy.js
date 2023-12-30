@@ -297,18 +297,39 @@ function alternateDigitSum(n) {
 
 // 2427. Number of Common Factors
 var commonFactors = function (a, b) {
-  const topIterator = Math.max(a, b);
+  const bottomIterator = Math.min(a, b);
   let r = 0;
 
-  for (let index = 0; index <= topIterator; index++) {
+  for (let index = 0; index <= bottomIterator; index++) {
     if (a % index === 0 && b % index === 0) r++;
   }
 
   return r;
 };
 
+// 2485. Find the Pivot Integer
+var pivotInteger = function (n) {
+  let totalSum = 0;
+  let remainderSum = 0;
+
+  for (let i = 1; i <= n; i++) {
+    totalSum += i;
+  }
+
+  for (let i = n; i > 0; i--) {
+    remainderSum += i;
+
+    if (totalSum === remainderSum) {
+      return i;
+    }
+    totalSum -= i;
+  }
+
+  return -1;
+};
+
 console.log(
   // ***********
-  commonFactors(12, 6) // 4
+  pivotInteger(4) // 4
   // ***********
 );
