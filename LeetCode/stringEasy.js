@@ -1810,8 +1810,46 @@ var isAcronym = function (words, s) {
   return acronym.join("") === s;
 };
 
+// 2744. Find Maximum Number of String Pairs
+var maximumNumberOfStringPairs = function (words) {
+  const wordMap = new Map();
+  let r = 0;
+
+  // make wordmap:
+  words.forEach((el, i) => {
+    wordMap.set(i, el);
+  });
+
+  for (const [key1, value1] of wordMap.entries()) {
+    for (const [key2, value2] of wordMap.entries()) {
+      if (key1 !== key2 && isReverseString(value1, value2)) {
+        r++;
+        wordMap.delete(key1);
+        wordMap.delete(key2);
+        break;
+      }
+    }
+  }
+
+  // isReversedFunction:
+  function isReverseString(str1, str2) {
+    return str1 === str2.split("").reverse().join("");
+  }
+
+  return r;
+
+  // much better:
+  // let num = 0;
+  // while (words.length) {
+  //   let item = words.shift();
+  //   item = item[1] + item[0];
+  //   if (words.includes(item)) num++;
+  // }
+  // return num;
+};
+
 console.log(
   // **********************
-  isAcronym(["alice", "bob", "charlie"], "abc") // 2
+  maximumNumberOfStringPairs(["cd", "ac", "dc", "ca", "zz", "zz"]) // 2
   // **********************
 );
