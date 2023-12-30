@@ -295,10 +295,20 @@ function alternateDigitSum(n) {
   return r;
 }
 
+// 2427. Number of Common Factors
+var commonFactors = function (a, b) {
+  const topIterator = Math.max(a, b);
+  let r = 0;
+
+  for (let index = 0; index <= topIterator; index++) {
+    if (a % index === 0 && b % index === 0) r++;
+  }
+
+  return r;
+};
+
 console.log(
   // ***********
-  alternateDigitSum(521), // 4
-  alternateDigitSum(111), // 1
-  alternateDigitSum(886996) // 0
+  commonFactors(12, 6) // 4
   // ***********
 );
