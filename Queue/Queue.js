@@ -9,6 +9,7 @@ class Queue {
     // of the data structure, ie, will insert at index 0
     // and push the rest of the elements back.
     this.items.unshift(element);
+    // always pop one off.
   }
 
   deQueue() {
@@ -39,6 +40,9 @@ class Queue {
   }
 
   getHead() {
+    if (this.isEmpty()) {
+      return [];
+    }
     return this.items[0];
   }
 
