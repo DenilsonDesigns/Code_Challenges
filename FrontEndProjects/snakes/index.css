@@ -1,0 +1,18 @@
+* {
+  background-color: sandybrown;
+}
+
+.title {
+  margin-left: 10%;
+}
+
+.row {
+  margin-bottom: -4px;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  display: inline-block;
+}
