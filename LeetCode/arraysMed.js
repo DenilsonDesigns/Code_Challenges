@@ -138,7 +138,6 @@ var rearrangeArray = function (nums) {
 
 // 1561. Maximum Number of Coins You Can Get
 var maxCoins = function (piles) {
-  // sort desc:
   piles.sort((a, b) => b - a);
 
   let r = 0;
@@ -151,8 +150,102 @@ var maxCoins = function (piles) {
   return r;
 };
 
+// 890. Find and Replace Pattern
+var findAndReplacePattern = function (words, pattern) {
+  // perm pattern:
+  // go thru each letter of the pattern string,
+  // if it exists, then push the KV key to the output.
+  // if it doesn't exist,
+
+  const r = [];
+
+  // *** NEEDLE PATTERN;
+  const needlePattern = getPatternFromString(pattern);
+
+  words.forEach((word) => {
+    const localWordPattern = getPatternFromString(word);
+
+    if (areArraysEqual(localWordPattern, needlePattern)) {
+      r.push(word);
+    }
+  });
+
+  return r;
+
+  // *** HELPERS ***
+  function getPatternFromString(patternStr) {
+    const charMap = new Map();
+    let key = 1;
+
+    const rPattern = [];
+
+    for (let i = 0; i < patternStr.length; i++) {
+      const char = patternStr[i];
+
+      // check for value
+      const foundKey = getKeyByValue(charMap, char);
+      if (foundKey !== null) {
+        rPattern.push(foundKey);
+      } else {
+        rPattern.push(key);
+        charMap.set(key, char);
+        key++;
+      }
+    }
+
+    return rPattern;
+  }
+
+  function getKeyByValue(map, searchValue) {
+    let foundKey = null;
+
+    map.forEach((value, key) => {
+      if (value === searchValue) {
+        foundKey = key;
+        return;
+      }
+    });
+
+    return foundKey;
+  }
+
+  function areArraysEqual(array1, array2) {
+    // Check if both arrays have the same length
+    if (array1.length !== array2.length) {
+      return false;
+    }
+
+    // Iterate through each element and compare
+    for (let i = 0; i < array1.length; i++) {
+      if (array1[i] !== array2[i]) {
+        return false;
+      }
+    }
+
+    // If all elements are equal, return true
+    return true;
+  }
+};
+
+// really elegant way to do it:
+var findAndReplacePattern = function (words, pattern) {
+  var patt = patternarr(pattern); // 010
+  return words.filter((e) => patternarr(e) == patt);
+};
+
+const patternarr = function (str) {
+  var result = "";
+
+  for (let i = 0; i < str.length; i++) {
+    //finding the first index
+    result += str.indexOf(str[i]);
+  }
+  return result;
+};
+
 console.log(
   // ***
-  maxCoins([2, 4, 1, 2, 7, 8]) // 18
+  findAndReplacePattern(["abc", "deq", "mee", "aqq", "dkd", "ccc"], "abb") // 1, 2, 2
   // ***
+  // ["mee","aqq"]
 );
