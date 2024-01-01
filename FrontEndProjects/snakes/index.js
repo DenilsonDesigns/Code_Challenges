@@ -3,7 +3,7 @@ import Snake from "./Snake.js";
 
 // *** CONSTANTS ***
 const CANVAS_SIZE = 12;
-const GAME_SPEED = 1000;
+const GAME_SPEED = 500;
 const SNEK_BODY_CHAR = "■";
 const NUM_FRUITS_ON_SCREEN = 2;
 const FRUIT_CHAR = "ο";
@@ -165,36 +165,49 @@ function renderCanvasElements() {
 function updateSnek() {
   const currentDirection = snek.direction;
   const currentHead = snek.body.getHead();
-  const newHead = [...currentHead];
+  let newHead = [...currentHead];
 
-  console.log("snek: ", snek);
+  // console.log("snek: ", snek);
+  console.log("newHead: ", newHead);
 
   if (currentDirection === "D") {
     if (currentHead[1] === CANVAS_SIZE - 1) {
-      snek.body.enQueue([newHead[0], 0]);
+      newHead = [newHead[0], 0];
+      snek.body.enQueue(newHead);
+    } else {
+      newHead = [newHead[0], newHead[1] + 1];
+      snek.body.enQueue(newHead);
     }
-    snek.body.enQueue([newHead[0], newHead[1] + 1]);
   }
 
   if (currentDirection === "U") {
     if (currentHead[1] === 0) {
-      snek.body.enQueue([newHead[0], CANVAS_SIZE - 1]);
+      newHead = [newHead[0], CANVAS_SIZE - 1];
+      snek.body.enQueue(newHead);
+    } else {
+      newHead = [newHead[0], newHead[1] - 1];
+      snek.body.enQueue(newHead);
     }
-    snek.body.enQueue([newHead[0], newHead[1] - 1]);
   }
 
   if (currentDirection === "L") {
     if (currentHead[0] === 0) {
-      snek.body.enQueue([CANVAS_SIZE - 1, newHead[1]]);
+      newHead = [CANVAS_SIZE - 1, newHead[1]];
+      snek.body.enQueue(newHead);
+    } else {
+      newHead = [newHead[0] - 1, newHead[1]];
+      snek.body.enQueue(newHead);
     }
-    snek.body.enQueue([newHead[0] - 1, newHead[1]]);
   }
 
   if (currentDirection === "R") {
     if (currentHead[0] === CANVAS_SIZE - 1) {
-      snek.body.enQueue([0, newHead[1]]);
+      newHead = [0, newHead[1]];
+      snek.body.enQueue(newHead);
+    } else {
+      newHead = [newHead[0] + 1, newHead[1]];
+      snek.body.enQueue(newHead);
     }
-    snek.body.enQueue([newHead[0] + 1, newHead[1]]);
   }
 
   // if newHead is equal to fruit coords, pop from fruit coords.
