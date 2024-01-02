@@ -1846,8 +1846,21 @@ var maximumNumberOfStringPairs = function (words) {
   // return num;
 };
 
+// 2351. First Letter to Appear Twice
+var repeatedCharacter = function (s) {
+  const set = new Set();
+
+  for (let i = 0; i < s.length; i += 1) {
+    const currentLetter = s[i];
+    if (set.has(currentLetter)) {
+      return currentLetter;
+    }
+    set.add(currentLetter);
+  }
+};
+
 console.log(
   // **********************
-  maximumNumberOfStringPairs(["cd", "ac", "dc", "ca", "zz", "zz"]) // 2
+  repeatedCharacter("abccbaacz") // "c"
   // **********************
 );
