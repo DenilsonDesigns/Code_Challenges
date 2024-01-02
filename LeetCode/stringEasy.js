@@ -1815,7 +1815,6 @@ var maximumNumberOfStringPairs = function (words) {
   const wordMap = new Map();
   let r = 0;
 
-  // make wordmap:
   words.forEach((el, i) => {
     wordMap.set(i, el);
   });
@@ -1831,7 +1830,6 @@ var maximumNumberOfStringPairs = function (words) {
     }
   }
 
-  // isReversedFunction:
   function isReverseString(str1, str2) {
     return str1 === str2.split("").reverse().join("");
   }
