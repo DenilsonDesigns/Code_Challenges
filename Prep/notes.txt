@@ -10,7 +10,7 @@ TODO:
             [x] Clock kata
             [x] Stopwatch kata
             [] Snake game kata
-                [] Queues
+                [x] Queues
             [] Drag n dropper
             
         SYSTEM DESIGN:

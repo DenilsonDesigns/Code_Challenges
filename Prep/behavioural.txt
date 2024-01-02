@@ -14,3 +14,11 @@ REASONS YOU WANNA JOIN COMPANY:
     [] GREATER SCALE THAN CURRENT COMPANY
     [] MORE INNOVATIVE UX THAN CURRENT COMPANY
     [] HEARD GREAT THINGS FROM EMPLOYEES OF CURRENT COMPANY
+
+
+EXAMPLE QUESTIONS:
+    [] TELL ME ABOUT A TIME YOU HAD A DISAGREEMENT WITH PRODUCT/DESIGN.
+        - In current company setup, it's generally that product/design will come up with the features we are to roll out. Then the requirements/designs will be presented to us once product/design are happy with it. At this point, I may have a disagreement/different idea to solve the problem or an adjustment to the implementation. I would then simply communicate my ideas to them and maybe even mock up in code what it might look like (if its quick enough to do). Generally I find that design/product are very receptive to engineering when they have concerns, so they will definitely listen to you and try to come to a collaborative solution. Result is a level of trust between myself and product/design.
+
+    [] CAN YOU TELL ME ABOUT A TIME WHEN YOU DEALT WITH SCOPE CREEP DURING A SPRINT
+        - This can become due to the unknown unknowns nature of software development. One instance I can think of working on development of a feature that was initially thought to only need adjustments to top 2 layers of stack, once in development, we noticed that adjustments to handle certain edge cases would be needed in lower layers of the stack. This creates more work and delay in delivery. This was communicated to Managers and adjustments made, generally as long prior warning is given, company is pretty forgiving with delivery timelines. Result was increased awareness of changes that may need to happen deeper in the stack, and also understanding in adjustment to sprint planning timelines. 
