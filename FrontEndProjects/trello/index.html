@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Trello</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="board">
+        <div class="list" id="todo-list">
+          <h4>Todo</h4>
+          <div class="cards" id="todo-cards"></div>
+        </div>
+        <div class="list" id="in-progress-list">
+          <h4>In Progress</h4>
+          <div class="cards" id="in-progress-cards"></div>
+        </div>
+        <div class="list" id="done-list">
+          <h4>Done</h4>
+          <div class="cards" id="done-cards"></div>
+        </div>
+      </div>
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <input type="text" id="task-input" placeholder="Add a task" />
+          <button id="add-task-btn">Add Task</button>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+  <script src="index.js"></script>
+</html>
