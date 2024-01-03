@@ -4,6 +4,7 @@ TODO:
         [] 1 generic html/js/css project with liveserver
         [] Make sure can debug both with debugger/breakpoints
         [] Get some kind of basic linting going that will show undefined vars etc.
+        [] Make .json script to run like sme-web
 
     STUDY:
         FRONT END:
@@ -12,6 +13,7 @@ TODO:
             [] Snake game kata
                 [x] Queues
             [] Drag n dropper
+            [] Stacks
             
         SYSTEM DESIGN:
             [] More system design diagram challenges

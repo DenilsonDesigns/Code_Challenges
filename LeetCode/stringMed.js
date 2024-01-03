@@ -222,6 +222,6 @@ var sortVowels = function (s) {
 
 console.log(
   // ***
-  sortVowels("lEetcOde") // "lEOtcede"
+  sortVowels("leet**cod*e") // "lecoe"
   // ***
 );
