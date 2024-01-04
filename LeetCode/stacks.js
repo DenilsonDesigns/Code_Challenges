@@ -35,8 +35,53 @@ var isValid = function (s) {
   return stack.length === 0;
 };
 
+// 1441. Build an Array With Stack Operations
+var buildArray = function (target, n) {
+  const stack = [];
+  const operations = [];
+
+  for (let i = 1; i <= n; i++) {
+    if (target.includes(i)) {
+      operations.push("Push");
+      stack.push(i);
+      if (checkArrayEquality(target, stack)) {
+        return operations;
+      }
+    } else {
+      operations.push("Push");
+      stack.push(i);
+      if (checkArrayEquality(target, stack)) {
+        return operations;
+      }
+      operations.push("Pop");
+      stack.pop();
+      if (checkArrayEquality(target, stack)) {
+        return operations;
+      }
+    }
+  }
+
+  return operations;
+
+  function checkArrayEquality(array1, array2) {
+    if (array1.length !== array2.length) {
+      return false;
+    }
+
+    // Iterate through the arrays and compare each element
+    for (let i = 0; i < array1.length; i++) {
+      if (array1[i] !== array2[i]) {
+        return false;
+      }
+    }
+
+    // If all elements are equal, arrays are equal
+    return true;
+  }
+};
+
 console.log(
   // ***
-  isValid("()([]{})") // "lecoe"
+  buildArray([1, 2], 4) // ["Push","Push","Pop","Push"]
   // ***
 );
