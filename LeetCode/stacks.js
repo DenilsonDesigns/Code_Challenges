@@ -14,8 +14,29 @@ var removeStars = function (s) {
   return stack.join("");
 };
 
+// 20. Valid Parentheses
+var isValid = function (s) {
+  const stack = [];
+  const bracketsMap = { "(": ")", "[": "]", "{": "}" };
+
+  for (const char of s) {
+    // if its an opening one, just push to stack.
+    if (bracketsMap[char]) {
+      stack.push(char);
+      // if its a closing one, check that its gonna close the correct
+      // type of opener:
+    } else if (char === bracketsMap[stack[stack.length - 1]]) {
+      stack.pop();
+    } else {
+      return false;
+    }
+  }
+
+  return stack.length === 0;
+};
+
 console.log(
   // ***
-  removeStars("leet**cod*e") // "lecoe"
+  isValid("()([]{})") // "lecoe"
   // ***
 );
