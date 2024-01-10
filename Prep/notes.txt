@@ -13,7 +13,7 @@ TODO:
             [] Snake game kata
                 [x] Queues
             [] Drag n dropper
-            [] Tic Tac Toe
+            [x] Tic Tac Toe
             [] Stacks
             [] Closures
             

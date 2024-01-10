@@ -80,8 +80,32 @@ var buildArray = function (target, n) {
   }
 };
 
+// 1021. Remove Outermost Parentheses
+var removeOuterParentheses = function (s) {
+  let output = "";
+  let outerMostOpen = false;
+  let stack = [];
+  for (let bracket of s) {
+    // we are opening a bracket
+    if (bracket === "(" && !outerMostOpen) {
+      outerMostOpen = true;
+      // we have a bracket open, pushing it to output.
+      // and putting a closing brakcet on the stack
+    } else if (bracket === "(" && outerMostOpen) {
+      stack.push(")");
+      output += bracket;
+      // current bracket is closing one, and popping a closing one off the stack to output
+    } else if (bracket === ")" && stack.length) {
+      output += stack.pop();
+    } else if (bracket === ")" && !stack.length) {
+      outerMostOpen = false;
+    }
+  }
+  return output;
+};
+
 console.log(
   // ***
-  buildArray([1, 2], 4) // ["Push","Push","Pop","Push"]
+  removeOuterParentheses("(()())(())") //
   // ***
 );
