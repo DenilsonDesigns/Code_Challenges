@@ -1,7 +1,8 @@
 Promise.myRace = function (promises) {
+  // Write your code here.
   return new Promise((resolve, reject) => {
     promises.forEach((promise) => {
-      promise.then(resolve).catch(reject);
+      return promise.then(resolve).catch(reject);
     });
   });
 };
@@ -9,55 +10,80 @@ Promise.myRace = function (promises) {
 Promise.myAny = function (promises) {
   return new Promise((resolve, reject) => {
     let rejectedCount = 0;
-    promises.forEach((promise) => {
-      promise.then(resolve).catch((_) => {
-        rejectedCount++;
-        if (rejectedCount === promises.length) {
-          reject("all promises rejected");
-        }
-      });
-    });
+
+    for (let i = 0; i < promises.length; i++) {
+      const promise = promises[i];
+      promise
+        .then((res) => {
+          return resolve(res);
+        })
+        .catch(() => {
+          rejectedCount++;
+          if (rejectedCount === promises.length) {
+            return reject("all promises rejected");
+          }
+        });
+    }
   });
 };
 
 Promise.myAll = function (promises) {
   return new Promise((resolve, reject) => {
-    const results = [];
-    let resolvedCount = 0;
+    let results = [];
+    let settledCount = 0;
 
-    promises.forEach((promise, i) => {
+    for (let i = 0; i < promises.length; i++) {
+      const promise = promises[i];
       promise
-        .then((value) => {
-          results[i] = value;
-          resolvedCount++;
-          if (resolvedCount === promises.length) {
-            resolve(results);
+        .then((res) => {
+          results[i] = res;
+          settledCount++;
+          if (settledCount === promises.length) {
+            return resolve(results);
           }
         })
-        .catch(reject);
-    });
+        .catch((err) => reject(err));
+    }
   });
 };
 
 Promise.myAllSettled = function (promises) {
+  // Write your code here.
   return new Promise((resolve) => {
-    const results = [];
+    let results = [];
     let settledCount = 0;
 
-    promises.forEach((promise, i) => {
+    for (let i = 0; i < promises.length; i++) {
+      const promise = promises[i];
       promise
-        .then((value) => {
-          results[i] = { status: "fulfilled", value };
+        .then((res) => {
+          results[i] = {
+            status: "fulfilled",
+            value: res,
+          };
         })
-        .catch((error) => {
-          results[i] = { status: "rejected", error };
+        .catch((err) => {
+          results[i] = {
+            status: "rejected",
+            error: err,
+          };
         })
         .finally(() => {
           settledCount++;
           if (settledCount === promises.length) {
-            resolve(results);
+            return resolve(results);
           }
         });
-    });
+    }
   });
 };
+
+Promise.myAllSettled([
+  new Promise((res) => setTimeout(() => res(0), 500)),
+  // Promise.resolve(5),
+  new Promise((res) => setTimeout(() => res(10), 1000)),
+  Promise.reject(5),
+  Promise.reject(5),
+])
+  .then(console.log)
+  .catch((error) => console.log("error: " + error));
