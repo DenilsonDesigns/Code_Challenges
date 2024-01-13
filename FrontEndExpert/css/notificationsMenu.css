@@ -1,6 +1,7 @@
 #wrapper {
-  max-width: 300px;
-  padding: 0 10px;
+  max-width: 280px;
+  padding: 10px;
+  border-radius: 10px;
   background-color: lightgray;
 }
 
@@ -10,15 +11,25 @@ h1 {
   margin: 0 0 10px 0;
 }
 
+#notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .notification {
   background-color: white;
-  margin-bottom: 10px;
   padding: 10px;
-  display: flex;
   border-radius: 10px;
+  display: grid;
+  grid-template-areas:
+    "photo text"
+    "photo time";
+  gap: 10px;
 }
 .notification p {
   margin: 0;
+  grid-area: text;
 }
 
 .user {
@@ -28,6 +39,11 @@ h1 {
 .time {
   font-weight: normal;
   font-size: 12px;
+  font-style: italic;
+  grid-area: time;
+  align-self: end;
+  justify-self: end;
+  margin: 0;
 }
 
 img {
@@ -35,5 +51,15 @@ img {
   height: 100px;
   border-radius: 50%;
   border: 1px solid black;
-  margin-right: 10px;
+  grid-area: photo;
+}
+
+button {
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #02203c;
+  color: white;
+  width: 100%;
 }
