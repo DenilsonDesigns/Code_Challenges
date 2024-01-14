@@ -10,12 +10,12 @@ TODO:
         FRONT END:
             [x] Clock kata
             [x] Stopwatch kata
-            [] Snake game kata
+            [x] Snake game kata
                 [x] Queues
             [] Drag n dropper
             [x] Tic Tac Toe
             [] Stacks
-            [] Closures
+            [x] Closures
             
         SYSTEM DESIGN:
             [] More system design diagram challenges
