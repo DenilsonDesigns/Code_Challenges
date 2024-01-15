@@ -22,3 +22,14 @@ EXAMPLE QUESTIONS:
 
     [] CAN YOU TELL ME ABOUT A TIME WHEN YOU DEALT WITH SCOPE CREEP DURING A SPRINT
         - This can become due to the unknown unknowns nature of software development. One instance I can think of working on development of a feature that was initially thought to only need adjustments to top 2 layers of stack, once in development, we noticed that adjustments to handle certain edge cases would be needed in lower layers of the stack. This creates more work and delay in delivery. This was communicated to Managers and adjustments made, generally as long prior warning is given, company is pretty forgiving with delivery timelines. Result was increased awareness of changes that may need to happen deeper in the stack, and also understanding in adjustment to sprint planning timelines. 
+
+    [] TELL ME ABOUT THE MOST CHALLENGING PROJECT YOU WORKED ON
+        - At XXXX my team was seconded to work on the website of the company. Our product managers wanted to move us onto that project to speed up delivery and thought it was important to drive traffic to our products. 
+        When we started there, the incumbent custodian team clearly were not ready for the influx of external devs, and progress became difficult. Requirements were sometimes unclear from design as their designers would bicker with our PMs/designers, and the tech team had still not worked out the patterns they wanted to use, nor the DevOps procedures they wanted to use. From our side, we were working on a front-end/CSS heavy project with component development, something no one on our team had done before. 
+
+        Once work started, there were difficulties on our end with completion of tasks as we upskilled in the work/tech of the project. Once we started to be capable of delivery at pace though, it was mostly for naught, as we were largely blocked by their procedures. Only one developer was deemed qualified to review our PRs in the component library, and one other dev for the PRs in the SPA. They were often very busy, and there were times when our PRs would wait for weeks or more before approval. 
+
+        The lessons learned involved: upskilling in CSS/design/component development. An insight into how detrimental to a project the lack of suitable DevOps processes can be. Adding extra developers to the project did not increase speed as we were all bottlenecked behind 1 or 2 developers anyway. 
+
+    [] TELL ME ABOUT A TIME YOU RECIEVED OR GAVE HARSH FEEDBACK
+        - 
