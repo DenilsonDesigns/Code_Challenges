@@ -17,7 +17,8 @@ TODO:
             [] Stacks
             [x] Closures
             [x] CSS Froggy
-            [] Grid Garden
+            [x] Grid Garden
+            [] CodePip
             
         SYSTEM DESIGN:
             [] More system design diagram challenges
