@@ -16,6 +16,8 @@ TODO:
             [x] Tic Tac Toe
             [] Stacks
             [x] Closures
+            [x] CSS Froggy
+            [] Grid Garden
             
         SYSTEM DESIGN:
             [] More system design diagram challenges
