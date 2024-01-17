@@ -20,6 +20,18 @@ TODO:
             [x] Grid Garden
             [x] Todo List
             [] Clock Again
+            [] Promise work
+
             
         SYSTEM DESIGN:
             [] More system design diagram challenges
+            [] Monolith vs microservices
+            [] Fault tolerance
+            [] Database design
+            [] Caching
+            [] Load balancing
+            [] Why React? Why Docker?
+
+        STARR:
+            [] Demonstrate skills
+            [] Personal achievements?

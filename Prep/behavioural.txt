@@ -33,3 +33,15 @@ EXAMPLE QUESTIONS:
 
     [] TELL ME ABOUT A TIME YOU RECIEVED OR GAVE HARSH FEEDBACK
         - 
+
+    [] TELL ME ABOUT A TIME YOU COULDNT DELIVER SOMETHING ON TIME AND HOW DID YOU HANDLE IT?
+        -
+
+    [] Tell me about a time when you had to meet a tight deadline for a project. How did you prioritize tasks and ensure the project was completed on time?
+        - So we had a feature set that was nearing completion and was scheduled to be delivered to customers at the end of the month (few weeks away), we then got called to a meeting saying that marketing had put out messaging that that feature was going to be delivered on the 15th (next week).
+
+        We weren't expecting to deliver it at that time. So we had to look at the work remaining, what was the state of pending PRs/tickets, and examine the DevOps schedule of the codebases in question (some of the projects are on bi-weekly release schedules, some are daily) to see if it was actually possible to deliver by that date. 
+
+        We determined the last crucial tickets could indeed be completed/reviewed/merged and released to be available to customers by that date, some remaining work/tickets would not be, but they were not customer facing features (some cleanup/optimizations that didn't stop feature release), so could be completed after that date. 
+
+        The end result was indeed that the feature could be released to the customer by the date marketing had promoted. And the remaining work was delivered afterwards. On Reflection we did the best we could in unpredictable circumstances. And delivered the feature in trying circusmtances. 
