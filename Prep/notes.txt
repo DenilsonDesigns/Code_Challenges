@@ -18,7 +18,8 @@ TODO:
             [x] Closures
             [x] CSS Froggy
             [x] Grid Garden
-            [] CodePip
+            [x] Todo List
+            [] Clock Again
             
         SYSTEM DESIGN:
             [] More system design diagram challenges
