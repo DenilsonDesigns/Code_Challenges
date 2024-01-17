@@ -36,3 +36,9 @@ TODO:
         STARR:
             [] Demonstrate skills
             [] Personal achievements?
+
+        Thursday plan:
+            [] Morning array challenges (warm up with edabit, then leetcode)
+            [] JavaScript challenges (clock, promises, memoize)
+            [] Afternoon, system design
+            [] Night, more system design, behavioural. 

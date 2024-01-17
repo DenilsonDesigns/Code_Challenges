@@ -75,6 +75,7 @@ function numInStr(arr) {
 function missing(arr1, arr2) {
   // Time: O(n)
   // Space: O(1)
+
   for (let i = 0; i < arr2.length; i++) {
     if (arr1[i] !== arr2[i]) return arr1[i];
   }
@@ -670,43 +671,26 @@ function countLayers(rug) {
   return Math.ceil(r / 2);
 }
 
+// An Ordered Matrix
+function orderedMatrix(a, b) {
+  const r = [];
+
+  let currCounter = 1;
+
+  for (let i = 0; i < a; i++) {
+    const arr = [];
+    for (let j = currCounter; j < currCounter + b; j++) {
+      arr.push(j);
+    }
+    currCounter += b;
+    r.push(arr);
+  }
+
+  return r;
+}
+
 console.log(
   // ***
-  countLayers(["AAAA", "ABBA", "AAAA"]), // 2
-  countLayers([
-    "AAAAAAAAA",
-    "ABBBBBBBA",
-    "ABBAAABBA",
-    "ABBBBBBBA",
-    "AAAAAAAAA",
-  ]), // 3
-  countLayers([
-    "AAAAAAAAAAA",
-    "AABBBBBBBAA",
-    "AABCCCCCBAA",
-    "AABCAAACBAA",
-    "AABCADACBAA",
-    "AABCAAACBAA",
-    "AABCCCCCBAA",
-    "AABBBBBBBAA",
-    "AAAAAAAAAAA",
-  ]), // 5
-  countLayers([
-    "FFFFFFFFFFFFFFFFFFFFFFFFF",
-    "FFFFFFFFFFFFFFFFFFFFFFFFF",
-    "FFFFGGGGGGGGGGGGGGGGGFFFF",
-    "FFFFGGGAAAAAAAAAAAGGGFFFF",
-    "FFFFGGGAABBBBBBBAAGGGFFFF",
-    "FFFFGGGAABCCCCCBAAGGGFFFF",
-    "FFFFGGGAABCDDDCBAAGGGFFFF",
-    "FFFFGGGAABCDDDCBAAGGGFFFF",
-    "FFFFGGGAABCDDDCBAAGGGFFFF",
-    "FFFFGGGAABCCCCCBAAGGGFFFF",
-    "FFFFGGGAABBBBBBBAAGGGFFFF",
-    "FFFFGGGAAAAAAAAAAAGGGFFFF",
-    "FFFFGGGGGGGGGGGGGGGGGFFFF",
-    "FFFFFFFFFFFFFFFFFFFFFFFFF",
-    "FFFFFFFFFFFFFFFFFFFFFFFFF",
-  ]) // 6
+  orderedMatrix(1, 5) // 2
   // ***
 );

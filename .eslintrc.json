@@ -18,6 +18,7 @@
         }
     ],
     "ignorePatterns": [
-        "LeetCode/*"
+        "LeetCode/*",
+        "Edabit/*"
     ]
 }
