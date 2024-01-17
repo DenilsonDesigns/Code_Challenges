@@ -31,6 +31,7 @@ TODO:
             [] Caching
             [] Load balancing
             [] Why React? Why Docker?
+            [] Topics from: https://www.educative.io/courses/grokking-modern-system-design-interview-for-engineers-managers
 
         STARR:
             [] Demonstrate skills
