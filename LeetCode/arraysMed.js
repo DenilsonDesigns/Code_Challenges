@@ -243,9 +243,38 @@ const patternarr = function (str) {
   return result;
 };
 
+// 2161. Partition Array According to Given Pivot
+var pivotArray = function (nums, pivot) {
+  //
+  const r = new Array(nums.length);
+
+  let belowPivotPointer = 0;
+  let abovePivotPointer = nums.length - 1;
+
+  for (let i = 0, j = abovePivotPointer; i < nums.length; i++, j--) {
+    const elementBelow = nums[i];
+    const elementAbove = nums[j];
+
+    if (elementBelow < pivot) {
+      r[belowPivotPointer] = elementBelow;
+      belowPivotPointer++;
+    }
+
+    if (elementAbove > pivot) {
+      r[abovePivotPointer] = elementAbove;
+      abovePivotPointer--;
+    }
+  }
+
+  for (let i = belowPivotPointer; i <= abovePivotPointer; i++) {
+    r[i] = pivot;
+  }
+
+  return r;
+};
+
 console.log(
   // ***
-  findAndReplacePattern(["abc", "deq", "mee", "aqq", "dkd", "ccc"], "abb") // 1, 2, 2
+  pivotArray([9, 12, 5, 10, 14, 3, 10], 10) // 1, 2, 2
   // ***
-  // ["mee","aqq"]
 );
