@@ -44,7 +44,7 @@ TODO:
             [x] Night, more system design, behavioural. 
 
         Friday plan:
-            [] Morning: Revisit promises stuff/TICTACTOE. 
+            [] Morning: Revisit TICTACTOE. 
             [] More behavioural stuff.
             [] More system design stuff. 
 

@@ -5,24 +5,42 @@ const STATE = {
 };
 
 class MyPromise {
+  #state = STATE.PENDING;
+  #value = null;
+
   constructor(executorFunc) {
-    // Write your code here.
+    try {
+      executorFunc(
+        (value) => this.#resolve(value),
+        (value) => this.#reject(value)
+      );
+    } catch (error) {
+      this.#reject(error);
+    }
   }
 
-  then(onFulfilled, onRejected) {
-    // Write your code here.
-  }
+  then(onFulfilled, onRejected) {}
 
   catch(onRejected) {
     // Write your code here.
   }
 
   get state() {
-    // Write your code here.
+    return this.#state;
   }
 
   get value() {
-    // Write your code here.
+    return this.#value;
+  }
+
+  #resolve(value) {
+    this.#value = value;
+    this.#state = STATE.FULFILLED;
+  }
+
+  #reject(value) {
+    this.#value = value;
+    this.#state = STATE.REJECTED;
   }
 }
 
