@@ -38,7 +38,20 @@ TODO:
             [] Personal achievements?
 
         Thursday plan:
-            [] Morning array challenges (warm up with edabit, then leetcode)
-            [] JavaScript challenges (clock, promises, memoize)
+            [x] Morning array challenges (warm up with edabit, then leetcode)
+            [o] JavaScript challenges (clock, promises, memoize)
             [] Afternoon, system design
             [] Night, more system design, behavioural. 
+
+        Friday plan:
+            [] Morning: Revisit promises stuff. 
+            [] More behavioural stuff.
+            [] More system design stuff. 
+
+        *** CHECKLIST BEFORE START:
+            [] Boiler plate project (html/css/js)
+            [] Boiler plate project (nodeje)
+            [] Can I use breakpoints with that project? (FE)
+            [] Can I use breakpoints with that project? (nodejs)
+            [] Drawio new file. 
+            [] Review behavioural notes
