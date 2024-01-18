@@ -2749,8 +2749,26 @@ var numberGame = function (nums) {
   return arr;
 };
 
+// 2586. Count the Number of Vowel Strings in Range
+var vowelStrings = function (words, left, right) {
+  let r = 0;
+
+  const vowels = ["a", "e", "i", "o", "u"];
+  for (let i = left; i <= right; i++) {
+    const element = words[i];
+
+    if (
+      vowels.includes(element[0]) &&
+      vowels.includes(element[element.length - 1])
+    )
+      r++;
+  }
+
+  return r;
+};
+
 console.log(
   // ***********************
-  numberGame([5, 4, 2, 3]) // [3,2,5,4]
+  vowelStrings(["are", "amy", "u"], 0, 2) // [3,2,5,4]
   // ***********************
 );
