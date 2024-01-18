@@ -39,12 +39,12 @@ TODO:
 
         Thursday plan:
             [x] Morning array challenges (warm up with edabit, then leetcode)
-            [o] JavaScript challenges (clock, promises, memoize)
+            [x] JavaScript challenges (TICTACTOE, memoize)
             [] Afternoon, system design
             [] Night, more system design, behavioural. 
 
         Friday plan:
-            [] Morning: Revisit promises stuff. 
+            [] Morning: Revisit promises stuff/TICTACTOE. 
             [] More behavioural stuff.
             [] More system design stuff. 
 
