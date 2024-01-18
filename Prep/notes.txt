@@ -29,7 +29,7 @@ TODO:
             [] Fault tolerance
             [] Database design
             [] Caching
-            [] Load balancing
+            [x] Load balancing
             [] Why React? Why Docker?
             [] Topics from: https://www.educative.io/courses/grokking-modern-system-design-interview-for-engineers-managers
 
@@ -40,8 +40,8 @@ TODO:
         Thursday plan:
             [x] Morning array challenges (warm up with edabit, then leetcode)
             [x] JavaScript challenges (TICTACTOE, memoize)
-            [] Afternoon, system design
-            [] Night, more system design, behavioural. 
+            [x] Afternoon, system design
+            [x] Night, more system design, behavioural. 
 
         Friday plan:
             [] Morning: Revisit promises stuff/TICTACTOE. 
