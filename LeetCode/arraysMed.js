@@ -273,8 +273,38 @@ var pivotArray = function (nums, pivot) {
   return r;
 };
 
+// 1817. Finding the Users Active Minutes
+var findingUsersActiveMinutes = function (logs, k) {
+  const minuteMap = new Map();
+
+  for (let i = 0; i < logs.length; i++) {
+    const [userId, minuteOccurred] = logs[i];
+
+    if (minuteMap.has(userId)) {
+      minuteMap.get(userId).add(minuteOccurred);
+    } else {
+      minuteMap.set(userId, new Set([minuteOccurred]));
+    }
+  }
+
+  const r = new Array(k).fill(0);
+
+  for (let [k, v] of minuteMap) {
+    r[v.size - 1]++;
+  }
+
+  return r;
+};
+
 console.log(
   // ***
-  pivotArray([9, 12, 5, 10, 14, 3, 10], 10) // 1, 2, 2
+  findingUsersActiveMinutes(
+    [
+      [1, 1],
+      [2, 2],
+      [2, 3],
+    ],
+    4
+  ) // [0,2,0,0,0] ie, 2 users have 2 unique minutes. 2 is the number of users., j is the number of unique minutes.
   // ***
 );
