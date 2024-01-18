@@ -45,3 +45,6 @@ EXAMPLE QUESTIONS:
         We determined the last crucial tickets could indeed be completed/reviewed/merged and released to be available to customers by that date, some remaining work/tickets would not be, but they were not customer facing features (some cleanup/optimizations that didn't stop feature release), so could be completed after that date. 
 
         The end result was indeed that the feature could be released to the customer by the date marketing had promoted. And the remaining work was delivered afterwards. On Reflection we did the best we could in unpredictable circumstances. And delivered the feature in trying circusmtances. 
+
+    [] MY ELEVATOR PITCH
+        -

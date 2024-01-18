@@ -689,8 +689,71 @@ function orderedMatrix(a, b) {
   return r;
 }
 
+function doubleSwap(str, c1, c2) {
+  let r = "";
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+    if (char === c1) {
+      r += c2;
+      continue;
+    }
+    if (char === c2) {
+      r += c1;
+      continue;
+    }
+    r += char;
+  }
+
+  return r;
+}
+
+function reverseOdd(str) {
+  return str
+    .split(" ")
+    .map((word) => {
+      if (isOddLength(word)) {
+        return word.split("").reverse().join("");
+      }
+      return word;
+    })
+    .join(" ");
+
+  function isOddLength(word) {
+    return word.length % 2 !== 0;
+  }
+}
+
+// A Capital Challenge
+function selectLetters(s1, s2) {
+  let r1 = "";
+  let r2 = "";
+
+  const longestStrLen = Math.max(s1.length, s2.length);
+
+  for (let i = 0; i < longestStrLen; i++) {
+    const s1Char = s1[i];
+    const s2Char = s2[i];
+    console.log(s2Char);
+
+    if (isUpperCase(s2Char) && s1Char) {
+      r1 += s1Char;
+    }
+    if (isUpperCase(s1Char) && s2Char) {
+      r2 += s2Char;
+    }
+  }
+
+  return r1 + r2;
+
+  function isUpperCase(char) {
+    if (!char) return false;
+    return char === char.toUpperCase();
+  }
+}
+
 console.log(
   // ***
-  orderedMatrix(1, 5) // 2
+  selectLetters("heLLO", "GUlp") // "help"
   // ***
 );
