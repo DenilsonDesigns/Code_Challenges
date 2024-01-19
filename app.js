@@ -1,2 +1,2 @@
-require("./LeetCode/stringMed");
+require("./Canva/app.js");
 // require("./LeetCode/arraysEasy.js");

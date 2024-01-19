@@ -27,15 +27,14 @@ EXAMPLE QUESTIONS:
         - At XXXX my team was seconded to work on the website of the company. Our product managers wanted to move us onto that project to speed up delivery and thought it was important to drive traffic to our products. 
         When we started there, the incumbent custodian team clearly were not ready for the influx of external devs, and progress became difficult. Requirements were sometimes unclear from design as their designers would bicker with our PMs/designers, and the tech team had still not worked out the patterns they wanted to use, nor the DevOps procedures they wanted to use. From our side, we were working on a front-end/CSS heavy project with component development, something no one on our team had done before. 
 
-        Once work started, there were difficulties on our end with completion of tasks as we upskilled in the work/tech of the project. Once we started to be capable of delivery at pace though, it was mostly for naught, as we were largely blocked by their procedures. Only one developer was deemed qualified to review our PRs in the component library, and one other dev for the PRs in the SPA. They were often very busy, and there were times when our PRs would wait for weeks or more before approval. 
+        Once work started, there were difficulties on our end with completion of tasks as we upskilled in the work/tech of the project. Once we started to be capable of delivery at pace though, it was mostly for naught, as we were largely blocked by their procedures. Only one developer was deemed qualified to review our PRs in the component library, and one other dev for the PRs in the SPA. They were often very busy and only worked 4 days, and there were times when our PRs would wait for weeks or more before approval. 
 
-        The lessons learned involved: upskilling in CSS/design/component development. An insight into how detrimental to a project the lack of suitable DevOps processes can be. Adding extra developers to the project did not increase speed as we were all bottlenecked behind 1 or 2 developers anyway. 
+        The lessons learned involved: upskilling in CSS/design/component development. An insight into how detrimental to a project the lack of suitable DevOps processes can be. Adding extra developers to the project did not increase speed as we were all bottlenecked behind 1 or 2 developers anyway. Calling it out to managers earlier, I learned later this was not obvious to them as they were being fed different stories from all parties. 
 
     [] TELL ME ABOUT A TIME YOU RECIEVED OR GAVE HARSH FEEDBACK
-        - 
-
-    [] TELL ME ABOUT A TIME YOU COULDNT DELIVER SOMETHING ON TIME AND HOW DID YOU HANDLE IT?
-        -
+        - A grad student in XXXX was doing a rotation in my team. It was clear to me they were not entirely sure they wanted a career in tech, and their effort levels showed, they did not seem interested in learning what we were doing, and i asked myself was i wasting my time, in some ways I felt offended, because I was spending so much time with them and I felt I was wasting my time. 
+        
+        I had a conversation with this grad and told them its very hard for a career changer (as i am myself), i did tell them that this career is very rewarding but you do need to put in the effort, its not really a career path you can cruise thru. It seemed to resonate on some level. They did show some more dedication to learning after that. I continued to uphold my end of the bargain by continuing to mentor them. 
 
     [] Tell me about a time when you had to meet a tight deadline for a project. How did you prioritize tasks and ensure the project was completed on time?
         - So we had a feature set that was nearing completion and was scheduled to be delivered to customers at the end of the month (few weeks away), we then got called to a meeting saying that marketing had put out messaging that that feature was going to be delivered on the 15th (next week).
@@ -50,3 +49,20 @@ EXAMPLE QUESTIONS:
         I'm a self-taught software engineer with a passion for problem-solving and creativity. I've found my ideal career in software development, which is not just a job but also my favorite hobby. As an integral member of software delivery teams in a large company, I've honed my skills and become a mentor to junior developers and graduates.
 
         I consider myself competent across the full web stack, however I am especially passionate about providing intuitive and smooth user workflows in the front end. 
+
+        I'm often the one in the team that learns the new skills required or unblocks the blockers, to then teach the rest of the team (including other senior members).
+
+        Greatest weakness: being self-assured but also being guilty of not knowing what I dont know (everyone has that to some degree in this industry), i try to combat this by self-reflecting and trying to find my own blindspots and improving on knowledge gaps, and also staying humble and considering others options (even juniors).
+
+    [] MISTAKES
+        - No Rambling, have a clear point. 
+        - Not selling yourself enough, dont worry about bragging. 
+        - Be genuine, 
+        - Not answering question, make sure you actually answer the question given. 
+
+
+    [] TELL ME ABOUT A TIME YOU FAILED KNOWING WHAT YOU KNOW NOW WHAT WOULD YOU DO DIFFERENTLY AND WHY?
+        - Can use website story? Deadlines were constantly missed. Could have communicated to more stakeholders the failures in the ways of worker, and devops blockers, I had assumed that it was widespread knowledge to all managers involved that this was happening and they just didnt want to/couldnt fix it, but I later learned that was not entirely the case, speaking to some managers about it. If i were to be in the situation again i would look for opportunitites to call out those deficiencies, without blaming individuals. 
+
+    [] SOMETHING NOT ON YOUR RESUME THAT YOU ARE PROUD OF. 
+        - Constant drive to keep learning and improving, i never feel comfortable in what i know and always want to push forward in my understanding of things. 

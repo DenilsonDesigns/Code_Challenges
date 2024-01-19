@@ -44,14 +44,19 @@ TODO:
             [x] Night, more system design, behavioural. 
 
         Friday plan:
-            [] Morning: Revisit TICTACTOE. 
+            [x] Morning: Revisit TICTACTOE. 
             [] More behavioural stuff.
-            [] More system design stuff. 
+            [x] More system design stuff. 
 
         *** CHECKLIST BEFORE START:
-            [] Boiler plate project (html/css/js)
-            [] Boiler plate project (nodeje)
+            [x] Boiler plate project (html/css/js)
+            [x] Boiler plate project (nodeje)
             [] Can I use breakpoints with that project? (FE)
-            [] Can I use breakpoints with that project? (nodejs)
-            [] Drawio new file. 
+            [x] Can I use breakpoints with that project? (nodejs)
+            [x] Drawio new file. 
             [] Review behavioural notes
+
+        [] QUESTIONS FOR CANVANAUTS
+            - Do you enjoy working at Canva? and best and worst thing about working at Canva?
+            - Do you think the delivery pressures you have in your job are fair?
+            - 
