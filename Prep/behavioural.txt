@@ -46,5 +46,7 @@ EXAMPLE QUESTIONS:
 
         The end result was indeed that the feature could be released to the customer by the date marketing had promoted. And the remaining work was delivered afterwards. On Reflection we did the best we could in unpredictable circumstances. And delivered the feature in trying circusmtances. 
 
-    [] MY ELEVATOR PITCH
-        -
+    [] MY ELEVATOR PITCH/TELL ME ABOUT YOURSELF
+        I'm a self-taught software engineer with a passion for problem-solving and creativity. I've found my ideal career in software development, which is not just a job but also my favorite hobby. As an integral member of software delivery teams in a large company, I've honed my skills and become a mentor to junior developers and graduates.
+
+        I consider myself competent across the full web stack, however I am especially passionate about providing intuitive and smooth user workflows in the front end. 

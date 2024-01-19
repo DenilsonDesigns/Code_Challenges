@@ -44,7 +44,7 @@ TODO:
             [x] Night, more system design, behavioural. 
 
         Friday plan:
-            [] Morning: Couple leetcode (arrays) Revisit TICTACTOE. 
+            [] Morning: Revisit TICTACTOE. 
             [] More behavioural stuff.
             [] More system design stuff. 
 
