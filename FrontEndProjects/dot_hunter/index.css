@@ -20,6 +20,7 @@ body {
   /* @TODO: remove */
   /* border: 1px solid red; */
   height: calc(100vh - 31px);
+  position: relative;
 }
 
 #dot-outer {
