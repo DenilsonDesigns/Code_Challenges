@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  background-color: rgba(56, 125, 125, 0.418);
+}
+
+#bar-backing {
+  background-color: grey;
+  width: 100%;
+  height: 10px;
+  margin: 10px 0;
+}
+
+#bar-progress {
+  height: 10px;
+  background-color: blue;
+  width: 100%;
+}
+
+#canvas {
+  /* @TODO: remove */
+  /* border: 1px solid red; */
+  height: calc(100vh - 31px);
+}
+
+#dot-outer {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  position: absolute;
+}
+
+#dot-second {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dot-third {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dot-fourth {
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dot-centre {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
