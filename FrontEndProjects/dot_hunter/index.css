@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  cursor: crosshair;
   background-color: rgba(56, 125, 125, 0.418);
 }
 
