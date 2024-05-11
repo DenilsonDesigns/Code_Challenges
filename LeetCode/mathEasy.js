@@ -328,8 +328,18 @@ var pivotInteger = function (n) {
   return -1;
 };
 
+// 3099. Harshad Number
+var sumOfTheDigitsOfHarshadNumber = function (x) {
+  const sumDigs = (x + "")
+    .split("")
+    .map((x) => +x)
+    .reduce((acc, el) => acc + el, 0);
+
+  return x % sumDigs === 0 ? sumDigs : -1;
+};
+
 console.log(
   // ***********
-  pivotInteger(4) // 4
+  sumOfTheDigitsOfHarshadNumber(4) // 4
   // ***********
 );

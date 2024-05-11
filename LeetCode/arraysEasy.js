@@ -2767,8 +2767,48 @@ var vowelStrings = function (words, left, right) {
   return r;
 };
 
+// 3131. Find the Integer Added to Array I
+var addedInteger = function (nums1, nums2) {
+  // sort em
+
+  nums1.sort((a, b) => a - b);
+  nums2.sort((a, b) => a - b);
+
+  return nums2[0] - nums1[0];
+};
+
+// 2956. Find Common Elements Between Two Arrays
+var findIntersectionValues = function (nums1, nums2) {
+  // get maps of both
+
+  const map1 = getMap(nums1);
+  const map2 = getMap(nums2);
+
+  return [getFreq(nums1, map2), getFreq(nums2, map1)];
+
+  function getFreq(arr, map) {
+    let r = 0;
+
+    arr.forEach((element) => {
+      if (map.get(element)) r++;
+    });
+
+    return r;
+  }
+
+  function getMap(arr) {
+    const rMap = new Map();
+
+    arr.forEach((el) => {
+      rMap.set(el, true);
+    });
+
+    return rMap;
+  }
+};
+
 console.log(
   // ***********************
-  vowelStrings(["are", "amy", "u"], 0, 2) // [3,2,5,4]
+  findIntersectionValues([2, 6, 4], [9, 6, 5]) // [3,2,5,4]
   // ***********************
 );
