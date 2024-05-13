@@ -38,6 +38,23 @@ async function sleep(millis) {
   );
 }
 
+// 2665. Counter II
+var createCounter = function (init) {
+  let val = init;
+
+  return {
+    increment: () => {
+      return ++val;
+    },
+    decrement: () => {
+      return --val;
+    },
+    reset: () => {
+      return (val = init);
+    },
+  };
+};
+
 console.log(
   // ***
   reduce(
