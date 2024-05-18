@@ -78,10 +78,33 @@ ArrayWrapper.prototype.toString = function () {
   return `[${this.nums.join(", ")}]`;
 };
 
-var arr2 = ArrayWrapper([1, 2, 3]);
+// 2715. Timeout Cancellation
+var cancellable = function (fn, args, t) {
+  let timeOutId = setTimeout(() => {
+    fn(args);
+  }, t);
+
+  return function () {
+    return clearTimeout(timeOutId);
+  };
+};
+
+// 2635. Apply Transform Over Each Element in Array
+var map = function (arr, fn) {
+  let newArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const element = fn(arr[i], i);
+    newArr.push(element);
+  }
+
+  return newArr;
+};
 
 console.log(
-  // ***
-  arr2.toString()
-  // ***
+  //
+  map([1, 2, 3], function plusone(n) {
+    return n + 1;
+  })
+  //
 );
