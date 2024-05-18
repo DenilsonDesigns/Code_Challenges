@@ -65,14 +65,23 @@ var once = function (fn) {
   };
 };
 
+// 2695. Array Wrapper
+var ArrayWrapper = function (nums) {
+  this.nums = nums;
+};
+
+ArrayWrapper.prototype.valueOf = function () {
+  return this.nums.reduce((acc, el) => acc + el, 0);
+};
+
+ArrayWrapper.prototype.toString = function () {
+  return `[${this.nums.join(", ")}]`;
+};
+
+var arr2 = ArrayWrapper([1, 2, 3]);
+
 console.log(
   // ***
-  reduce(
-    [1, 2, 3, 4],
-    function sum(accum, curr) {
-      return accum + curr;
-    },
-    0
-  )
+  arr2.toString()
   // ***
 );
