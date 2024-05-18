@@ -55,6 +55,16 @@ var createCounter = function (init) {
   };
 };
 
+// 2666. Allow One Function Call
+var once = function (fn) {
+  let calls = 0;
+  return function (...args) {
+    if (calls) return undefined;
+    calls++;
+    return fn(...args);
+  };
+};
+
 console.log(
   // ***
   reduce(
