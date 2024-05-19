@@ -10,6 +10,23 @@ var debounce = function (fn, t) {
   };
 };
 
+// 2623. Memoize
+function memoize(fn) {
+  let callMap = new Map();
+
+  return function (...args) {
+    let callKey = JSON.stringify(...args);
+
+    if (callMap.has(callKey)) {
+      return callMap.get(callKey);
+    } else {
+      let result = fn(...args);
+      callMap.set(callKey, result);
+      return result;
+    }
+  };
+}
+
 console.log(
   // ***
   debounce(
