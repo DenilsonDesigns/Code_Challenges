@@ -161,10 +161,19 @@ class Calculator {
   }
 }
 
+// 2677. Chunk Array
+var chunk = function (arr, size) {
+  const r = [];
+
+  for (let i = 0; i < arr.length; i += size) {
+    r.push(arr.slice(i, size + i));
+  }
+
+  return r;
+};
+
 console.log(
-  //
-  map([1, 2, 3], function plusone(n) {
-    return n + 1;
-  })
-  //
+  // ***
+  chunk([1, 9, 6, 3, 2], 3)
+  // ***
 );
