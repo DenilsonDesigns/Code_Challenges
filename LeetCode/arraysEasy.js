@@ -2807,8 +2807,74 @@ var findIntersectionValues = function (nums1, nums2) {
   }
 };
 
+// 2733. Neither Minimum nor Maximum
+var findNonMinOrMax = function (nums) {
+  // sort and setify
+
+  nums.sort((b, a) => b - a);
+
+  const setified = [...new Set(nums)];
+
+  if (setified.length <= 2) return -1;
+  return setified[1];
+};
+
+// 2363. Merge Similar Items
+var mergeSimilarItems = function (items1, items2) {
+  const newMap = new Map();
+
+  const maxLength = Math.max(items1.length, items2.length);
+
+  for (let i = 0; i < maxLength; i++) {
+    // check if exists:
+    let element1;
+    let element2;
+
+    if (!(i >= items1.length)) {
+      element1 = items1[i];
+      console.log("element12", element1);
+    }
+
+    if (!(i >= items2.length)) {
+      element2 = items2[i];
+    }
+
+    if (element1) {
+      if (newMap.has(element1[0])) {
+        let currVal = newMap.get(element1[0]);
+        newMap.set(element1[0], currVal + element1[1]);
+      } else {
+        newMap.set(element1[0], element1[1]);
+      }
+    }
+
+    if (element2) {
+      if (newMap.has(element2[0])) {
+        let currVal = newMap.get(element2[0]);
+        newMap.set(element2[0], currVal + element2[1]);
+      } else {
+        newMap.set(element2[0], element2[1]);
+      }
+    }
+  }
+
+  const mapArr = Array.from(newMap);
+
+  return mapArr.sort((b, a) => a[0] - b[0]);
+};
+
 console.log(
   // ***********************
-  findIntersectionValues([2, 6, 4], [9, 6, 5]) // [3,2,5,4]
+  mergeSimilarItems(
+    [
+      [1, 3],
+      [2, 2],
+    ],
+    [
+      [7, 1],
+      [2, 2],
+      [1, 4],
+    ]
+  )
   // ***********************
 );

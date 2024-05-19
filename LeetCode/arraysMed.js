@@ -295,7 +295,6 @@ var findingUsersActiveMinutes = function (logs, k) {
 
   return r;
 };
-
 console.log(
   // ***
   findingUsersActiveMinutes(
