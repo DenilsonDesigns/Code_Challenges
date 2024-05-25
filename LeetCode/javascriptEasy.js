@@ -172,8 +172,27 @@ var chunk = function (arr, size) {
   return r;
 };
 
+// 2727. Is Object Empty
+var isEmpty = function (obj) {
+  if (obj instanceof Array) {
+    return obj.length === 0;
+  }
+  if (obj instanceof Object) {
+    return Object.keys(obj).length === 0;
+  }
+};
+
+// 2619. Array Prototype Last
+Array.prototype.last = function () {
+  if (this.length === 0) {
+    return -1;
+  }
+
+  return this[this.length - 1];
+};
+
 console.log(
   // ***
-  chunk([1, 9, 6, 3, 2], 3)
+  ["asdf", "asdffff"].last()
   // ***
 );
