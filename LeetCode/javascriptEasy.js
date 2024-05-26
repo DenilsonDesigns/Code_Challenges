@@ -191,8 +191,32 @@ Array.prototype.last = function () {
   return this[this.length - 1];
 };
 
+// 2704. To Be Or Not To Be
+var expect = function (val) {
+  return {
+    val,
+
+    toBe: (expectedVal) => {
+      if (expectedVal === val) {
+        return true;
+      } else {
+        throw new Error("Not Equal");
+      }
+    },
+    notToBe: (expectedVal) => {
+      if (expectedVal !== val) {
+        return true;
+      } else if (expectedVal === val) {
+        throw new Error("Equal");
+      } else {
+        throw new Error("Not Equal");
+      }
+    },
+  };
+};
+
 console.log(
   // ***
-  ["asdf", "asdffff"].last()
+  expect(5).toBe(null)
   // ***
 );

@@ -27,14 +27,16 @@ function memoize(fn) {
   };
 }
 
+// 2618. Check if Object Instance of Class
+var checkIfInstanceOf = function (obj, classFunction) {
+  if (obj === null || obj === undefined || typeof classFunction !== "function")
+    return false;
+
+  return Object(obj) instanceof classFunction;
+};
+
 console.log(
   // ***
-  debounce(
-    [
-      { t: 50, inputs: [1] },
-      { t: 75, inputs: [2] },
-    ],
-    50
-  )
+  checkIfInstanceOf(new Date("20022"), Date)
   // ***
 );
