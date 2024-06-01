@@ -135,11 +135,6 @@ function isPalindrome(head) {
   }
 
   return true;
-
-  console.log("prev:");
-  printLinkedList(prev);
-  console.log("curr:");
-  printLinkedList(curr);
 }
 
 // 2. Add Two Numbers
@@ -177,23 +172,6 @@ function addTwoNumbers(l1, l2) {
     return +r;
   }
 
-  const initializeLinkedListFromArray = (array) => {
-    if (array.length === 0) {
-      return [];
-    }
-
-    let head = new ListNode(array[0]);
-
-    let current = head;
-
-    for (let i = 1; i < array.length; i++) {
-      let newNode = new ListNode(array[i]);
-      current.next = newNode;
-      current = current.next;
-    }
-    return head;
-  };
-
   const reversed1 = reverseList(l1);
   const reversed2 = reverseList(l2);
 
@@ -210,16 +188,102 @@ function addTwoNumbers(l1, l2) {
   return initializeLinkedListFromArray(arrayToBeMadeIntoLL);
 }
 
+// 83. Remove Duplicates from Sorted List
+var deleteDuplicates = function (head) {
+  var curr = head;
+
+  while (curr?.next) {
+    if (curr.val === curr.next.val) {
+      var prev = curr;
+      curr.next = prev.next.next;
+    } else {
+      if (curr.next) curr = curr.next;
+    }
+  }
+
+  return head;
+};
+
+// 203. Remove Linked List Elements
+var removeElements = function (head, val) {
+  let dummy = new ListNode(0);
+  dummy.next = head;
+
+  let current = dummy;
+
+  while (current.next !== null) {
+    if (current.next.val === val) {
+      current.next = current.next.next;
+    } else {
+      current = current.next;
+    }
+  }
+
+  return dummy.next;
+};
+
+// 160. Intersection of Two Linked Lists
+var getIntersectionNode = function (headA, headB) {
+  var headALength = getLinkedListLength(headA);
+  var headBLength = getLinkedListLength(headB);
+
+  var amountToShorten =
+    Math.max(headALength, headBLength) - Math.min(headALength, headBLength);
+
+  if (headALength > headBLength) {
+    headA = shortenLinkedList(headA, amountToShorten);
+  } else {
+    headB = shortenLinkedList(headB, amountToShorten);
+  }
+
+  var currentA = headA;
+  var currentB = headB;
+
+  while (currentA !== null) {
+    if (currentA === currentB) {
+      return currentA;
+    } else {
+      currentA = currentA.next;
+      currentB = currentB.next;
+    }
+  }
+
+  return null;
+
+  function getLinkedListLength(linkedList) {
+    var count = 0;
+    var current = linkedList;
+    while (current !== null) {
+      count++;
+      current = current.next;
+    }
+
+    return count;
+  }
+
+  function shortenLinkedList(linkedList, amount) {
+    var current = linkedList;
+
+    for (let i = 0; i < amount; i++) {
+      current = current.next;
+    }
+
+    return current;
+  }
+};
+
 // setup:
-const head1 = initializeLinkedListFromArray([
-  1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-]);
-const head2 = initializeLinkedListFromArray([5, 6, 4]);
+const head1 = initializeLinkedListFromArray([4, 1, 8, 4, 5]);
+const head2 = initializeLinkedListFromArray([5, 6, 1, 8, 4, 5]);
+// func to test:
+const SUT = getIntersectionNode(head1, head2);
 
 // to print:
 console.log(
   //*** */
-  printLinkedList(addTwoNumbers(head1, head2))
+  SUT,
+  // printLinkedList(head1),
   // addTwoNumbers(head1, head2)
   //*** */
+  printLinkedList(SUT)
 );
