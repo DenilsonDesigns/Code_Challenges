@@ -272,11 +272,41 @@ var getIntersectionNode = function (headA, headB) {
   }
 };
 
+// 2807. Insert greatest common divisors in linked lists.
+var insertGreatestCommonDivisors = function (head) {
+  let current = head;
+
+  while (current.next !== null) {
+    // get the common divisor of current, and current.next
+    const commonDivisor = getHighestCommonDivisor(
+      current.val,
+      current.next.val
+    );
+
+    const nodeToBeInserted = new ListNode(commonDivisor);
+
+    nodeToBeInserted.next = current.next;
+    current.next = nodeToBeInserted;
+    current = nodeToBeInserted.next;
+  }
+
+  return head;
+
+  function getHighestCommonDivisor(a, b) {
+    while (b !== 0) {
+      let temp = b;
+      b = a % b;
+      a = temp;
+    }
+    return a;
+  }
+};
+
 // setup:
-const head1 = initializeLinkedListFromArray([4, 1, 8, 4, 5]);
-const head2 = initializeLinkedListFromArray([5, 6, 1, 8, 4, 5]);
+const head1 = initializeLinkedListFromArray([18, 6, 10, 3]);
+// const head2 = initializeLinkedListFromArray([5, 6, 1, 8, 4, 5]);
 // func to test:
-const SUT = getIntersectionNode(head1, head2);
+const SUT = insertGreatestCommonDivisors(head1);
 
 // to print:
 console.log(
