@@ -1,2 +1,2 @@
-require("./Canva/app.js");
+require("./LeetCode/linkedLists.js");
 // require("./LeetCode/arraysEasy.js");

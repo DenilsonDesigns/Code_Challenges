@@ -302,11 +302,45 @@ var insertGreatestCommonDivisors = function (head) {
   }
 };
 
+// 2181. Merge Nodes in Between Zeros
+var mergeNodes = function (head) {
+  // Create new node to start from:
+  let outList = new ListNode(0);
+  // Current pointer on the returning LL:
+  let outListHeadCurr = outList;
+  // Current position passed in LL
+  let current = head.next;
+
+  // Running counter to track what to push:
+  let counter = 0;
+
+  // Checking we have a current node:
+  while (current !== null) {
+    // Incrementing counter if its not 0:
+    if (current.val !== 0) {
+      counter += current.val;
+    } else {
+      // Appending new node with current counter:
+      outListHeadCurr.next = new ListNode(counter);
+      // Moving pointer to be at the just appending node:
+      outListHeadCurr = outListHeadCurr.next;
+      // Resetting counter:
+      counter = 0;
+    }
+    // Moving pointer of passed in LL:
+    current = current.next;
+  }
+
+  return outList.next;
+};
+
 // setup:
-const head1 = initializeLinkedListFromArray([18, 6, 10, 3]);
+const head1 = initializeLinkedListFromArray([0, 3, 1, 0, 4, 5, 2, 0]);
 // const head2 = initializeLinkedListFromArray([5, 6, 1, 8, 4, 5]);
 // func to test:
-const SUT = insertGreatestCommonDivisors(head1);
+// ***********************************
+const SUT = mergeNodes(head1); // ****
+// ***********************************
 
 // to print:
 console.log(
