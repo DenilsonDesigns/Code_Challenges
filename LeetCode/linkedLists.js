@@ -334,12 +334,57 @@ var mergeNodes = function (head) {
   return outList.next;
 };
 
+// 1669. Merge In Between Linked Lists
+var mergeInBetween = function (list1, a, b, list2) {
+  let current = list1;
+  let openingNode = null;
+  let closeNode = null;
+
+  let count = 0;
+
+  while (current !== null) {
+    if (count + 1 === a) {
+      openingNode = current;
+    }
+    if (count - 1 === b) {
+      closeNode = current;
+    }
+    count++;
+    current = current.next;
+  }
+
+  openingNode.next = list2;
+
+  let current2 = list2;
+
+  while (current2.next !== null) {
+    current2 = current2.next;
+  }
+
+  current2.next = closeNode;
+
+  return list1;
+};
+
+// 141. Linked List Cycle
+// (Tortoise and hare approach)
+var hasCycle = function (head) {
+  let fast = head;
+  while (fast && fast.next) {
+    head = head.next;
+    fast = fast.next.next;
+    if (head === fast) {
+      return true;
+    }
+  }
+  return false;
+};
+
 // setup:
-const head1 = initializeLinkedListFromArray([0, 3, 1, 0, 4, 5, 2, 0]);
-// const head2 = initializeLinkedListFromArray([5, 6, 1, 8, 4, 5]);
+const head1 = initializeLinkedListFromArray([10, 1, 13, 6, 9, 5]);
 // func to test:
 // ***********************************
-const SUT = mergeNodes(head1); // ****
+const SUT = hasCycle(head1); // ****
 // ***********************************
 
 // to print:
