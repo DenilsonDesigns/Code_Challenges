@@ -380,11 +380,75 @@ var hasCycle = function (head) {
   return false;
 };
 
+// 19. Remove Nth Node From End of List
+var removeNthFromEnd = function (head, n) {
+  let current = head;
+  // iterate through whole list and get length.
+
+  let listLength = 0;
+
+  while (current) {
+    listLength++;
+    current = current.next;
+  }
+
+  if (listLength === n) {
+    return head.next;
+  }
+
+  let nextCurrent = head;
+  let idx = 0;
+  while (nextCurrent) {
+    if (idx === listLength - n - 1) {
+      nextCurrent.next = nextCurrent.next.next;
+      break;
+    }
+    nextCurrent = nextCurrent.next;
+
+    idx++;
+  }
+
+  return head;
+};
+
+// 2487. Remove Nodes From Linked List
+var removeNodes = function (head) {
+  const reverseList = (node) => {
+    let prev = null;
+    let curr = node;
+    while (curr !== null) {
+      let next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    return prev;
+  };
+
+  let reversedList = reverseList(head);
+
+  let dummy = new ListNode(0);
+  dummy.next = reversedList;
+  let current = dummy;
+  let rolligHighest = 0;
+
+  while (current.next !== null) {
+    if (current.next.val >= rolligHighest) {
+      rolligHighest = current.next.val;
+      current = current.next;
+    } else {
+      current.next = current.next.next;
+    }
+  }
+
+  return reverseList(dummy.next);
+};
+
 // setup:
-const head1 = initializeLinkedListFromArray([10, 1, 13, 6, 9, 5]);
+const head1 = initializeLinkedListFromArray([5, 2, 13, 3, 8]);
 // func to test:
 // ***********************************
-const SUT = hasCycle(head1); // ****
+const SUT = removeNodes(head1); // ****
 // ***********************************
 
 // to print:
