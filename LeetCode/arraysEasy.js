@@ -2863,18 +2863,33 @@ var mergeSimilarItems = function (items1, items2) {
   return mapArr.sort((b, a) => a[0] - b[0]);
 };
 
+// 2389. Longest Subsequence With Limited Sum
+var answerQueries = function (nums, queries) {
+  // sort in ascending order:
+  nums.sort((a, b) => a - b);
+
+  const r = [];
+
+  for (let i = 0; i < queries.length; i++) {
+    const target = queries[i];
+    let count = 0;
+    let sum = 0;
+
+    for (let j = 0; j < nums.length; j++) {
+      const element = nums[j];
+
+      sum += element;
+
+      if (sum <= target) count++;
+    }
+    r.push(count);
+  }
+
+  return r.length ? r : [0];
+};
+
 console.log(
   // ***********************
-  mergeSimilarItems(
-    [
-      [1, 3],
-      [2, 2],
-    ],
-    [
-      [7, 1],
-      [2, 2],
-      [1, 4],
-    ]
-  )
+  answerQueries([4, 5, 2, 1], [3, 10, 21])
   // ***********************
 );
