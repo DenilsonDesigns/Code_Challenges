@@ -2888,8 +2888,23 @@ var answerQueries = function (nums, queries) {
   return r.length ? r : [0];
 };
 
+// 3184. Count Pairs That Form a Complete Day I
+var countCompleteDayPairs = function (hours) {
+  let count = 0;
+
+  for (let i = 0; i < hours.length - 1; i++) {
+    const elementOuter = hours[i];
+    for (let j = i + 1; j < hours.length; j++) {
+      const elementInner = hours[j];
+      if ((elementInner + elementOuter) % 24 === 0) count++;
+    }
+  }
+
+  return count;
+};
+
 console.log(
   // ***********************
-  answerQueries([4, 5, 2, 1], [3, 10, 21])
+  countCompleteDayPairs([12, 12, 30, 24, 24])
   // ***********************
 );
