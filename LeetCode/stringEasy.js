@@ -1859,8 +1859,61 @@ var repeatedCharacter = function (s) {
   }
 };
 
+// 392. Is Subsequence
+var isSubsequence = function (s, t) {
+  if (s.length === 0) return true;
+
+  let hayStackPointer = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    const element = s[i];
+
+    while (hayStackPointer <= t.length) {
+      if (element === t[hayStackPointer] && i === s.length - 1) {
+        return true;
+      }
+      if (element === t[hayStackPointer]) {
+        hayStackPointer++;
+        break;
+      }
+
+      hayStackPointer++;
+    }
+  }
+
+  return false;
+};
+
+// 680. Valid Palindrome II
+var validPalindrome = function (s) {
+  // Helper function to check if a substring is a palindrome
+  const isPalindrome = (s, left, right) => {
+    while (left < right) {
+      if (s[left] !== s[right]) return false;
+      left++;
+      right--;
+    }
+    return true;
+  };
+
+  let left = 0;
+  let right = s.length - 1;
+
+  while (left < right) {
+    if (s[left] !== s[right]) {
+      return (
+        isPalindrome(s, left + 1, right) || isPalindrome(s, left, right - 1)
+      );
+    }
+    left++;
+    right--;
+  }
+
+  return true;
+};
+
 console.log(
   // **********************
-  repeatedCharacter("abccbaacz") // "c"
+  validPalindrome("acbbca") // true
   // **********************
 );

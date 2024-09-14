@@ -338,8 +338,20 @@ var sumOfTheDigitsOfHarshadNumber = function (x) {
   return x % sumDigs === 0 ? sumDigs : -1;
 };
 
+// 342. Power of Four
+var isPowerOfFour = function (n) {
+  if (n <= 0) {
+    return false;
+  }
+
+  while (n % 4 == 0) {
+    n /= 4;
+  }
+  return n == 1;
+};
+
 console.log(
   // ***********
-  sumOfTheDigitsOfHarshadNumber(4) // 4
+  isPowerOfFour(16) // true
   // ***********
 );
