@@ -2903,8 +2903,52 @@ var countCompleteDayPairs = function (hours) {
   return count;
 };
 
+// 448. Find All Numbers Disappeared in an Array
+var findDisappearedNumbers = function (nums) {
+  const missingNums = [];
+
+  const numSet = new Set(nums);
+
+  for (let i = 1; i <= nums.length; i++) {
+    if (!numSet.has(i)) missingNums.push(i);
+  }
+
+  return missingNums;
+};
+
+// 496. Next Greater Element I
+var nextGreaterElement = function (nums1, nums2) {
+  const r = [];
+
+  for (let i = 0; i < nums1.length; i++) {
+    const num1Element = nums1[i];
+
+    let foundElement = false;
+    let pushedOut = false;
+    for (let j = 0; j < nums2.length; j++) {
+      const num2Element = nums2[j];
+
+      if (foundElement && num2Element > num1Element) {
+        r.push(num2Element);
+        pushedOut = true;
+        break;
+      }
+
+      if (num1Element === num2Element) {
+        foundElement = true;
+      }
+    }
+
+    if (!pushedOut) r.push(-1);
+    pushedOut = false;
+    foundElement = false;
+  }
+
+  return r;
+};
+
 console.log(
   // ***********************
-  countCompleteDayPairs([12, 12, 30, 24, 24])
+  nextGreaterElement([4, 1, 2], [1, 2, 3, 4])
   // ***********************
 );
