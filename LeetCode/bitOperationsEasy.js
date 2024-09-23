@@ -41,7 +41,6 @@ var hammingDistance = function (x, y) {
   let xor = x ^ y;
   let count = 0;
 
-  // Count the number of 1s (differences)
   while (xor > 0) {
     count += xor & 1;
     xor >>= 1;

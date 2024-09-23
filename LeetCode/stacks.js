@@ -100,8 +100,43 @@ var removeOuterParentheses = function (s) {
   return output;
 };
 
+// 239. Sliding Window Maximum
+var maxSlidingWindow = function (nums, k) {
+  // the value that the method will return:
+  const returnArray = [];
+  // the deque stores indices from nums, not the values:
+  const deque = [];
+
+  let left = 0;
+  let right = 0;
+
+  while (right < nums.length) {
+    // pop smaller values than nums[r] from deque:
+    while (deque.length && nums[deque.at(-1)] < nums[right]) {
+      deque.pop();
+    }
+    // append current index:
+    deque.push(right);
+
+    // remove left val from window if out of bounds:
+    if (left > deque[0]) {
+      deque.shift();
+    }
+
+    // only push if right pointer is atleast at the starting window size.
+    if (right >= k - 1) {
+      returnArray.push(nums[deque[0]]);
+      left++;
+    }
+
+    right++;
+  }
+
+  return returnArray;
+};
+
 console.log(
   // ***
-  removeOuterParentheses("(()())(())") //
+  maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3) //
   // ***
 );
