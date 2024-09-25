@@ -135,8 +135,29 @@ var maxSlidingWindow = function (nums, k) {
   return returnArray;
 };
 
+// 3174 Clear Digits
+var clearDigits = function (s) {
+  function isLetter(char) {
+    return /^[a-zA-Z]$/.test(char);
+  }
+  const indicesCharsStack = [];
+
+  for (let i = 0; i < s.length; i++) {
+    const char = s[i];
+
+    if (isLetter(char)) {
+      indicesCharsStack.push(char);
+    }
+    if (!isLetter(char)) {
+      indicesCharsStack.pop();
+    }
+  }
+
+  return indicesCharsStack.join("");
+};
+
 console.log(
   // ***
-  maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3) //
+  clearDigits("abc") //
   // ***
 );
