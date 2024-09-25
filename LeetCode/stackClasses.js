@@ -59,3 +59,41 @@ MinStack.prototype.getMin = function () {
   }
   return this.stack.at(-1)["currMin"];
 };
+
+// 232. Implement Queue using Stacks
+
+var MyQueue = function () {
+  this.stack = [];
+};
+
+MyQueue.prototype.push = function (x) {
+  this.stack.push(x);
+};
+
+MyQueue.prototype.pop = function () {
+  return this.stack.shift();
+};
+
+MyQueue.prototype.peek = function () {
+  return this.stack.length > 0 ? this.stack[0] : null;
+};
+
+MyQueue.prototype.empty = function () {
+  return this.stack.length === 0;
+};
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * var obj = new MyQueue()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.peek()
+ * var param_4 = obj.empty()
+ */
+var obj = new MyQueue();
+
+obj.push(1);
+obj.push(2);
+console.log("peek");
+console.log(obj.peek());
+console.log(obj.empty());
