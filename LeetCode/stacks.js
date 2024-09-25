@@ -156,8 +156,34 @@ var clearDigits = function (s) {
   return indicesCharsStack.join("");
 };
 
+// 1544. Make The String Great Again
+var makeGood = function (s) {
+  function isFlippedCase(letter1, letter2) {
+    return (
+      letter1 !== letter2 && letter1.toLowerCase() === letter2.toLowerCase()
+    );
+  }
+
+  const greatStack = [];
+
+  for (let i = 0; i < s.length; i++) {
+    const char = s[i];
+
+    if (
+      greatStack.length > 0 &&
+      isFlippedCase(char, greatStack[greatStack.length - 1])
+    ) {
+      greatStack.pop();
+    } else {
+      greatStack.push(char);
+    }
+  }
+
+  return greatStack.join("");
+};
+
 console.log(
   // ***
-  clearDigits("abc") //
+  makeGood("leEeetcCcode") //
   // ***
 );
