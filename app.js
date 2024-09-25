@@ -1,1 +1,1 @@
-require("./LeetCode/myStack.js");
+require("./LeetCode/stackClasses.js");
