@@ -96,6 +96,21 @@ var relativeSortArray = function (arr1, arr2) {
   });
 };
 
+// 2540. Minimum Common Value
+var getCommon = function (nums1, nums2) {
+  const setNum1 = new Set(nums1);
+
+  for (let i = 0; i < nums2.length; i++) {
+    const element = nums2[i];
+
+    if (setNum1.has(element)) {
+      return element;
+    }
+  }
+
+  return -1;
+};
+
 console.log(
   // ***
   relativeSortArray([26, 21, 11, 20, 50, 34, 1, 18], [21, 11, 26, 20])
