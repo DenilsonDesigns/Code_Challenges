@@ -295,15 +295,65 @@ var findingUsersActiveMinutes = function (logs, k) {
 
   return r;
 };
+
+// 15. 3Sum
+var threeSum = function (nums) {
+  // sort nums.
+  nums.sort((a, b) => a - b);
+
+  const r = [];
+
+  // -2 from length as the final 2 elements in the array will be the triplet
+  // we compare to check for triplet with i
+  for (let i = 0; i < nums.length - 2; i++) {
+    const element = nums[i];
+
+    // continue if the anchor is the same as the previous loop
+    if (i > 0 && element === nums[i - 1]) continue;
+
+    // make our left and right pointers.
+    let left = i + 1;
+    let right = nums.length - 1;
+
+    while (left < right) {
+      // current triple value:
+      let currTotal = element + nums[left] + nums[right];
+
+      // total too small, its a sorted array, so move bottom
+      // end of window up:
+      if (currTotal < 0) {
+        left++;
+      }
+      // total too big, move upper end of window down:
+      else if (currTotal > 0) {
+        right--;
+      }
+      // we have a threepher:
+      else {
+        let triplet = [element, nums[left], nums[right]];
+
+        r.push(triplet);
+
+        // logic to prevent dupes:
+        // if we increment left and its the same as previously pushed left
+        // keep incrementing until its unique:
+        while (left < right && nums[left] === triplet[1]) {
+          left++;
+        }
+        // same for right:
+        while (left < right && nums[right] === triplet[2]) {
+          right--;
+        }
+      }
+    }
+  }
+
+  return r;
+  //
+};
+
 console.log(
   // ***
-  findingUsersActiveMinutes(
-    [
-      [1, 1],
-      [2, 2],
-      [2, 3],
-    ],
-    4
-  ) // [0,2,0,0,0] ie, 2 users have 2 unique minutes. 2 is the number of users., j is the number of unique minutes.
+  threeSum([-1, -11, 0, 1, 2, -1, -4, -4])
   // ***
 );
