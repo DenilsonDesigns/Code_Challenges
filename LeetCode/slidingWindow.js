@@ -119,8 +119,24 @@ var maximumLengthSubstring = function (s) {
   }
 };
 
+// 3206. Alternating Groups I
+var numberOfAlternatingGroups = function (colors) {
+  let r = 0;
+
+  for (let i = 0; i < colors.length; i++) {
+    let j = (i + 1) % colors.length;
+    let k = (i + 2) % colors.length;
+
+    if (colors[i] !== colors[j] && colors[j] !== colors[k]) {
+      r++;
+    }
+  }
+
+  return r;
+};
+
 console.log(
   // ***
-  maximumLengthSubstring("bcbbbcba") // 4
+  numberOfAlternatingGroups([0, 1, 0, 0, 1]) // 4
   // ***
 );
