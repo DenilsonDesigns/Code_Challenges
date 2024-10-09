@@ -86,23 +86,28 @@ function reverseList(head) {
 
 // Return the head of the merged linked list.
 function mergeTwoLists(list1, list2) {
-  // make new node which will become the returned list:
-  let list = new ListNode();
-  let head = list;
+  let dummy = new ListNode();
+  let tail = dummy;
 
   while (list1 && list2) {
-    if (list1.val <= list2.val) {
-      list.next = list1;
+    if (list1.val > list2.val) {
+      tail.next = list1;
       list1 = list1.next;
     } else {
-      list.next = list2;
+      tail.next = list2;
       list2 = list2.next;
     }
-    list = list.next;
+
+    tail = tail.next;
   }
 
-  list.next = list1 || list2;
-  return head.next;
+  if (list1) {
+    tail.next = list1;
+  } else if (list2) {
+    tail.next = list2;
+  }
+
+  return dummy.next;
 }
 
 // 234. Palindrome Linked List
@@ -468,11 +473,39 @@ var swapPairs = function (head) {
   return dummy.next;
 };
 
+// 2. Add Two Numbers
+var addTwoNumbers = function (l1, l2) {
+  let dummy = new ListNode();
+  let curr = dummy;
+
+  let carry = 0;
+
+  while (l1 || l2 || carry) {
+    let v1 = l1?.val ? l1.val : 0;
+    let v2 = l2?.val ? l2.val : 0;
+
+    // new digit:
+    let val = v1 + v2 + carry;
+    // new carry:
+    carry = Math.floor(val / 10);
+    val = val % 10;
+    curr.next = new ListNode(val);
+
+    curr = curr.next;
+
+    if (l1) l1 = l1.next;
+    if (l2) l2 = l2.next;
+  }
+
+  return dummy.next;
+};
+
 // setup:
-const head1 = initializeLinkedListFromArray([1, 2, 3, 4]);
+const head1 = initializeLinkedListFromArray([2, 4, 3]);
+const head2 = initializeLinkedListFromArray([5, 6, 4]);
 // func to test:
 // ***********************************
-const SUT = swapPairs(head1); // ****
+const SUT = addTwoNumbers(head1, head2); // ****
 // ***********************************
 
 // to print:
