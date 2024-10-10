@@ -500,12 +500,27 @@ var addTwoNumbers = function (l1, l2) {
   return dummy.next;
 };
 
+// xxx. GPT reverse linked list
+function reverseList(head) {
+  // Iteratively:
+  let prev = null;
+  let curr = head; // 1
+
+  while (curr) {
+    let nxt = curr.next; // 2
+    curr.next = prev; // null
+    prev = curr; // 1
+    curr = nxt; // 2
+  }
+
+  return prev;
+}
+
 // setup:
-const head1 = initializeLinkedListFromArray([2, 4, 3]);
-const head2 = initializeLinkedListFromArray([5, 6, 4]);
+const head1 = initializeLinkedListFromArray([1, 2, 3, 4, 5]);
 // func to test:
 // ***********************************
-const SUT = addTwoNumbers(head1, head2); // ****
+const SUT = reverseList(head1); // ****
 // ***********************************
 
 // to print:
