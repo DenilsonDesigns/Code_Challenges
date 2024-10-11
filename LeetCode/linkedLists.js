@@ -371,20 +371,6 @@ var mergeInBetween = function (list1, a, b, list2) {
   return list1;
 };
 
-// 141. Linked List Cycle
-// (Tortoise and hare approach)
-var hasCycle = function (head) {
-  let fast = head;
-  while (fast && fast.next) {
-    head = head.next;
-    fast = fast.next.next;
-    if (head === fast) {
-      return true;
-    }
-  }
-  return false;
-};
-
 // 19. Remove Nth Node From End of List
 var removeNthFromEnd = function (head, n) {
   let current = head;
@@ -516,11 +502,26 @@ function reverseList(head) {
   return prev;
 }
 
+// 141. Linked List Cycle
+// (Tortoise and hare approach)
+var hasCycle = function (head) {
+  let slow = head;
+  let fast = head;
+
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) return true;
+  }
+
+  return false;
+};
+
 // setup:
 const head1 = initializeLinkedListFromArray([1, 2, 3, 4, 5]);
 // func to test:
 // ***********************************
-const SUT = reverseList(head1); // ****
+const SUT = hasCycle(head1); // ****
 // ***********************************
 
 // to print:
