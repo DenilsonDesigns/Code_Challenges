@@ -33,3 +33,21 @@ var maxDepth = function (root) {
 
   // dfs:
 };
+
+// 94. Binary Tree Inorder Traversal
+var inorderTraversal = function (root) {
+  // recursive:
+  const res = [];
+
+  inorder(root);
+
+  function inorder(root) {
+    if (!root) return;
+
+    inorder(root.left);
+    res.push(root.val);
+    inorder(root.right);
+  }
+
+  return res;
+};
