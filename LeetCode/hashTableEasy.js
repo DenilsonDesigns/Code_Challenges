@@ -21,4 +21,31 @@ function uniqueOccurrences(arr) {
   return occValsLen === setArrLen;
 }
 
-console.log(uniqueOccurrences([1, 2]));
+// 3146 Permutation Difference between two strings
+var findPermutationDifference = function (s, t) {
+  // first hashtable
+  const map1 = new Map();
+  const map2 = new Map();
+
+  for (let i = 0; i < s.length; i++) {
+    const char1 = s[i];
+    const char2 = t[i];
+
+    map1.set(char1, i);
+    map2.set(char2, i);
+  }
+
+  let r = 0;
+
+  for (let [key, value] of map1.entries()) {
+    r += Math.abs(value - map2.get(key));
+  }
+
+  return r;
+};
+
+console.log(
+  // ***
+  findPermutationDifference("abc", "bac")
+  // ***
+);

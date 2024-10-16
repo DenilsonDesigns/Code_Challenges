@@ -1,1 +1,1 @@
-require("./LeetCode/stackClasses.js");
+require("./LeetCode/hashTableEasy.js");
