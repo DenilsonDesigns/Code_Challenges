@@ -23,7 +23,6 @@ function uniqueOccurrences(arr) {
 
 // 3146 Permutation Difference between two strings
 var findPermutationDifference = function (s, t) {
-  // first hashtable
   const map1 = new Map();
   const map2 = new Map();
 
