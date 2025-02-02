@@ -79,8 +79,54 @@ function getSneakyNumbers(nums: number[]): number[] {
   return r;
 }
 
+const filterEvens = (nums: number[]): number[] => {
+  return nums.filter((num) => num % 2 === 0);
+};
+
+const filterKeys = <T extends Record<string, any>>(
+  obj: T,
+  keys: (keyof T)[]
+): Partial<T> => {
+  const result: Partial<T> = {};
+
+  for (const key of keys) {
+    if (key in obj) {
+      result[key] = obj[key];
+    }
+  }
+
+  return result;
+};
+
+const findDuplicates = (nums: number[]): number[] => {
+  const numMap = new Map();
+  const r: number[] = [];
+
+  nums.forEach((num) => {
+    if (numMap.has(num)) {
+      numMap.set(num, 2);
+    } else {
+      numMap.set(num, 1);
+    }
+  });
+
+  for (const [k, v] of numMap.entries()) {
+    if (v === 2) r.push(k);
+  }
+
+  return r;
+};
+
+const filterByLength = (strings: string[], minLength: number): string[] => {
+  return strings.filter((x) => x.length >= minLength);
+};
+
+const findMax = (nums: number[]): number => {
+  return Math.max(...nums);
+};
+
 console.log(
   // ***
-  getSneakyNumbers([7, 1, 5, 4, 3, 4, 6, 0, 9, 5, 8, 2])
+  resolveInSequence([p1, p2, p3])
   // ***
 );

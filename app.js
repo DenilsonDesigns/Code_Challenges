@@ -1,1 +1,1 @@
-require("./LeetCode/hashTableEasy.js");
+require("./LeetCode/hardArrs.js");

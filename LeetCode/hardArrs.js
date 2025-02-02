@@ -77,15 +77,51 @@ var maxScoreWords = function (words, letters, score) {
   return rScore;
 };
 
+// 329. Longest Increasing Path in a Matrix
+var longestIncreasingPath = function (matrix) {
+  var rows = matrix.length;
+  var cols = matrix[0].length;
+
+  const dp = {};
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      // const element = matrix[cols];
+
+      dfs(r, c, -1);
+    }
+  }
+
+  return Math.max(...Object.values(dp));
+
+  function dfs(r, c, prevVal) {
+    const key = `${r},${c}`;
+    // make sure its not out of bounds, or that it didnt increase:
+    if (r < 0 || r === rows || c < 0 || c === cols || matrix[r][c] <= prevVal) {
+      return 0;
+    }
+
+    if (dp[key]) {
+      return dp[key];
+    }
+
+    var res = 1;
+    res = Math.max(1 + dfs(r + 1, c, matrix[r][c]), res);
+    res = Math.max(1 + dfs(r - 1, c, matrix[r][c]), res);
+    res = Math.max(1 + dfs(r, c + 1, matrix[r][c]), res);
+    res = Math.max(1 + dfs(r, c - 1, matrix[r][c]), res);
+    dp[key] = res;
+
+    return res;
+  }
+};
+
 console.log(
   // ***
-  maxScoreWords(
-    ["dog", "cat", "dad", "good"],
-    ["a", "a", "c", "d", "d", "d", "g", "o", "o"],
-    [
-      1, 0, 9, 5, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0,
-    ]
-  )
+  longestIncreasingPath([
+    [9, 9, 4],
+    [6, 6, 8],
+    [2, 1, 1],
+  ])
   // ***
 );
