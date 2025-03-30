@@ -1,3 +1,3 @@
-require("./LeetCode/dfs.js");
+require("./LeetCode/sortMed.js");
 
 // test
