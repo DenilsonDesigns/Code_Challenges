@@ -1,3 +1,3 @@
-require("./LeetCode/sortMed.js");
+require("./LeetCode/microsoftPrep.js");
 
 // test

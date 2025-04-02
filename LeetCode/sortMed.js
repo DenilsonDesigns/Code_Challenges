@@ -24,8 +24,6 @@ var sortArray = function (arr) {
   return merge(left, right);
 
   function merge(left, right) {
-    console.log("left", left);
-    console.log("right", right);
     let sortedArr = [];
     let i = 0,
       j = 0;
@@ -43,7 +41,6 @@ var sortArray = function (arr) {
 
     // Append remaining elements (if any)
     sortedArr = sortedArr.concat(left.slice(i)).concat(right.slice(j));
-    console.log("sortedarr: ", sortedArr);
     return sortedArr;
   }
 };
