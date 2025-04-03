@@ -66,8 +66,96 @@ var characterReplacement = function (s, k) {
   return r;
 };
 
+// 15. 3Sum
+var threeSum = function (nums) {
+  // sort the array first, makes it clear on how to move the pointers.
+  nums.sort((a, b) => a - b);
+
+  let result = [];
+
+  // it will be:
+  // [-4, -1, -1, 0, 1, 2]
+
+  // skip last 2 in nums, as those places will be taken by left and right
+  // pointers
+  for (let i = 0; i < nums.length - 2; i++) {
+    // skip dupe values for the first number
+    if (i < 0 && nums[i] === nums[i - 1]) continue;
+
+    let left = i + 1;
+    let right = nums.length - 1;
+
+    // start the pointers to the right of the current nums[i]
+    while (left < right) {
+      let sum = nums[i] + nums[left] + nums[right];
+
+      // if we have a 3sum:
+      if (sum === 0) {
+        result.push([nums[i], nums[left], nums[right]]);
+        left++;
+        right--;
+
+        // after we have moved the left pointer, make sure its not a dupe
+        while (left < right && nums[left] === nums[left - 1]) left++;
+        // same with right:
+        while (left < right && nums[right] === nums[right + 1]) right--;
+      } else if (sum < 0) {
+        // 3sum smaller than 0, so move left to increase value
+        left++;
+      } else {
+        // 3sum greater than 0, so move right in, to reduce 3sum
+        right--;
+      }
+    }
+  }
+
+  return result;
+};
+
+var quickSort = function (arr) {
+  // arr of length 1 or 0 just gets returned out.
+  if (arr.length <= 1) return arr;
+
+  let left = [];
+  let right = [];
+  let equal = [];
+  let pivot = arr[Math.floor(arr.length / 2)];
+
+  for (const num of arr) {
+    // num goes to left
+    if (num < pivot) left.push(num);
+    else if (num > pivot) right.push(num);
+    else equal.push(num);
+  }
+
+  return [...quickSort(left), ...equal, ...quickSort(right)];
+};
+
+// binary search requires a sorted array to operate on.
+
+// Time is O(log n), as the number of operations reduces as the array is halfed
+var binarySearch = function (arr, target) {
+  // get left and right;
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    // get mid
+    let midIdx = Math.floor((left + right) / 2);
+
+    // check if we have the element
+    if (arr[midIdx] === target) return midIdx;
+    // if its smaller than target, check the right half;
+    else if (arr[midIdx] < target) left = midIdx + 1;
+    // if its larger than target, check left half:
+    else right = midIdx - 1;
+  }
+
+  return -1;
+};
+
 console.log(
   // ***
-  characterReplacement("AABABBA", 1) // 4 (BABB/AABA)
+  binarySearch([1, 3, 5, 7, 9, 11], 7)
   // ***
 );
