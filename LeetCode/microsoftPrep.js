@@ -154,8 +154,38 @@ var binarySearch = function (arr, target) {
   return -1;
 };
 
+// Sliding window, contiguous subarray.
+// Given an array of integers nums and an integer k, find the maximum sum of any contiguous subarray of length k.
+var maxSumContinguousSubArray = function (arr, k) {
+  if (arr.length < k) return null; // Edge case: If not enough elements, return null
+
+  let maxContiguousSubArray = 0;
+  let runningSum = 0;
+
+  // Initialize runningSum with the sum of the first k elements
+  for (let i = 0; i < k; i++) {
+    runningSum += arr[i];
+  }
+
+  // Set maxContiguousSubArray to the initial sum
+  maxContiguousSubArray = runningSum;
+
+  let left = 0;
+
+  // Move the window forward
+  for (let right = k; right < arr.length; right++) {
+    runningSum -= arr[left]; // Remove the element going out of the window
+    runningSum += arr[right]; // Add the new element coming into the window
+    left++; // Move the left pointer forward
+
+    maxContiguousSubArray = Math.max(maxContiguousSubArray, runningSum);
+  }
+
+  return maxContiguousSubArray;
+};
+
 console.log(
   // ***
-  binarySearch([1, 3, 5, 7, 9, 11], 7)
+  maxSumContinguousSubArray([1, 3, 5, 7, 9, 11], 2)
   // ***
 );
