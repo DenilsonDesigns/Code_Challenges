@@ -203,8 +203,61 @@ var minSubArrayLen = function (nums, target) {
   return minLength === Infinity ? 0 : minLength;
 };
 
+// 33. Search in Rotated Sorted Array
+var rotatedBinSearch = function (nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    // get midIdx
+    let mid = Math.floor((left + right) / 2);
+
+    // check if we found the element
+    if (nums[mid] === target) {
+      return mid;
+    }
+
+    // left smaller than mid, it means left half is sorted?
+    if (nums[left] <= nums[mid]) {
+      // check if target exists inside this left half
+      if (nums[left] <= target && target < nums[mid]) {
+        // slide right down to be the end of the left half
+        right = mid - 1;
+      } else {
+        // target is not within this left half of the window.
+        // so move left up
+        left = mid + 1;
+      }
+      // right half is confirmed sorted
+    } else {
+      // check if element exists within the right half:
+      if (nums[mid] < target && target <= nums[right]) {
+        // target is indeed inside this right half we are now checking
+        // bring left point up to beginning of right half
+        left = mid + 1;
+      } else {
+        // we didnt find it in the right half, so it must be in the left
+        // half
+        // move the right pointer down to beginning of right half.
+        right = mid - 1;
+      }
+    }
+  }
+};
+
 console.log(
-  // ***
-  minSubArrayLen([4, 2, 1, 7, 8, 1, 2, 1, 10], 4)
+  // ***            0  1  2  3  4  5  6  7  8
+  rotatedBinSearch([10, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1)
+  /**
+   * 1st pass: 0 - 8 rules out that left half is sorted
+   * and that target is not in left half
+   *
+   * 2nd pass: 5 - 8 rules out left half
+   *
+   * 3rd pass: 7 - 8 rules out left half
+   *
+   * 4th pass: 8 - 8 finds element in 8th index
+   *
+   */
   // ***
 );
