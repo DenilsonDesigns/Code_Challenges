@@ -157,35 +157,54 @@ var binarySearch = function (arr, target) {
 // Sliding window, contiguous subarray.
 // Given an array of integers nums and an integer k, find the maximum sum of any contiguous subarray of length k.
 var maxSumContinguousSubArray = function (arr, k) {
-  if (arr.length < k) return null; // Edge case: If not enough elements, return null
+  if (arr.length < k) return null;
 
-  let maxContiguousSubArray = 0;
+  let maxSumContinguousSubArray = 0;
   let runningSum = 0;
-
-  // Initialize runningSum with the sum of the first k elements
-  for (let i = 0; i < k; i++) {
-    runningSum += arr[i];
-  }
-
-  // Set maxContiguousSubArray to the initial sum
-  maxContiguousSubArray = runningSum;
-
   let left = 0;
 
-  // Move the window forward
-  for (let right = k; right < arr.length; right++) {
-    runningSum -= arr[left]; // Remove the element going out of the window
-    runningSum += arr[right]; // Add the new element coming into the window
-    left++; // Move the left pointer forward
+  for (let i = 0; i < k; i++) {
+    const element = arr[i];
 
-    maxContiguousSubArray = Math.max(maxContiguousSubArray, runningSum);
+    runningSum += element;
   }
 
-  return maxContiguousSubArray;
+  maxSumContinguousSubArray = runningSum;
+
+  for (let right = k; right < arr.length; right++) {
+    runningSum -= arr[left];
+    runningSum += arr[right];
+
+    maxSumContinguousSubArray = Math.max(runningSum, maxSumContinguousSubArray);
+    left++;
+  }
+
+  return maxSumContinguousSubArray;
+};
+
+// Sliding window: min length of contiguous subarray with sum ≥ target
+var minSubArrayLen = function (nums, target) {
+  let left = 0;
+  let sum = 0;
+  let minLength = Infinity;
+
+  // Expand window by moving 'right'
+  for (let right = 0; right < nums.length; right++) {
+    sum += nums[right]; // Add current element to the window sum
+
+    // Shrink window from the left while the sum is big enough
+    while (sum >= target) {
+      minLength = Math.min(minLength, right - left + 1);
+      sum -= nums[left];
+      left++;
+    }
+  }
+
+  return minLength === Infinity ? 0 : minLength;
 };
 
 console.log(
   // ***
-  maxSumContinguousSubArray([1, 3, 5, 7, 9, 11], 2)
+  minSubArrayLen([4, 2, 1, 7, 8, 1, 2, 1, 10], 4)
   // ***
 );
