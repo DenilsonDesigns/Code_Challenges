@@ -164,8 +164,110 @@ var binarySearch = function (arr, target) {
   return -1;
 };
 
+// Sliding window, contiguous subarray.
+// Given an array of integers nums and an integer k, find the maximum sum of any contiguous subarray of length k.
+var maxSumContinguousSubArray = function (arr, k) {
+  if (arr.length < k) return null;
+
+  let maxSumContinguousSubArray = 0;
+  let runningSum = 0;
+  let left = 0;
+
+  for (let i = 0; i < k; i++) {
+    const element = arr[i];
+
+    runningSum += element;
+  }
+
+  maxSumContinguousSubArray = runningSum;
+
+  for (let right = k; right < arr.length; right++) {
+    runningSum -= arr[left];
+    runningSum += arr[right];
+
+    maxSumContinguousSubArray = Math.max(runningSum, maxSumContinguousSubArray);
+    left++;
+  }
+
+  return maxSumContinguousSubArray;
+};
+
+// Sliding window: min length of contiguous subarray with sum ≥ target
+var minSubArrayLen = function (nums, target) {
+  let left = 0;
+  let sum = 0;
+  let minLength = Infinity;
+
+  // Expand window by moving 'right'
+  for (let right = 0; right < nums.length; right++) {
+    sum += nums[right]; // Add current element to the window sum
+
+    // Shrink window from the left while the sum is big enough
+    while (sum >= target) {
+      minLength = Math.min(minLength, right - left + 1);
+      sum -= nums[left];
+      left++;
+    }
+  }
+
+  return minLength === Infinity ? 0 : minLength;
+};
+
+// 33. Search in Rotated Sorted Array
+var rotatedBinSearch = function (nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    // get midIdx
+    let mid = Math.floor((left + right) / 2);
+
+    // check if we found the element
+    if (nums[mid] === target) {
+      return mid;
+    }
+
+    // left smaller than mid, it means left half is sorted?
+    if (nums[left] <= nums[mid]) {
+      // check if target exists inside this left half
+      if (nums[left] <= target && target < nums[mid]) {
+        // slide right down to be the end of the left half
+        right = mid - 1;
+      } else {
+        // target is not within this left half of the window.
+        // so move left up
+        left = mid + 1;
+      }
+      // right half is confirmed sorted
+    } else {
+      // check if element exists within the right half:
+      if (nums[mid] < target && target <= nums[right]) {
+        // target is indeed inside this right half we are now checking
+        // bring left point up to beginning of right half
+        left = mid + 1;
+      } else {
+        // we didnt find it in the right half, so it must be in the left
+        // half
+        // move the right pointer down to beginning of right half.
+        right = mid - 1;
+      }
+    }
+  }
+};
+
 console.log(
-  // ***
-  binarySearch([1, 3, 5, 7, 9, 11], 7)
+  // ***            0  1  2  3  4  5  6  7  8
+  rotatedBinSearch([10, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1)
+  /**
+   * 1st pass: 0 - 8 rules out that left half is sorted
+   * and that target is not in left half
+   *
+   * 2nd pass: 5 - 8 rules out left half
+   *
+   * 3rd pass: 7 - 8 rules out left half
+   *
+   * 4th pass: 8 - 8 finds element in 8th index
+   *
+   */
   // ***
 );
