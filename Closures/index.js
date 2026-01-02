@@ -1,16 +1,19 @@
-// function counter() {
-//   let count = 0;
+function counter() {
+  let count = 0;
 
-//   return function () {
-//     count++;
-//     console.log(count);
-//   };
-// }
+  function inner() {
+    count++;
+    console.log(count);
+  }
 
+  return inner;
+}
+
+var myCounter = counter();
 // This wont work:
 // needs to store reference to function in a variable to store the closure:
-// counter()(); // 1
-// counter()(); // 2
+myCounter(); // 1
+myCounter(); // 2
 
 // Stores "counter" in a variable,
 // now each invocation will call "count++" and return the incremented "count"
@@ -85,12 +88,12 @@
 // collectionManager.removeItem("Item 1");
 // console.log(collectionManager.getCollection()); // Outputs: ["Item 2"]
 
-function fetchData(url, callback) {
-  // ...
-  fetch(url).then((response) => callback(response));
-}
+// function fetchData(url, callback) {
+//   // ...
+//   fetch(url).then((response) => callback(response));
+// }
 
-fetchData("https://example.com/api/data", function (res) {
-  // 'response' here is available due to closure
-  console.log(res);
-});
+// fetchData("https://example.com/api/data", function (res) {
+//   // 'response' here is available due to closure
+//   console.log(res);
+// });

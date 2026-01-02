@@ -1,0 +1,32 @@
+h1 {
+  padding-top: 16px;
+  color: #333; /* Dark grey text color */
+}
+
+button {
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #ff4081; /* Bright pink button color */
+  border-color: #333; /* Dark grey button border color */
+  color: white;
+}
+
+.game-square {
+  font-size: 60px;
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  vertical-align: top;
+}
+
+.game-square:disabled {
+  cursor: default;
+}
+
+#restart-button {
+  display: none;
+  font-size: 28px;
+  padding: 14px;
+  margin: 14px auto;
+}

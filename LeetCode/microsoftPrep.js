@@ -245,19 +245,13 @@ var rotatedBinSearch = function (nums, target) {
   }
 };
 
+// 875. Koko Eating Bananas
+var minEatingSpeed = function (piles, h) {
+  // @TODO:
+};
+
 console.log(
-  // ***            0  1  2  3  4  5  6  7  8
-  rotatedBinSearch([10, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1)
-  /**
-   * 1st pass: 0 - 8 rules out that left half is sorted
-   * and that target is not in left half
-   *
-   * 2nd pass: 5 - 8 rules out left half
-   *
-   * 3rd pass: 7 - 8 rules out left half
-   *
-   * 4th pass: 8 - 8 finds element in 8th index
-   *
-   */
+  // ***
+  minEatingSpeed([3, 6, 7, 11], 8)
   // ***
 );

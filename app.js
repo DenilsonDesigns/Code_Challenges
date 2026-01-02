@@ -1,3 +1,3 @@
-require("./LeetCode/microsoftPrep.js");
+require("./HackerRank/airInvaderOptimized.js");
 
 // test
