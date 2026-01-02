@@ -131,24 +131,34 @@ var quickSort = function (arr) {
   return [...quickSort(left), ...equal, ...quickSort(right)];
 };
 
-// binary search requires a sorted array to operate on.
+// Binary search
+// Binary search can only be used on a sorted array
+// It works by checking the middle element
+// If the middle element is higher than the target,
+// we half the searchable elements, and only check the left half
+// if the middle element is lower than the target, the target must be in the "right"
+// side of the array. so we halve the searchable area to only be the right side.
+// we keep splitting the searchable area until we find out element.
 
-// Time is O(log n), as the number of operations reduces as the array is halfed
+// Time Complexity:
 var binarySearch = function (arr, target) {
-  // get left and right;
   let left = 0;
   let right = arr.length - 1;
 
   while (left <= right) {
-    // get mid
-    let midIdx = Math.floor((left + right) / 2);
+    // make sure to calculate middleIdx from current left/right at each pass.
+    const middleIdx = Math.floor((left + right) / 2);
+    const middleElement = arr[middleIdx];
 
-    // check if we have the element
-    if (arr[midIdx] === target) return midIdx;
-    // if its smaller than target, check the right half;
-    else if (arr[midIdx] < target) left = midIdx + 1;
-    // if its larger than target, check left half:
-    else right = midIdx - 1;
+    // we found our element, return it to caller.
+    if (middleElement === target) return middleIdx;
+
+    // middle is greater than target, change search area to be only the left side
+    if (middleElement > target) {
+      right = middleIdx - 1;
+    } else if (middleElement < target) {
+      left = middleIdx + 1;
+    }
   }
 
   return -1;
