@@ -1,3 +1,3 @@
-require("./HackerRank/airInvaderOptimized.js");
+require("./HackerRank/programmerString");
 
 // test
