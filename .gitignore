@@ -4,3 +4,7 @@ General/gitHub.js
 MOCK_PRODUCT_INDEX.jsx
 MOCK_DATA_PRODUCT.js
 Canva/
+
+
+**/obj/**
+**/bin/**
