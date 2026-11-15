@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,9 +17,9 @@ public class Program
         GC.WaitForPendingFinalizers();
 
         // ==========================================
-        // 1. Padded SPSC Ring Buffer Benchmark (100M Items)
+        // 1. Ultra-Optimized SPSC Ring Buffer Benchmark
         // ==========================================
-        Console.WriteLine($"=== 1. Padded SPSC Ring Buffer Benchmark ({totalItemsToSend:N0} items) ===");
+        Console.WriteLine($"=== 1. Optimized SPSC Ring Buffer Benchmark ({totalItemsToSend:N0} items) ===");
         const int capacity = 1024 * 1024;
         var ringBuffer = new SpscRingBuffer<long>(capacity);
         
@@ -68,7 +69,7 @@ public class Program
         long ringGen2 = GC.CollectionCount(2) - startGen2;
 
         Console.WriteLine($"Total Time: {ringStopwatch.Elapsed.TotalSeconds:F3} seconds");
-        Console.WriteLine($"Padded SPSC Throughput: {totalItemsToSend / ringStopwatch.Elapsed.TotalSeconds:N0} ops/sec.");
+        Console.WriteLine($"Optimized SPSC Throughput: {totalItemsToSend / ringStopwatch.Elapsed.TotalSeconds:N0} ops/sec.");
         Console.WriteLine($"Allocated Bytes: {ringBytesAllocated:N0} bytes");
         Console.WriteLine($"GC Collections -> Gen 0: {ringGen0}, Gen 1: {ringGen1}, Gen 2: {ringGen2}\n");
 
@@ -146,7 +147,6 @@ public class Program
     }
 }
 
-// Standalone non-generic type with explicit layout and padding to prevent false sharing
 [StructLayout(LayoutKind.Explicit, Size = 128)]
 public struct PaddedCounter
 {
@@ -158,45 +158,61 @@ public sealed class SpscRingBuffer<T>
 {
     private readonly T[] _buffer;
     private readonly int _mask;
+    private readonly int _capacity;
 
-    private PaddedCounter _head;
     private PaddedCounter _tail;
+    private PaddedCounter _head;
+
+    // Cached pointers to reduce cross-core volatile reads during high-speed bursts
+    private long _cachedHead;
+    private long _cachedTail;
 
     public SpscRingBuffer(int capacity)
     {
         if ((capacity & (capacity - 1)) != 0)
             throw new ArgumentException("Capacity must be a power of 2.");
 
+        _capacity = capacity;
         _buffer = new T[capacity];
         _mask = capacity - 1;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryWrite(T item)
     {
-        long tail = Volatile.Read(ref _tail.Value);
-        long head = Volatile.Read(ref _head.Value);
+        long tail = _tail.Value; // Producer owns tail, no volatile read needed for local value
 
-        if (tail - head >= _buffer.Length) return false;
+        if (tail - _cachedHead >= _capacity)
+        {
+            _cachedHead = Volatile.Read(ref _head.Value); // Refresh only when full
+            if (tail - _cachedHead >= _capacity)
+                return false;
+        }
 
-        _buffer[tail & _mask] = item;
-        Volatile.Write(ref _tail.Value, tail + 1);
+        Unsafe.Add(ref MemoryMarshal.GetArrayDataReference(_buffer), (nint)(tail & _mask)) = item;
+        Volatile.Write(ref _tail.Value, tail + 1); // Publish new tail to consumer
         return true;
     }
 
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryRead(out T item)
     {
-        long head = Volatile.Read(ref _head.Value);
-        long tail = Volatile.Read(ref _tail.Value);
+        long head = _head.Value; // Consumer owns head, no volatile read needed for local value
 
-        if (head == tail)
+        if (head == _cachedTail)
         {
-            item = default!;
-            return false;
+            _cachedTail = Volatile.Read(ref _tail.Value); // Refresh only when empty
+            if (head == _cachedTail)
+            {
+                item = default!;
+                return false;
+            }
         }
 
-        item = _buffer[head & _mask];
-        _buffer[head & _mask] = default!;
-        Volatile.Write(ref _head.Value, head + 1);
+        ref T slot = ref Unsafe.Add(ref MemoryMarshal.GetArrayDataReference(_buffer), (nint)(head & _mask));
+        item = slot;
+        slot = default!;
+        Volatile.Write(ref _head.Value, head + 1); // Publish new head to producer
         return true;
     }
 }
